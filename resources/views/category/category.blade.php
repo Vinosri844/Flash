@@ -33,11 +33,30 @@
                                         <th>Category name</th>
                                         <th>Category details</th>
                                         <th>Status</th>
-                                        <th>Date</th>
+                                        <th>Created date/time</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                @if(isset($category) && !empty($category))
+                                @foreach($category as $k=>$v) 
+                                <tr>
+                                    <td><input type="checkbox" class="sub_chk" data-id=""></td>
+                                    <td>{{ $k + 1 }}</td>
+                                    <td> </td>
+                                    <td>{{ ($v->category_name) ?? 'N/A' }}</td>
+                                    <td>{{ ($v->category_description) ?? 'N/A' }} </td>
+                                    <td> <input data-id="{{$v->category_id}}" class="toggle-class" type="checkbox" data-onstyle="success" 
+                                    data-offstyle="danger" data-toggle="toggle" data-on="Solved" 
+                                    data-off="Active" {{ $v->isactive ? 'checked' : '' }}></td>
+                                    <td>{{ ($v->created_date_time) ?? 'N/A' }} </td>
+                                    <td class="text-right">
+                                        <a href="{{ route('category_edit', $v->category_id) }}" class="btn btn-link btn-success edit"><i class="bx bxs-pencil"></i></a>
+                                        <a href="{{route('category_destroy',['id'=>$v->category_id])}}" class="btn btn-link btn-danger delete"><i class="bx bxs-trash"></i></a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                                @endif
                                 </tbody>
                             </table>
                         </div>
@@ -59,33 +78,34 @@
         </div>
         <div class="card-content">
           <div class="card-body">
-            <form class="form">
+            <form method="post" name="category_form" id="category_form" action="{{ route('category_submit') }}" enctype= multipart/form-data>
+            {{ csrf_field() }}
               <div class="form-body">
                 <div class="row">
                   <div class="col-6">
                     <div class="form-label-group">
-                      <input type="text" id="first-name-floating" class="form-control" placeholder="Category Name"
-                        name="fname-floating">
+                      <input type="text" id="category_name" class="form-control" placeholder="Category Name"
+                        name="category_name">
                       <label for="first-name-floating">Category Name</label>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-label-group">
-                      <input type="text" id="email-id-floating" class="form-control" name="email-id-floating"
+                      <input type="text" id="t_category_name" class="form-control" name="t_category_name"
                         placeholder="Category Info(tamil)">
                       <label for="email-id-floating">Category Info(tamil)</label>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-label-group">
-                      <input type="text" id="contact-info-floating" class="form-control" name="contact-floating"
+                      <input type="text" id="category_description" class="form-control" name="category_description"
                         placeholder="Description">
                       <label for="contact-info-floating">Description</label>
                     </div>
                   </div>
                   <div class="col-6">
                     <div class="form-label-group">
-                      <input type="file" id="password-floating" class="form-control" name="contact-floating"
+                      <input type="file" id="category_image" class="form-control" name="category_image"
                         placeholder="Password">
                       <label for="password-floating"></label>
                     </div>
