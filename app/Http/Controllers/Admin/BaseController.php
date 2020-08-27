@@ -36,11 +36,6 @@ class BaseController extends Controller
         return view('login');
     }
 
-<<<<<<< HEAD
-    public function category()
-    { 
-        return view('category.category');
-=======
     public function category(Request $request)
     {  
         try{
@@ -147,7 +142,6 @@ class BaseController extends Controller
   
         DB::commit(); 
         return response()->json(['success'=>"Status changed successfully."]);
->>>>>>> 3504569212137e9394caf99b06b42453d1c62e97
     }
 
     public function subcategory()
