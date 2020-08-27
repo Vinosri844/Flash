@@ -13,12 +13,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//flash
+Route::get('/theme', 'Admin\BaseController@layout')->name('layout');
+
+//login
+Route::get('/', 'Admin\BaseController@login')->name('login');
+
+//category
+Route::get('/category', 'Admin\BaseController@category')->name('category');
+Route::post('/category', 'Admin\BaseController@category')->name('category_submit');
+Route::get('/category/{id}', 'Admin\BaseController@category_edit')->name('category_edit');
+Route::post('/category/{id}', 'Admin\BaseController@category_edit')->name('category_edit_submit');
+Route::get('/subcategory', 'Admin\BaseController@subcategory')->name('subcategory');
+
+//reports
+Route::get('/product_price', 'Admin\BaseController@product_price')->name('product_price');
+Route::get('/seller_product', 'Admin\BaseController@seller_product')->name('seller_product');
+Route::get('/seller_selling', 'Admin\BaseController@seller_selling')->name('seller_selling');
+Route::get('/selling_invoice', 'Admin\BaseController@selling_invoice')->name('selling_invoice');
+Route::get('/shopping_cart', 'Admin\BaseController@shopping_cart')->name('shopping_cart');
+Route::get('/wishlist', 'Admin\BaseController@wishlist')->name('wishlist');
