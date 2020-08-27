@@ -110,7 +110,7 @@
           </li>
           <li class=" navigation-header"><span>Other masters</span>
           </li>
-          <li class=" nav-item"><a href=""><i class="bx bx-calendar-event" data-icon="user"></i><span class="menu-title" data-i18n="User Profile">Event master</span></a>
+        <li class=" nav-item {{ Route::currentRouteName() == 'event-master' ? ' active' : '' }}"><a href="{{ route('event-master.index') }}"><i class="bx bx-calendar-event" data-icon="user"></i><span class="menu-title" data-i18n="User Profile">Event master</span></a>
           </li>
           <li class=" nav-item"><a href=""><i class="bx bx-store" data-icon="info-alt"></i><span class="menu-title" data-i18n="Knowledge Base">Store</span></a>
           </li>
@@ -153,6 +153,9 @@
             <div class="row breadcrumbs-top">
               <div class="col-12">
                 <div class="breadcrumb-wrapper col-12">
+                  <div id="flash-msg">
+                    @include('flash::message')
+                </div>
                  
                   @yield('content')
                 </div>
@@ -167,6 +170,16 @@
       </div>
     </div>
     <!-- END: Content-->
+
+    @push('scripts')
+    <script>
+      $(function () {
+          // flash auto hide
+          $('#flash-msg .alert').not('.alert-danger, .alert-important').delay(6000).slideUp(500);
+      })
+</script>
+        
+    @endpush
 
 
     

@@ -26,6 +26,7 @@ Route::get('/theme', 'Admin\BaseController@layout')->name('layout');
 //login
 Route::get('/', 'Admin\BaseController@login')->name('login');
 
+Route::get('/category', 'Admin\BaseController@category')->name('category');
 //category
 Route::get('/category', 'Admin\BaseController@category')->name('category');
 Route::post('/category', 'Admin\BaseController@category')->name('category_submit');
@@ -43,4 +44,12 @@ Route::get('/seller_product', 'Admin\BaseController@seller_product')->name('sell
 Route::get('/seller_selling', 'Admin\BaseController@seller_selling')->name('seller_selling');
 Route::get('/selling_invoice', 'Admin\BaseController@selling_invoice')->name('selling_invoice');
 Route::get('/shopping_cart', 'Admin\BaseController@shopping_cart')->name('shopping_cart');
+Route::get('/wishlist', 'Admin\BaseController@wishlist')->name('wishlist');
+
+
+
+Route::namespace('Admin')->group(function(){
+    Route::resource('/event-master', 'MasterController');
+    // Route::post('/event-master', 'MasterController@store')->name('event_master');
+});
 Route::get('/wishlist', 'Admin\BaseController@wishlist')->name('wishlist');
