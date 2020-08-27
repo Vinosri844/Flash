@@ -13,12 +13,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//flash
+Route::get('/theme', 'Admin\BaseController@layout')->name('layout');
+
+//login
+Route::get('/', 'Admin\BaseController@login')->name('login');
+
+Route::get('/category', 'Admin\BaseController@category')->name('category');
+Route::get('/subcategory', 'Admin\BaseController@subcategory')->name('subcategory');
+
+//reports
+Route::get('/product_price', 'Admin\BaseController@product_price')->name('product_price');
+Route::get('/seller_product', 'Admin\BaseController@seller_product')->name('seller_product');
+Route::get('/seller_selling', 'Admin\BaseController@seller_selling')->name('seller_selling');
+Route::get('/selling_invoice', 'Admin\BaseController@selling_invoice')->name('selling_invoice');
+Route::get('/shopping_cart', 'Admin\BaseController@shopping_cart')->name('shopping_cart');
+Route::get('/wishlist', 'Admin\BaseController@wishlist')->name('wishlist');
+
+
+
+Route::namespace('Admin')->group(function(){
+    Route::resource('/event-master', 'MasterController');
+    // Route::post('/event-master', 'MasterController@store')->name('event_master');
+});
