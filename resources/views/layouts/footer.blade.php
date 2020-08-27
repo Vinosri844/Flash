@@ -41,6 +41,35 @@
     <script src="{{ asset('assets/app-assets/js/scripts/datatables/datatable.min.js') }}"></script>
     <!-- END: Page JS-->
 
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+  <script>
+      $(function() {
+        $('.toggle-class').change(function() {
+            var isactive = $(this).prop('checked') == true ? 1 : 0; 
+            var category_id = $(this).data('id'); 
+            
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: 'ca-changeStatus',
+                data: {'isactive': isactive, 'category_id': category_id},
+                success: function(data){
+                    if (data['success']) {
+                        alert(data['success']);
+                        setTimeout(function(){// wait for 5 secs(2)
+                            location.reload(); // then reload the page.(3)
+                        }, 700); 
+                    } else {
+                        alert('Whoops Something went wrong!!');
+                    }
+                   // console.log(data.success)
+                }
+            });
+        })
+    })
+    </script>
+
   </body>
   <!-- END: Body-->
 
