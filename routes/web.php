@@ -31,6 +31,10 @@ Route::get('/category', 'Admin\BaseController@category')->name('category');
 Route::post('/category', 'Admin\BaseController@category')->name('category_submit');
 Route::get('/category/{id}', 'Admin\BaseController@category_edit')->name('category_edit');
 Route::post('/category/{id}', 'Admin\BaseController@category_edit')->name('category_edit_submit');
+Route::get('/category/{id}/delete','Admin\BaseController@category_destroy')->name('category_destroy');
+
+Route::post('ca-changeStatus', 'Admin\BaseController@ca_changeStatus');
+
 Route::get('/subcategory', 'Admin\BaseController@subcategory')->name('subcategory');
 
 //reports

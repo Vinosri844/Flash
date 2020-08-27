@@ -124,7 +124,25 @@ class BaseController extends Controller
       
     }
 
-   
+    public function category_destroy($id)
+    {
+        //Retrieve the employee
+        $data = Category::find($id);
+        //delete
+        $data->delete();
+        return redirect()->route('category');
+    }
+
+    public function ca_changeStatus(Request $request, User $user)
+    {
+        DB::beginTransaction();
+        $user = Category::find($request->category_id);
+        $user->isactive = $request->isactive; 
+        $user->save();
+  
+        DB::commit(); 
+        return response()->json(['success'=>"Status changed successfully."]);
+    }
 
     public function subcategory()
     { 

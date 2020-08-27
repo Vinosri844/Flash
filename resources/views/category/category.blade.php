@@ -46,10 +46,13 @@
                                     <td> </td>
                                     <td>{{ ($v->category_name) ?? 'N/A' }}</td>
                                     <td>{{ ($v->category_description) ?? 'N/A' }} </td>
-                                    <td>{{ ($v->isactive) ?? 'N/A' }} </td>
+                                    <td> <input data-id="{{$v->category_id}}" class="toggle-class" type="checkbox" data-onstyle="success" 
+                                    data-offstyle="danger" data-toggle="toggle" data-on="Solved" 
+                                    data-off="Active" {{ $v->isactive ? 'checked' : '' }}></td>
                                     <td>{{ ($v->created_date_time) ?? 'N/A' }} </td>
                                     <td class="text-right">
-                                        <a href="{{ route('category_edit', $v->category_id) }}" class="btn btn-link btn-success edit"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ route('category_edit', $v->category_id) }}" class="btn btn-link btn-success edit"><i class="bx bxs-pencil"></i></a>
+                                        <a href="{{route('category_destroy',['id'=>$v->category_id])}}" class="btn btn-link btn-danger delete"><i class="bx bxs-trash"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach
