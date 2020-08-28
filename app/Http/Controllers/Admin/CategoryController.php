@@ -27,88 +27,6 @@ class CategoryController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-    
-
-    public function store(Request $request)
-    {
-        try {
-            $validator = Validator::make($request->all(), [
-                'category_name' => 'required' 
-        ]);
-        if($validator->fails()){
-            flash()->error('Please fill the required fields');
-            return redirect()->route('category.index');
-        }
-        $active = 0;
-        // dd($request->event_status);
-        if($request->event_status != null){
-            $active = 1;
-        } 
-        $event = new Category;
-        $event->isactive = $active;
-        $event->category_name = $request->category_name;
-        if($event->save()){
-            flash()->success('Category Created Successfully!');
-            return redirect()->route('category.index');
-        }
-        flash()->error('Please Try Again!');
-        return redirect()->route('category.index');
-        } catch (\Throwable $th) {
-            flash()->error('Something Went wrong Please try Again!');
-            return redirect()->route('category.index');
-        }
-        
-    }
-
-    public function update(Request $request, $id)
-    { 
-        try { //dd($request->all());
-            $validator = Validator::make($request->all(), [
-            'category_name' => 'required' 
-        ]);
-        if($validator->fails()){
-            flash()->error('Please fill the required fields');
-            return redirect()->route('category');
-        } 
-        $active = 0;
-        // dd($request->event_status);
-        if($request->event_status != null){
-            $active = 1;
-        } 
-        $event = Category::findOrFail($id); 
-        $event->category_name = $request->category_name;
-        $event->isactive = $active;
-        if($event->save()){
-            flash()->success('Category Updated Successfully!');
-            return redirect()->route('category');
-            
-        }
-            flash()->error('Please Try Again!');
-           
-            return view('category.category_edit');
-        } catch (\Throwable $th) {
-            flash()->error('Something Went wrong Please try Again!');
-            return redirect()->route('category');
-        }
-    }
-
-    public function destroy($id)
-    {
-        try {
-            $event = Category::findOrFail($id);
-            $event->isdelete = 1;
-            if($event->save()){
-                flash('Category Deleted Successfully!');
-                return redirect()->route('category.index');
-            }
-            flash()->error('Please Try Again!');
-            return redirect()->route('category.index');
-        } catch (\Throwable $th) {
-            flash()->error('Something Went wrong Please try Again!');
-            return redirect()->route('category.index');
-        }
-    }
-
     public function index()
     { 
         $masters = Category::where('isdelete', 0)->orderBy('category_id', 'desc')->get();
@@ -133,10 +51,15 @@ class CategoryController extends Controller
                                 ->withInput();
                 } 
 
+                $active = 0;
+                // dd($request->event_status);
+                if($request->cat_status != null){
+                    $active = 1;
+                } 
                     DB::beginTransaction();
                     $account = new \App\Category;
                     $account->fill($request->input()); 
-
+                    $account->isactive = $active;
                     $check = $account->save(); 
 
                     if($check) { 
@@ -180,10 +103,15 @@ class CategoryController extends Controller
                                 ->withInput();
                 } 
 
+                $active = 0;
+                // dd($request->event_status);
+                if($request->cat_status != null){
+                    $active = 1;
+                } 
                     DB::beginTransaction();
                     $account =  Category::find($category_id);
                     $account->fill($request->input()); 
-
+                    $account->isactive = $active;
                     $check = $account->save(); 
 
                     if($check) { 
@@ -220,7 +148,134 @@ class CategoryController extends Controller
         }
         flash()->error('Please Try Again!');
         return redirect()->route('category');
+        
+    }
 
+
+    //Subcategory
+    public function sc_index()
+    { 
+        $masters = SubCategory::where('isdelete', 0)->orderBy('subcategory_id', 'desc')->get();
+        
+        return view('category.subcategory')->with('masters', $masters);
+    }
+
+    public function subcategory_create(Request $request)
+    {  
+        try{
+            if($request->isMethod('post'))
+            {
+                $validator = Validator::make($request->input(), [
+                    
+                ]);
+
+                // if form validation errors
+                if ($validator->fails()) {
+                    flash()->error('Please fill the required fields');
+                    return redirect()->route('subcategory')
+                                ->withErrors($validator)
+                                ->withInput();
+                } 
+
+                $active = 0;
+                 //dd($request->sc_status);
+                if($request->sc_status != null){
+                    $active = 1;
+                } 
+                    DB::beginTransaction();
+                    $account = new \App\SubCategory;
+                    $account->fill($request->input()); 
+                    $account->isactive = $active;
+                    $check = $account->save(); 
+
+                    if($check) { 
+                        DB::commit(); 
+                        flash()->success('Sub category Created Successfully!');
+                        return redirect()->route('subcategory');
+                    } else {
+                        flash()->error('Please Try Again!');
+                        return redirect()->route('subcategory');
+                    }
+
+            }
+            else{
+
+                $data['category'] = SubCategory::orderBy('subcategory_id', 'desc')->get();
+                $data['cat'] = Category::orderBy('category_id', 'desc')->get();
+                return view('category.subcategory_create', $data ?? NULL);
+            }
+        }
+        Catch(\Exception $e)
+        { dd($e);
+            DB::rollback();
+            return redirect()->route('subcategory')->with('error', $e->getMessage());
+        }
+      
+    }
+
+    public function subcategory_edit(Request $request, $subcategory_id)
+    {  
+        try{
+            if($request->isMethod('post'))
+            {
+                $validator = Validator::make($request->input(), [
+                    
+                ]);
+
+                // if form validation errors
+                if ($validator->fails()) {
+                    flash()->error('Please fill the required fields');
+                    return redirect()->route('subcategory_edit', $subcategory_id)
+                                ->withErrors($validator)
+                                ->withInput();
+                } 
+
+                $active = 0;
+                // dd($request->event_status);
+                if($request->sc_status != null){
+                    $active = 1;
+                } 
+                    DB::beginTransaction();
+                    $account =  SubCategory::find($subcategory_id);
+                    $account->fill($request->input()); 
+                    $account->isactive = $active;
+                    $check = $account->save(); 
+
+                    if($check) { 
+                        DB::commit(); 
+                        flash()->success('Subcategory Updated Successfully!');
+                        return redirect()->route('subcategory', $subcategory_id);
+                    } else {
+                        flash()->error('Please Try Again!');
+                        return view('category.subcategory_edit');
+                    }
+
+            }
+            else{
+
+                $data['category'] = SubCategory::where('subcategory_id', $subcategory_id)->first();
+                $data['cat'] = Category::orderBy('category_id', 'desc')->get();
+                return view('category.subcategory_edit', $data ?? NULL);
+            }
+        }
+        Catch(\Exception $e)
+        { dd($e);
+            DB::rollback();
+            return redirect()->route('subcategory')->with('error', $e->getMessage());
+        }
+      
+    }
+
+    public function sc_destroy($id)
+    {
+        $data = SubCategory::findOrFail($id);
+        $data->isdelete = 1;
+        if($data->save()){
+            flash()->success('Subcategory Deleted Successfully!');
+            return redirect()->route('subcategory');
+        }
+        flash()->error('Please Try Again!');
+        return redirect()->route('subcategory');
         
     }
 
