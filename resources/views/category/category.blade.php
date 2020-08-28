@@ -10,21 +10,24 @@
             <div class="card-header">
                 <p class="card-text">  
                         <div class="row">
-                        <div class="col-sm-10">  <h4 class="card-title">List</h4>
+                        <div class="col-sm-9">  <h4 class="card-title">List</h4>
                             </div> 
-                            <div class="col-sm-2">
+                           <!-- <div class="col-sm-2">
                             <button type="button" class="btn btn-primary btn-sm" >
                             <a href="" onclick="return confirm('Are you sure you want to download the seller selling report?')" style="color: #ffff;" class="tx-white tx-12 d-block mg-t-10">
                             <i class="bx bx-import" aria-hidden="true"></i></a></button>
                             <div class="clearfix"></div>
-                        </div>
+                        </div> -->
+                        <div class="col-sm-3">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventMasterCreate" class="btn btn-primary">Create Category</button>
+                            </div>
                         </div></p>   
                 </div><hr>
                 <div class="card-content">
                     <div class="card-body card-dashboard">
                         
                         <div class="table-responsive">
-                            <table class="table nowrap scroll-horizontal-vertical">
+                            <table class="table zero-configuration ">
                                 <thead>
                                     <tr>
                                         <th><input type="checkbox" id="master"></th>
@@ -46,14 +49,29 @@
                                     <td> </td>
                                     <td>{{ ($v->category_name) ?? 'N/A' }}</td>
                                     <td>{{ ($v->category_description) ?? 'N/A' }} </td>
-                                    <td> <input data-id="{{$v->category_id}}" class="toggle-class" type="checkbox" data-onstyle="success" 
-                                    data-offstyle="danger" data-toggle="toggle" data-on="Active" 
-                                    data-off="Inactive" {{ $v->isactive ? 'checked' : '' }}></td>
+                                    <td>
+                                    <input data-id="{{$v->category_id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $v->isactive ? 'checked' : '' }}>
+                                    <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
+                                                        <input type="checkbox"  data-id="{{$v->category_id}}" class="custom-control-input" {{$v->isactive == 1 ? 'checked' : ''}} id="customSwitchGlow{{$k}}">
+                                                        <label class="custom-control-label" for="customSwitchGlow{{$k}}">
+                                                        </label>
+                                                      </div>    
+                                                      
+                                                      </td>
                                     <td>{{ ($v->created_date_time) ?? 'N/A' }} </td>
                                     <td class="text-right">
-                                        <a href="{{ route('category_edit', $v->category_id) }}" class="btn btn-link btn-success edit"><i class="bx bxs-pencil"></i></a>
-                                        <a href="{{route('category_destroy',['id'=>$v->category_id])}}" class="btn btn-link btn-danger delete"><i class="bx bxs-trash"></i></a>
-                                    </td>
+                                                    <div  style="display:inline-flex">
+                                                    <button class="btn-outline-info mr-1 eventMasterEdit" data-value="{{ $v->category_id }}, {{ $v->category_name }}, {{ $v->isactive }}"  data-toggle="modal" data-target="#eventMasterEdit"><a href="{{ route('category_edit', $v->category_id) }}"</a><i class="bx bxs-edit-alt" data-icon="warning-alt"></i></button>
+                                                        {{-- <button class="btn-outline-danger"><i class="bx bx-trash-alt"></i></button> --}}
+                                                       
+                                                        <button class="btn-outline-danger">
+                                                        <a href="{{route('category_destroy',['id'=>$v->category_id])}}"</a><i class="bx bx-trash-alt"></i>
+                                                        </button>
+                                                        
+                                                        </form>
+                                                    </div>
+                                                    
+                                                </td>
                                 </tr>
                                 @endforeach
                                 @endif
@@ -68,17 +86,19 @@
 </section>
 <!--/ Scroll - horizontal and vertical table -->
 
-<!-- // Basic Floating Label Form section start -->
-<section id="floating-label-layouts">
-  <div class="row match-height">
-    <div class="col-md-12 col-12">
-      <div class="card">
-        <div class="card-header">
-          <h4 class="card-title">Create</h4>
+
+<!-- Create Modal -->
+<div class="modal fade" id="eventMasterCreate" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="eventMasterCreate" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="eventMasterCreate">Create Category</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        <div class="card-content">
-          <div class="card-body">
-            <form method="post" name="category_form" id="category_form" action="{{ route('category_submit') }}" enctype= multipart/form-data>
+        <div class="modal-body">
+        <form method="post" name="category_form" id="category_form" action="{{ route('category_submit') }}" enctype= multipart/form-data>
             {{ csrf_field() }}
               <div class="form-body">
                 <div class="row">
@@ -117,11 +137,13 @@
                 </div>
               </div>
             </form>
-          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          
         </div>
       </div>
     </div>
   </div>
-</section>
 <!-- // Basic Floating Label Form section end -->
 @endsection

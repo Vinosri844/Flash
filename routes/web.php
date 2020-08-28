@@ -26,7 +26,6 @@ Route::get('/theme', 'Admin\BaseController@layout')->name('layout');
 //login
 Route::get('/', 'Admin\BaseController@login')->name('login');
 
-Route::get('/category', 'Admin\BaseController@category')->name('category');
 //category
 Route::get('/category', 'Admin\BaseController@category')->name('category');
 Route::post('/category', 'Admin\BaseController@category')->name('category_submit');
@@ -35,6 +34,7 @@ Route::post('/category/{id}', 'Admin\BaseController@category_edit')->name('categ
 Route::get('/category/{id}/delete','Admin\BaseController@category_destroy')->name('category_destroy');
 
 Route::post('ca-changeStatus', 'Admin\BaseController@ca_changeStatus');
+Route::get('changeStatus', 'Admin\BaseController@ChangeUserStatus');
 
 Route::get('/subcategory', 'Admin\BaseController@subcategory')->name('subcategory');
 

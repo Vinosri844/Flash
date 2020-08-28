@@ -70,6 +70,25 @@
     })
     </script>
 
+<script>
+  $(function() {
+    $('.toggle-class').change(function() {
+        var isactive = $(this).prop('checked') == true ? 1 : 0; 
+        var category_id = $(this).data('id'); 
+         
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: '/changeStatus',
+            data: {'isactive': isactive, 'category_id': category_id},
+            success: function(data){
+              console.log(data.success)
+            }
+        });
+    })
+  })
+</script>
+
     @stack('scripts')
   </body>
   <!-- END: Body-->
