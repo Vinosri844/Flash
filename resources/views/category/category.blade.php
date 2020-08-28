@@ -60,7 +60,7 @@
                                                         {{-- <button class="btn-outline-danger"><i class="bx bx-trash-alt"></i></button> --}}
                                                       
                                                         <button  onclick = "return confirm('Are you sure wanted to delete this {{$item->category_name}} ?')" style="display: inline" class="btn-outline-danger">
-                                                            <a href="{{route('category_destroy',['id'=>$item->category_id])}}"><i class="bx bx-trash-alt"></i></a>
+                                                            <a href="{{route('category_destroy',['id'=>$item->category_id])}}"><i style="color: red" class="bx bx-trash-alt"></i></a>
                                                         </button>
                                                        
                                                     </div>
