@@ -47,12 +47,12 @@ class MasterController extends Controller
             return redirect()->route('event-master.index');
         }
         $active = 0;
-        // dd($request->event_status);
         if($request->event_status != null){
             $active = 1;
         }
         $event = new EventMaster;
         $event->isActive = $active;
+        $event->user_id = 1;
         $event->event_name = $request->event_name;
         if($event->save()){
             flash()->success('Event Created Successfully!');
