@@ -59,6 +59,7 @@ Route::namespace('Admin')->group(function(){
     //Route::resource('/sub-category', 'SubCategoryController');
     //Route::resource('/category', 'CategoryController');
     Route::resource('/delivery-slot-master', 'DeliverySlotMasterController');
+    Route::resource('/store', 'StoreController');
     // Route::post('/event-master', 'MasterController@store')->name('event_master');
    
 });
