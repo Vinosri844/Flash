@@ -12,10 +12,10 @@
             <div class="card-header">
                 <p class="card-text">  
                         <div class="row">
-                        <div class="col-sm-10">  <h4 class="card-title">List</h4>
+                        <div class="col-sm-9">  <h4 class="card-title">List</h4>
                             </div> 
-                            <div class="col-sm-2">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventMasterCreate" class="btn btn-primary">Create Event</button>
+                            <div class="col-sm-3">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventMasterCreate" class="btn btn-primary"><a style="color: #fff" href="{{route('subcategory_create')}}">Create subcategory</a></button>
                             </div>
                             
                         </div></p>   
@@ -45,7 +45,7 @@
                                                 <td><input type="checkbox" id="master"></td>
                                                 <td>{{ $k + 1 }}</td>
                                                 <td></td>
-                                                <td>{{ $item->category_id }}</td>
+                                                <td>{{ $item->category['category_name'] }}</td>
                                                 <td>{{ $item->subcategory_name }}</td>
                                                 <td>{{ $item->subcategory_description }}</td>
                                                 <td>
@@ -55,20 +55,16 @@
                                                         </label>
                                                       </div>    
                                                 </td>
-                                                <td>{{ $item->created_date_time }}</td>
+                                                <td>{{ strtotime($item->created_date_time) > 0 ? date(config('constants.app_date_format'), strtotime($item->created_date_time)) : 'N/A' }}</td>
                                                 <td>
                                                     <div  style="display:inline-flex">
-                                                    <button class="btn-outline-info mr-1 eventMasterEdit" data-value="{{ $item->subcategory_id }}, {{ $item->subcategory_name }}, {{ $item->isactive }}"  data-toggle="modal" data-target="#eventMasterEdit"><i class="bx bxs-edit-alt" data-icon="warning-alt"></i></button>
+                                                    <button class="btn-outline-info mr-1 eventMasterEdit" data-value="{{ $item->subcategory_id }}, {{ $item->subcategory_name }}, {{ $item->isactive }}"  data-toggle="modal" data-target="#eventMasterEdit"><a href="{{ route('subcategory_edit', $item->subcategory_id) }}"><i class="bx bxs-edit-alt" data-icon="warning-alt"></i></a></button>
                                                         {{-- <button class="btn-outline-danger"><i class="bx bx-trash-alt"></i></button> --}}
-                                                        <form action="{{ route('sub-category.destroy', $item->subcategory_id) }}" method="post" 
-                                                            onsubmit = "return confirm('Are you sure wanted to delete this {{$item->subcategory_name}} ?')" style="display: inline">
-                                                        @csrf
-                                                        {{ method_field('DELETE') }}
-                                                        <button type="submit" class="btn-outline-danger">
-                                                            <i class="bx bx-trash-alt"></i>
+                                                      
+                                                        <button  onclick = "return confirm('Are you sure wanted to delete this {{$item->subcategory_name}} ?')" style="display: inline" class="btn-outline-danger">
+                                                            <a href="{{route('subcategory_destroy',['id'=>$item->subcategory_id])}}"><i style="color: red" class="bx bx-trash-alt"></i></a>
                                                         </button>
-                                                        
-                                                        </form>
+                                                       
                                                     </div>
                                                     
                                                 </td>
@@ -91,106 +87,5 @@
 <!-- Button trigger modal -->
 
   
-<!-- Modal -->
-  <div class="modal fade" id="eventMasterCreate" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="eventMasterCreate" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="eventMasterCreate">Create Event</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form method="POST" action="{{ route('sub-category.store') }}">
-                @csrf
-                <div class="form-group">
-                  <label for="eventName">Event Name</label>
-                  <input type="text" class="form-control" id="eventName" name="subcategory_name" aria-describedby="eventName">
-    
-                </div>
-                <div class="form-group" style="display: flex">
-                    <label for="eventStatus" class="mr-2">Event Status</label>
-                    <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
-                        <input type="checkbox" class="custom-control-input" name="event_status" checked id="eventStatus">
-                        <label class="custom-control-label" for="eventStatus"> 
-                        </label>
-                      </div>
-                </div>
-                
-                <button type="submit" class="btn btn-primary">Create</button>
-              </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          
-        </div>
-      </div>
-    </div>
-  </div>
-<!-- // Basic Floating Label Form section end -->
-
-
-{{-- Edit Event Name --}}
-<div class="modal fade" id="eventMasterEdit" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="eventMasterEdit" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="eventMasterEdit">Edit Event</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form method="POST" id="eventEditForm">
-                {{ method_field('PUT') }}
-                @csrf
-                <div class="form-group">
-                  <label for="eventNameEdit">Subcategory Name</label>
-                  <input type="text" class="form-control" id="eventNameEdit" name="subcategory_name" aria-describedby="eventName">
-    
-                </div>
-                <div class="form-group" style="display: flex">
-                    <label for="eventStatus" class="mr-2">Event Status</label>
-                    <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
-                        <input type="checkbox" class="custom-control-input" id="eventStatusEdit" name="event_status" id="eventStatusEdit">
-                        <label class="custom-control-label" for="eventStatusEdit"> 
-                        </label>
-                      </div>
-                </div>
-                
-                <button type="submit" class="btn btn-primary">Update</button>
-              </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  @push('scripts')
-
-  <script>
-      $(document).on('click', '.eventMasterEdit', function(){
-            var event = $(this).data('value');
-            var event_array = event.split(',');
-            console.log(event_array);
-            $('#eventNameEdit').val(event_array[1]);
-            if(event_array[2] == 1){
-                console.log(1);
-                $('#eventStatusEdit').attr('checked', true);
-            }
-            $('#eventEditForm').attr('action', "{{ url('/sub-category') }}" + "/" + event_array[0])
-            
-      });
-  </script>
-
-  
-
-      
-  @endpush
 
 @endsection

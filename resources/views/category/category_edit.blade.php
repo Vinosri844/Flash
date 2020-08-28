@@ -11,7 +11,7 @@
       <div class="card">
         <div class="card-header">
           <h4 class="card-title">Edit</h4>
-        </div>
+        </div> <br />
         <div class="card-content">
           <div class="card-body">
           <form method="post" name="category_form" id="category_form" action="{{ route('category_edit_submit', $category->category_id) }}" enctype= multipart/form-data>
@@ -46,8 +46,19 @@
                       <label for="password-floating"></label>
                     </div>
                   </div>
+                  <div class="col-6">
+                  <div class="form-group" style="display: flex">
+                    <label for="catStatus" class="mr-2">Category Status</label>
+                    <?php $check = $category->isactive == 1 ? 'checked' : ''; ?>
+                    <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
+                        <input type="checkbox" class="custom-control-input" id="catStatusEdit" name="cat_status" id="catStatusEdit" value="{{ $category->isactive }}"  {{ $check }}>
+                        <label class="custom-control-label" for="catStatusEdit"> 
+                        </label>
+                      </div>
+                      </div>
+                </div>
                   <div class="col-12 d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary mr-1 mb-1">Submit</button>
+                    <button type="submit" class="btn btn-primary mr-1 mb-1">Update</button>
                     <button type="reset" class="btn btn-light-secondary mr-1 mb-1">Reset</button>
                   </div>
                 </div>

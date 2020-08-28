@@ -16,11 +16,11 @@
   src: url(https://www.pixinvent.com/demo/frest-clean-bootstrap-admin-dashboard-template/app-assets/fonts/boxicons/fonts/boxicons.eot);
   src: url(https://www.pixinvent.com/demo/frest-clean-bootstrap-admin-dashboard-template/app-assets/fonts/boxicons/fonts/boxicons.eot)
       format("embedded-opentype"),
-    url(http://localhost/Flash/public/app-assets/fonts/boxicons/fonts/boxicons.woff2)
+    url(http://localhost/laravel/Flash/public/app-assets/fonts/boxicons/fonts/boxicons.woff2)
       format("woff2"),
-    url(http://localhost/Flash/public/app-assets/app-assets/fonts/boxicons/fonts/boxicons.woff)
+    url(http://localhost/laravel/Flash/public/app-assets/app-assets/fonts/boxicons/fonts/boxicons.woff)
       format("woff"),
-    url(http://localhost/Flash/public/app-assets/app-assets/fonts/boxicons/fonts/boxicons.ttf)
+    url(http://localhost/laravel/Flash/public/app-assets/app-assets/fonts/boxicons/fonts/boxicons.ttf)
       format("truetype"),
     url(https://www.pixinvent.com/demo/frest-clean-bootstrap-admin-dashboard-template/app-assets/fonts/boxicons/fonts/boxicons.svg?#boxicons)
       format("svg");

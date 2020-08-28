@@ -15,7 +15,7 @@
                         <div class="col-sm-9">  <h4 class="card-title">List</h4>
                             </div> 
                             <div class="col-sm-3">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventMasterCreate" class="btn btn-primary">Create category</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventMasterCreate" class="btn btn-primary"><a style="color: #fff" href="{{route('category_create')}}">Create category</a></button>
                             </div>
                             
                         </div></p>   
@@ -53,20 +53,16 @@
                                                         </label>
                                                       </div>    
                                                 </td>
-                                                <td>{{ $item->created_date_time }}</td>
+                                                <td>{{ strtotime($item->created_date_time) > 0 ? date(config('constants.app_date_format'), strtotime($item->created_date_time)) : 'N/A' }}</td>
                                                 <td>
                                                     <div  style="display:inline-flex">
-                                                    <button class="btn-outline-info mr-1 eventMasterEdit" data-value="{{ $item->category_id }}, {{ $item->category_name }}, {{ $item->isactive }}"  data-toggle="modal" data-target="#eventMasterEdit"><i class="bx bxs-edit-alt" data-icon="warning-alt"></i></button>
+                                                    <button class="btn-outline-info mr-1 eventMasterEdit" data-value="{{ $item->category_id }}, {{ $item->category_name }}, {{ $item->isactive }}"  data-toggle="modal" data-target="#eventMasterEdit"><a href="{{ route('category_edit', $item->category_id) }}"><i class="bx bxs-edit-alt" data-icon="warning-alt"></i></a></button>
                                                         {{-- <button class="btn-outline-danger"><i class="bx bx-trash-alt"></i></button> --}}
-                                                        <form action="{{ route('category.destroy', $item->category_id) }}" method="post" 
-                                                            onsubmit = "return confirm('Are you sure wanted to delete this {{$item->category_name}} ?')" style="display: inline">
-                                                        @csrf
-                                                        {{ method_field('DELETE') }}
-                                                        <button type="submit" class="btn-outline-danger">
-                                                            <i class="bx bx-trash-alt"></i>
+                                                      
+                                                        <button  onclick = "return confirm('Are you sure wanted to delete this {{$item->category_name}} ?')" style="display: inline" class="btn-outline-danger">
+                                                            <a href="{{route('category_destroy',['id'=>$item->category_id])}}"><i style="color: red" class="bx bx-trash-alt"></i></a>
                                                         </button>
-                                                        
-                                                        </form>
+                                                       
                                                     </div>
                                                     
                                                 </td>
@@ -89,7 +85,7 @@
 <!-- Button trigger modal -->
 
   
-<!-- Modal -->
+<!-- Modal 
   <div class="modal fade" id="eventMasterCreate" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="eventMasterCreate" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -100,12 +96,11 @@
           </button>
         </div>
         <div class="modal-body">
-            <form method="POST" action="{{ route('category.store') }}">
+            <form method="POST" action="{{ route('category_submit') }}">
                 @csrf
                 <div class="form-group">
                   <label for="eventName">Category Name</label>
                   <input type="text" class="form-control" id="eventName" name="category_name" aria-describedby="eventName">
-    
                 </div>
                 <div class="form-group" style="display: flex">
                     <label for="eventStatus" class="mr-2">Category Status</label>
@@ -125,10 +120,10 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 <!-- // Basic Floating Label Form section end -->
 
-
+<!--
 {{-- Edit Event Name --}}
 <div class="modal fade" id="eventMasterEdit" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="eventMasterEdit" aria-hidden="true">
     <div class="modal-dialog">
@@ -186,9 +181,8 @@
       });
   </script>
 
-  
-
-      
   @endpush
+
+  -->
 
 @endsection

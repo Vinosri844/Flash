@@ -27,6 +27,21 @@ Route::get('/theme', 'Admin\SubCategoryController@layout')->name('layout');
 Route::get('/', 'Admin\SubCategoryController@login')->name('login');
 
 
+//category
+Route::get('/category', 'Admin\CategoryController@index')->name('category');
+Route::get('/category-create', 'Admin\CategoryController@category_create')->name('category_create');
+Route::post('/category-create', 'Admin\CategoryController@category_create')->name('category_submit');
+Route::get('/category/{id}', 'Admin\CategoryController@category_edit')->name('category_edit');
+Route::post('/category/{id}', 'Admin\CategoryController@category_edit')->name('category_edit_submit');
+Route::get('/category/{id}/delete','Admin\CategoryController@category_destroy')->name('category_destroy');
+
+//subcategory
+Route::get('/subcategory', 'Admin\CategoryController@sc_index')->name('subcategory');
+Route::get('/subcategory-create', 'Admin\CategoryController@subcategory_create')->name('subcategory_create');
+Route::post('/subcategory-create', 'Admin\CategoryController@subcategory_create')->name('subcategory_submit');
+Route::get('/subcategory/{id}', 'Admin\CategoryController@subcategory_edit')->name('subcategory_edit');
+Route::post('/subcategory/{id}', 'Admin\CategoryController@subcategory_edit')->name('subcategory_edit_submit');
+Route::get('/subcategory/{id}/delete','Admin\CategoryController@sc_destroy')->name('subcategory_destroy');
 
 //reports
 Route::get('/product_price', 'Admin\SubCategoryController@product_price')->name('product_price');
@@ -41,13 +56,11 @@ Route::get('/wishlist', 'Admin\SubCategoryController@wishlist')->name('wishlist'
 
 Route::namespace('Admin')->group(function(){
     Route::resource('/event-master', 'MasterController');
-<<<<<<< HEAD
-    Route::resource('/sub-category', 'SubCategoryController');
-    Route::resource('/category', 'CategoryController');
-=======
+    //Route::resource('/sub-category', 'SubCategoryController');
+    //Route::resource('/category', 'CategoryController');
     Route::resource('/delivery-slot-master', 'DeliverySlotMasterController');
->>>>>>> 60c821b5e8bda9541b6c4c47c411465e4f438671
     // Route::post('/event-master', 'MasterController@store')->name('event_master');
    
 });
 Route::get('/wishlist', 'Admin\BaseController@wishlist')->name('wishlist');
+
