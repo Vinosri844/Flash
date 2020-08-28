@@ -9,7 +9,7 @@ use DB, Auth, Session;
 use App\Category;
 use App\SubCategory;
 
-class BaseController extends Controller
+class SubCategoryController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -325,6 +325,8 @@ class BaseController extends Controller
   
         return response()->json(['success'=>'User status change successfully.']);
     }
+
+    
 
     public function subcategory()
     { 
