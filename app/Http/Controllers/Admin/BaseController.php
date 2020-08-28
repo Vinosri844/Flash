@@ -144,6 +144,15 @@ class BaseController extends Controller
         return response()->json(['success'=>"Status changed successfully."]);
     }
 
+    public function changeUserStatus(Request $request)
+    {
+        $user = Category::find($request->category_id);
+        $user->isactive = $request->isactive; 
+        $user->save();
+  
+        return response()->json(['success'=>'User status change successfully.']);
+    }
+
     public function subcategory()
     { 
         return view('category.subcategory');
