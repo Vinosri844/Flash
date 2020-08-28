@@ -41,12 +41,9 @@ Route::get('/wishlist', 'Admin\SubCategoryController@wishlist')->name('wishlist'
 
 Route::namespace('Admin')->group(function(){
     Route::resource('/event-master', 'MasterController');
-<<<<<<< HEAD
     Route::resource('/sub-category', 'SubCategoryController');
     Route::resource('/category', 'CategoryController');
-=======
     Route::resource('/delivery-slot-master', 'DeliverySlotMasterController');
->>>>>>> 60c821b5e8bda9541b6c4c47c411465e4f438671
     // Route::post('/event-master', 'MasterController@store')->name('event_master');
    
 });

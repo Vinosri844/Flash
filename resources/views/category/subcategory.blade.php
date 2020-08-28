@@ -12,10 +12,10 @@
             <div class="card-header">
                 <p class="card-text">  
                         <div class="row">
-                        <div class="col-sm-10">  <h4 class="card-title">List</h4>
+                        <div class="col-sm-9">  <h4 class="card-title">List</h4>
                             </div> 
-                            <div class="col-sm-2">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventMasterCreate" class="btn btn-primary">Create Event</button>
+                            <div class="col-sm-3">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventMasterCreate" class="btn btn-primary">Create subcategory</button>
                             </div>
                             
                         </div></p>   
@@ -96,7 +96,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="eventMasterCreate">Create Event</h5>
+          <h5 class="modal-title" id="eventMasterCreate">Create subcategory</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -105,12 +105,12 @@
             <form method="POST" action="{{ route('sub-category.store') }}">
                 @csrf
                 <div class="form-group">
-                  <label for="eventName">Event Name</label>
+                  <label for="eventName">Subcategory Name</label>
                   <input type="text" class="form-control" id="eventName" name="subcategory_name" aria-describedby="eventName">
     
                 </div>
                 <div class="form-group" style="display: flex">
-                    <label for="eventStatus" class="mr-2">Event Status</label>
+                    <label for="eventStatus" class="mr-2">Subcategory Status</label>
                     <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
                         <input type="checkbox" class="custom-control-input" name="event_status" checked id="eventStatus">
                         <label class="custom-control-label" for="eventStatus"> 
@@ -136,7 +136,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="eventMasterEdit">Edit Event</h5>
+          <h5 class="modal-title" id="eventMasterEdit">Edit subcategory</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -151,7 +151,7 @@
     
                 </div>
                 <div class="form-group" style="display: flex">
-                    <label for="eventStatus" class="mr-2">Event Status</label>
+                    <label for="eventStatus" class="mr-2">Subcategory Status</label>
                     <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
                         <input type="checkbox" class="custom-control-input" id="eventStatusEdit" name="event_status" id="eventStatusEdit">
                         <label class="custom-control-label" for="eventStatusEdit"> 
