@@ -169,10 +169,10 @@
       $(document).on('click', '.eventMasterEdit', function(){
             var event = $(this).data('value');
             var event_array = event.split(',');
-            console.log(event_array);
+            
             $('#eventNameEdit').val(event_array[1]);
             if(event_array[2] == 1){
-                console.log(1);
+             
                 $('#eventStatusEdit').attr('checked', true);
             }
             $('#eventEditForm').attr('action', "{{ url('/event-master') }}" + "/" + event_array[0])

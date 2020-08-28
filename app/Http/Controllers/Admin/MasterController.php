@@ -47,7 +47,6 @@ class MasterController extends Controller
             return redirect()->route('event-master.index');
         }
         $active = 0;
-        // dd($request->event_status);
         if($request->event_status != null){
             $active = 1;
         }

@@ -48,8 +48,10 @@ Route::get('/wishlist', 'Admin\BaseController@wishlist')->name('wishlist');
 
 
 
+
 Route::namespace('Admin')->group(function(){
     Route::resource('/event-master', 'MasterController');
+    Route::resource('/delivery-slot-master', 'DeliverySlotMasterController');
     // Route::post('/event-master', 'MasterController@store')->name('event_master');
 });
 Route::get('/wishlist', 'Admin\BaseController@wishlist')->name('wishlist');

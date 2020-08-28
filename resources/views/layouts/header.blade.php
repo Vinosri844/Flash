@@ -28,28 +28,28 @@ License: You must have a valid license purchased only from themeforest(the above
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/vendors/css/vendors.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/vendors/css/charts/chartist.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/vendors/css/tables/datatable/datatables.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/vendors.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/charts/chartist.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/tables/datatable/datatables.min.css') }}">
     <!-- END: Vendor CSS-->
 
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 
     <!--Icons -->
-    <link href='https://unpkg.com/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+    {{-- <link href='https://unpkg.com/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'> --}}
 
     <!-- BEGIN: Theme CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/bootstrap-extended.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/colors.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/components.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/themes/dark-layout.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/themes/semi-dark-layout.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/bootstrap-extended.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/colors.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/components.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/themes/dark-layout.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/themes/semi-dark-layout.min.css') }}">
     <!-- END: Theme CSS-->
 
     <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/core/menu/menu-types/vertical-menu.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/app-assets/css/pages/chart-chartist.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/core/menu/menu-types/vertical-menu.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/pages/chart-chartist.min.css') }}">
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->

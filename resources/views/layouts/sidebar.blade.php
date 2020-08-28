@@ -74,7 +74,7 @@
           </li>
           <li class=" navigation-header"><span>Delivery</span>
           </li>
-          <li class=" nav-item"><a href=""><i class="bx bx-time-five" data-icon="settings"></i><span class="menu-title" data-i18n="Form Layout">Delivery slot master</span></a>
+        <li class=" nav-item {{ Route::currentRouteName() == 'delivery-slot-master' ? ' active' : '' }}"><a href="{{ route('delivery-slot-master.index') }}"><i class="bx bx-time-five" data-icon="settings"></i><span class="menu-title" data-i18n="Form Layout">Delivery slot master</span></a>
           </li>
           <li class=" nav-item"><a href=""><i class="bx bx-truck" data-icon="priority-low"></i><span class="menu-title" data-i18n="Form Wizard">Delivery</span></a>
           </li>
