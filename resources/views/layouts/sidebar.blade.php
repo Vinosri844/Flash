@@ -63,8 +63,8 @@
           @php $active = (Route::currentRouteName() == 'category') ? 'active' : ''; @endphp
           <li class=" nav-item {{ $active }}"><a href="{{ route('category') }}"><i class="bx bx-spreadsheet" data-icon="envelope-pull"></i><span class="menu-title" data-i18n="Email">Category</span></a>
           </li>
-       
-          <li class=" nav-item {{ Route::currentRouteName() == 'sub-category' ? ' active' : '' }}"><a href="{{ route('sub-category.index') }}"><i class="bx bx-sitemap" data-icon="comments"></i><span class="menu-title" data-i18n="Chat">Sub category</span></a>
+          @php $active = (Route::currentRouteName() == 'subcategory') ? 'active' : ''; @endphp
+          <li class=" nav-item {{ $active }}"><a href="{{ route('subcategory') }}"><i class="bx bx-sitemap" data-icon="comments"></i><span class="menu-title" data-i18n="Chat">Sub category</span></a>
           </li>
           <li class=" navigation-header"><span>Product</span>
           </li>

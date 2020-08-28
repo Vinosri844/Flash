@@ -53,7 +53,7 @@
                                                         </label>
                                                       </div>    
                                                 </td>
-                                                <td>{{ $item->created_date_time }}</td>
+                                                <td>{{ strtotime($item->created_date_time) > 0 ? date(config('constants.app_date_format'), strtotime($item->created_date_time)) : 'N/A' }}</td>
                                                 <td>
                                                     <div  style="display:inline-flex">
                                                     <button class="btn-outline-info mr-1 eventMasterEdit" data-value="{{ $item->category_id }}, {{ $item->category_name }}, {{ $item->isactive }}"  data-toggle="modal" data-target="#eventMasterEdit"><a href="{{ route('category_edit', $item->category_id) }}"><i class="bx bxs-edit-alt" data-icon="warning-alt"></i></a></button>

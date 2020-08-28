@@ -21,4 +21,8 @@ class SubCategory extends Model
     ];
 
     protected $hidden = [];
+
+    public function category() {
+        return $this->belongsTo('\App\Category', 'category_id', 'category_id');
+    }
 }
