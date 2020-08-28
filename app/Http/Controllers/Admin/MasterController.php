@@ -52,6 +52,7 @@ class MasterController extends Controller
         }
         $event = new EventMaster;
         $event->isActive = $active;
+        $event->user_id = 1;
         $event->event_name = $request->event_name;
         if($event->save()){
             flash()->success('Event Created Successfully!');

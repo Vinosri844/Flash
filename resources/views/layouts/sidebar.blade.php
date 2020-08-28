@@ -154,7 +154,7 @@
               <div class="col-12">
                 <div class="breadcrumb-wrapper col-12">
                   <div id="flash-msg">
-                  
+                  @include('flash::message')
                 </div>
                  
                   @yield('content')

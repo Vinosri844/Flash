@@ -65,6 +65,7 @@ class DeliverySlotMasterController extends Controller
             $delivery_slot->from_time = $request->deliverySlotFrom;
             $delivery_slot->to_time = $request->deliverySlotTo;
             $delivery_slot->isActive = $active;
+            $delivery_slot->user_id = 1;
             if($delivery_slot->save()){
                 flash()->success('Delivery Slot Created Successfully!');
                 return redirect()->route('delivery-slot-master.index');
