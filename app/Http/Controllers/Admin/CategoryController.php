@@ -258,9 +258,7 @@ class CategoryController extends Controller
                  
                     $check = $account->save(); 
 
-                    if($check) { 
-                        DB::commit(); 
-                    $check = $account->save();
+                    
 
                     if($check) {
                         DB::commit();
@@ -279,7 +277,7 @@ class CategoryController extends Controller
                 return view('category.subcategory_create', $data ?? NULL);
             }
         }
-    }
+    
         Catch(\Exception $e)
         { dd($e);
             DB::rollback();

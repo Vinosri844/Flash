@@ -96,14 +96,6 @@
                         
                     }
                 },
-                category_image: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Category image is required'
-                        }
-                        
-                    }
-                },
                 category_description: {
                     validators: {
                         stringLength: {
@@ -196,14 +188,6 @@
                     validators: {
                         notEmpty: {
                             message: 'Category name is required'
-                        }
-                        
-                    }
-                },
-                subcategory_image: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Subcategory image is required'
                         }
                         
                     }
