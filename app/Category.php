@@ -9,7 +9,7 @@ use DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
-{   
+{
     use Notifiable;
 
 	protected $table = 'category_master';
@@ -23,6 +23,7 @@ class Category extends Model
     ];
 
     protected $hidden = [];
-    
-	
+
+
+
 }

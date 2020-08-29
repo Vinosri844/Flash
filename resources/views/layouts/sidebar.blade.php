@@ -20,7 +20,7 @@
             </div>
             <ul class="nav navbar-nav float-right">
               <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-expand"><i class="ficon bx bx-fullscreen"></i></a></li>
-  
+
               <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon bx bx-bell bx-tada bx-flip-horizontal"></i><span class="badge badge-pill badge-danger badge-up">5</span></a>
                 <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                   <li class="dropdown-menu-header">
@@ -68,7 +68,7 @@
           </li>
           <li class=" navigation-header"><span>Product</span>
           </li>
-          <li class=" nav-item"><a href=""><i class="bx bx-basket" data-icon="settings"></i><span class="menu-title" data-i18n="Form Layout">Product</span></a>
+          <li class=" nav-item"><a href="{{ route('products') }}"><i class="bx bx-basket" data-icon="settings"></i><span class="menu-title" data-i18n="Form Layout">Product</span></a>
           </li>
           <li class=" nav-item"><a href=""><i class="bx bx-detail" data-icon="priority-low"></i><span class="menu-title" data-i18n="Form Wizard">Product details</span></a>
           </li>
@@ -156,7 +156,7 @@
                   <div id="flash-msg">
                   @include('flash::message')
                 </div>
-                 
+
                   @yield('content')
                 </div>
               </div>
@@ -178,11 +178,11 @@
           $('#flash-msg .alert').not('.alert-danger, .alert-important').delay(6000).slideUp(500);
       })
 </script>
-        
+
     @endpush
 
 
-    
+
 
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>

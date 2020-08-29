@@ -14,6 +14,9 @@
     <script src="{{ asset('app-assets/fonts/LivIconsEvo/js/LivIconsEvo.defaults.min.js') }}"></script>
     <script src="{{ asset('app-assets/fonts/LivIconsEvo/js/LivIconsEvo.min.js') }}"></script>
     <!-- BEGIN Vendor JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
     <!-- BEGIN: Page Vendor JS-->
     {{-- <script src="{{ asset('app-assets/vendors/js/charts/chartist.min.js') }}"></script> --}}
@@ -45,6 +48,7 @@
 
     <!-- Validation-->
     <script src="{{ asset('formvalidation/js/formValidation.min.js') }}"></script>
+<<<<<<< HEAD
     <script src="{{ asset('formvalidation/js/framework/bootstrap.min.js') }}"></script> 
     <!-- Validation-->
     
@@ -52,8 +56,62 @@
     @stack('scripts')
 
     @include('layouts.validation')
+=======
+    <script src="{{ asset('formvalidation/js/framework/bootstrap.min.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+            $(".mul-select").select2({
+                placeholder: "Select Store", //placeholder
+                tags: true,
+                tokenSeparators: ['/',',',';'," "]
+            });
+        })
+    </script>
+    <script>
+        function cat_by_subcategory(id) {
+            //alert(id);
+            $.ajax({
+                type: "POST",
+                url: '{{ route('catby_subcategory') }}',
+                data: {"_token": "{{ csrf_token() }}","category_id":id},
+                dataType: 'json',
+                success: function(response) {
+                    $("#subcat_id").html(response.html);
+                },
+                complete: function() {
+
+                }
+            });
+        }
+
+        $(document).ready(function () {
+                // from http://stackoverflow.com/questions/45888/what-is-the-most-efficient-way-to-sort-an-html-selects-options-by-value-while
+                var my_options = $('.productstores select option');
+                var selected = $('.productstores').find('select').val();
+
+                my_options.sort(function(a,b) {
+                    if (a.text > b.text) return 1;
+                    if (a.text < b.text) return -1;
+                    return 0
+                })
+
+                $('.productstores').find('select').empty().append( my_options );
+                $('.productstores').find('select').val(selected);
+
+                // set it to multiple
+                $('.productstores').find('select').attr('multiple', true);
+
+                // remove all option
+                $('.productstores').find('select option[value=""]').remove();
+                // add multiple select checkbox feature.
+                $('.productstores').find('select').multiselect();
+        });
+    </script>
+
+    @stack('scripts')
+>>>>>>> f507eebb63b85f2157be83623586768b59c643b9
   </body>
   <!-- END: Body-->
-  
+
 <!-- Mirrored from www.pixinvent.com/demo/frest-clean-bootstrap-admin-dashboard-template/html/ltr/vertical-menu-template-semi-dark/chart-chartist.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 20 Aug 2020 23:10:20 GMT -->
 </html>
