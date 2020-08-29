@@ -30,8 +30,8 @@
                                         <th><input type="checkbox" id="master"></th>
                                         <th>S.No</th>
                                         <th>Image</th>
-                                        <th>Category name</th>
-                                        <th>Category description</th>
+                                        <th>Name</th>
+                                        <th>Description</th>
                                         <th>Status</th>
                                         <th>Date</th>
                                         <th>Actions</th>
@@ -43,7 +43,8 @@
                                             <tr>
                                                 <td><input type="checkbox" id="master"></td>
                                                 <td>{{ $k + 1 }}</td>
-                                                <td></td>
+                                                <?php $img = !empty($item->category_image) ? asset(config('constants.category_img_path1').$item->category_image) : "http://placehold.it/50x50"; ?>
+                                                <td><img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="50" width="50"></td>                                      
                                                 <td>{{ $item->category_name }}</td>
                                                 <td>{{ $item->category_description }}</td>
                                                 <td>

@@ -24,7 +24,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/theme', 'Admin\SubCategoryController@layout')->name('layout');
 
 //login
-Route::get('/', 'Admin\SubCategoryController@login')->name('login');
+Route::get('/', 'Auth\LoginController@login')->name('login');
+Route::get('/login', 'Auth\LoginController@login')->name('login');
+   Route::post('/login-post', 'Auth\LoginController@loginSubmit')->name('loginSubmit');
 
 
 //category

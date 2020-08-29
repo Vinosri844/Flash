@@ -35,8 +35,6 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('formvalidation/css/formValidation.min.css') }}">
-
     <!--Icons -->
     {{-- <link href='https://unpkg.com/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'> --}}
 
@@ -57,6 +55,8 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/assets/css/style.css') }}">
     <!-- END: Custom CSS-->
+
+    <link rel="stylesheet" href="{{ asset('formvalidation/css/formValidation.min.css') }}">
 
     <style>
     .small, small {

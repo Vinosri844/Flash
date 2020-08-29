@@ -6,7 +6,7 @@
       </p>
     </footer>
     <!-- END: Footer-->
-
+    
 
     <!-- BEGIN: Vendor JS-->
     <script src="{{ asset('app-assets/vendors/js/vendors.min.js') }}"></script>
@@ -47,10 +47,11 @@
     <script src="{{ asset('formvalidation/js/formValidation.min.js') }}"></script>
     <script src="{{ asset('formvalidation/js/framework/bootstrap.min.js') }}"></script> 
     <!-- Validation-->
-    @include('layouts.validation')
+    
   
     @stack('scripts')
-   
+
+    @include('layouts.validation')
   </body>
   <!-- END: Body-->
   

@@ -60,6 +60,28 @@ class CategoryController extends Controller
                     $account = new \App\Category;
                     $account->fill($request->input()); 
                     $account->isactive = $active;
+                     // Image Upload
+                     if($request->hasFile('category_image')) {
+                        $photo = $request->file('category_image');
+
+                        if(isset($photo) && !empty($photo) && $photo->isValid()) {
+                            $rules = array('photo' => 'required|mimes:png,jpg,jpeg'); 
+                            $validator = Validator::make(array('photo'=> $photo), $rules);
+                            if($validator->passes()) {
+                                $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('category_name'))).'_'.time().'.'.$photo->getClientOriginalExtension();
+                                $file_path = public_path(config('constants.category_img_path').$file_name);
+                                $file_path1 = public_path(config('constants.category_img_path1').$file_name);
+                                $file_path2 = public_path(config('constants.category_img_path2').$file_name);
+
+                                $save_photo = Image::make($photo->getRealPath())->save($file_path);
+                                $save_photo = Image::make($photo->getRealPath())->save($file_path2);
+                                // Resize Image
+                                $save_photo = Image::make($photo->getRealPath())->resize(config('constants.image_width'), config('constants.image_height'))->save($file_path1);
+                                
+                                $account->category_image = $file_name;
+                            }
+                        }
+                    }
                     $check = $account->save(); 
 
                     if($check) { 
@@ -112,6 +134,28 @@ class CategoryController extends Controller
                     $account =  Category::find($category_id);
                     $account->fill($request->input()); 
                     $account->isactive = $active;
+                    // Image Upload
+                    if($request->hasFile('category_image')) {
+                        $photo = $request->file('category_image');
+
+                        if(isset($photo) && !empty($photo) && $photo->isValid()) {
+                            $rules = array('photo' => 'required|mimes:png,jpg,jpeg'); 
+                            $validator = Validator::make(array('photo'=> $photo), $rules);
+                            if($validator->passes()) {
+                                $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('category_name'))).'_'.time().'.'.$photo->getClientOriginalExtension();
+                                $file_path = public_path(config('constants.category_img_path').$file_name);
+                                $file_path1 = public_path(config('constants.category_img_path1').$file_name);
+                                $file_path2 = public_path(config('constants.category_img_path2').$file_name);
+
+                                $save_photo = Image::make($photo->getRealPath())->save($file_path);
+                                $save_photo = Image::make($photo->getRealPath())->save($file_path2);
+                                // Resize Image
+                                $save_photo = Image::make($photo->getRealPath())->resize(config('constants.image_width'), config('constants.image_height'))->save($file_path1);
+                                
+                                $account->category_image = $file_name;
+                            }
+                        }
+                    }
                     $check = $account->save(); 
 
                     if($check) { 
@@ -186,7 +230,28 @@ class CategoryController extends Controller
                     $account = new \App\SubCategory;
                     $account->fill($request->input()); 
                     $account->isactive = $active;
+                    // Image Upload
+                    if($request->hasFile('subcategory_image')) {
+                        $photo = $request->file('subcategory_image');
 
+                        if(isset($photo) && !empty($photo) && $photo->isValid()) {
+                            $rules = array('photo' => 'required|mimes:png,jpg,jpeg'); 
+                            $validator = Validator::make(array('photo'=> $photo), $rules);
+                            if($validator->passes()) {
+                                $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('subcategory_name'))).'_'.time().'.'.$photo->getClientOriginalExtension();
+                                $file_path = public_path(config('constants.subcategory_img_path').$file_name);
+                                $file_path1 = public_path(config('constants.subcategory_img_path1').$file_name);
+                                $file_path2 = public_path(config('constants.subcategory_img_path2').$file_name);
+
+                                $save_photo = Image::make($photo->getRealPath())->save($file_path);
+                                $save_photo = Image::make($photo->getRealPath())->save($file_path2);
+                                // Resize Image
+                                $save_photo = Image::make($photo->getRealPath())->resize(config('constants.image_width'), config('constants.image_height'))->save($file_path1);
+                                
+                                $account->subcategory_image = $file_name;
+                            }
+                        }
+                    }
                  
                     $check = $account->save(); 
 
@@ -241,6 +306,28 @@ class CategoryController extends Controller
                     $account =  SubCategory::find($subcategory_id);
                     $account->fill($request->input()); 
                     $account->isactive = $active;
+                        // Image Upload
+                        if($request->hasFile('subcategory_image')) {
+                            $photo = $request->file('subcategory_image');
+    
+                            if(isset($photo) && !empty($photo) && $photo->isValid()) {
+                                $rules = array('photo' => 'required|mimes:png,jpg,jpeg'); 
+                                $validator = Validator::make(array('photo'=> $photo), $rules);
+                                if($validator->passes()) {
+                                    $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('subcategory_name'))).'_'.time().'.'.$photo->getClientOriginalExtension();
+                                    $file_path = public_path(config('constants.subcategory_img_path').$file_name);
+                                    $file_path1 = public_path(config('constants.subcategory_img_path1').$file_name);
+                                    $file_path2 = public_path(config('constants.subcategory_img_path2').$file_name);
+    
+                                    $save_photo = Image::make($photo->getRealPath())->save($file_path);
+                                    $save_photo = Image::make($photo->getRealPath())->save($file_path2);
+                                    // Resize Image
+                                    $save_photo = Image::make($photo->getRealPath())->resize(config('constants.image_width'), config('constants.image_height'))->save($file_path1);
+                                    
+                                    $account->subcategory_image = $file_name;
+                                }
+                            }
+                        }
                     $check = $account->save(); 
 
                     if($check) { 

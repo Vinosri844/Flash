@@ -52,6 +52,16 @@ License: You must have a valid license purchased only from themeforest(the above
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/assets/css/style.css') }}">
     <!-- END: Custom CSS-->
 
+   
+    <link rel="stylesheet" href="{{ asset('formvalidation/css/formValidation.min.css') }}">
+
+    <style>
+    .small, small {
+    font-size: 80%;
+    color: red;
+    }
+    </style>
+
   </head>
   <!-- END: Head-->
 
@@ -76,26 +86,30 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div class="card-content">
                             <div class="card-body">
                                 <div class="divider">
-                                    <div class="divider-text text-uppercase text-muted"><small>login
+                                    <div class="divider-text text-uppercase text-muted"><small style="color: Blue">login
                                            </small>
                                     </div>
                                 </div>
-                                <form action="{{ route('category') }}">
+                                <form class="login-form" method="POST" action="{{ route('loginSubmit') }}" name="login_form" id="login_form">
+                                 {{ csrf_field() }}
+                                 <div id="flash-msg">
+                                    @include('flash::message')
+                                 </div>
                                     <div class="form-group mb-50">
-                                        <label class="text-bold-600" for="exampleInputEmail1">Email address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1"
+                                        <label class="text-bold-600" for="exampleInputEmail1">Email</label>
+                                        <input type="email" class="form-control" id="username" name="username"
                                             placeholder="Email address"></div>
                                     <div class="form-group">
                                         <label class="text-bold-600" for="exampleInputPassword1">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1"
+                                        <input type="password" class="form-control" id="password" name="password"
                                             placeholder="Password">
                                     </div>
                                     <div
                                         class="form-group d-flex flex-md-row flex-column justify-content-between align-items-center">
                                       
                                     </div>
-                                    <button type="submit" class="btn btn-primary glow w-100 position-relative">Login<i
-                                            id="icon-arrow" class="bx bx-right-arrow-alt"></i></button>
+                                    <button type="submit" class="btn btn-primary glow w-100 position-relative">LOGIN
+                                    </button>
                                 </form>
                             </div>
                         </div>
@@ -131,7 +145,10 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <!-- BEGIN: Page JS-->
     <!-- END: Page JS-->
+    <script src="{{ asset('formvalidation/js/formValidation.min.js') }}"></script>
+    <script src="{{ asset('formvalidation/js/framework/bootstrap.min.js') }}"></script> 
 
+    @include('layouts.validation')
   </body>
   <!-- END: Body-->
 
