@@ -60,7 +60,6 @@ class CategoryController extends Controller
                     $account = new \App\Category;
                     $account->fill($request->input());
                     $account->isactive = $active;
-<<<<<<< HEAD
                      // Image Upload
                      if($request->hasFile('category_image')) {
                         $photo = $request->file('category_image');
@@ -83,10 +82,7 @@ class CategoryController extends Controller
                             }
                         }
                     }
-                    $check = $account->save(); 
-=======
                     $check = $account->save();
->>>>>>> f507eebb63b85f2157be83623586768b59c643b9
 
                     if($check) {
                         DB::commit();
@@ -139,7 +135,6 @@ class CategoryController extends Controller
                     $account =  Category::find($category_id);
                     $account->fill($request->input());
                     $account->isactive = $active;
-<<<<<<< HEAD
                     // Image Upload
                     if($request->hasFile('category_image')) {
                         $photo = $request->file('category_image');
@@ -162,10 +157,8 @@ class CategoryController extends Controller
                             }
                         }
                     }
-                    $check = $account->save(); 
-=======
+                   
                     $check = $account->save();
->>>>>>> f507eebb63b85f2157be83623586768b59c643b9
 
                     if($check) {
                         DB::commit();
@@ -240,7 +233,6 @@ class CategoryController extends Controller
                     $account = new \App\SubCategory;
                     $account->fill($request->input());
                     $account->isactive = $active;
-<<<<<<< HEAD
                     // Image Upload
                     if($request->hasFile('subcategory_image')) {
                         $photo = $request->file('subcategory_image');
@@ -268,12 +260,10 @@ class CategoryController extends Controller
 
                     if($check) { 
                         DB::commit(); 
-=======
                     $check = $account->save();
 
                     if($check) {
                         DB::commit();
->>>>>>> f507eebb63b85f2157be83623586768b59c643b9
                         flash()->success('Sub category Created Successfully!');
                         return redirect()->route('subcategory');
                     } else {
@@ -289,6 +279,7 @@ class CategoryController extends Controller
                 return view('category.subcategory_create', $data ?? NULL);
             }
         }
+    }
         Catch(\Exception $e)
         { dd($e);
             DB::rollback();
@@ -333,7 +324,6 @@ class CategoryController extends Controller
                     $account =  SubCategory::find($subcategory_id);
                     $account->fill($request->input());
                     $account->isactive = $active;
-<<<<<<< HEAD
                         // Image Upload
                         if($request->hasFile('subcategory_image')) {
                             $photo = $request->file('subcategory_image');
@@ -356,10 +346,8 @@ class CategoryController extends Controller
                                 }
                             }
                         }
-                    $check = $account->save(); 
-=======
+                   
                     $check = $account->save();
->>>>>>> f507eebb63b85f2157be83623586768b59c643b9
 
                     if($check) {
                         DB::commit();
