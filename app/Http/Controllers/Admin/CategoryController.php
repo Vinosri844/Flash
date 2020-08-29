@@ -186,6 +186,8 @@ class CategoryController extends Controller
                     $account = new \App\SubCategory;
                     $account->fill($request->input()); 
                     $account->isactive = $active;
+
+                 
                     $check = $account->save(); 
 
                     if($check) { 

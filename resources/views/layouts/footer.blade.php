@@ -43,10 +43,16 @@
 
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
+    <!-- Validation-->
+    <script src="{{ asset('formvalidation/js/formValidation.min.js') }}"></script>
+    <script src="{{ asset('formvalidation/js/framework/bootstrap.min.js') }}"></script> 
+    <!-- Validation-->
+    @include('layouts.validation')
   
     @stack('scripts')
+   
   </body>
   <!-- END: Body-->
-
+  
 <!-- Mirrored from www.pixinvent.com/demo/frest-clean-bootstrap-admin-dashboard-template/html/ltr/vertical-menu-template-semi-dark/chart-chartist.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 20 Aug 2020 23:10:20 GMT -->
 </html>
