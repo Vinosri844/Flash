@@ -39,6 +39,10 @@
     <!-- BEGIN: Page JS-->
     {{-- <script src="{{ asset('assets/app-assets/js/scripts/charts/chart-chartist.min.js') }}"></script> --}}
     <script src="{{ asset('app-assets/js/scripts/datatables/datatable.min.js') }}"></script>
+    <script src="{{ asset('app-assets/vendors/js/forms/validation/jqBootstrapValidation.js') }}"></script>
+    <script src="{{ asset('app-assets/vendors/js/forms/spinner/jquery.bootstrap-touchspin.js') }}"></script>
+    <script src="{{ asset('app-assets/js/scripts/forms/validation/form-validation.js') }}"></script>
+    <script src="{{ asset('app-assets/js/scripts/forms/number-input.min.js') }}"></script>
     <!-- END: Page JS-->
 
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>

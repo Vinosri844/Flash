@@ -15,7 +15,7 @@
                         <div class="col-sm-10">  <h4 class="card-title">List</h4>
                             </div> 
                             <div class="col-sm-2">
-                                <button type="button" class="btn btn-primary" class="btn btn-primary">Create Store</button>
+                            <a href="{{ route('store.create') }}" class="btn btn-primary" class="btn btn-primary">Create Store</a>
                             </div>
                             
                         </div></p>   
@@ -47,9 +47,9 @@
                                                 <td><input type="checkbox" id="master"></td>
                                                 <td>{{ $k + 1 }}</td>
                                                 <td>{{ $item->seller_name }}</td>
-                                                <td><img src="{{ asset('image/sellercompanylogo/CompressImage/-1459597364.jpg') }} " width="100%" alt="" srcset=""></td>
+                                                <td><img src="{{ asset('image/sellerpancard/OriginalImage/') }}/{{$item->seller_pan_number_image}} " width="100%" alt="" srcset=""></td>
                                                 
-                                                <td>{{ $item->seller_company_image }}</td>
+                                                <td>{{ $item->seller_service_tax_number }}</td>
                                                 <td>{{ $item->seller_gst_tin_number }}</td>
                                                 <td>{{ $item->seller_cst_tin_number }}</td>
                                                 <td>{{ $item->seller_fssai_number }}</td>
@@ -63,8 +63,11 @@
                                                 </td>
                                                 <td>
                                                     <div  style="display:inline-flex">
-                                                    <button class="btn-outline-info mr-1" data-value="{{ $item->store_id }}"><i class="bx bxs-edit-alt" data-icon="warning-alt"></i></button>
-                                                        {{-- <button class="btn-outline-danger"><i class="bx bx-trash-alt"></i></button> --}}
+                                                    <form action="{{ route('store.edit', $item->seller_id) }}" method="get">
+                                                        <button class="btn-outline-info mr-1"><i class="bx bxs-edit-alt" data-icon="warning-alt"></i></button>
+                                                    </form>
+                                                   
+                                                       
                                                         <form action="" method="post" 
                                                             onsubmit = "return confirm('Are you sure wanted to delete this  ?')" style="display: inline">
                                                         @csrf

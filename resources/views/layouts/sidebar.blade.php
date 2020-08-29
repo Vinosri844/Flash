@@ -112,7 +112,7 @@
           </li>
         <li class=" nav-item {{ Route::currentRouteName() == 'event-master' ? ' active' : '' }}"><a href="{{ route('event-master.index') }}"><i class="bx bx-calendar-event" data-icon="user"></i><span class="menu-title" data-i18n="User Profile">Event master</span></a>
           </li>
-          <li class=" nav-item"><a href=""><i class="bx bx-store" data-icon="info-alt"></i><span class="menu-title" data-i18n="Knowledge Base">Store</span></a>
+        <li class=" nav-item {{ Route::currentRouteName() == 'store' ? ' active' : '' }}"><a href="{{ route('store.index') }}"><i class="bx bx-store" data-icon="info-alt"></i><span class="menu-title" data-i18n="Knowledge Base">Store</span></a>
           </li>
           <li class=" nav-item"><a href=""><i class="bx bx-id-card" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Membership</span></a>
           </li>

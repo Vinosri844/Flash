@@ -32,7 +32,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/charts/chartist.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/tables/datatable/datatables.min.css') }}">
     <!-- END: Vendor CSS-->
-
+    @stack('css')
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('formvalidation/css/formValidation.min.css') }}">
@@ -52,6 +52,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/core/menu/menu-types/vertical-menu.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/pages/chart-chartist.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/plugins/forms/validation/form-validation.css') }}">
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
