@@ -24,7 +24,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/theme', 'Admin\SubCategoryController@layout')->name('layout');
 
 //login
-Route::get('/', 'Admin\SubCategoryController@login')->name('login');
+Route::get('/', 'Auth\LoginController@login')->name('login');
+Route::get('/login', 'Auth\LoginController@login')->name('login');
+   Route::post('/login-post', 'Auth\LoginController@loginSubmit')->name('loginSubmit');
 
 
 //category
@@ -38,10 +40,20 @@ Route::get('/category/{id}/delete','Admin\CategoryController@category_destroy')-
 //subcategory
 Route::get('/subcategory', 'Admin\CategoryController@sc_index')->name('subcategory');
 Route::get('/subcategory-create', 'Admin\CategoryController@subcategory_create')->name('subcategory_create');
+Route::post('/catby-subcategory', 'Admin\CategoryController@catby_subcategory')->name('catby_subcategory');
 Route::post('/subcategory-create', 'Admin\CategoryController@subcategory_create')->name('subcategory_submit');
 Route::get('/subcategory/{id}', 'Admin\CategoryController@subcategory_edit')->name('subcategory_edit');
 Route::post('/subcategory/{id}', 'Admin\CategoryController@subcategory_edit')->name('subcategory_edit_submit');
 Route::get('/subcategory/{id}/delete','Admin\CategoryController@sc_destroy')->name('subcategory_destroy');
+
+//products
+Route::get('/products', 'Admin\ProductController@index')->name('products');
+Route::get('/product-create', 'Admin\ProductController@product_create')->name('product_create');
+Route::post('/product-create', 'Admin\ProductController@product_create')->name('product_submit');
+Route::get('/product/{id}', 'Admin\ProductController@product_edit')->name('product_edit');
+Route::post('/product/{id}', 'Admin\ProductController@product_edit')->name('product_edit_submit');
+Route::get('/product/{id}/delete','Admin\ProductController@product_destroy')->name('product_destroy');
+
 
 //reports
 Route::get('/product_price', 'Admin\SubCategoryController@product_price')->name('product_price');
@@ -61,7 +73,7 @@ Route::namespace('Admin')->group(function(){
     Route::resource('/delivery-slot-master', 'DeliverySlotMasterController');
     Route::resource('/store', 'StoreController');
     // Route::post('/event-master', 'MasterController@store')->name('event_master');
-   
+
 });
 Route::get('/wishlist', 'Admin\BaseController@wishlist')->name('wishlist');
 

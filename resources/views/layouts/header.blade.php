@@ -13,7 +13,7 @@ License: You must have a valid license purchased only from themeforest(the above
 -->
 <html class="loading" lang="en" data-textdirection="ltr">
   <!-- BEGIN: Head-->
-  
+
 <!-- Mirrored from www.pixinvent.com/demo/frest-clean-bootstrap-admin-dashboard-template/html/ltr/vertical-menu-template-semi-dark/chart-chartist.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 20 Aug 2020 23:10:18 GMT -->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -26,6 +26,8 @@ License: You must have a valid license purchased only from themeforest(the above
     <link rel="apple-touch-icon" href="{{ asset('assets/app-assets/images/ico/apple-icon-120.html') }}">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.pixinvent.com/demo/frest-clean-bootstrap-admin-dashboard-template/app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">
 
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/vendors/css/vendors.min.css') }}">
@@ -34,8 +36,6 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- END: Vendor CSS-->
     @stack('css')
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="{{ asset('formvalidation/css/formValidation.min.css') }}">
 
     <!--Icons -->
     {{-- <link href='https://unpkg.com/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'> --}}
@@ -58,6 +58,8 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/assets/css/style.css') }}">
     <!-- END: Custom CSS-->
+
+    <link rel="stylesheet" href="{{ asset('formvalidation/css/formValidation.min.css') }}">
 
     <style>
     .small, small {

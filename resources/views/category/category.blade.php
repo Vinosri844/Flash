@@ -30,8 +30,8 @@
                                         <th><input type="checkbox" id="master"></th>
                                         <th>S.No</th>
                                         <th>Image</th>
-                                        <th>Category name</th>
-                                        <th>Category description</th>
+                                        <th>Name</th>
+                                        <th>Description</th>
                                         <th>Status</th>
                                         <th>Date</th>
                                         <th>Actions</th>
@@ -43,7 +43,8 @@
                                             <tr>
                                                 <td><input type="checkbox" id="master"></td>
                                                 <td>{{ $k + 1 }}</td>
-                                                <td></td>
+                                                <?php $img = !empty($item->category_image) ? asset(config('constants.category_img_path1').$item->category_image) : "http://placehold.it/50x50"; ?>
+                                                <td><img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="50" width="50"></td>                                      
                                                 <td>{{ $item->category_name }}</td>
                                                 <td>{{ $item->category_description }}</td>
                                                 <td>
@@ -79,110 +80,5 @@
         </div>
     </div>
 </section>
-<!--/ Scroll - horizontal and vertical table -->
-
-<!-- // Basic Floating Label Form section start -->
-<!-- Button trigger modal -->
-
-  
-<!-- Modal 
-  <div class="modal fade" id="eventMasterCreate" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="eventMasterCreate" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="eventMasterCreate">Create category</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form method="POST" action="{{ route('category_submit') }}">
-                @csrf
-                <div class="form-group">
-                  <label for="eventName">Category Name</label>
-                  <input type="text" class="form-control" id="eventName" name="category_name" aria-describedby="eventName">
-                </div>
-                <div class="form-group" style="display: flex">
-                    <label for="eventStatus" class="mr-2">Category Status</label>
-                    <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
-                        <input type="checkbox" class="custom-control-input" name="event_status" checked id="eventStatus">
-                        <label class="custom-control-label" for="eventStatus"> 
-                        </label>
-                      </div>
-                </div>
-                
-                <button type="submit" class="btn btn-primary">Create</button>
-              </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          
-        </div>
-      </div>
-    </div>
-  </div> -->
-<!-- // Basic Floating Label Form section end -->
-
-<!--
-{{-- Edit Event Name --}}
-<div class="modal fade" id="eventMasterEdit" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="eventMasterEdit" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="eventMasterEdit">Edit category</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form method="POST" id="eventEditForm">
-                {{ method_field('PUT') }}
-                @csrf
-                <div class="form-group">
-                  <label for="eventNameEdit">Category Name</label>
-                  <input type="text" class="form-control" id="eventNameEdit" name="category_name" aria-describedby="eventName">
-    
-                </div>
-                <div class="form-group" style="display: flex">
-                    <label for="eventStatus" class="mr-2">Category Status</label>
-                    <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
-                        <input type="checkbox" class="custom-control-input" id="eventStatusEdit" name="event_status" id="eventStatusEdit">
-                        <label class="custom-control-label" for="eventStatusEdit"> 
-                        </label>
-                      </div>
-                </div>
-                
-                <button type="submit" class="btn btn-primary">Update</button>
-              </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  @push('scripts')
-
-  <script>
-      $(document).on('click', '.eventMasterEdit', function(){
-            var event = $(this).data('value');
-            var event_array = event.split(',');
-            console.log(event_array);
-            $('#eventNameEdit').val(event_array[1]);
-            if(event_array[2] == 1){
-                console.log(1);
-                $('#eventStatusEdit').attr('checked', true);
-            }
-            $('#eventEditForm').attr('action', "{{ url('/category') }}" + "/" + event_array[0])
-            
-      });
-  </script>
-
-  @endpush
-
-  -->
 
 @endsection

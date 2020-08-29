@@ -14,26 +14,26 @@
         </div>
         <div class="card-content">
           <div class="card-body">
-          <form method="post" name="category_form" id="category_form" action="{{ route('subcategory_submit') }}" enctype= multipart/form-data>
+          <form method="post" name="subcategory_form" id="subcategory_form" action="{{ route('subcategory_submit') }}" enctype= multipart/form-data>
         {{ csrf_field() }}
               <div class="form-body">
                 <div class="row">
                   <div class="col-6">
-                    <div class="form-label-group">
+                  <div class="form-group mb-50">
+                  <label class="text-bold-600" for="exampleInputEmail1">SubCategory Name</label>
                       <input type="text" id="subcategory_name" class="form-control" placeholder="SubCategory Name"
                         name="subcategory_name" >
-                      <label for="first-name-floating">SubCategory Name</label>
                     </div>
                   </div>
                   <div class="col-6">
-                    <div class="form-label-group">
+                  <div class="form-group mb-50">
+                  <label class="text-bold-600" for="exampleInputEmail1">SubCategory Info(tamil)</label>
                       <input type="text" id="t_subcategory_name" class="form-control" name="t_subcategory_name"
                         placeholder="SubCategory Info(tamil)">
-                      <label for="email-id-floating">SubCategory Info(tamil)</label>
                     </div>
                   </div>
 									<div class="col-6">
-                  <div class="form-label-group">
+                  <div class="form-group mb-50">
                           <label class="form-label">Category</label>
                           <select name="category_id" id="category_id" class="form-control select2_picker">
                               <option value="">Select Category</option>
@@ -47,22 +47,22 @@
                       </div>
                   </div>
                   <div class="col-6">
-                    <div class="form-label-group">
+                  <div class="form-group mb-50">
+                  <label class="text-bold-600" for="exampleInputEmail1">Description</label>
                       <input type="text" id="subcategory_description" class="form-control" name="subcategory_description"
                         placeholder="Description" >
-                      <label for="contact-info-floating">Description</label>
                     </div>
                   </div>
-                  <div class="col-6">
-                    <div class="form-label-group">
+                <div class="col-6">
+                <div class="form-group mb-50">
+                  <label class="text-bold-600" for="exampleInputEmail1">Image</label>
                       <input type="file" id="subcategory_image" class="form-control" name="subcategory_image"
                         placeholder="Image">
-                      <label for="password-floating"></label>
                     </div>
                   </div>
                   <div class="col-6">
                   <div class="form-group" style="display: flex">
-                    <label for="eventStatus" class="mr-2">Category Status</label>
+                    <label for="eventStatus" class="mr-2">SubCategory Status</label>
                     <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
                         <input type="checkbox" class="custom-control-input" name="sc_status" checked id="catStatus">
                         <label class="custom-control-label" for="catStatus"> 

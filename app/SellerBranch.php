@@ -21,5 +21,11 @@ class SellerBranch extends Model
         ,'seller_branch_contact_no', 'seller_branch_emailid', 'seller_id', 'seller_branch_type', 'isactive', 'isdelete'
     ];
 
+    
+
     protected $hidden = [];
+
+    public function seller() {
+        return $this->hasMany('\App\SellerMaster', 'seller_id', 'seller_id');
+    }
 }
