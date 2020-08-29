@@ -83,10 +83,6 @@
     </div>
 </section>
 <!--/ Scroll - horizontal and vertical table -->
-
-<!-- // Basic Floating Label Form section start -->
-<!-- Button trigger modal -->
-
   
 
 @endsection
