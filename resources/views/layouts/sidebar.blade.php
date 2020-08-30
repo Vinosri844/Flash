@@ -117,7 +117,7 @@
           <li class=" nav-item"><a href=""><i class="bx bx-id-card" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Membership</span></a>
           </li>
           
-        <li class=" nav-item {{ $route[0] == 'customer' ? ' active' : '' }}"><a href=" {{ route('customer.index') }}"><i class="bx bx-user-check" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Display customer list</span></a>
+        <li class=" nav-item {{ $route[0] == 'customer' ? ' active' : '' }}"><a href=" "><i class="bx bx-user-check" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Display customer list</span></a>
           </li>
           <li class=" nav-item"><a href=""><i class="bx bx-compass" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Weight</span></a>
           </li>
