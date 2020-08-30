@@ -53,7 +53,7 @@
                                                 <td>{{ $item->seller_gst_tin_number }}</td>
                                                 <td>{{ $item->seller_cst_tin_number }}</td>
                                                 <td>{{ $item->seller_fssai_number }}</td>
-                                                <td>{{ $item->seller_pan_number_image }}</td>
+                                                <td>{{ $item->seller_pan_number }}</td>
                                                 <td>
                                                     <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
                                                         <input type="checkbox" class="custom-control-input" {{$item->isactive == 1 ? 'checked' : ''}} id="customSwitchGlow{{$k}}">
