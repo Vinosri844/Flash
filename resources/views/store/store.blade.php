@@ -12,13 +12,14 @@
             <div class="card-header">
                 <p class="card-text">  
                         <div class="row">
-                        <div class="col-sm-10">  <h4 class="card-title">List</h4>
+                        <div class="col-sm-8">  <h4 class="card-title">List</h4>
                             </div> 
-                            <div class="col-sm-2">
+                            <div class="col-sm-4">
                             <a href="{{ route('store.create') }}" class="btn btn-primary" class="btn btn-primary">Create Store</a>
                             </div>
                             
-                        </div></p>   
+                        </div>
+                        </p>   
                 </div><hr>
                 <div class="card-content">
                     <div class="card-body card-dashboard">
