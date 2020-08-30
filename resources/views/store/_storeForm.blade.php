@@ -250,7 +250,21 @@
                           </div>
                     </div>
                     <div class="col-md-6 mt-1">
-                        <fieldset class="form-group">
+                      <div class="form-group">
+                        <label for="storeBranchType">Branch Type</label>
+                        <div class="controls">
+                          <input type="text" value="{{ isset($branch->seller_branch_type) ? $branch->seller_branch_type : '' }}"  name="store_branch_type" id="storeBranchType" class="form-control"
+                            data-validation-required-message="This field is required" placeholder="Branch Type">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="storeBranchCity">Branch City</label>
+                        <div class="controls">
+                          <input type="text" value="{{ isset($branch->seller_branch_city) ? $branch->seller_branch_city : '' }}"  name="store_branch_city" id="storeBranchCity" class="form-control"
+                            data-validation-required-message="This field is required" placeholder="Branch City">
+                        </div>
+                      </div>
+                        {{-- <fieldset class="form-group">
                             <label for="storeSelectBranch">Select Branch</label>
                             <select class="form-control" name="store_select_branch" id="storeSelectBranch">
                               <option>IT</option>
@@ -265,7 +279,7 @@
                               <option>Blade Runner</option>
                               <option>Thor Ragnarok</option>
                             </select>
-                          </fieldset>
+                          </fieldset> --}}
                     </div>
                     <div class="col-md-12">
                         <fieldset class="form-group">
