@@ -1,7 +1,7 @@
 
   <!-- BEGIN: Body-->
   <body class="vertical-layout vertical-menu-modern semi-dark-layout 2-columns  navbar-sticky footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" data-layout="semi-dark-layout">
-
+    <?php $route = explode('.', Route::currentRouteName()) ?>
     <!-- BEGIN: Header-->
     <div class="header-navbar-shadow"></div>
     <nav class="header-navbar main-header-navbar navbar-expand-lg navbar navbar-with-menu fixed-top ">
@@ -74,7 +74,7 @@
           </li>
           <li class=" navigation-header"><span>Delivery</span>
           </li>
-        <li class=" nav-item {{ Route::currentRouteName() == 'delivery-slot-master' ? ' active' : '' }}"><a href="{{ route('delivery-slot-master.index') }}"><i class="bx bx-time-five" data-icon="settings"></i><span class="menu-title" data-i18n="Form Layout">Delivery slot master</span></a>
+        <li class=" nav-item {{ $route[0] == 'delivery-slot-master' ? ' active' : '' }}"><a href="{{ route('delivery-slot-master.index') }}"><i class="bx bx-time-five" data-icon="settings"></i><span class="menu-title" data-i18n="Form Layout">Delivery slot master</span></a>
           </li>
           <li class=" nav-item"><a href=""><i class="bx bx-truck" data-icon="priority-low"></i><span class="menu-title" data-i18n="Form Wizard">Delivery</span></a>
           </li>
@@ -110,13 +110,14 @@
           </li>
           <li class=" navigation-header"><span>Other masters</span>
           </li>
-        <li class=" nav-item {{ Route::currentRouteName() == 'event-master' ? ' active' : '' }}"><a href="{{ route('event-master.index') }}"><i class="bx bx-calendar-event" data-icon="user"></i><span class="menu-title" data-i18n="User Profile">Event master</span></a>
+        <li class=" nav-item {{ $route[0] == 'event-master' ? ' active' : '' }}"><a href="{{ route('event-master.index') }}"><i class="bx bx-calendar-event" data-icon="user"></i><span class="menu-title" data-i18n="User Profile">Event master</span></a>
           </li>
-        <li class=" nav-item {{ Route::currentRouteName() == 'store' ? ' active' : '' }}"><a href="{{ route('store.index') }}"><i class="bx bx-store" data-icon="info-alt"></i><span class="menu-title" data-i18n="Knowledge Base">Store</span></a>
+        <li class=" nav-item {{ $route[0] == 'store' ? ' active' : '' }}"><a href="{{ route('store.index') }}"><i class="bx bx-store" data-icon="info-alt"></i><span class="menu-title" data-i18n="Knowledge Base">Store</span></a>
           </li>
           <li class=" nav-item"><a href=""><i class="bx bx-id-card" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Membership</span></a>
           </li>
-          <li class=" nav-item"><a href=""><i class="bx bx-user-check" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Display customer list</span></a>
+          
+        <li class=" nav-item {{ $route[0] == 'customer' ? ' active' : '' }}"><a href=" "><i class="bx bx-user-check" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Display customer list</span></a>
           </li>
           <li class=" nav-item"><a href=""><i class="bx bx-compass" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Weight</span></a>
           </li>
