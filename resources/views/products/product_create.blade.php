@@ -154,6 +154,52 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <h4 class="card-title">Product Images</h4>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <div class="form-group mb-50">
+                                                <label class="text-bold-600" for="exampleInputEmail1">Product Image</label>
+                                                <input type="file" id="product_image" class="form-control" name="product_image"
+                                                       placeholder="Password">
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-group mb-50">
+                                                <label class="text-bold-600" for="exampleInputEmail1">Top Image</label>
+                                                <input type="file" id="top_image" class="form-control" name="top_image"
+                                                       placeholder="Password">
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-group mb-50">
+                                                <label class="text-bold-600" for="exampleInputEmail1">Bottom Image</label>
+                                                <input type="file" id="bottom_image" class="form-control" name="bottom_image"
+                                                       placeholder="Password">
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-group mb-50">
+                                                <label class="text-bold-600" for="exampleInputEmail1">Left Image</label>
+                                                <input type="file" id="left_image" class="form-control" name="left_image"
+                                                       placeholder="Password">
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-group mb-50">
+                                                <label class="text-bold-600" for="exampleInputEmail1">Right Image</label>
+                                                <input type="file" id="right_image" class="form-control" name="right_image"
+                                                       placeholder="Password">
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="form-group mb-50">
+                                                <label class="text-bold-600" for="exampleInputEmail1">Other Multiple Image</label>
+                                                <input type="file" id="other_image" class="form-control" name="other_image"
+                                                       placeholder="Password">
+                                            </div>
+                                        </div>
+
+                                    </div>
 
                                     <div>
                                         <div class="col-12 d-flex justify-content-end">

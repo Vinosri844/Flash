@@ -25,4 +25,9 @@ class ProductDetails extends Model
     public function product() {
         return $this->hasMany('\App\ProductMaster', 'product_id', 'product_id');
     }
+
+    public function seller() {
+        return $this->hasMany('\App\SellerMaster', 'seller_id', 'seller_id');
+    }
+
 }

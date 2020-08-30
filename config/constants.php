@@ -19,6 +19,10 @@ return [
     'subcategory_img_path1' => '/imge/s_539/m37593449/ThumbnailImage/',
     'subcategory_img_path2' => '/imge/s_539/m37593449/CompressImage/',
 
+    'product_img_path' => '/imge/c_895/w89534257/OriginalImage/',
+    'product_img_path1' => '/imge/c_895/w89534257/ThumbnailImage/',
+    'product_img_path2' => '/imge/c_895/w89534257/CompressImage/',
+
     //Image width and height
     'image_height' => '250',
     'image_width' => '250',

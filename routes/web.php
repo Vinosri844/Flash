@@ -52,8 +52,13 @@ Route::get('/product-create', 'Admin\ProductController@product_create')->name('p
 Route::post('/product-create', 'Admin\ProductController@product_create')->name('product_submit');
 Route::get('/product/{id}', 'Admin\ProductController@product_edit')->name('product_edit');
 Route::post('/product/{id}', 'Admin\ProductController@product_edit')->name('product_edit_submit');
-Route::get('/product/{id}/delete','Admin\ProductController@product_destroy')->name('product_destroy');
+Route::get('/product/{id}/delete','Admin\ProductController@product_delete')->name('product_delete');
 
+//product_details
+Route::get('/productDetails', 'Admin\ProductDetailsController@index')->name('productDetails');
+Route::get('/productDetails/{id}', 'Admin\ProductDetailsController@product_edit')->name('productDetail_edit');
+Route::post('/productDetails/{id}', 'Admin\ProductDetailsController@product_edit')->name('productDetail_edit_submit');
+Route::get('/productDetails/{id}/delete','Admin\ProductDetailsController@product_delete')->name('productDetail_delete');
 
 //reports
 Route::get('/product_price', 'Admin\SubCategoryController@product_price')->name('product_price');

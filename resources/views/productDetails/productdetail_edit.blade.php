@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Scroll - horizontal and vertical table -->
-    <h5><b>Product Edit</b></h5> <br />
+    <h5><b>Product Detail Edit</b></h5> <br />
 
     <!-- // Basic Floating Label Form section start -->
     <section id="floating-label-layouts">
@@ -10,11 +10,11 @@
             <div class="col-md-12 col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Product Info</h4>
+                        <h4 class="card-title">Product Detail Info</h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form method="post" name="products_form" id="products_form" action="{{ route('product_edit_submit',$product->product_id) }}" enctype= multipart/form-data>
+                            <form method="post" name="productdetails_form" id="productdetails_form" action="{{ route('productDetail_edit_submit',$productdetail->product_details_id) }}" enctype= multipart/form-data>
                                 {{ csrf_field() }}
                                 <div class="form-body">
                                     <div class="row">
@@ -163,64 +163,6 @@
                                                 <label for="first-name-floating">Ingredients</label>
                                             </div>
                                         </div>
-                                    </div>
-                                    <h4 class="card-title">Product Images</h4>
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <div class="form-group mb-50">
-                                                <?php $img = !empty($product->product_img) ? asset(config('constants.product_img_path').$product->product_img) : "http://placehold.it/50x50"; ?>
-                                                    <img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="50" width="50">
-                                                <label class="text-bold-600" for="exampleInputEmail1">Product Image</label>
-                                                <input type="file" id="product_image" class="form-control" name="product_image"
-                                                       placeholder="Password">
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="form-group mb-50">
-                                                <?php $img = !empty($product->top_img) ? asset(config('constants.product_img_path').$product->top_img) : "http://placehold.it/50x50"; ?>
-                                                    <img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="50" width="50">
-                                                <label class="text-bold-600" for="exampleInputEmail1">Top Image</label>
-                                                <input type="file" id="top_image" class="form-control" name="top_image"
-                                                       placeholder="Password">
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="form-group mb-50">
-                                                <?php $img = !empty($product->bottom_img) ? asset(config('constants.product_img_path').$product->bottom_img) : "http://placehold.it/50x50"; ?>
-                                                    <img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="50" width="50">
-                                                <label class="text-bold-600" for="exampleInputEmail1">Bottom Image</label>
-                                                <input type="file" id="bottom_image" class="form-control" name="bottom_image"
-                                                       placeholder="Password">
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="form-group mb-50">
-                                                <?php $img = !empty($product->left_img) ? asset(config('constants.product_img_path').$product->left_img) : "http://placehold.it/50x50"; ?>
-                                                    <img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="50" width="50">
-                                                <label class="text-bold-600" for="exampleInputEmail1">Left Image</label>
-                                                <input type="file" id="left_image" class="form-control" name="left_image"
-                                                       placeholder="Password">
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="form-group mb-50">
-                                                <?php $img = !empty($product->right_img) ? asset(config('constants.product_img_path').$product->right_img) : "http://placehold.it/50x50"; ?>
-                                                    <img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="50" width="50">
-                                                <label class="text-bold-600" for="exampleInputEmail1">Right Image</label>
-                                                <input type="file" id="right_image" class="form-control" name="right_image"
-                                                       placeholder="Password">
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <div class="form-group mb-50">
-                                                <?php $img = !empty($productimages->product_original_image_name) ? asset(config('product.category_img_path').$productimages->product_original_image_name) : "http://placehold.it/50x50"; ?>
-                                                    <img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="50" width="50">
-                                                <label class="text-bold-600" for="exampleInputEmail1">Other Multiple Image</label>
-                                                <input type="file" id="other_image" class="form-control" name="other_image[]" multiple accept="image/*"
-                                                       placeholder="Password">
-                                            </div>
-                                        </div>
-
                                     </div>
 
                                     <div>
