@@ -14,6 +14,7 @@
             <form class="form-horizontal" action="{{ route('store.update', $store->seller_id) }}" method="POST" enctype="multipart/form-data" novalidate autocomplete="off">
                  {{ method_field('PUT') }}
                     @include('store._storeForm')
+                    <button type="submit" class="btn btn-primary float-right my-2">Update</button>
                 </form>
             </div>
          </div>

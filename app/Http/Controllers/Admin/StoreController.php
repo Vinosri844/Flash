@@ -121,7 +121,7 @@ class StoreController extends Controller
                 // $branch->seller_branch_state = '';
                 // $branch->seller_branch_country ='';
                 // $branch->seller_branch_city ='';
-                $branch->seller_branch_contact_no = $request->store_contact_number;
+                $branch->seller_branch_contact_no = $request->store_mobile_number;
                 $branch->seller_branch_emailid = $request->store_email;
                 $branch->seller_id = $store->seller_id;
                 $branch->seller_branch_type = $request->store_select_branch;
@@ -136,7 +136,7 @@ class StoreController extends Controller
             flash()->error('Please Try Again!');
             return redirect()->route('store.index');
         } catch (\Throwable $th) {
-            // dd($th);
+            dd($th);
             flash()->error('Something went Wrong! Please Try Again!');
             return redirect()->route('store.index');
         }
@@ -162,6 +162,7 @@ class StoreController extends Controller
     public function edit(Store $store)
     {
         try {
+            
             $store = Store::findOrFail($store->seller_id);
             $branch = SellerBranch::where('seller_id', $store->seller_id)->first();
             return view('store.store_edit')->with(['store' => $store, 'branch' => $branch]);
@@ -186,7 +187,7 @@ class StoreController extends Controller
                 'store_email' => 'required',
                 
             ]);
-            
+            // dd($request);
             if($validator->fails()){
                 flash()->error('Please Fill the required fields!');
                 return redirect()->route('store.index');
@@ -230,14 +231,19 @@ class StoreController extends Controller
             $store->seller_user_name = $request->store_name;
             $store->seller_description = $request->store_description;
             $store->seller_pan_number = $request->store_pan_num;
+            if($file_path != null && $company_file_path != null){
+            $store->seller_company_image = $company_file_path;
             $store->seller_pan_number_image = $file_path;
+            }
             $store->seller_cst_tin_number = $request->store_cst_num;
             $store->seller_gst_tin_number = $request->store_gst_num;
             $store->seller_food_licence_number = null;
             $store->seller_fssai_number = $request->store_fssai_num;
             $store->seller_service_tax_number = $request->store_service_tax_num;
-            $store->seller_company_image = $company_file_path;
-            $store->seller_password = $request->store_password;
+            if($request->store_password != null){
+                $store->seller_password = $request->store_password;
+            }
+            
             $store->vat_1 = $request->store_val_1;
             $store->vat_2 = $request->store_val_2;
             $store->isactive = $request->store_active == null ? 0 : 1;
@@ -253,14 +259,16 @@ class StoreController extends Controller
             $store->seller_emailid = $request->store_email;
             $store->seller_cart_value = $request->store_min_value;
             if($store->save()){
+                // dd($store->seller_id);   
                 $branch = SellerBranch::where('seller_id', $store->seller_id)->first();
+                
                 $branch->seller_branch_name = $request->store_branch_name;
                 $branch->seller_branch_address = $request->store_short_address;
                 $branch->seller_branch_pincode = $request->store_pincode;
                 // $branch->seller_branch_state = '';
                 // $branch->seller_branch_country ='';
                 // $branch->seller_branch_city ='';
-                $branch->seller_branch_contact_no = $request->store_contact_number;
+                $branch->seller_branch_contact_no = $request->store_mobile_number;
                 $branch->seller_branch_emailid = $request->store_email;
                 $branch->seller_id = $store->seller_id;
                 $branch->seller_branch_type = $request->store_select_branch;
@@ -289,6 +297,19 @@ class StoreController extends Controller
      */
     public function destroy(Store $store)
     {
-        //
+        try {
+            $store = Store::findOrFail($store->seller_id);
+            $store->isdelete = 1;
+            if($store->save()){
+                flash()->info("Store Deleted Successfully!");
+                return redirect()->route('store.index');
+            }
+            flash()->error('Please Try Again!');
+            return redirect()->route('store.index');
+        } catch (\Throwable $th) {
+            //throw $th;
+            flash()->error('Something went Wrong! Please Try Again!');
+            return redirect()->route('store.index');
+        }
     }
 }

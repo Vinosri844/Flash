@@ -68,8 +68,8 @@
                                                     </form>
                                                    
                                                        
-                                                        <form action="" method="post" 
-                                                            onsubmit = "return confirm('Are you sure wanted to delete this  ?')" style="display: inline">
+                                                <form action="{{ route('store.destroy', $item->seller_id) }}" method="post" 
+                                                            onsubmit = "return confirm('Are you sure wanted to delete this Store ?')" style="display: inline">
                                                         @csrf
                                                         {{ method_field('DELETE') }}
                                                         <button type="submit" class="btn-outline-danger">

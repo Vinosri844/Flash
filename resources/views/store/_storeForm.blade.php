@@ -1,4 +1,6 @@
                 @csrf
+
+                
                 <div class="row">
                     <div class="col-md-12">
                         <h4 class="card-title mb-0">General Info</h4> <br>
@@ -16,22 +18,32 @@
                     <div class="form-group">
                         <label for="storeMobileNumber">Mobile Number</label>
                         <div class="controls">
-                          <input type="text" value="{{ isset($store->seller) ? $store->seller_name : '1234567890' }}" name="store_mobile_number" id="storeMobileNumber" class="form-control"
+                          <input type="text" value="{{ isset($branch->seller_branch_contact_no) ? $branch->seller_branch_contact_no : '' }}" name="store_mobile_number" id="storeMobileNumber" class="form-control"
                             data-validation-containsnumber-regex="^([0-9]+)$"
                             data-validation-containsnumber-message="The regex field format is invalid."
                             placeholder="Enter Your Mobile Number" required>
                         </div>
                       </div>
                     
-                    
-                    
-                    <div class="form-group">
-                      <label for="storePassword">Password</label>
-                      <div class="controls">
-                        <input type="password" name="store_password" id="storePassword" class="form-control"
-                          data-validation-required-message="This field is required" placeholder="Password">
-                      </div>
+                   @if (isset($store->seller_password))
+                   <div class="form-group">
+                    <label for="storePassword">Password</label>
+                    <div class="controls">
+                      <input type="password" name="store_password" id="storePassword" class="form-control"
+                         placeholder="Password">
                     </div>
+                  </div>
+                   @else
+                   <div class="form-group">
+                    <label for="storePassword">Password</label>
+                    <div class="controls">
+                      <input type="password" name="store_password" id="storePassword" class="form-control"
+                        data-validation-required-message="This field is required" placeholder="Password">
+                    </div>
+                  </div>
+                   @endif
+                    
+                    
                     
                     
                   </div>
@@ -46,10 +58,20 @@
                       <div class="form-group">
                         <label for="storeEmail">Email</label>
                         <div class="controls">
-                          <input type="email" value="{{ isset($store->seller) ? $store->seller_name : 'sample@gmail.com' }}" name="store_email" id="storeEmail" class="form-control"
+                          <input type="email" value="{{ isset($branch->seller_branch_emailid) ? $branch->seller_branch_emailid : '' }}" name="store_email" id="storeEmail" class="form-control"
                             data-validation-required-message="Must be a valid email" autocomplete="new_password" placeholder="Email">
                         </div>
                       </div>
+                      @if (isset($store->seller_password))
+                      <div class="form-group">
+                        <label for="storeConfirmPassword">Repeat password must match</label>
+                        <div class="controls">
+                          <input type="password" autocomplete="new-password" name="store_confirm_password" id="storeConfirmPassword" 
+                            class="form-control" 
+                            placeholder="Repeat Password">
+                        </div>
+                      </div>
+                      @else
                       <div class="form-group">
                         <label for="storeConfirmPassword">Repeat password must match</label>
                         <div class="controls">
@@ -58,6 +80,9 @@
                             placeholder="Repeat Password">
                         </div>
                       </div>
+                      @endif
+
+                      
                    
                   </div>
 
@@ -70,13 +95,13 @@
                         <div class="form-group" style="display: flex">
                             <label for="storeActive" class="mr-2">Active <br>( show store )</label>
                             <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
-                                <input type="checkbox" class="custom-control-input" name="store_active" {{ isset($store->isactive) == 1 ? 'checked' : '' }} id="storeActive">
+                                <input type="checkbox" class="custom-control-input" name="store_active" <?php if(isset($store->isactive) && $store->isactive == 0) { echo '';}else{  echo 'checked';} ?> id="storeActive">
                                 <label class="custom-control-label" for="storeActive"> 
                                 </label>
                               </div>
                             <label for="storeApprove" class="ml-auto mr-2">Is Approve <br>( permission to store )</label>
                             <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
-                                <input type="checkbox" class="custom-control-input"  {{ isset($store->isapprove) == 1 ? 'checked' : '' }} name="store_approve"  id="storeApprove">
+                                <input type="checkbox" class="custom-control-input"  <?php if(isset($store->isapprove) && $store->isapprove == 0)  { echo '';}else{  echo 'checked';} ?> name="store_approve"  id="storeApprove">
                                 <label class="custom-control-label" for="storeApprove"> 
                                 </label>
                               </div>
@@ -100,7 +125,7 @@
                     <div class="col-md-6 mt-1">
                         <fieldset class="form-group">
                             <label for="storeDescription">Store Description</label>
-                            <textarea class="form-control" value="{{ isset($store->seller_description) ? $store->seller_description : '' }}" name="store_description" id="storeDescription" rows="7" placeholder="Descripton"></textarea>
+                            <textarea class="form-control" name="store_description" id="storeDescription" rows="7" placeholder="Descripton">{{ isset($store->seller_description) ? $store->seller_description : '' }}</textarea>
                         </fieldset>
                     </div>
                 </div>
@@ -131,6 +156,11 @@
                                 data-validation-required-message="This field is required" placeholder="GST Number">
                             </div>
                           </div>
+                          @if(isset($store->seller_pan_number_image))
+                          <div class="my-1">
+                            <img src="{{ asset('image/sellerpancard/OriginalImage/') }}/{{$store->seller_pan_number_image}} " width="30%" alt="" srcset="">
+                          </div>
+                          @endif
                           <fieldset>
                               <label for="storePANImage">Upload PAN Card Image </label>
                             <div class="input-group">
@@ -138,7 +168,7 @@
                                 <span class="input-group-text" id="storePANImage">PAN Image</span>
                               </div>
                               <div class="custom-file">
-                              <input type="file" value="{{ isset($store->seller_pan_number_image) ? $store->seller_pan_number_image : ''}}" class="custom-file-input" name="store_pan_image" id="storePANImage" aria-describedby="storePANImage">
+                              <input type="file"  class="custom-file-input" name="store_pan_image" id="storePANImage" aria-describedby="storePANImage">
                                 <label class="custom-file-label" for="storePANImage">Choose file</label>
                               </div>
                             </div>
@@ -179,6 +209,11 @@
                             </div>
                           </fieldset>
                           </div>
+                          @if(isset($store->seller_company_image))
+                          <div class="mb-1">
+                            <img src="{{ asset('image/sellercompanylogo/OriginalImage/') }}/{{$store->seller_company_image}} " width="30%" alt="" srcset="">
+                          </div>
+                          @endif
                           <fieldset>
                               <label for="storeCompanyLogo">Upload Company LOGO</label>
                             <div class="input-group">
@@ -186,7 +221,7 @@
                                 <span class="input-group-text" id="storeCompanyLogo">Company Logo</span>
                               </div>
                               <div class="custom-file">
-                                <input type="file" {{ isset($store->seller_company_image) ? $store->seller_company_image : ''}}" class="custom-file-input" name="store_company_logo" id="storeCompanyLogo" aria-describedby="storeCompanyLogo">
+                                <input type="file"  class="custom-file-input" name="store_company_logo" id="storeCompanyLogo" aria-describedby="storeCompanyLogo">
                                 <label class="custom-file-label" for="storeCompanyLogo">Choose file</label>
                               </div>
                             </div>
@@ -205,13 +240,7 @@
                                 data-validation-required-message="This field is required" placeholder="Branch Name">
                             </div>
                           </div>
-                          <div class="form-group">
-                            <label for="storeContactNumber">Contact Number</label>
-                            <div class="controls">
-                              <input type="text"  value="{{ isset($branch->seller_branch_contact_no) ? $branch->seller_branch_contact_no : '' }}" name="store_contact_number" id="storeContactNumber" class="form-control"
-                                data-validation-required-message="This field is required" placeholder="Contact Number">
-                            </div>
-                          </div>
+                          
                           <div class="form-group">
                             <label for="storePincode">Pincode</label>
                             <div class="controls">
@@ -241,11 +270,11 @@
                     <div class="col-md-12">
                         <fieldset class="form-group">
                             <label for="storeShortAddress">Short Address</label>
-                            <textarea class="form-control"  value="{{ isset($branch->seller_branch_address) ? $branch->seller_branch_address : '' }}" id="storeShortAddress" name="store_short_address" rows="6" placeholder="Address"></textarea>
+                            <textarea class="form-control" id="storeShortAddress" name="store_short_address" rows="6" placeholder="Address">{{ isset($branch->seller_branch_address) ? $branch->seller_branch_address : '' }}</textarea>
                         </fieldset>
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-info float-left my-2">Back</button>
-                <button type="submit" class="btn btn-primary float-right my-2">Update</button>
+              <a href="{{ route('store.index') }}"  class="btn btn-info float-left my-2">Back</a>
+               
               
