@@ -4,7 +4,7 @@
     
 
 <!-- Scroll - horizontal and vertical table -->
-<h5><b>Store</b></h5> <br />
+{{-- <h5><b>Store</b></h5> <br /> --}}
 <section id="horizontal-vertical">
     <div class="row">
         <div class="col-12">
@@ -12,10 +12,10 @@
             <div class="card-header">
                 <p class="card-text">  
                         <div class="row">
-                        <div class="col-sm-10">  <h4 class="card-title">List</h4>
+                        <div class="col-sm-8">  <h4 class="card-title">List</h4>
                             </div> 
-                            <div class="col-sm-2">
-                            <a href="{{ route('store.create') }}" class="btn btn-primary" class="btn btn-primary">Create Store</a>
+                            <div class="col-sm-4">
+                            <a href="{{ route('store.create') }}" class="btn btn-primary float-right" class="btn btn-primary">Create Store</a>
                             </div>
                             
                         </div></p>   

@@ -10,7 +10,7 @@ class Customer extends Model
     use Notifiable;
 
     protected $table = 'customer_master';
-    protected $primaryKey = 'customer_id ';
+    protected $primaryKey = 'customer_id';
 
     const CREATED_AT = 'create_date_time';
     const UPDATED_AT = 'update_date_time';

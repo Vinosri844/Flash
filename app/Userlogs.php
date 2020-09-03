@@ -5,12 +5,12 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
-class Userlogs extends Model
+class UserLogs extends Model
 {
     use Notifiable;
 
     protected $table = 'user_logs';
-    protected $primaryKey = 'user_logs_id ';
+    protected $primaryKey = 'user_logs_id';
 
     const CREATED_AT = 'log_date_time';
     const UPDATED_AT = 'device_log_date_time';
@@ -22,5 +22,4 @@ class Userlogs extends Model
     ];
 
     protected $hidden = [];
-
 }

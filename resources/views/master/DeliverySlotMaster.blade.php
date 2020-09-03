@@ -7,7 +7,7 @@
     
 
     <!-- Scroll - horizontal and vertical table -->
-<h5><b>Delivery Slot Master</b></h5> <br />
+{{-- <h5><b>Delivery Slot Master</b></h5> <br /> --}}
 <section id="horizontal-vertical">
     <div class="row">
         <div class="col-12">
@@ -15,10 +15,10 @@
             <div class="card-header">
                 <p class="card-text">  
                         <div class="row">
-                        <div class="col-sm-9">  <h4 class="card-title">List</h4>
+                        <div class="col-sm-8">  <h4 class="card-title">List</h4>
                             </div> 
-                            <div class="col-sm-3">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deliverySlotMasterCreate" class="btn btn-primary">Create Delivery Slot</button>
+                            <div class="col-sm-4">
+                                <button type="button" class="float-right btn btn-primary" data-toggle="modal" data-target="#deliverySlotMasterCreate" class="btn btn-primary">Create Delivery Slot</button>
                             </div>
                             
                         </div></p>   

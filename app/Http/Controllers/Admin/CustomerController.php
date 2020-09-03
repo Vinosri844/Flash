@@ -48,7 +48,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
+        dd($customer);
     }
 
     /**
@@ -59,7 +59,13 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        try {
+        
+        $customer = Customer::findOrFail($customer->customer_id);
+        return view('customer.customer_edit')->with('customer', $customer);
+        } catch (\Throwable $th) {
+            dd($th);
+        }
     }
 
     /**
@@ -71,7 +77,7 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        //
+        dd(date('Y-m-d', strtotime($request->customer_anniversary_date)), $request->customer_anniversary_date);
     }
 
     /**
