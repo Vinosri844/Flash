@@ -13,9 +13,9 @@
                 <li class="nav-item mobile-menu d-xl-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ficon bx bx-menu"></i></a></li>
               </ul>
               <ul class="nav navbar-nav bookmark-icons">
-                <li class="nav-item d-none d-lg-block"><a class="nav-link" href="{{ route('seller_product') }}" data-toggle="tooltip" data-placement="top" title="Seller Product price"><i class="ficon bx bx-dollar-circle"></i></a></li>
+                {{-- <li class="nav-item d-none d-lg-block"><a class="nav-link" href="{{ route('seller_product') }}" data-toggle="tooltip" data-placement="top" title="Seller Product price"><i class="ficon bx bx-dollar-circle"></i></a></li>
                 <li class="nav-item d-none d-lg-block"><a class="nav-link" href="{{ route('wishlist') }}" data-toggle="tooltip" data-placement="top" title="Wishlist"><i class="ficon bx bx-add-to-queue"></i></a></li>
-                <li class="nav-item d-none d-lg-block"><a class="nav-link" href="{{ route('shopping_cart') }}" data-toggle="tooltip" data-placement="top" title="Shopping cart"><i class="ficon bx bx-cart-alt"></i></a></li>
+                <li class="nav-item d-none d-lg-block"><a class="nav-link" href="{{ route('shopping_cart') }}" data-toggle="tooltip" data-placement="top" title="Shopping cart"><i class="ficon bx bx-cart-alt"></i></a></li> --}}
               </ul>
             </div>
             <ul class="nav navbar-nav float-right">
@@ -114,9 +114,10 @@
           </li>
         <li class=" nav-item {{ Route::currentRouteName() == 'store' ? ' active' : '' }}"><a href="{{ route('store.index') }}"><i class="bx bx-store" data-icon="info-alt"></i><span class="menu-title" data-i18n="Knowledge Base">Store</span></a>
           </li>
-          <li class=" nav-item"><a href=""><i class="bx bx-id-card" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Membership</span></a>
+          <li class=" nav-item {{ $route[0] == 'membership' ? ' active' : '' }}"><a href="{{ route('membership.index') }}"><i class="bx bx-id-card" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Membership</span></a>
           </li>
-          <li class=" nav-item"><a href=""><i class="bx bx-user-check" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Display customer list</span></a>
+          
+        <li class=" nav-item {{ $route[0] == 'customer' ? ' active' : '' }}"><a href=" {{ route('customer.index') }}"><i class="bx bx-user-check" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Display customer list</span></a>
           </li>
           <li class=" nav-item"><a href=""><i class="bx bx-compass" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Weight</span></a>
           </li>
@@ -150,21 +151,14 @@
       <div class="content-wrapper">
         <div class="content-header row">
           <div class="content-header-left col-12 mb-2 mt-1">
-            <div class="row breadcrumbs-top">
-              <div class="col-12">
-                <div class="breadcrumb-wrapper col-12">
-                  <div id="flash-msg">
-                  @include('flash::message')
-                </div>
-
-                  @yield('content')
-                </div>
-              </div>
-            </div>
+            @include('layouts.breadcrump')
           </div>
         </div>
         <div class="content-body"><!-- Chartist  -->
-
+          <div id="flash-msg">
+            @include('flash::message')
+          </div>
+          @yield('content')
 
         </div>
       </div>

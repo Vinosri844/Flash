@@ -4,7 +4,7 @@
     
 
     <!-- Scroll - horizontal and vertical table -->
-<h5><b>Event Master</b></h5> <br />
+{{-- <h5><b>Event Master</b></h5> <br /> --}}
 <section id="horizontal-vertical">
     <div class="row">
         <div class="col-12">
@@ -12,10 +12,10 @@
             <div class="card-header">
                 <p class="card-text">  
                         <div class="row">
-                        <div class="col-sm-10">  <h4 class="card-title">List</h4>
+                        <div class="col-sm-8">  <h4 class="card-title">List</h4>
                             </div> 
-                            <div class="col-sm-2">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventMasterCreate" class="btn btn-primary">Create Event</button>
+                            <div class="col-sm-4">
+                                <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#eventMasterCreate" class="btn btn-primary">Create Event</button>
                             </div>
                             
                         </div></p>   

@@ -4,7 +4,7 @@
     
 
 <!-- Scroll - horizontal and vertical table -->
-<h5><b>Customer</b></h5> <br />
+{{-- <h5><b>Customer</b></h5> <br /> --}}
 <section id="horizontal-vertical">
     <div class="row">
         <div class="col-12">
@@ -71,9 +71,10 @@
                                                 </td>
                                                 <td>
                                                     <div  style="display:inline-flex">
-                                                       <a href=""> <button class="btn-outline-info mr-1" data-toggle="tooltip" data-placement="top" title data-original-title="Edit Customer"><i class="bx bxs-edit-alt" data-icon="warning-alt"></i></button></a>
+                                                        
+                                                        <a href="{{ route('customer.edit',  $item->customer_id) }}"> <button class="btn-outline-info mr-1" data-toggle="tooltip" data-placement="top" title data-original-title="View Customer"><i class="bx bx-show-alt" data-icon="warning-alt"></i></button></a>
                                                        <a href=""> <button class="btn-outline-primary mr-1" data-toggle="tooltip" data-placement="top" title data-original-title="View Address"><i class="bx bx-home-circle" data-icon="warning-alt"></i></button></a>
-                                                       <a href=""> <button class="btn-outline-warning mr-1" data-toggle="tooltip" data-placement="top" title data-original-title="View Order List"><i class="bx bx-show-alt" data-icon="warning-alt"></i></button></a>
+                                                       <a href=""> <button class="btn-outline-warning mr-1" data-toggle="tooltip" data-placement="top" title data-original-title="View Order List"><i class="bx bxs-shopping-bag" data-icon="warning-alt"></i></button></a>
                                                                                
                                                     </div>
                                                     

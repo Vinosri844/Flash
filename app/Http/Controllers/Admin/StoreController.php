@@ -7,6 +7,7 @@ use App\Store;
 use App\SellerBranch;
 use Illuminate\Http\Request;
 use Validator;
+use App\Userlogs;
 // use Illuminate\Support\Facades\Session;
 
 class StoreController extends Controller
@@ -45,12 +46,16 @@ class StoreController extends Controller
             $validator = Validator::make($request->all(),[
                 'store_name' => 'required',
                 'store_email' => 'required',
-                'store_password' => 'required'
+                'store_password' => 'required',
+                'store_pan_image' => 'required|mimes:jpeg,jpg|max:2000',
+                'store_company_logo' => 'required|mimes:jpeg,jpg',
             ]);
             
             if($validator->fails()){
-                flash()->error('Please Fill the required fields!');
-                return redirect()->route('store.index');
+                // $error = implode("," ,$validator->errors()->messages());
+                
+                flash()->error('Please Fill Images as Jpg or Jpeg ( MAX size : 2.5MB )');
+                return redirect()->route('store.create');
             }
 
             $pancard_original_path = '/image/sellerpancard/OriginalImage/'; // Pan Card Original Image
@@ -114,6 +119,17 @@ class StoreController extends Controller
             $store->seller_emailid = $request->store_email;
             $store->seller_cart_value = $request->store_min_value;
             if($store->save()){
+                $user = new Userlogs;
+                $user->form_name = 'Seller';
+                $user->operation_type = 'Insert';
+                $user->user_id = 1;
+                $user->description = "Insert Seller Name - ". $request->store_name;
+                $user->OS = 'WEB';
+                $user->table_name = 'seller_master';
+                $user->reference_id = $store->seller_id;
+                $user->ip_device_id = "000:00:00";
+                $user->user_type_id = 1;
+                $user->save();
                 $branch = new SellerBranch;
                 $branch->seller_branch_name = $request->store_branch_name;
                 $branch->seller_branch_address = $request->store_short_address;
@@ -128,6 +144,17 @@ class StoreController extends Controller
                 $branch->isactive = 1;
                 $branch->isdelete = 0;
                 if($branch->save()){
+                    $user = new Userlogs;
+                    $user->form_name = 'Seller Branch';
+                    $user->operation_type = 'Insert';
+                    $user->user_id = 1;
+                    $user->description = "Insert Seller Branch Name - ". $request->store_branch_name;
+                    $user->OS = 'WEB';
+                    $user->table_name = 'seller_master';
+                    $user->reference_id = $branch->seller_branch_id;
+                    $user->ip_device_id = "000:00:00";
+                    $user->user_type_id = 1;
+                    $user->save();
                     flash()->success('Store Created Successfully!');
                     return redirect()->route('store.index');
                 }
@@ -136,7 +163,7 @@ class StoreController extends Controller
             flash()->error('Please Try Again!');
             return redirect()->route('store.index');
         } catch (\Throwable $th) {
-            // dd($th);
+            dd($th);
             flash()->error('Something went Wrong! Please Try Again!');
             return redirect()->route('store.index');
         }
@@ -260,6 +287,7 @@ class StoreController extends Controller
             $store->seller_cart_value = $request->store_min_value;
             if($store->save()){
                 // dd($store->seller_id);   
+              
                 $branch = SellerBranch::where('seller_id', $store->seller_id)->first();
                 
                 $branch->seller_branch_name = $request->store_branch_name;
