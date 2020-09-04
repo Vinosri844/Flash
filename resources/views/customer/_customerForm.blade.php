@@ -1,6 +1,6 @@
 @csrf
 
-                
+              
 <div class="row">
     <div class="col-md-12">
         <h4 class="card-title mb-0">General Info</h4> <br>
@@ -27,7 +27,7 @@
     <div class="form-group">
         <label for="customerAnniversaryDate">Anniversary Date</label>
         <fieldset class="form-group position-relative has-icon-left">
-            <input type="text" class="form-control single-daterange" value="<?php date('m/d/Y', strtotime($customer->customer_anniversary_date))  ?>" id="customerAnniversaryDate" name="customer_anniversary_date" placeholder="Select Anniversary Date">
+            <input type="text" class="form-control" value="{{  $customer->customer_anniversary_date  }}" id="customerAnniversaryDate" name="customer_anniversary_date" placeholder="Select Anniversary Date">
             <div class="form-control-position">
               <i class='bx bx-calendar'></i>
             </div>
@@ -82,7 +82,7 @@
       <div class="form-group">
         <label for="customerBirthDate">Birth Date</label>
       <fieldset class="form-group position-relative has-icon-left">
-        <input type="text" class="form-control single-daterange" value="<?php date('m/d/Y', strtotime($customer->customer_birthdate))  ?>" id="customerBirthDate" name="customer_birth_date" placeholder="Select Birth Date">
+      <input type="text" class="form-control" value="{{ $customer->customer_birthdate }}" id="customerBirthDate" name="customer_birth_date" placeholder="Select Birth Date">
         <div class="form-control-position">
           <i class='bx bx-calendar'></i>
         </div>

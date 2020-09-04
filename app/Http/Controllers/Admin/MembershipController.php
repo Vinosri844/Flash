@@ -103,7 +103,30 @@ class MembershipController extends Controller
      */
     public function update(Request $request, Membership $membership)
     {
-        //
+        try {
+            $validator = Validator::make($request->all(), [
+            'initial_amount' => 'required',
+            'current_amount' => 'required',
+            'validity' => 'required'
+        ]);
+        if($validator->fails()){
+            flash()->error('Please fill the required Fields!');
+            return redirect()->route('membership.create');
+        }
+        $active = 0;
+        if($request->isActive != null){
+            $active = 1;
+        }
+        $request->merge(['isActive' => $active]);
+        $member = Membership::findOrFail($membership->membership_id);
+        $member->update($request->all());
+        flash()->success('Membership Updated Successfully!');
+        return redirect()->route('membership.index');
+        } catch (\Throwable $th) {
+            //throw $th;
+            flash()->error('Something went Wrong Please Try Again!');
+            return redirect()->route('membership.index');
+        }
     }
 
     /**
@@ -114,6 +137,16 @@ class MembershipController extends Controller
      */
     public function destroy(Membership $membership)
     {
-        //
+        try {
+            $member = Membership::findOrFail($membership->membership_id);
+            $member->isdelete = 1;
+            $member->save();
+            flash()->info('Membership Deleted Successfully!');
+            return redirect()->route('membership.index');
+        } catch (\Throwable $th) {
+            //throw $th;
+            flash()->error('Something went Wrong Please Try Again!');
+            return redirect()->route('membership.index');
+        }
     }
 }

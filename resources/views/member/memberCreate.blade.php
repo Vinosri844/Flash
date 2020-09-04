@@ -11,7 +11,7 @@
           </div>
           <div class="card-content">
             <div class="card-body">
-            <form class="form-horizontal" action="{{ route('member.store') }}" method="POST" enctype="multipart/form-data" novalidate autocomplete="off">
+            <form class="form-horizontal" action="{{ route('membership.store') }}" method="POST" enctype="multipart/form-data" novalidate autocomplete="off">
                  {{ method_field('POST') }}
                     @include('member._memberForm')
                     <button type="submit" class="btn btn-primary float-right my-2">Create</button>

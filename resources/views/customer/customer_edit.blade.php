@@ -14,7 +14,7 @@
             <form class="form-horizontal" action="{{ route('customer.update', $customer->customer_id) }}" method="POST" enctype="multipart/form-data" novalidate autocomplete="off">
                  {{ method_field('PUT') }}
                     @include('customer._customerForm')
-                    <button type="submit" class="btn btn-primary float-right my-2">Update</button>
+                    {{-- <button type="submit" class="btn btn-primary float-right my-2">Update</button> --}}
                 </form>
             </div>
          </div>
