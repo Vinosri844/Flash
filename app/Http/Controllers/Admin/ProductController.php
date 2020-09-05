@@ -18,8 +18,7 @@ use Illuminate\Support\Facades\Session;
 use CommonLib, CommonHelper, Image, File, Carbon, DB, Validator;
 class ProductController extends Controller
 {
-
-
+  
     public function index()
     {
         $masters = ProductMaster::with('subcategory')->where('isdelete', 0)->orderBy('product_id', 'desc')->get();
