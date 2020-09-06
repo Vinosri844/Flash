@@ -15,7 +15,7 @@
                         <div class="col-sm-8">  <h4 class="card-title">List</h4>
                             </div> 
                             <div class="col-sm-4">
-                            <a href="{{ route('membership.create') }}" class="btn btn-primary float-right" class="btn btn-primary">Add Member</a>
+                            <a href="{{ route('membership.create') }}" class="btn btn-primary float-right" class="btn btn-primary">Add Membership</a>
                             </div>
                             
                         </div></p>   
