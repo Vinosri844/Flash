@@ -4,13 +4,18 @@
 $route_name = null;
 $name = null;
 $home = $route[0];
+
 if(isset($route[1])){
+  $second = $route[1];
+  if ( $second === 'index' || $second === 'edit' || $second === 'show' || $second === 'create') {
+    
     $name = $route[1];
     $home = $route[0].'.index';
-  if($name === 'index'){
-      $route_name = ucfirst($route[0]). ' List';
-  } else{
-    $route_name = ucfirst($route[0]).' '. ucfirst($name);
+    if($name === 'index'){
+        $route_name = ucfirst($route[0]). ' List';
+    } else{
+      $route_name = ucfirst($route[0]).' '. ucfirst($name);
+    }
   }
 }
 ?>

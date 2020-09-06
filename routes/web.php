@@ -76,6 +76,8 @@ Route::namespace('Admin')->group(function(){
     Route::resource('/customer', 'CustomerController');
     Route::resource('/membership', 'MembershipController');
     Route::resource('/customer-address', 'CustomerAddressController');
+    Route::resource('/store-offer', 'StoreOfferController');
+    Route::resource('/category-offer', 'CategoryOfferController');
     // Route::post('/event-master', 'MasterController@store')->name('event_master');
 
 });
