@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\CategoryOffer;
 use App\Category;
 use App\Store;
+use App\Userlogs;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

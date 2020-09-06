@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\StoreOffer;
 use App\Store;
+use App\Userlogs;
 use Illuminate\Http\Request;
 use Validator;
 

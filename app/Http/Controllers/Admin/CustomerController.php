@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Customer;
+use App\Userlogs;
 use App\Order;
 use App\CustomerAddress;
 use App\Http\Controllers\Controller;
