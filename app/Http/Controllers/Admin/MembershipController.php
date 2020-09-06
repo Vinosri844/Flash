@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Membership;
+use App\Userlogs;
 use Illuminate\Http\Request;
 use Validator;
 
@@ -54,10 +55,23 @@ class MembershipController extends Controller
         }
         $request->merge(['isActive' => $active]);
         $member = Membership::create($request->all());
-        flash()->success('Membership Created Successfully!');
-        return redirect()->route('membership.index');
+        if($member){
+            $user = new Userlogs;
+            $user->form_name = 'Membership';
+            $user->operation_type = 'Insert';
+            $user->user_id = 1;
+            $user->description = "Insert Membership - ". $request->initial_amount;
+            $user->OS = 'WEB';
+            $user->table_name = 'membership';
+            $user->reference_id = $member->membership_id;
+            $user->ip_device_id = "000:00:00";
+            $user->user_type_id = 1;
+            $user->save();
+            flash()->success('Membership Created Successfully!');
+            return redirect()->route('membership.index');
+        }
         } catch (\Throwable $th) {
-            //throw $th;
+            dd($th);
             flash()->error('Something went Wrong Please Try Again!');
             return redirect()->route('membership.create');
         }
@@ -120,8 +134,21 @@ class MembershipController extends Controller
         $request->merge(['isActive' => $active]);
         $member = Membership::findOrFail($membership->membership_id);
         $member->update($request->all());
-        flash()->success('Membership Updated Successfully!');
-        return redirect()->route('membership.index');
+        if($member){
+            $user = new Userlogs;
+            $user->form_name = 'Membership';
+            $user->operation_type = 'Update';
+            $user->user_id = 1;
+            $user->description = "Update Membership - ". $request->initial_amount;
+            $user->OS = 'WEB';
+            $user->table_name = 'membership';
+            $user->reference_id = $member->membership_id;
+            $user->ip_device_id = "000:00:00";
+            $user->user_type_id = 1;
+            $user->save();
+            flash()->success('Membership Updated Successfully!');
+            return redirect()->route('membership.index');
+        }
         } catch (\Throwable $th) {
             //throw $th;
             flash()->error('Something went Wrong Please Try Again!');
@@ -140,9 +167,21 @@ class MembershipController extends Controller
         try {
             $member = Membership::findOrFail($membership->membership_id);
             $member->isdelete = 1;
-            $member->save();
-            flash()->info('Membership Deleted Successfully!');
-            return redirect()->route('membership.index');
+            if($member->save()){
+                $user = new Userlogs;
+                $user->form_name = 'Membership';
+                $user->operation_type = 'Trash';
+                $user->user_id = 1;
+                $user->description = "Trash Membership - ";
+                $user->OS = 'WEB';
+                $user->table_name = 'membership';
+                $user->reference_id = $member->membership_id;
+                $user->ip_device_id = "000:00:00";
+                $user->user_type_id = 1;
+                $user->save();
+                flash()->info('Membership Deleted Successfully!');
+                return redirect()->route('membership.index');
+            }
         } catch (\Throwable $th) {
             //throw $th;
             flash()->error('Something went Wrong Please Try Again!');

@@ -18,7 +18,7 @@ class StoreOfferController extends Controller
     public function index()
     {
         $store_offers = StoreOffer::where('isdelete', 0)->orderBy('created_date_time', 'desc')->get();
-        return view('store_offers.storeOffer')->with('store_offers', $store_offers);
+        return view('store_offer.storeOffer')->with('store_offers', $store_offers);
     }
 
     /**
@@ -29,7 +29,7 @@ class StoreOfferController extends Controller
     public function create()
     {
         $stores = Store::where('isdelete', 0)->get();
-        return view('store_offers.storeOffer_create')->with('stores', $stores);
+        return view('store_offer.storeOffer_create')->with('stores', $stores);
     }
 
     /**
@@ -44,10 +44,15 @@ class StoreOfferController extends Controller
             $validator = Validator::make($request->all(), [
             'title' => 'required',
             'subtitle' => 'required',
-            'offer_image' => 'required|mimes:jpeg,jpg,png|max:2000'
+            'seller_ids' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'min_discount' => 'required',
+            'max_discount' => 'required',
+            'offer_image' => 'required|mimes:jpeg,jpg|max:2000'
         ]);
         if($validator->fails()){
-            flash()->error('Please fill the required Fields!');
+            flash()->error('Please fill all the Fields! and Image should be Jpeg or Jpg (Max-Size: 2.5MB)');
             return redirect()->route('store-offer.create');
         }
         $offer_original_path = "imge/o_227/so22072019/OriginalImage/"; // Company Logo Orignal Image
@@ -115,7 +120,7 @@ class StoreOfferController extends Controller
     {
         $store_offer = StoreOffer::findOrFail($storeOffer->store_offer_id);
         $stores = Store::where('isdelete', 0)->get();
-        return view('store_offers.storeOffer_edit')->with(['store_offer' => $store_offer, 'stores' => $stores]);
+        return view('store_offer.storeOffer_edit')->with(['store_offer' => $store_offer, 'stores' => $stores]);
     }
 
     /**
@@ -130,13 +135,19 @@ class StoreOfferController extends Controller
         try {
             // dd($request);
             $validator = Validator::make($request->all(), [
-            'title' => 'required',
+                'title' => 'required',
             'subtitle' => 'required',
+            'seller_ids' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'min_discount' => 'required',
+            'max_discount' => 'required',
+            'offer_image' => 'mimes:jpeg,jpg|max:2000'
             
         ]);
         if($validator->fails()){
-            flash()->error('Please fill the required Fields!');
-            return redirect()->route('store-offer.create');
+            flash()->error('Please fill the required Fields! and Image should be Jpeg or Jpg (Max-Size: 2.5MB)');
+            return redirect()->route('store-offer.edit', $storeOffer->store_offer_id);
         }
         $offer_original_path = "imge/o_227/so22072019/OriginalImage/"; // Company Logo Orignal Image
         $store_title = $request->title;
@@ -181,12 +192,12 @@ class StoreOfferController extends Controller
         $member->update($request->input()); 
         
         
-        flash()->success('Store Offer Created Successfully!');
+        flash()->success('Store Offer Updated Successfully!');
         return redirect()->route('store-offer.index');
         } catch (\Throwable $th) {
-            dd($th);
+            
             flash()->error('Something went Wrong Please Try Again!');
-            return redirect()->route('store-offer.create');
+            return redirect()->route('store-offer.index');
         }
     }
 
@@ -203,7 +214,7 @@ class StoreOfferController extends Controller
            $store_offer->isdelete = 1;
            $store_offer->save();
            flash()->info('Store Offer Deleted Successfully!');
-            return redirect()->route('store-offer.index');
+           return redirect()->route('store-offer.index');
 
        } catch (\Throwable $th) {
             flash()->error('Something went Wrong Please Try Again!');

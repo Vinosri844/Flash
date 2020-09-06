@@ -13,7 +13,7 @@
             <div class="card-body">
             <form class="form-horizontal" action="{{ route('store-offer.update', $store_offer->store_offer_id) }}" method="POST" enctype="multipart/form-data" novalidate autocomplete="off">
                  {{ method_field('PUT') }}
-                    @include('store_offers._storeOfferForm')
+                    @include('store_offer._storeOfferForm')
                     <button type="submit" class="btn btn-primary float-right my-2">Update</button>
                 </form>
             </div>

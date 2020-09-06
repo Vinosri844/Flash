@@ -67,6 +67,17 @@ class DeliverySlotMasterController extends Controller
             $delivery_slot->isActive = $active;
             $delivery_slot->user_id = 1;
             if($delivery_slot->save()){
+                $user = new Userlogs;
+                $user->form_name = 'Delivery Slot';
+                $user->operation_type = 'Insert';
+                $user->user_id = 1;
+                $user->description = "Insert delivery Slot - ". $request->deliverySlotFrom. " to ". $request->deliverySlotTo;
+                $user->OS = 'WEB';
+                $user->table_name = 'event_master';
+                $user->reference_id = $delivery_slot->delivery_slot_id;
+                $user->ip_device_id = "000:00:00";
+                $user->user_type_id = 1;
+                $user->save();
                 flash()->success('Delivery Slot Created Successfully!');
                 return redirect()->route('delivery-slot-master.index');
             }
@@ -129,6 +140,17 @@ class DeliverySlotMasterController extends Controller
         $delivery_slot->to_time = $request->deliverySlotToEdit;
         $delivery_slot->isActive = $active;
         if($delivery_slot->save()){
+            $user = new Userlogs;
+            $user->form_name = 'Delivery Slot';
+            $user->operation_type = 'Update';
+            $user->user_id = 1;
+            $user->description = "Update delivery Slot - ". $request->deliverySlotFrom. " to ". $request->deliverySlotTo;
+            $user->OS = 'WEB';
+            $user->table_name = 'event_master';
+            $user->reference_id = $delivery_slot->delivery_slot_id;
+            $user->ip_device_id = "000:00:00";
+            $user->user_type_id = 1;
+            $user->save();
             flash()->success('Delivery Slot Updated Successfully!');
             return redirect()->route('delivery-slot-master.index');
             
@@ -153,6 +175,17 @@ class DeliverySlotMasterController extends Controller
             $event = DeliverySlotMaster::findOrFail($id);
             $event->isdelete = 1;
             if($event->save()){
+                $user = new Userlogs;
+                $user->form_name = 'Delivery Slot';
+                $user->operation_type = 'Trash';
+                $user->user_id = 1;
+                $user->description = "Delete Product Name - ";
+                $user->OS = 'WEB';
+                $user->table_name = 'event_master';
+                $user->reference_id = $delivery_slot->delivery_slot_id;
+                $user->ip_device_id = "000:00:00";
+                $user->user_type_id = 1;
+                $user->save();
                 flash('Delivery Slot Deleted Successfully!');
                 return redirect()->route('delivery-slot-master.index');
             }
