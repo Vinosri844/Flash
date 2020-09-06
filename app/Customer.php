@@ -25,4 +25,10 @@ class Customer extends Model
     ];
 
     protected $hidden = [];
+
+    public function customer_address()
+    {
+        return $this->hasMany('App\CustomerAddress', 'customer_id', 'customer_id');
+    }
+
 }

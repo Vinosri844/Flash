@@ -28,6 +28,7 @@
       <script src="{{ asset('app-assets/vendors/js/tables/datatable/buttons.bootstrap.min.js') }}"></script>
       <script src="{{ asset('app-assets/vendors/js/tables/datatable/pdfmake.min.js') }}"></script>
       <script src="{{ asset('app-assets/vendors/js/tables/datatable/vfs_fonts.js') }}"></script>
+      <script src="{{ asset('app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
       <!-- END: Page Vendor JS-->
   
       <script src="{{ asset('app-assets/vendors/js/pickers/pickadate/picker.js') }}"></script>
@@ -49,11 +50,10 @@
       <!-- BEGIN: Page JS-->
       {{-- <script src="{{ asset('assets/app-assets/js/scripts/charts/chart-chartist.min.js') }}"></script> --}}
       <script src="{{ asset('app-assets/js/scripts/datatables/datatable.min.js') }}"></script>
-      <script src="{{ asset('app-assets/vendors/js/forms/validation/jqBootstrapValidation.js') }}"></script>
       <script src="{{ asset('app-assets/vendors/js/forms/spinner/jquery.bootstrap-touchspin.js') }}"></script>
-      <script src="{{ asset('app-assets/js/scripts/forms/validation/form-validation.js') }}"></script>
       <script src="{{ asset('app-assets/js/scripts/forms/number-input.min.js') }}"></script>
       <script src="{{ asset('app-assets/js/scripts/pickers/dateTime/pick-a-datetime.min.js') }}"></script>
+      <script src="{{ asset('app-assets/js/scripts/forms/select/form-select2.min.js') }}"></script>
       <!-- END: Page JS-->
   
       <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
@@ -61,12 +61,14 @@
       <!-- Validation-->
       <script src="{{ asset('formvalidation/js/formValidation.min.js') }}"></script>
       <script src="{{ asset('formvalidation/js/framework/bootstrap.min.js') }}"></script> 
+      <script src="{{ asset('app-assets/vendors/js/forms/validation/jqBootstrapValidation.js') }}"></script>
+      <script src="{{ asset('app-assets/js/scripts/forms/validation/form-validation.js') }}"></script>
       <!-- Validation-->
       
     
       @stack('scripts')
   
-      @include('layouts.validation')
+      {{-- @include('layouts.validation') --}}
       {{-- <script src="{{ asset('formvalidation/js/framework/bootstrap.min.js') }}"></script> --}}
       <script>
           $(document).ready(function(){

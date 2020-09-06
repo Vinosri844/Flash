@@ -82,9 +82,9 @@
           </li>
           <li class=" navigation-header"><span>Offer</span>
           </li>
-          <li class=" nav-item"><a href=""><i class="bx bx-purchase-tag-alt" data-icon="settings"></i><span class="menu-title" data-i18n="Form Layout">Store offers</span></a>
+        <li class=" nav-item {{ $route[0] == 'store-offer' ? ' active' : '' }}"><a href="{{ route('store-offer.index') }}"><i class="bx bx-purchase-tag-alt" data-icon="settings"></i><span class="menu-title" data-i18n="Form Layout">Store offers</span></a>
           </li>
-          <li class=" nav-item"><a href=""><i class="bx bx-gift" data-icon="priority-low"></i><span class="menu-title" data-i18n="Form Wizard">Category offers</span></a>
+          <li class=" nav-item {{ $route[0] == 'category-offer' ? ' active' : '' }}"><a href="{{ route('category-offer.index') }}"><i class="bx bx-gift" data-icon="priority-low"></i><span class="menu-title" data-i18n="Form Wizard">Category offers</span></a>
           </li>
           <li class=" navigation-header"><span>Order</span>
           </li>
@@ -151,7 +151,7 @@
       <div class="content-wrapper">
         <div class="content-header row">
           <div class="content-header-left col-12 mb-2 mt-1">
-            @include('layouts.breadcrump')
+            {{-- @include('layouts.breadcrump') --}}
           </div>
         </div>
         <div class="content-body"><!-- Chartist  -->

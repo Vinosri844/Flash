@@ -7,14 +7,14 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h2 class="">Edit Customer</h2>
+            <h2 class="">Edit Store Offer</h2>
           </div>
           <div class="card-content">
             <div class="card-body">
-            <form class="form-horizontal" action="{{ route('customer.update', $customer->customer_id) }}" method="POST" enctype="multipart/form-data" novalidate autocomplete="off">
+            <form class="form-horizontal" action="{{ route('store-offer.update', $store_offer->store_offer_id) }}" method="POST" enctype="multipart/form-data" novalidate autocomplete="off">
                  {{ method_field('PUT') }}
-                    @include('customer._customerForm')
-                    {{-- <button type="submit" class="btn btn-primary float-right my-2">Update</button> --}}
+                    @include('store_offers._storeOfferForm')
+                    <button type="submit" class="btn btn-primary float-right my-2">Update</button>
                 </form>
             </div>
          </div>

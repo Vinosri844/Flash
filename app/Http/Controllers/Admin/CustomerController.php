@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Customer;
+use App\CustomerAddress;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -48,7 +49,13 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        dd($customer);
+        try {
+        
+        $customer = Customer::findOrFail($customer->customer_id);
+        return view('customer.customer_edit')->with('customer', $customer);
+        } catch (\Throwable $th) {
+            dd($th);
+        }
     }
 
     /**
@@ -59,13 +66,7 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        try {
-        
-        $customer = Customer::findOrFail($customer->customer_id);
-        return view('customer.customer_edit')->with('customer', $customer);
-        } catch (\Throwable $th) {
-            dd($th);
-        }
+       
     }
 
     /**
@@ -89,5 +90,25 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\CustomerAddress  $address
+     * @return \Illuminate\Http\Response
+     */
+     public function address(Request $request, $address)
+    {
+
+       try {
+        
+        $addresses = CustomerAddress::where('customer_id', $address)->get();
+        $customer = Customer::where('customer_id', $address)->first();
+        // dd($customer);
+        return view('address.customerAddress')->with(['address' => $addresses, 'customer' => $customer]);
+       } catch (\Throwable $th) {
+           dd($th);
+       }
     }
 }
