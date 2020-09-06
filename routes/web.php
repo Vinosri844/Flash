@@ -60,6 +60,22 @@ Route::get('/productDetails/{id}', 'Admin\ProductDetailsController@product_edit'
 Route::post('/productDetails/{id}', 'Admin\ProductDetailsController@product_edit')->name('productDetail_edit_submit');
 Route::get('/productDetails/{id}/delete','Admin\ProductDetailsController@product_delete')->name('productDetail_delete');
 
+
+//delivery
+Route::get('/deliveryperson-add', 'Admin\DeliveryPersonController@deliveryperson_add')->name('deliveryperson_add');
+Route::post('/deliveryperson-add', 'Admin\DeliveryPersonController@deliveryperson_add')->name('deliveryperson_submit');
+Route::get('/deliveryperson-edit/{id}', 'Admin\DeliveryPersonController@deliveryperson_edit')->name('deliveryperson_edit');
+Route::post('/deliveryperson-edit/{id}', 'Admin\DeliveryPersonController@deliveryperson_edit')->name('deliveryperson_submit');
+Route::get('/deliveryperson-delete/{id}/delete', 'Admin\DeliveryPersonController@deliveryperson_delete')->name('deliveryperson_delete');
+
+Route::get('/deliverypersons', 'Admin\DeliveryPersonController@index')->name('deliverypersons');
+
+//Bulk Order
+Route::get('/bulkorder', 'Admin\BulkOrderController@bulkorder')->name('bulkorder');
+Route::POST('/bulkorder', 'Admin\BulkOrderController@bulkorder')->name('bulkorder_submit');
+Route::get('/bulkorderusers', 'Admin\BulkOrderController@bulkorderusers')->name('bulkorderusers');
+
+
 //reports
 Route::get('/product_price', 'Admin\SubCategoryController@product_price')->name('product_price');
 Route::get('/seller_product', 'Admin\SubCategoryController@seller_product')->name('seller_product');
@@ -81,4 +97,3 @@ Route::namespace('Admin')->group(function(){
 
 });
 Route::get('/wishlist', 'Admin\BaseController@wishlist')->name('wishlist');
-
