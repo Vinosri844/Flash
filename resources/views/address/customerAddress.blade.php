@@ -15,7 +15,7 @@
                         <div class="col-sm-8">  <h4 class="card-title">{{$customer->customer_name}} Address List</h4>
                             </div> 
                             <div class="col-sm-4">
-                            {{-- <a href="" class="btn btn-primary" class="btn btn-primary">Create Customer</a> --}}
+                                <a href="{{ route('customer.index') }}" class="btn btn-primary float-right" class="btn btn-primary">Customer List</a>
                             </div>
                             
                         </div></p>   

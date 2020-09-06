@@ -33,6 +33,7 @@
                                         <th>Contact no</th>
                                         <th>Email id</th>
                                         <th>No. of Addresses</th>
+                                        <th>No. of Orders</th>
                                         <th>Type</th>
                                         <th>OS Name</th>
                                         <th>Registration Date</th>
@@ -52,6 +53,7 @@
                                                 <td>{{ $item->customer_contact_no }}</td>
                                                 <td>{{ $item->customer_emailid }}</td>
                                                 <td>{{ $item->customer_address()->count() }}</td>
+                                                <td>{{ $item->customer_orders()->count() }}</td>
                                                 <td>{{ $item->customer_contact_logintype }}</td>
                                                 <td>{{ $item->customer_contact_device_os }}</td>
                                                 <td>{{ $item->create_date_time }}</td>
@@ -75,8 +77,8 @@
                                                     <div  style="display:inline-flex">
                                                         
                                                         <a href="{{ route('customer.show',  $item->customer_id) }}"> <button class="btn-outline-info mr-1" data-toggle="tooltip" data-placement="top" title data-original-title="View Customer"><i class="bx bx-show-alt" data-icon="warning-alt"></i></button></a>
-                                                       <a href="{{ route('customer.address', $item->customer_id) }}"> <button class="btn-outline-primary mr-1" data-toggle="tooltip" data-placement="top" title data-original-title="View Address"><i class="bx bx-home-circle" data-icon="warning-alt"></i></button></a>
-                                                       <a href=""> <button class="btn-outline-warning mr-1" data-toggle="tooltip" data-placement="top" title data-original-title="View Order List"><i class="bx bxs-shopping-bag" data-icon="warning-alt"></i></button></a>
+                                                       <a href="{{ route('customer.address', ['address' => $item->customer_id]) }}"> <button class="btn-outline-primary mr-1" data-toggle="tooltip" data-placement="top" title data-original-title="View Address"><i class="bx bx-home-circle" data-icon="warning-alt"></i></button></a>
+                                                    <a href="{{ route('customer.order', ['order'=>  $item->customer_id]) }}"> <button class="btn-outline-warning mr-1" data-toggle="tooltip" data-placement="top" title data-original-title="View Order List"><i class="bx bxs-shopping-bag" data-icon="warning-alt"></i></button></a>
                                                                                
                                                     </div>
                                                     

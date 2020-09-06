@@ -287,7 +287,17 @@ class StoreController extends Controller
             $store->seller_cart_value = $request->store_min_value;
             if($store->save()){
                 // dd($store->seller_id);   
-              
+                $user = new Userlogs;
+                $user->form_name = 'Seller';
+                $user->operation_type = 'Update';
+                $user->user_id = 1;
+                $user->description = "Update Seller Name - ". $request->store_name;
+                $user->OS = 'WEB';
+                $user->table_name = 'seller_master';
+                $user->reference_id = $store->seller_id;
+                $user->ip_device_id = "000:00:00";
+                $user->user_type_id = 1;
+                $user->save();
                 $branch = SellerBranch::where('seller_id', $store->seller_id)->first();
                 
                 $branch->seller_branch_name = $request->store_branch_name;
@@ -303,6 +313,17 @@ class StoreController extends Controller
                 $branch->isactive = 1;
                 $branch->isdelete = 0;
                 if($branch->save()){
+                    $user = new Userlogs;
+                    $user->form_name = 'Seller Branch';
+                    $user->operation_type = 'Update';
+                    $user->user_id = 1;
+                    $user->description = "Update Seller Branch Name - ". $request->store_branch_name;
+                    $user->OS = 'WEB';
+                    $user->table_name = 'seller_branch';
+                    $user->reference_id = $branch->seller_branch_id;
+                    $user->ip_device_id = "000:00:00";
+                    $user->user_type_id = 1;
+                    $user->save();
                     flash()->success('Store Updated Successfully!');
                     return redirect()->route('store.index');
                 }

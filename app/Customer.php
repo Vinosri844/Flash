@@ -30,5 +30,9 @@ class Customer extends Model
     {
         return $this->hasMany('App\CustomerAddress', 'customer_id', 'customer_id');
     }
+    public function customer_orders()
+    {
+        return $this->hasMany('App\Order', 'customer_id', 'customer_id');
+    }
 
 }

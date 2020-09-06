@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Customer;
+use App\Order;
 use App\CustomerAddress;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -107,6 +108,21 @@ class CustomerController extends Controller
         $customer = Customer::where('customer_id', $address)->first();
         // dd($customer);
         return view('address.customerAddress')->with(['address' => $addresses, 'customer' => $customer]);
+       } catch (\Throwable $th) {
+           dd($th);
+       }
+    }
+
+
+     public function order(Request $request, $order)
+    {
+
+       try {
+        
+        $orders = Order::where('customer_id', $order)->get();
+        $customer = Customer::where('customer_id', $order)->first();
+        // dd($customer);
+        return view('order.customerOrder')->with(['orders' => $orders, 'customer' => $customer]);
        } catch (\Throwable $th) {
            dd($th);
        }

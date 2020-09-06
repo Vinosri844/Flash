@@ -7,13 +7,13 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h2 class="">Create Store Offer</h2>
+            <h2 class="">Create Category Offer</h2>
           </div>
           <div class="card-content">
             <div class="card-body">
-            <form class="form-horizontal" action="{{ route('store-offer.store') }}" method="POST" enctype="multipart/form-data" novalidate autocomplete="off">
+            <form class="form-horizontal" action="{{ route('category-offer.store') }}" method="POST" enctype="multipart/form-data" novalidate autocomplete="off">
                  {{ method_field('POST') }}
-                    @include('store_offers._storeOfferForm')
+                    @include('category_offer._categoryOfferForm')
                     <button type="submit" class="btn btn-primary float-right my-2">Create</button>
                 </form>
             </div>

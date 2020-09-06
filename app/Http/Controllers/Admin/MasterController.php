@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\EventMaster;
+use App\Userlogs;
 use Validator;
 class MasterController extends Controller
 {
@@ -55,6 +56,17 @@ class MasterController extends Controller
         $event->user_id = 1;
         $event->event_name = $request->event_name;
         if($event->save()){
+            $user = new Userlogs;
+            $user->form_name = 'Event';
+            $user->operation_type = 'Insert';
+            $user->user_id = 1;
+            $user->description = "Insert Event Name - ". $request->event_name;
+            $user->OS = 'WEB';
+            $user->table_name = 'event_master';
+            $user->reference_id = $event->event_id;
+            $user->ip_device_id = "000:00:00";
+            $user->user_type_id = 1;
+            $user->save();
             flash()->success('Event Created Successfully!');
             return redirect()->route('event-master.index');
         }
@@ -115,6 +127,17 @@ class MasterController extends Controller
         $event->event_name = $request->event_name;
         $event->isActive = $active;
         if($event->save()){
+            $user = new Userlogs;
+            $user->form_name = 'Event';
+            $user->operation_type = 'Update';
+            $user->user_id = 1;
+            $user->description = "Update Event Name - ". $request->event_name;
+            $user->OS = 'WEB';
+            $user->table_name = 'event_master';
+            $user->reference_id = $event->event_id;
+            $user->ip_device_id = "000:00:00";
+            $user->user_type_id = 1;
+            $user->save();
             flash()->success('Event Updated Successfully!');
             return redirect()->route('event-master.index');
             
@@ -139,6 +162,17 @@ class MasterController extends Controller
             $event = EventMaster::findOrFail($id);
             $event->isdelete = 1;
             if($event->save()){
+                $user = new Userlogs;
+                $user->form_name = 'Event';
+                $user->operation_type = 'Trash';
+                $user->user_id = 1;
+                $user->description = "Delete Event Name - ". $event->event_name;
+                $user->OS = 'WEB';
+                $user->table_name = 'event_master';
+                $user->reference_id = $event->event_id;
+                $user->ip_device_id = "000:00:00";
+                $user->user_type_id = 1;
+                $user->save();
                 flash('Event Deleted Successfully!');
                 return redirect()->route('event-master.index');
             }
