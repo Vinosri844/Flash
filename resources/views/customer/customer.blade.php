@@ -61,8 +61,8 @@
                                                 
                                                 <td>
                                                     <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
-                                                        <input type="checkbox" class="custom-control-input" {{$item->isactive == 1 ? 'checked' : ''}} id="customSwitchGlow{{$k}}">
-                                                        <label class="custom-control-label" for="customSwitchGlow{{$k}}">
+                                                        <input type="checkbox" class="custom-control-input" {{$item->isactive == 1 ? 'checked' : ''}} value="{{$item->customer_id}}"  onchange="change_status(this.value, 'customer_master', '#customerStatus{{$item->customer_id}}', 'customer_id', 'isactive');" id="customerStatus{{$item->customer_id}}">
+                                                        <label class="custom-control-label" for="customerStatus{{$item->customer_id}}">
                                                         </label>
                                                       </div>    
                                                 </td>
@@ -104,6 +104,7 @@
 
   @push('scripts')
 
+  
   
   @endpush
 

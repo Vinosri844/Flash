@@ -51,8 +51,8 @@
                                                 <td>{{ $item->cashback_amount }}</td>
                                                 <td>
                                                     <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
-                                                        <input type="checkbox" class="custom-control-input" {{$item->isActive == 1 ? 'checked' : ''}} id="customSwitchGlow{{$k}}">
-                                                        <label class="custom-control-label" for="customSwitchGlow{{$k}}">
+                                                        <input type="checkbox" class="custom-control-input" {{$item->isActive == 1 ? 'checked' : ''}} value="{{$item->membership_id}}"  onchange="change_status(this.value, 'membership', '#membershipStatusChange{{$item->membership_id}}', 'membership_id', 'isActive');" id="membershipStatusChange{{$item->membership_id}}">
+                                                        <label class="custom-control-label" for="membershipStatusChange{{$item->membership_id}}">
                                                         </label>
                                                       </div>    
                                                 </td>

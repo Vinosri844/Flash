@@ -29,6 +29,7 @@
       <script src="{{ asset('app-assets/vendors/js/tables/datatable/pdfmake.min.js') }}"></script>
       <script src="{{ asset('app-assets/vendors/js/tables/datatable/vfs_fonts.js') }}"></script>
       <script src="{{ asset('app-assets/vendors/js/forms/select/select2.full.min.js') }}"></script>
+      <script src="{{ asset('app-assets/vendors/js/extensions/toastr.min.js') }}"></script>
       <!-- END: Page Vendor JS-->
   
       <script src="{{ asset('app-assets/vendors/js/pickers/pickadate/picker.js') }}"></script>
@@ -54,6 +55,7 @@
       <script src="{{ asset('app-assets/js/scripts/forms/number-input.min.js') }}"></script>
       <script src="{{ asset('app-assets/js/scripts/pickers/dateTime/pick-a-datetime.min.js') }}"></script>
       <script src="{{ asset('app-assets/js/scripts/forms/select/form-select2.min.js') }}"></script>
+      <script src="{{ asset('app-assets/js/scripts/extensions/toastr.min.js') }}"></script>
       <!-- END: Page JS-->
   
       <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
