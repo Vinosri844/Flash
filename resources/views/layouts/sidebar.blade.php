@@ -80,6 +80,9 @@
           </li>
           <li class="disabled nav-item"><a href=""><i class="bx bx-credit-card-alt" data-icon="morph-preview"></i><span class="menu-title" data-i18n="Disabled Menu">Delivery charge list</span></a>
           </li>
+          <li class="nav-item"><a href="{{ route('deliverypersons') }}"><i class="bx bx-credit-card-alt" data-icon="morph-preview"></i><span class="menu-title" data-i18n="Disabled Menu">Delivery Person's list</span></a>
+          </li>
+
           <li class=" navigation-header"><span>Offer</span>
           </li>
         <li class=" nav-item {{ $route[0] == 'store-offer' ? ' active' : '' }}"><a href="{{ route('store-offer.index') }}"><i class="bx bx-purchase-tag-alt" data-icon="settings"></i><span class="menu-title" data-i18n="Form Layout">Store offers</span></a>
@@ -90,7 +93,9 @@
           </li>
           <li class=" nav-item"><a href=""><i class="bx bx-receipt" data-icon="warning-alt"></i><span class="menu-title" data-i18n="Sweet Alert">Order list</span></a>
           </li>
-          <li class=" nav-item"><a href=""><i class="bx bx-briefcase-alt" data-icon="morph-map"></i><span class="menu-title" data-i18n="Toastr">Bulk order</span></a>
+          <li class=" nav-item"><a href="{{ route('bulkorder') }}"><i class="bx bx-briefcase-alt" data-icon="morph-map"></i><span class="menu-title" data-i18n="Toastr">Bulk order</span></a>
+          </li>
+          <li class=" nav-item"><a href="{{ route('bulkorderusers') }}"><i class="bx bx-briefcase-alt" data-icon="morph-map"></i><span class="menu-title" data-i18n="Toastr">Bulk order users</span></a>
           </li>
           <li class=" navigation-header"><span>Receipe</span>
           </li>

@@ -19,7 +19,6 @@ use CommonLib, CommonHelper, Image, File, Carbon, DB, Validator;
 class ProductController extends Controller
 {
 
-
     public function index()
     {
         $masters = ProductMaster::with('subcategory')->where('isdelete', 0)->orderBy('product_id', 'desc')->get();
@@ -312,7 +311,6 @@ class ProductController extends Controller
                 $data['subcategory'] = SubCategory::orderBy('subcategory_id', 'desc')->get();
                 $data['seller'] = SellerMaster::where('isactive',1)->where('isdelete',0)->get();
 
-
                 return view('products.product_create', $data ?? NULL);
             }
         }
@@ -514,7 +512,7 @@ class ProductController extends Controller
                                  $userlog = new Userlogs();
                                  $userlog->form_name = 'Branch Product name';
                                  $userlog->operation_type = 'insert';
-                                 $userlog->user_id = isset($user->user_id) ? $user->user_id : 1;;
+                                 $userlog->user_id = isset($user->user_id) ? $user->user_id : 1;
                                  $userlog->log_date_time = $current_date;
                                  $userlog->description = $userlog_description;
                                  $userlog->OS = $request->os ? $request->os : "windows";
@@ -565,7 +563,7 @@ class ProductController extends Controller
 
     public function product_delete($id)
     {
-        $data = SubCategory::find($id);
+        $data = ProductMaster::find($id);
         $data->isdelete = 1;
         if($data->save()){
             flash()->success('Product Deleted Successfully!');

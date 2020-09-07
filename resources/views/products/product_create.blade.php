@@ -130,30 +130,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <h4 class="card-title">Product Info (Tamil)</h4>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="form-label-group">
-                                                <input type="text" id="tproduct_name" class="form-control" placeholder="Product Title"
-                                                       name="tproduct_name" >
-                                                <label for="first-name-floating">Product Title</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-label-group">
-                                            <textarea type="text" id="tproduct_short_description" class="form-control" placeholder="Short Description"
-                                                      name="tproduct_short_description" cols="30" rows="4"></textarea>
-                                                <label for="first-name-floating">Short Description</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-label-group">
-                                            <textarea type="text" id="t_ingredients" class="form-control" placeholder="Ingredients"
-                                                      name="t_ingredients" cols="30" rows="4"></textarea>
-                                                <label for="first-name-floating">Ingredients</label>
-                                            </div>
-                                        </div>
-                                    </div>
+                        
                                     <h4 class="card-title">Product Images</h4>
                                     <div class="row">
                                         <div class="col-4">
