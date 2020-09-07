@@ -65,7 +65,7 @@ Route::get('/productDetails/{id}/delete','Admin\ProductDetailsController@product
 Route::get('/deliveryperson-add', 'Admin\DeliveryPersonController@deliveryperson_add')->name('deliveryperson_add');
 Route::post('/deliveryperson-add', 'Admin\DeliveryPersonController@deliveryperson_add')->name('deliveryperson_submit');
 Route::get('/deliveryperson-edit/{id}', 'Admin\DeliveryPersonController@deliveryperson_edit')->name('deliveryperson_edit');
-Route::post('/deliveryperson-edit/{id}', 'Admin\DeliveryPersonController@deliveryperson_edit')->name('deliveryperson_submit');
+Route::post('/deliveryperson-edit/{id}', 'Admin\DeliveryPersonController@deliveryperson_edit')->name('deliverypersonedit_submit');
 Route::get('/deliveryperson-delete/{id}/delete', 'Admin\DeliveryPersonController@deliveryperson_delete')->name('deliveryperson_delete');
 
 Route::get('/deliverypersons', 'Admin\DeliveryPersonController@index')->name('deliverypersons');

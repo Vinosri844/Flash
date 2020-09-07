@@ -14,7 +14,7 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form method="post" name="deliveryperson_form" id="deliveryperson_form" action="{{ route('deliveryperson_submit',$deliveryperson->logistics_id) }}" enctype= multipart/form-data>
+                            <form method="post" name="deliveryperson_form" id="deliveryperson_form" action="{{ route('deliverypersonedit_submit',$deliveryperson->logistics_id) }}" enctype= multipart/form-data>
                                 {{ csrf_field() }}
                                 <div class="form-body">
                                     <div class="row">
