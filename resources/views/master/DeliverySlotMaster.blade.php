@@ -51,8 +51,8 @@
                                                 <td>{{ $item->created_date_time }}</td>
                                                 <td>
                                                     <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
-                                                        <input type="checkbox" class="custom-control-input" {{$item->isActive == 1 ? 'checked' : ''}} id="customSwitchGlow{{$k}}">
-                                                        <label class="custom-control-label" for="customSwitchGlow{{$k}}">
+                                                        <input type="checkbox" class="custom-control-input" {{$item->isActive == 1 ? 'checked' : ''}} value="{{$item->delivery_slot_id}}"  onchange="change_status(this.value, 'delivery_slot_master', '#deliverySlotStatus{{$item->delivery_slot_id}}', 'delivery_slot_id', 'isActive');" id="deliverySlotStatus{{$item->delivery_slot_id}}">
+                                                        <label class="custom-control-label" for="deliverySlotStatus{{$item->delivery_slot_id}}">
                                                         </label>
                                                       </div>    
                                                 </td>

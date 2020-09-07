@@ -1,4 +1,10 @@
 <script>
+
+
+
+    
+
+
     $(document).ready(function() {
 		
 		@if(Route::currentRouteName() == 'login')

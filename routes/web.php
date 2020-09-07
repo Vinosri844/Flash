@@ -72,14 +72,16 @@ Route::namespace('Admin')->group(function(){
     //Route::resource('/category', 'CategoryController');
     Route::resource('/delivery-slot-master', 'DeliverySlotMasterController');
     Route::resource('/store', 'StoreController');
-    Route::get('/customer-order/{order}', 'CustomerController@order')->name('customer.order');
-    Route::get('/customer-address/{address}', 'CustomerController@address')->name('customer.address');
     Route::resource('/customer', 'CustomerController');
     Route::resource('/membership', 'MembershipController');
-    Route::resource('/customer-address', 'CustomerAddressController');
+    // Route::resource('/customer-address', 'CustomerAddressController');
     Route::resource('/store-offer', 'StoreOfferController');
     Route::resource('/category-offer', 'CategoryOfferController');
+
     // Route::post('/event-master', 'MasterController@store')->name('event_master');
+    Route::get('/customer-order/{order}', 'CustomerController@order')->name('customer.order');
+    Route::get('/customer-address/{address}', 'CustomerController@address')->name('customer.address');
+    Route::post('change-status', 'CommonController@change_status')->name('change.status');
 
 });
 // Route::get('/wishlist', 'Admin\BaseController@wishlist')->name('wishlist');

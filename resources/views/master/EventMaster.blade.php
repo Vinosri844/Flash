@@ -43,8 +43,8 @@
                                                 <td>{{ $item->event_name }}</td>
                                                 <td>
                                                     <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
-                                                        <input type="checkbox" class="custom-control-input" {{$item->isActive == 1 ? 'checked' : ''}} id="customSwitchGlow{{$k}}">
-                                                        <label class="custom-control-label" for="customSwitchGlow{{$k}}">
+                                                        <input type="checkbox" class="custom-control-input" {{$item->isActive == 1 ? 'checked' : ''}} value="{{$item->event_id}}"  onchange="change_status(this.value, 'event_master', '#eventStatusChange{{$item->event_id}}', 'event_id', 'isActive');" id="eventStatusChange{{$item->event_id}}">
+                                                        <label class="custom-control-label" for="eventStatusChange{{$item->event_id}}">
                                                         </label>
                                                       </div>    
                                                 </td>

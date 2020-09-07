@@ -57,8 +57,8 @@
                                                 <td>{{ $item->seller_pan_number }}</td>
                                                 <td>
                                                     <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
-                                                        <input type="checkbox" class="custom-control-input" {{$item->isactive == 1 ? 'checked' : ''}} id="customSwitchGlow{{$k}}">
-                                                        <label class="custom-control-label" for="customSwitchGlow{{$k}}">
+                                                        <input type="checkbox" class="custom-control-input" {{$item->isactive == 1 ? 'checked' : ''}} value="{{$item->seller_id}}"  onchange="change_status(this.value, 'seller_master', '#storeStatusChange{{$item->seller_id}}', 'seller_id', 'isactive');" id="storeStatusChange{{$item->seller_id}}">
+                                                        <label class="custom-control-label" for="storeStatusChange{{$item->seller_id}}">
                                                         </label>
                                                       </div>    
                                                 </td>

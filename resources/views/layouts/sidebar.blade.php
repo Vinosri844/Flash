@@ -173,6 +173,34 @@
       })
 </script>
 
+
+<script>
+    function change_status(id, name, check, column, field){
+      var status = 0;
+        if($(check).is(':checked')){
+            var status = 1;
+        }
+      $.ajax({
+          url: "{{ route('change.status') }}",
+          type: 'POST',
+          data: {"_token": '{{csrf_token()}}', status:status, id:id, name:name, column:column, field:field},
+          success: function(response){
+              if(response.status == 1){
+                  toastr.success("Status Changed Successfully!", response.message);
+              }else{
+                  toastr.error("Error While changing Status", response.message);
+              }
+              
+          }, 
+          error:function(response){
+              toastr.error("Error While changing Status","Please Refresh and Try!");
+          }
+      })
+  }
+</script>
+
+
+
     @endpush
 
 

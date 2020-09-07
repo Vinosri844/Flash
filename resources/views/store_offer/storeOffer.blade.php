@@ -58,8 +58,8 @@
                                             <td class="text-center">{{ date('d M, Y', strtotime($item->start_date)) }} <span class="text-primary"> TO</span> <br> {{ date('d M, Y', strtotime($item->end_date)) }}</td>
                                                 <td>
                                                     <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
-                                                        <input type="checkbox" class="custom-control-input" {{$item->isactive == 1 ? 'checked' : ''}} id="customSwitchGlow{{$k}}">
-                                                        <label class="custom-control-label" for="customSwitchGlow{{$k}}">
+                                                        <input type="checkbox" class="custom-control-input" {{$item->isactive == 1 ? 'checked' : ''}} value="{{$item->store_offer_id}}"  onchange="change_status(this.value, 'store_offers', '#storeOfferStatusChange{{$item->store_offer_id}}', 'store_offer_id', 'isactive');" id="storeOfferStatusChange{{$item->store_offer_id}}">
+                                                        <label class="custom-control-label" for="storeOfferStatusChange{{$item->store_offer_id}}">
                                                         </label>
                                                       </div>    
                                                 </td>
