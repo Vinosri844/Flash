@@ -94,7 +94,7 @@
           </li>
           <li class=" navigation-header"><span>Receipe</span>
           </li>
-          <li class=" nav-item"><a href=""><i class="bx bx-news" data-icon="warning-alt"></i><span class="menu-title" data-i18n="Sweet Alert">Receipe master</span></a>
+        <li class=" nav-item {{ $route[0] == 'recipe-master' ? ' active' : '' }}"><a href="{{ route('recipe-master.index') }}"><i class="bx bx-news" data-icon="warning-alt"></i><span class="menu-title" data-i18n="Sweet Alert">Receipe master</span></a>
           </li>
           <li class=" nav-item"><a href=""><i class="bx bxs-dock-top" data-icon="morph-map"></i><span class="menu-title" data-i18n="Toastr">Receipe category</span></a>
           </li>
