@@ -27,6 +27,7 @@
                                         <th>Seller Name</th>
                                         <th>Product name</th>
                                         <th>Status</th>
+                                        <th>Stock</th>
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
@@ -46,8 +47,11 @@
                                                     </div>
                                                 </td>
                                                 <td>
+                                                    <button class="btn-outline-info mr-1 eventMasterEdit" data-value="{{ $item->product_details_id }}, {{ $item->product[0]['product_name'] }}, {{ $item->isactive }}"  data-toggle="modal" data-target="#eventMasterEdit"><a href="{{ route('stock', $item->product_details_id) }}"><i class="bx bxs-server" data-icon="warning-alt"></i></a></button>
+                                                </td>
+                                                <td>
                                                     <div  style="display:inline-flex">
-                                                        <button class="btn-outline-info mr-1 eventMasterEdit" data-value="{{ $item->product_details_id }}, {{ $item->product[0]['product_name'] }}, {{ $item->isactive }}"  data-toggle="modal" data-target="#eventMasterEdit"><a href="{{ route('productDetail_edit', $item->product_id) }}"><i class="bx bxs-edit-alt" data-icon="warning-alt"></i></a></button>
+                                                        <button class="btn-outline-info mr-1 eventMasterEdit" data-value="{{ $item->product_details_id }}, {{ $item->product[0]['product_name'] }}, {{ $item->isactive }}"  data-toggle="modal" data-target="#eventMasterEdit"><a href="{{ route('productDetail_edit', $item->product_details_id) }}"><i class="bx bxs-edit-alt" data-icon="warning-alt"></i></a></button>
                                                         {{-- <button clas
 s="btn-outline-danger"><i class="bx bx-trash-alt"></i></button> --}}
                                                         <button  onclick = "return confirm('Are you sure wanted to delete this {{$item->product[0]['product_name']}} ?')" style="display: inline" class="btn-outline-danger">

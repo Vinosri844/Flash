@@ -107,7 +107,7 @@ class ProductController extends Controller
                     //  $product_details->create_date_time = $current_date;tproduct_name
                     //  $product_details->update_date_time = $current_date;
                       $product_details->stock = 0;
-                      $product_details->isactive = 0;
+                      $product_details->isactive = $isActive;
                       $product_details->isjain = $isActive_jain;
                       $product_details->isservice = $isActive_service;
                       $product_details->isdelete = 0;
@@ -316,7 +316,6 @@ class ProductController extends Controller
         }
         Catch(\Exception $e)
         {
-            dd($e);
             DB::rollback();
             return redirect()->route('products')->with('error', $e->getMessage());
         }

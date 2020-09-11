@@ -12,6 +12,8 @@ class ProductWeightDetails extends Model
     protected $table = 'product_weight_details';
     protected $primaryKey = 'product_weight_details_id';
 
+    const UPDATED_AT = null;
+    const CREATED_AT = null;
     protected $fillable = [
         'before_discount_price','price', 'weight_id','isactive','product_weight_code',
     ];

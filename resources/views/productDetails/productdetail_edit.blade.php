@@ -20,64 +20,44 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-label-group">
-                                                <input type="text" id="product_name" class="form-control" placeholder="Product Name"
-                                                       name="product_name" value="{{$product->product_name}}">
                                                 <label for="first-name-floating">Product Name</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-label-group">
-                                                <label class="form-label">Category</label>
-                                                <select name="category_id" id="category_id" class="form-control select2_picker" onchange="cat_by_subcategory(this.value)">
-                                                    <option value="">Select Category</option>
-                                                    @if(isset($category) && !empty($category))
-                                                        @foreach($category as $k => $val)
-                                                            <?php $sel = $subcat->category_id == $val->category_id ? 'selected' : ''; ?>
-                                                            <option value="{{ $val->category_id }}" {{ $sel }}>{{ ucfirst($val->category_name) }}</option>
+                                                <select name="product_id" id="product_id" class="form-control select2_picker">
+                                                    <option value="">Select product</option>
+                                                    @if(isset($products) && !empty($products))
+                                                        @foreach($products as $product)
+                                                            <?php $sel =  $productdetail->product_id == $product->product_id ? 'selected' : ''; ?>
+                                                            <option value="{{ $product->product_id }}" {{  $sel }}>{{ ucfirst($product->product_name) }}</option>
                                                         @endforeach
                                                     @endif
                                                 </select>
-                                                <div class="clearfix"></div>
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="form-label-group">
-                                                <label class="form-label">Sub-Category</label>
-                                                <select name="subcat_id" id="subcat_id" class="form-control select2_picker">
-                                                    @if(isset($subcats) && !empty($subcats))
-                                                        @foreach($subcats as $k => $val)
-                                                            <?php $sel = $product->subcategory_id == $val->subcategory_id ? 'selected' : ''; ?>
-                                                            <option value="{{ $val->subcategory_id }}" {{ $sel }}>{{ ucfirst($val->subcategory_name) }}</option>
-                                                        @endforeach
-                                                    @endif
-
-                                                </select>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-6">
-                                            <div class="form-label-group">
-                                                <select class="mul-select" name="productstore_id[]" id="productstore_id" style="width: 100%" multiple="true">
+                                                <label class="form-label">Seller</label>
+                                                <select name="seller_id" id="seller_id" class="form-control select2_picker">
+                                                    <option value="">Select Seller</option>
                                                     @if(isset($seller) && !empty($seller))
                                                         @foreach($seller as $k => $val)
-                                                            <?php $sel = in_array($val->seller_id,$selectedsellers) ? 'selected' : ''; ?>
-                                                            <option value="{{ $val->seller_id }}" {{ $sel }}>{{ ucfirst($val->seller_name) }}</option>                                                        @endforeach
+                                                            <?php $sel = $productdetail->seller_id == $val->seller_id ? 'selected' : ''; ?>
+                                                            <option value="{{ $val->seller_id }}" {{ $sel }}>{{ ucfirst($val->seller_name) }}</option>
+                                                        @endforeach
                                                     @endif
                                                 </select>
+                                                <div class="clearfix"></div>
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="form-label-group">
-                                                <input type="text" id="optional_name" class="form-control" placeholder="Optional Name"
-                                                       name="optional_name" value="{{$product->product_alias_name}}" >
-                                                <label for="first-name-floating">Optional Name</label>
+                                                <input type="text" id="discount" class="form-control" placeholder="Discount"
+                                                       name="discount" value="{{$productdetail->product_details_discount}}" >
+                                                <label for="first-name-floating">Discount</label>
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="form-label-group">
                                                 <input type="text" id="product_short_description" class="form-control" name="product_short_description"
-                                                       placeholder="Description" value="{{$product->product_description}}">
+                                                       placeholder="Description" value="{{$productdetail->product_details_description}}">
                                                 <label for="contact-info-floating">Description</label>
                                             </div>
                                         </div>
@@ -87,7 +67,7 @@
                                         <div class="col-2">
                                             <div class="form-group" style="display: flex">
                                                 <label for="eventStatus" class="mr-2">Active</label>
-                                                <?php $check = $product->isactive == 1 ? 'checked' : ''; ?>
+                                                <?php $check = $productdetail->isactive == 1 ? 'checked' : ''; ?>
                                                 <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
                                                     <input type="checkbox" class="custom-control-input" name="product_status"  id="product_status"{{$check}}>
                                                     <label class="custom-control-label" for="product_status">
@@ -98,7 +78,7 @@
                                         <div class="col-2">
                                             <div class="form-group" style="display: flex">
                                                 <label for="isAcive_jain" class="mr-2">Is Veg?</label>
-                                                <?php $check = $productdetails[0]->isjain == 1 ? 'checked' : ''; ?>
+                                                <?php $check = $productdetail->isjain == 1 ? 'checked' : ''; ?>
                                                 <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
                                                     <input type="checkbox" class="custom-control-input" name="isAcive_jain"  id="isAcive_jain"  {{$check}}>
                                                     <label class="custom-control-label" for="isAcive_jain">
@@ -109,7 +89,7 @@
                                         <div class="col-2">
                                             <div class="form-group" style="display: flex">
                                                 <label for="isActive_service" class="mr-2">Is Service?</label>
-                                                <?php $check = $productdetails[0]->isservice == 1 ? 'checked' : ''; ?>
+                                                <?php $check = $productdetail->isservice == 1 ? 'checked' : ''; ?>
                                                 <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
                                                     <input type="checkbox" class="custom-control-input" name="isActive_service"  id="isActive_service" {{$check}}>
                                                     <label class="custom-control-label" for="isActive_service">
@@ -119,15 +99,15 @@
                                         </div>
                                         <div class="col-4">
                                             <div class="form-label-group">
-                                                <input type="text" id="product_title" class="form-control" placeholder="Product Title"
-                                                       name="product_title" value="{{ $productdetails[0]->product_details_title}}">
-                                                <label for="first-name-floating">Product Title</label>
+                                                <input type="text" id="productdetail_title" class="form-control" placeholder="Product Title"
+                                                       name="productdetail_title" value="{{ $productdetail->product_details_title}}">
+                                                <label for="first-name-floating">Product Detail Title</label>
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="form-label-group">
                                             <textarea type="text" id="ingredients" class="form-control" placeholder="Ingredients"
-                                                      name="ingredients" cols="30" rows="4" value="{{$productdetails[0]->product_details_ingredients}}">{{$productdetails[0]->product_details_ingredients}}</textarea>
+                                                      name="ingredients" cols="30" rows="4" >{{$productdetail->product_details_ingredients}}</textarea>
                                                 <label for="first-name-floating">Ingredients</label>
                                             </div>
                                         </div>
@@ -135,32 +115,8 @@
                                         <div class="col-6">
                                             <div class="form-label-group">
                                             <textarea type="text" id="remarks" class="form-control" placeholder="Remarks"
-                                                      name="remarks" cols="30" rows="4" value="{{$productdetails[0]->product_details_remarks}}">{{$productdetails[0]->product_details_remarks}}</textarea>
+                                                      name="remarks" cols="30" rows="4" >{{$productdetail->product_details_remarks}}</textarea>
                                                 <label for="remarks">Remarks</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h4 class="card-title">Product Info (Tamil)</h4>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="form-label-group">
-                                                <input type="text" id="tproduct_name" class="form-control" placeholder="Product Title"
-                                                       name="tproduct_name" value="{{$product->tproduct_name}}">
-                                                <label for="first-name-floating">Product Title</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-label-group">
-                                            <textarea type="text" id="tproduct_short_description" class="form-control" placeholder="Short Description"
-                                                      name="tproduct_short_description" cols="30" rows="4" value="{{$product->tproduct_description}}">{{$product->tproduct_description}}</textarea>
-                                                <label for="first-name-floating">Short Description</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-label-group">
-                                            <textarea type="text" id="t_ingredients" class="form-control" placeholder="Ingredients"
-                                                      name="t_ingredients" cols="30" rows="4" value="{{$productdetails[0]->t_product_details_ingredients}}">{{$productdetails[0]->t_product_details_ingredients}}</textarea>
-                                                <label for="first-name-floating">Ingredients</label>
                                             </div>
                                         </div>
                                     </div>

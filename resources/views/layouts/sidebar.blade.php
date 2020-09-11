@@ -70,7 +70,7 @@
           </li>
           <li class=" nav-item"><a href="{{ route('products') }}"><i class="bx bx-basket" data-icon="settings"></i><span class="menu-title" data-i18n="Form Layout">Product</span></a>
           </li>
-          <li class=" nav-item"><a href=""><i class="bx bx-detail" data-icon="priority-low"></i><span class="menu-title" data-i18n="Form Wizard">Product details</span></a>
+          <li class=" nav-item"><a href="{{ route('productDetails') }}"><i class="bx bx-detail" data-icon="priority-low"></i><span class="menu-title" data-i18n="Form Wizard">Product details</span></a>
           </li>
           <li class=" navigation-header"><span>Delivery</span>
           </li>
@@ -121,7 +121,7 @@
           </li>
           <li class=" nav-item {{ $route[0] == 'membership' ? ' active' : '' }}"><a href="{{ route('membership.index') }}"><i class="bx bx-id-card" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Membership</span></a>
           </li>
-          
+
         <li class=" nav-item {{ $route[0] == 'customer' ? ' active' : '' }}"><a href=" {{ route('customer.index') }}"><i class="bx bx-user-check" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Display customer list</span></a>
           </li>
           <li class=" nav-item"><a href=""><i class="bx bx-compass" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Weight</span></a>
