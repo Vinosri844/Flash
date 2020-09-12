@@ -1,10 +1,12 @@
 
 <?php  
-    
+
 $route_name = null;
 $name = null;
 $home = $route[0];
+
 if(isset($route[1])){
+  
   $second = $route[1];
   if ( $second === 'index' || $second === 'edit' || $second === 'show' || $second === 'create') {
     
@@ -16,6 +18,7 @@ if(isset($route[1])){
     $route_name = ucfirst($route[0]).' '. ucfirst($name);
   }
 }
+}
 ?>
 
 
@@ -26,7 +29,7 @@ if(isset($route[1])){
     <ol class="breadcrumb p-0 mb-0">
       <li class="breadcrumb-item"><a href="{{route('store.index')}}"><i class="bx bx-home-alt"></i></a>
       </li>
-    <li class="breadcrumb-item"><a href="{{ route($home) }}">{{ucfirst($route[0])}}</a>
+    <li class="breadcrumb-item"><a href="#">{{ucfirst($route[0])}}</a>
       </li>
       <li class="breadcrumb-item active">{{$route_name}}
       </li>
