@@ -16,7 +16,7 @@
     </div>
     <div class="form-group">
         <label for="recipeMasterCat">Select category</label>
-        <select class="select2 form-control" id="recipeMasterCat" name="recipe_category_id"  autocomplete="new-password" data-placeholder="Select Category..." >
+        <select class="select2 form-control" id="category_id" onchange="cat_by_subcategory(this.value)" name="recipe_category_id"  autocomplete="new-password" data-placeholder="Select Category..." >
           <option value="">Select Category...</option>
             @if (isset($categories) && !empty($categories))
             <?php $value = null; if(isset($recipe_master)){$value = $recipe_master->recipe_category_id ;} ?>
@@ -28,15 +28,16 @@
       </div>
     <div class="form-group">
         <label for="recipeMasterSubCat">Select Sub-Category</label>
-        <select class="select2 form-control" id="recipeMasterSubCat" name="recipe_subcategory_id"  autocomplete="new-password" data-placeholder="Select Category..." >
-          <option value="">Select Category...</option>
-            @if (isset($sub_categories) && !empty($sub_categories))
-            <?php $value = null; if(isset($recipe_master)){$value = $recipe_master->recipe_subcategory_id ;} ?>
-                @foreach ($sub_categories as $k => $item)
-                    <option value="{{$item->subcategory_id}}" {{$value == $item->subcategory_id ? ' selected' : ''}}>{{$item->subcategory_name}}</option>
-                @endforeach
-            @endif
+        <select class="select2_picker form-control" id="subcat_id" name="recipe_subcategory_id"  autocomplete="new-password" data-placeholder="Select Category..." >
+          <option value="">Select Sub-Category...</option>
+          @if(isset($sub_categories))
+              @foreach($sub_categories as $k => $val)
+              <?php $value = $recipe_master->recipe_subcategory_id == $val->subcategory_id ? 'selected' : ''; ?>
+                  <option value="{{ $val->subcategory_id }}" {{$value}}>{{ ucfirst($val->subcategory_name) }}</option>
+              @endforeach
+          @endif
         </select>
+        <div class="clearfix"></div>
       </div>
       <div style="display: flex; width:100%; justify-content: space-between;">
         <div class="form-group" style="width: 35%;">
@@ -241,4 +242,9 @@
 
   
 <a href="{{ route('recipe-master.index') }}"  class="btn btn-info float-left my-2">Back</a>
+
+@push('scripts')
+
+    
+@endpush
 

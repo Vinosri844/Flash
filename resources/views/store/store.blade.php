@@ -10,7 +10,7 @@
         <div class="col-12">
             <div class="card">
             <div class="card-header">
-                <p class="card-text">  
+                <div class="card-text">  
                         <div class="row">
                         <div class="col-sm-8">  <h4 class="card-title">List</h4>
                             </div> 
@@ -18,7 +18,7 @@
                             <a href="{{ route('store.create') }}" class="btn btn-primary float-right" class="btn btn-primary">Create Store</a>
                             </div>
                             
-                        </div></p>   
+                        </div></div>   
                 </div><hr>
                 <div class="card-content">
                     <div class="card-body card-dashboard">
