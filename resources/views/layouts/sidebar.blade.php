@@ -156,7 +156,7 @@
       <div class="content-wrapper">
         <div class="content-header row">
           <div class="content-header-left col-12 mb-2 mt-1">
-            {{-- @include('layouts.breadcrump') --}}
+            @include('layouts.breadcrump')
           </div>
         </div>
         <div class="content-body"><!-- Chartist  -->

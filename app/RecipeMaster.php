@@ -38,5 +38,12 @@ class RecipeMaster extends Model
         return $this->belongsTo('App\SubCategory', 'recipe_subcategory_id', 'subcategory_id');
     }
 
-    
+    public function recipe_steps()
+    {
+        return $this->hasMany('App\RecipeSteps', 'recipe_id', 'recipe_id');
+    }
+    public function recipe_ingredient()
+    {
+        return $this->belongsTo('App\RecipeIngredients', 'recipe_id', 'recipe_id');
+    }
 }
