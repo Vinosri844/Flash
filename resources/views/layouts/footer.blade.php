@@ -93,6 +93,7 @@
                   data: {"_token": "{{ csrf_token() }}","category_id":id},
                   dataType: 'json',
                   success: function(response) {
+                      console.log(response);
                       $("#subcat_id").html(response.html);
                   },
                   complete: function() {

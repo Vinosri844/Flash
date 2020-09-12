@@ -35,9 +35,8 @@ class RecipeMasterController extends Controller
     public function create()
     {
         $categories = Category::where('isdelete', 0)->orderBy('category_id', 'desc')->get();
-        $sub_categories = SubCategory::where('isdelete', 0)->orderBy('subcategory_id', 'desc')->get();
         $products = ProductMaster::where('isdelete', 0)->orderBy('product_id', 'desc')->get();
-        return view('recipe_master.recipeMasterCreate')->with(['categories' => $categories, 'sub_categories' => $sub_categories, 'products' => $products]);
+        return view('recipe_master.recipeMasterCreate')->with(['categories' => $categories, 'products' => $products]);
     }
 
     /**
@@ -155,7 +154,7 @@ class RecipeMasterController extends Controller
         
         $data["recipe_master"] = RecipeMaster::findOrFail($recipeMaster->recipe_id);
         $data["categories"] = Category::where('isdelete', 0)->orderBy('category_id', 'desc')->get();
-        $data["sub_categories"] = SubCategory::where('isdelete', 0)->orderBy('subcategory_id', 'desc')->get();
+        $data["sub_categories"] = SubCategory::where('isdelete', 0)->where('category_id', $recipeMaster->recipe_category_id)->get();
         $data["products"] = ProductMaster::where('isdelete', 0)->orderBy('product_id', 'desc')->get();
         $data["recipe_ingredient"] = RecipeIngredients::where('recipe_id', $recipeMaster->recipe_id)->first();
         $data["recipe_image"] = RecipeImages::where('recipe_master_id', $recipeMaster->recipe_id)->first();
