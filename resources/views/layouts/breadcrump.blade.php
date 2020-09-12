@@ -17,6 +17,7 @@ if(isset($route[1])){
       $route_name = ucfirst($route[0]).' '. ucfirst($name);
   }
 }
+}
 ?>
 
 
