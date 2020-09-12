@@ -35,9 +35,8 @@ class RecipeMasterController extends Controller
     public function create()
     {
         $categories = Category::where('isdelete', 0)->orderBy('category_id', 'desc')->get();
-        $sub_categories = SubCategory::where('isdelete', 0)->orderBy('subcategory_id', 'desc')->get();
         $products = ProductMaster::where('isdelete', 0)->orderBy('product_id', 'desc')->get();
-        return view('recipe_master.recipeMasterCreate')->with(['categories' => $categories, 'sub_categories' => $sub_categories, 'products' => $products]);
+        return view('recipe_master.recipeMasterCreate')->with(['categories' => $categories, 'products' => $products]);
     }
 
     /**
@@ -84,9 +83,7 @@ class RecipeMasterController extends Controller
         if($request->isactive != null){
             $active = 1;
         }
-        
-        
-        
+        $product_name = ProductMaster::where('product_id', $request->product_id)->value('product_name');
         $recipe = new RecipeMaster;
         $recipe->user_id = 1;
         $recipe->isactive = $active;
@@ -113,7 +110,7 @@ class RecipeMasterController extends Controller
             $product->recipe_id = $recipe->recipe_id;
             $product->description = $request->description;
             $product->product_id = $request->product_id;
-            // $product->product_name = $request->product_name;
+            $product->product_name = $product_name;
             $product->save();
             foreach ($request->contact as $key => $value) {
             $steps = new RecipeSteps;
@@ -157,7 +154,7 @@ class RecipeMasterController extends Controller
         
         $data["recipe_master"] = RecipeMaster::findOrFail($recipeMaster->recipe_id);
         $data["categories"] = Category::where('isdelete', 0)->orderBy('category_id', 'desc')->get();
-        $data["sub_categories"] = SubCategory::where('isdelete', 0)->orderBy('subcategory_id', 'desc')->get();
+        $data["sub_categories"] = SubCategory::where('isdelete', 0)->where('category_id', $recipeMaster->recipe_category_id)->get();
         $data["products"] = ProductMaster::where('isdelete', 0)->orderBy('product_id', 'desc')->get();
         $data["recipe_ingredient"] = RecipeIngredients::where('recipe_id', $recipeMaster->recipe_id)->first();
         $data["recipe_image"] = RecipeImages::where('recipe_master_id', $recipeMaster->recipe_id)->first();
@@ -211,6 +208,7 @@ class RecipeMasterController extends Controller
             $active = 1;
         }
         
+        $product_name = ProductMaster::where('product_id', $request->product_id)->value('product_name');
         
         $request->merge([
             'isactive' => $active,
@@ -241,9 +239,10 @@ class RecipeMasterController extends Controller
             $recipe_image->isactive = $active;
             $recipe_image->save();
             $product = RecipeIngredients::where('recipe_id', $recipeMaster->recipe_id)->first();
+            // dd($product);
             $product->description = $request->description;
             $product->product_id = $request->product_id;
-            // $product->product_name = $request->product_name;
+            $product->product_name = $product_name;
             $product->save();
             // foreach ($request->contact as $key => $value) {
             // $steps = RecipeSteps::where('recipe_id', $recipeMaster->recipe_id)->where('step_no', $value["step_no"])->first();
@@ -259,9 +258,9 @@ class RecipeMasterController extends Controller
         }
         
         } catch (\Throwable $th) {
-            // dd($th);
+            dd($th);
             flash()->error('Something went Wrong Please Try Again!');
-            return redirect()->route('recipe-master.create');
+            return redirect()->route('recipe-master.index');
         }
     }
 
@@ -281,7 +280,7 @@ class RecipeMasterController extends Controller
             return redirect()->route('recipe-master.index');
         } catch (\Throwable $th) {
             flash()->error('Something went Wrong Please Try Again!');
-            return redirect()->route('recipe-master.create');
+            return redirect()->route('recipe-master.index');
         }
     }
 }

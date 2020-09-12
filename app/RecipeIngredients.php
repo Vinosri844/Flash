@@ -10,7 +10,7 @@ class RecipeIngredients extends Model
     use Notifiable;
 
     protected $table = 'recipe_ingredients';
-    protected $primaryKey = 'recipe_ingredients_id';
+    protected $primaryKey = 'recipe_ingredient_id';
 
     const CREATED_AT = 'created_date_time';
     const UPDATED_AT = 'update_date_time';

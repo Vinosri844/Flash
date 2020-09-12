@@ -130,9 +130,9 @@
           </li>
           <li class=" navigation-header"><span>Settings</span>
           </li>
-          <li class=" nav-item"><a href=""><i class="bx bx-cog" data-icon="warning-alt"></i><span class="menu-title" data-i18n="Sweet Alert">Settings</span></a>
+        <li class=" nav-item {{ $route[0] == 'setting' ? ' active' : '' }}"><a href="{{ route('setting.index') }}"><i class="bx bx-cog" data-icon="warning-alt"></i><span class="menu-title" data-i18n="Sweet Alert">Settings</span></a>
           </li>
-          <li class=" nav-item"><a href=""><i class="bx bx-wrench" data-icon="morph-map"></i><span class="menu-title" data-i18n="Toastr">Footer settings</span></a>
+          <li class=" nav-item {{ $route[0] == 'footer' ? ' active' : '' }}"><a href="{{ route('footer.index') }}"><i class="bx bx-wrench" data-icon="morph-map"></i><span class="menu-title" data-i18n="Toastr">Footer settings</span></a>
           </li>
           <li class=" navigation-header"><span>Reports</span>
           </li>
@@ -156,7 +156,7 @@
       <div class="content-wrapper">
         <div class="content-header row">
           <div class="content-header-left col-12 mb-2 mt-1">
-            {{-- @include('layouts.breadcrump') --}}
+            @include('layouts.breadcrump')
           </div>
         </div>
         <div class="content-body"><!-- Chartist  -->
