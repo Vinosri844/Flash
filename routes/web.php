@@ -78,6 +78,7 @@ Route::namespace('Admin')->group(function(){
     Route::resource('/store-offer', 'StoreOfferController');
     Route::resource('/category-offer', 'CategoryOfferController');
     Route::resource('/recipe-master', 'RecipeMasterController');
+    Route::resource('/excel', 'ExportExcelController');
 
     // Route::post('/event-master', 'MasterController@store')->name('event_master');
     Route::get('/customer-order/{order}', 'CustomerController@order')->name('customer.order');
