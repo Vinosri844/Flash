@@ -13,17 +13,17 @@ class RecipeMasterExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return RecipeMaster::all();
+        return RecipeMaster::select('recipe_id', 'recipe_name', 'recipe_type', 'isactive', 'isdelete', 'created_date_time')->get();
     }
     public function headings(): array
     {
         return [
             'Recipe Id',
-            'Description',
-            'Pos',
-            'Mod A',
-            'Mod B',
-            'Charge',
+            'Recipe Name',
+            'Recipe Type',
+            'Status',
+            'Deleted',
+            'Created at',
         ];
     }
 }

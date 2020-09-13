@@ -15,9 +15,15 @@
             <div class="card-header">
                 <p class="card-text">  
                         <div class="row">
-                        <div class="col-sm-8">  <h4 class="card-title">List</h4>
+                        <div class="col-sm-6"> 
+                          <a href="{{ route('excel.index', 'DeliverySlotExport') }}">
+                            <button class="btn btn-success float-left" class="btn btn-primary" >
+                             &nbsp;&nbsp;Excel &nbsp;&nbsp;
+                            <i class="bx bxs-download" style="vertical-align: initial;"></i>
+                         </button>
+                        </a>
                             </div> 
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <button type="button" class="float-right btn btn-primary" data-toggle="modal" data-target="#deliverySlotMasterCreate" class="btn btn-primary">Create Delivery Slot</button>
                             </div>
                             
