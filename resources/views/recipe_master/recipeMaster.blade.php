@@ -2,20 +2,7 @@
 
 @section('content')
     
-<?php 
-    $data = []; 
-    // $data["head"] = ["S.no", "Category", "Sub-Category", "Product Name", "Recipe Name"];
-    foreach ($recipes as $key => $item) {
-        $data[] = array(
-            "S.no" => $key + 1,
-            "Category" => $item->category()->pluck('category_name')->first(),
-            "Sub-Category" => $item->sub_category()->pluck('subcategory_name')->first(),
-            "Product Name" => $item->recipe_ingredient()->value('product_name'),
-            "Recipe Name" => $item->recipe_name,
-        );
-    } 
-    $result = json_encode($data);
-?>
+
 
 <!-- Scroll - horizontal and vertical table -->
 {{-- <h5><b>Store</b></h5> <br /> --}}
@@ -28,7 +15,7 @@
                         <div class="row">
                         <div class="col-sm-8">  
                             {{-- <h4 class="card-title">List</h4> --}}
-                            <a href="{{ route('excel.index') }}">
+                            <a href="{{ route('excel.index', 'RecipeMasterExport') }}">
                                 <button class="btn btn-success float-left" class="btn btn-primary" >
                                  &nbsp;&nbsp;Excel &nbsp;&nbsp;
                                 <i class="bx bxs-download" style="vertical-align: initial;"></i>

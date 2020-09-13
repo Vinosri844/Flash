@@ -12,7 +12,13 @@
             <div class="card-header">
                 <p class="card-text">  
                         <div class="row">
-                        <div class="col-sm-8">  <h4 class="card-title">Customer List</h4>
+                        <div class="col-sm-8">  
+                            <a href="{{ route('excel.index', 'CustomerExport') }}">
+                                <button class="btn btn-success float-left" class="btn btn-primary" >
+                                 &nbsp;&nbsp;Excel &nbsp;&nbsp;
+                                <i class="bx bxs-download" style="vertical-align: initial;"></i>
+                             </button>
+                            </a>
                             </div> 
                             <div class="col-sm-4">
                             {{-- <a href="" class="btn btn-primary" class="btn btn-primary">Create Customer</a> --}}
@@ -32,6 +38,9 @@
                                         <th>Customer name</th>
                                         <th>Contact no</th>
                                         <th>Email id</th>
+                                        <th>Gender</th>
+                                        <th>Profession</th>
+                                        <th>Marital Status</th>
                                         <th>No. of Addresses</th>
                                         <th>No. of Orders</th>
                                         <th>Type</th>
@@ -52,6 +61,9 @@
                                                 <td>{{ $item->customer_name }}</td>
                                                 <td>{{ $item->customer_contact_no }}</td>
                                                 <td>{{ $item->customer_emailid }}</td>
+                                                <td>{{ $item->customer_gender }}</td>
+                                                <td>{{ $item->customer_profession }}</td>
+                                                <td>{{ $item->customer_marital_status }}</td>
                                                 <td>{{ $item->customer_address()->count() }}</td>
                                                 <td>{{ $item->customer_orders()->count() }}</td>
                                                 <td>{{ $item->customer_contact_logintype }}</td>

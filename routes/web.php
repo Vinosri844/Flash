@@ -78,15 +78,17 @@ Route::namespace('Admin')->group(function(){
     Route::resource('/store-offer', 'StoreOfferController');
     Route::resource('/category-offer', 'CategoryOfferController');
     Route::resource('/recipe-master', 'RecipeMasterController');
-    Route::resource('/excel', 'ExportExcelController');
     Route::resource('/setting', 'SettingController');
     Route::resource('/footer', 'FooterController');
 
     // Route::post('/event-master', 'MasterController@store')->name('event_master');
     Route::get('/customer-order/{order}', 'CustomerController@order')->name('customer.order');
     Route::get('/customer-address/{address}', 'CustomerController@address')->name('customer.address');
-    Route::post('change-status', 'CommonController@change_status')->name('change.status');
+    Route::post('/change-status', 'CommonController@change_status')->name('change.status');
+    Route::get('/selling-report', 'ReportController@selling_report')->name('selling-report.index');
+    Route::get('/selling-invoice', 'ReportController@selling_invoice')->name('selling-invoice.index');
+    Route::get('/product-price', 'ReportController@product_price')->name('product-price.index');
+    Route::get('/excel/{name}', 'ExportExcelController@excel_download')->name('excel.index');
 
 });
 // Route::get('/wishlist', 'Admin\BaseController@wishlist')->name('wishlist');
-

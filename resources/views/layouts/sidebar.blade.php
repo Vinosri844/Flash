@@ -131,14 +131,14 @@
           </li>
           <li class=" navigation-header"><span>Reports</span>
           </li>
-          @php $active = (Route::currentRouteName() == 'seller_selling') ? 'active' : ''; @endphp
-          <li class=" nav-item {{ $active }}"><a href="{{ route('seller_selling') }}"><i class="bx bx-spreadsheet" data-icon="warning-alt"></i><span class="menu-title" data-i18n="Sweet Alert">Seller selling report</span></a>
+          @php $active = ($route[0] == 'selling-report') ? 'active' : ''; @endphp
+          <li class=" nav-item {{ $active }}"><a href="{{ route('selling-report.index') }}"><i class="bx bx-spreadsheet" data-icon="warning-alt"></i><span class="menu-title" data-i18n="Sweet Alert">Seller selling report</span></a>
           </li>
-          @php $active = (Route::currentRouteName() == 'selling_invoice') ? 'active' : ''; @endphp
-          <li class=" nav-item {{ $active }}"><a href="{{ route('selling_invoice') }}"><i class="bx bx-server" data-icon="morph-map"></i><span class="menu-title" data-i18n="Toastr">Selling invoice report</span></a>
+          @php $active = ($route[0] == 'selling-invoice') ? 'active' : ''; @endphp
+          <li class=" nav-item {{ $active }}"><a href="{{ route('selling-invoice.index') }}"><i class="bx bx-server" data-icon="morph-map"></i><span class="menu-title" data-i18n="Toastr">Selling invoice report</span></a>
           </li>
-          @php $active = (Route::currentRouteName() == 'product_price') ? 'active' : ''; @endphp
-          <li class=" nav-item {{ $active }}"><a href="{{ route('product_price') }}"><i class="bx bx-copy-alt" data-icon="morph-map"></i><span class="menu-title" data-i18n="Toastr">Product price report</span></a>
+          @php $active = ($route[0] == 'product-price') ? 'active' : ''; @endphp
+          <li class=" nav-item {{ $active }}"><a href="{{ route('product-price.index') }}"><i class="bx bx-copy-alt" data-icon="morph-map"></i><span class="menu-title" data-i18n="Toastr">Product price report</span></a>
           </li>
         </ul>
       </div>
