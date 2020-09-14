@@ -70,7 +70,7 @@
               <span class="input-group-text" id="recipeMasterImage">Offer Image</span>
             </div>
             <div class="custom-file">
-            <input type="file"  class="custom-file-input" name="recipe_original_image_name" id="recipeMasterImage" aria-describedby="recipeMasterImage">
+            <input type="file"  class="custom-file-input" value="" name="recipe_original_image_name" id="recipeMasterImage" aria-describedby="recipeMasterImage">
               <label class="custom-file-label" for="recipeMasterImage">Choose file</label>
             </div>
           </div>
@@ -186,35 +186,41 @@
                         <div data-repeater-list="contact">
                           <div class="row">
                             <div class="col-12 mb-2">
-                              <button class="btn btn-icon rounded-circle btn-primary" type="button" data-repeater-create>
+                              <button class="btn btn-icon rounded-circle btn-primary" id="addNewStep" type="button" data-repeater-create>
                                 <i class="bx bx-plus" style="vertical-align: 0;"></i>
                               </button>
                               <span class="ml-1 font-weight-bold text-primary">ADD NEW STEP</span>
                             </div>
-                            <div class="col-md-4 col-4 mb-50">
+                            {{-- <div class="col-md-4 col-4 mb-50">
                               <label class="text-nowrap">Step</label>
-                            </div>
-                            <div class="col-md-4 col-4 mb-50">
+                            </div> --}}
+                            {{-- <div class="col-md-4 col-4 mb-50">
                               <label  class="text-nowrap">Description</label>
-                            </div>
+                            </div> --}}
                           </div>
                           @if (isset($recipe_steps))
                             @foreach ($recipe_steps as $k => $item)
                                 <div class="row justify-content-between" data-repeater-item>
-                                    <div class="col-md-2 col-12 form-group d-flex align-items-center">
-                                    <input type="number" class="form-control" value="{{ $item->step_no }}" name="step_no" placeholder="No">
+                                    <div class="col-md-1 col-12 form-group d-flex align-items-center">
+                                  <i class="bx bx-menu mr-1"></i>
+                                    <input type="hidden" class="form-control" value="{{ $item->step_no }}" name="step_no" placeholder="No">
                                     </div>
-                                    <div class="col-md-10 col-12 form-group">
+                                    <div class="col-md-8 col-12 form-group">
                                     <input type="text" class="form-control" value="{{ $item->steps }}" name="steps" placeholder="Description">
                                     </div>
+                                    <div class="col-md-2 col-12 form-group">
+                                      <button class="btn btn-icon btn-danger rounded-circle" type="button" data-repeater-delete>
+                                          <i class="bx bx-x" style="vertical-align: 0;"></i>
+                                      </button>
+                                      </div>
                                 </div>
                             @endforeach
                           @else
                             <div class="row justify-content-between" data-repeater-item>
-                                <div class="col-md-2 col-12 form-group d-flex align-items-center">
-                                <input type="number" class="form-control" name="step_no" placeholder="No">
+                                <div class="col-md-1 col-12 form-group d-flex align-items-center">
+                                  <i class="bx bx-menu mr-1"></i>
                                 </div>
-                                <div class="col-md-7 col-12 form-group">
+                                <div class="col-md-8 col-12 form-group">
                                 <input type="text" class="form-control" name="steps" placeholder="Description">
                                 </div>
                                 <div class="col-md-3 col-12 form-group">
@@ -245,6 +251,12 @@
 
 @push('scripts')
 
+<script>
+  $('#addNewStep').on('click', ()=>{
+    
+    $('#stepNumber').value = 3;
+  })
+</script>
     
 @endpush
 

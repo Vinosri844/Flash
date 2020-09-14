@@ -124,7 +124,7 @@
               <span class="input-group-text" id="storeOfferImage">Offer Image</span>
             </div>
             <div class="custom-file">
-            <input type="file"  class="custom-file-input" name="offer_image" id="storeOfferImage" aria-describedby="storeOfferImage">
+            <input type="file"  class="custom-file-input" value="" name="offer_image" id="storeOfferImage" aria-describedby="storeOfferImage">
               <label class="custom-file-label" for="storeOfferImage">Choose file</label>
             </div>
           </div>

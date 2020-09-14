@@ -172,9 +172,9 @@ class DeliverySlotMasterController extends Controller
     public function destroy($id)
     {
         try {
-            $event = DeliverySlotMaster::findOrFail($id);
-            $event->isdelete = 1;
-            if($event->save()){
+            $delivery_slot = DeliverySlotMaster::findOrFail($id);
+            $delivery_slot->isdelete = 1;
+            if($delivery_slot->save()){
                 $user = new Userlogs;
                 $user->form_name = 'Delivery Slot';
                 $user->operation_type = 'Trash';
