@@ -107,7 +107,7 @@
           </li>
           <li class=" navigation-header"><span>Components</span>
           </li>
-          <li class="disabled nav-item"><a href=""><i class="bx bx-revision" data-icon="morph-preview"></i><span class="menu-title" data-i18n="Disabled Menu">Slider</span></a>
+          <li class="nav-item"><a href="{{ route('sliders') }}"><i class="bx bx-revision" data-icon="morph-preview"></i><span class="menu-title" data-i18n="Disabled Menu">Slider</span></a>
           </li>
           <li class="disabled nav-item"><a href=""><i class="bx bx-money" data-icon="morph-preview"></i><span class="menu-title" data-i18n="Disabled Menu">User payment type</span></a>
           </li>
@@ -195,8 +195,8 @@
               }else{
                   toastr.error("Error While changing Status", response.message);
               }
-              
-          }, 
+
+          },
           error:function(response){
               toastr.error("Error While changing Status","Please Refresh and Try!");
           }

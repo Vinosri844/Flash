@@ -27,4 +27,20 @@ return [
     'image_height' => '250',
     'image_width' => '250',
 
+    'slider_position' => [
+        1 => 'Homepage slider Image',
+        2 => 'Category slider Image',
+    ],
+
+    'home_slider_position' => [
+        1 => 'Home Main Slider',
+        2 => 'Home Offer Image',
+    ],
+
+    'home_slider_positions' => [
+        0 => '',
+        1 => 'Home Main Slider',
+        2 => 'Home Offer Image',
+    ],
+
 ];

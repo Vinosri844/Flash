@@ -71,6 +71,12 @@ Route::post('/deliveryperson-edit/{id}', 'Admin\DeliveryPersonController@deliver
 Route::get('/deliveryperson-delete/{id}/delete', 'Admin\DeliveryPersonController@deliveryperson_delete')->name('deliveryperson_delete');
 
 Route::get('/deliverypersons', 'Admin\DeliveryPersonController@index')->name('deliverypersons');
+Route::get('/sliders', 'Admin\SliderController@index')->name('sliders');
+Route::get('/slider-add', 'Admin\SliderController@slider_create')->name('slider_add');
+Route::POST('/slider-add', 'Admin\SliderController@slider_create')->name('slider_submit');
+Route::get('/slider-edit/{id}', 'Admin\SliderController@slider_edit')->name('slider_edit');
+Route::POST('/slider-edit/{id}', 'Admin\SliderController@slider_edit')->name('slideredit_submit');
+Route::get('/slider/{id}/delete','Admin\SliderController@slider_delete')->name('slider_delete');
 
 //Bulk Order
 Route::get('/bulkorder', 'Admin\BulkOrderController@bulkorder')->name('bulkorder');
