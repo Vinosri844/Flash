@@ -50,14 +50,15 @@ class RecipeMasterController extends Controller
         try {
             $validator = Validator::make($request->all(), [
             'recipe_name' => 'required',
-            // 'category_id' => 'required',
-            // 'subcategory_id' => 'required',
-            // 'category_id' => 'required',
-            // 'start_date' => 'required',
-            // 'end_date' => 'required',
-            // 'min_discount' => 'required',
-            // 'max_discount' => 'required',
-            // 'offer_image' => 'required|mimes:jpeg,jpg|max:2000'
+            'product_id' => 'required',
+            'recipe_category_id' => 'required',
+            'recipe_subcategory_id' => 'required',
+            'recipe_type' => 'required',
+            'serving_count' => 'required',
+            'tot_ingredients' => 'required',
+            'prepare_time' => 'required',
+            'cooking_time' => 'required',
+            'recipe_original_image_name' => 'required|mimes:jpeg,jpg|max:2000'
         ]);
         if($validator->fails()){
             flash()->error('Please fill the required Fields! and Image should be Jpeg or Jpg (Max-Size: 2.5MB)');
@@ -115,7 +116,7 @@ class RecipeMasterController extends Controller
             foreach ($request->contact as $key => $value) {
             $steps = new RecipeSteps;
             $steps->recipe_id = $recipe->recipe_id;
-            $steps->step_no = $value["step_no"];
+            $steps->step_no = $key + 1;
             $steps->steps = $value["steps"];
             $steps->save();
             }
@@ -174,18 +175,19 @@ class RecipeMasterController extends Controller
         try {
             $validator = Validator::make($request->all(), [
             'recipe_name' => 'required',
-            // 'category_id' => 'required',
-            // 'subcategory_id' => 'required',
-            // 'category_id' => 'required',
-            // 'start_date' => 'required',
-            // 'end_date' => 'required',
-            // 'min_discount' => 'required',
-            // 'max_discount' => 'required',
-            // 'offer_image' => 'required|mimes:jpeg,jpg|max:2000'
+            'product_id' => 'required',
+            'recipe_category_id' => 'required',
+            'recipe_subcategory_id' => 'required',
+            'recipe_type' => 'required',
+            'serving_count' => 'required',
+            'tot_ingredients' => 'required',
+            'prepare_time' => 'required',
+            'cooking_time' => 'required',
+            'recipe_original_image_name' => 'mimes:jpeg,jpg|max:2000'
         ]);
         if($validator->fails()){
             flash()->error('Please fill the required Fields! and Image should be Jpeg or Jpg (Max-Size: 2.5MB)');
-            return redirect()->route('recipe-master.create');
+            return redirect()->route('recipe-master.edit', $recipeMaster->recipe_id);
         }
         $product_original_path = "imge/p_756/r_896527/OriginalImage/"; 
         $recipe_name = $request->recipe_name;
@@ -244,16 +246,29 @@ class RecipeMasterController extends Controller
             $product->product_id = $request->product_id;
             $product->product_name = $product_name;
             $product->save();
-            // foreach ($request->contact as $key => $value) {
-            // $steps = RecipeSteps::where('recipe_id', $recipeMaster->recipe_id)->where('step_no', $value["step_no"])->first();
-            // $steps->recipe_id = $recipe->recipe_id;
-            // $steps->step_no = $value["step_no"];
-            // $steps->steps = $value["steps"];
-            // $steps->save();
-            // }
+            $step = RecipeSteps::where('recipe_id', $recipeMaster->recipe_id)->get();
+            if(sizeof($step) > sizeof($request->contact)){
+                RecipeSteps::where('recipe_id', $recipeMaster->recipe_id)->delete();
+            }
+            
+            foreach ($request->contact as $key => $value) {
+                $steps = RecipeSteps::where('recipe_id', $recipeMaster->recipe_id)->where('step_no', $value["step_no"])->first();
+                if($steps){
+                    $steps->recipe_id = $recipe->recipe_id;
+                    $steps->step_no = $value["step_no"];
+                    $steps->steps = $value["steps"];
+                    $steps->save();
+                }else{
+                    $steps = new RecipeSteps;
+                    $steps->recipe_id = $recipe->recipe_id;
+                    $steps->step_no = $key + 1;
+                    $steps->steps = $value["steps"];
+                    $steps->save();
+                }
+            }
        
 
-            flash()->success('Recipe Created Successfully!');
+            flash()->success('Recipe Updated Successfully!');
             return redirect()->route('recipe-master.index');
         }
         
@@ -276,7 +291,7 @@ class RecipeMasterController extends Controller
             $recipe = RecipeMaster::findOrFail($recipeMaster->recipe_id);
             $recipe->isdelete = 1;
             $recipe->save();
-            flash()->success('Recipe Deleted Successfully!');
+            flash()->info('Recipe Deleted Successfully!');
             return redirect()->route('recipe-master.index');
         } catch (\Throwable $th) {
             flash()->error('Something went Wrong Please Try Again!');

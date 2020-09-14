@@ -118,6 +118,7 @@ class MembershipController extends Controller
     public function update(Request $request, Membership $membership)
     {
         try {
+            
             $validator = Validator::make($request->all(), [
             'initial_amount' => 'required',
             'current_amount' => 'required',
@@ -135,22 +136,12 @@ class MembershipController extends Controller
         $member = Membership::findOrFail($membership->membership_id);
         $member->update($request->all());
         if($member){
-            $user = new Userlogs;
-            $user->form_name = 'Membership';
-            $user->operation_type = 'Update';
-            $user->user_id = 1;
-            $user->description = "Update Membership - ". $request->initial_amount;
-            $user->OS = 'WEB';
-            $user->table_name = 'membership';
-            $user->reference_id = $member->membership_id;
-            $user->ip_device_id = "000:00:00";
-            $user->user_type_id = 1;
-            $user->save();
+            user_logs('Membership', 'Update', "Update Membership - ". $request->initial_amount, 'membership', $member->membership_id);
             flash()->success('Membership Updated Successfully!');
             return redirect()->route('membership.index');
         }
         } catch (\Throwable $th) {
-            //throw $th;
+            dd($th);
             flash()->error('Something went Wrong Please Try Again!');
             return redirect()->route('membership.index');
         }

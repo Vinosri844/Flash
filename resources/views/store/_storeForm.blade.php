@@ -1,6 +1,5 @@
 @csrf
-
-                
+             
 <div class="row">
     <div class="col-md-12">
         <h4 class="card-title mb-0">General Info</h4> <br>
@@ -238,7 +237,7 @@
             <label for="storeBranchName">Branch Name</label>
             <div class="controls">
               <input type="text" value="{{ isset($branch->seller_branch_name) ? $branch->seller_branch_name : '' }}"  name="store_branch_name" id="storeBranchName" class="form-control"
-                data-validation-required-message="This field is required" placeholder="Branch Name">
+                 placeholder="Branch Name">
             </div>
           </div>
           
@@ -246,7 +245,7 @@
             <label for="storePincode">Pincode</label>
             <div class="controls">
               <input type="text"  value="{{ isset($branch->seller_branch_pincode) ? $branch->seller_branch_pincode : '' }}" name="store_pincode" id="storePincode" class="form-control"
-                data-validation-required-message="This field is required" placeholder="Pincode">
+                 placeholder="Pincode">
             </div>
           </div>
     </div>
@@ -255,14 +254,14 @@
         <label for="storeBranchType">Branch Type</label>
         <div class="controls">
           <input type="text" value="{{ isset($branch->seller_branch_type) ? $branch->seller_branch_type : '' }}"  name="store_branch_type" id="storeBranchType" class="form-control"
-            data-validation-required-message="This field is required" placeholder="Branch Type">
+             placeholder="Branch Type">
         </div>
       </div>
       <div class="form-group">
         <label for="storeBranchCity">Branch City</label>
         <div class="controls">
           <input type="text" value="{{ isset($branch->seller_branch_city) ? $branch->seller_branch_city : '' }}"  name="store_branch_city" id="storeBranchCity" class="form-control"
-            data-validation-required-message="This field is required" placeholder="Branch City">
+             placeholder="Branch City">
         </div>
       </div>
         {{-- <fieldset class="form-group">

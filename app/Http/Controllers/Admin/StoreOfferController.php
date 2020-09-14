@@ -136,9 +136,9 @@ class StoreOfferController extends Controller
         try {
             // dd($request);
             $validator = Validator::make($request->all(), [
-                'title' => 'required',
+            'title' => 'required',
             'subtitle' => 'required',
-            'seller_ids' => 'required',
+            'seller_id' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
             'min_discount' => 'required',
