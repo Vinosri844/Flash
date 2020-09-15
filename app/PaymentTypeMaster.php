@@ -10,7 +10,7 @@ class PaymentTypeMaster extends Model
     use Notifiable;
 
     protected $table = 'payment_type_master';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'payment_type_id';
 
     const CREATED_AT = 'create_date_time';
     const UPDATED_AT = 'update_date_time';

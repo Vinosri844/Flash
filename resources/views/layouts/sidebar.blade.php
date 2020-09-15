@@ -78,7 +78,7 @@
           </li>
           <li class=" nav-item"><a href=""><i class="bx bx-truck" data-icon="priority-low"></i><span class="menu-title" data-i18n="Form Wizard">Delivery</span></a>
           </li>
-          <li class="disabled nav-item"><a href=""><i class="bx bx-credit-card-alt" data-icon="morph-preview"></i><span class="menu-title" data-i18n="Disabled Menu">Delivery charge list</span></a>
+          <li class=" nav-item"><a href="{{ route('deliverycharges') }}"><i class="bx bx-credit-card-alt" data-icon="morph-preview"></i><span class="menu-title" data-i18n="Disabled Menu">Delivery charge list</span></a>
           </li>
           <li class="nav-item"><a href="{{ route('deliverypersons') }}"><i class="bx bx-credit-card-alt" data-icon="morph-preview"></i><span class="menu-title" data-i18n="Disabled Menu">Delivery Person's list</span></a>
           </li>

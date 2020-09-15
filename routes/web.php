@@ -92,7 +92,12 @@ Route::get('/smstemplate-edit/{id}', 'Admin\SmsTemplateController@smstemplate_ed
 Route::POST('/smstemplate-edit/{id}', 'Admin\SmsTemplateController@smstemplate_edit')->name('smstemplateedit_submit');
 Route::get('/smstemplate/{id}/delete','Admin\SmsTemplateController@smstemplate_delete')->name('smstemplate_delete');
 
-
+Route::get('/deliverycharges', 'Admin\DeliveryChargeMasterController@index')->name('deliverycharges');
+Route::get('/deliverycharges-add', 'Admin\DeliveryChargeMasterController@deliverycharge_create')->name('deliverycharge_add');
+Route::POST('/deliverycharges-add', 'Admin\DeliveryChargeMasterController@deliverycharge_create')->name('deliverycharge_submit');
+Route::get('/deliverycharges-edit/{id}', 'Admin\DeliveryChargeMasterController@deliverycharge_edit')->name('deliverycharge_edit');
+Route::POST('/deliverycharges-edit/{id}', 'Admin\DeliveryChargeMasterController@deliverycharge_edit')->name('deliverychargeedit_submit');
+Route::get('/deliverycharges/{id}/delete','Admin\DeliveryChargeMasterController@deliverycharge_delete')->name('deliverycharge_delete');
 //Bulk Order
 Route::get('/bulkorder', 'Admin\BulkOrderController@bulkorder')->name('bulkorder');
 Route::POST('/bulkorder', 'Admin\BulkOrderController@bulkorder')->name('bulkorder_submit');
