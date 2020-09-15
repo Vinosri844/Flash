@@ -111,7 +111,7 @@
           </li>
           <li class=" nav-item"><a href="{{ route('paymenttypes') }}"><i class="bx bx-money" data-icon="morph-preview"></i><span class="menu-title" data-i18n="Disabled Menu">User payment type</span></a>
           </li>
-          <li class="disabled nav-item"><a href=""><i class="bx bx-message" data-icon="morph-preview"></i><span class="menu-title" data-i18n="Disabled Menu">SMS template list</span></a>
+          <li class=" nav-item"><a href="{{ route('smstemplates') }}"><i class="bx bx-message" data-icon="morph-preview"></i><span class="menu-title" data-i18n="Disabled Menu">SMS template list</span></a>
           </li>
           <li class=" navigation-header"><span>Other masters</span>
           </li>
