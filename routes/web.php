@@ -78,6 +78,13 @@ Route::get('/slider-edit/{id}', 'Admin\SliderController@slider_edit')->name('sli
 Route::POST('/slider-edit/{id}', 'Admin\SliderController@slider_edit')->name('slideredit_submit');
 Route::get('/slider/{id}/delete','Admin\SliderController@slider_delete')->name('slider_delete');
 
+Route::get('/paymenttypes', 'Admin\PaymentTypeController@index')->name('paymenttypes');
+Route::get('/paymenttype-add', 'Admin\PaymentTypeController@paymenttype_create')->name('paymenttype_add');
+Route::POST('/paymenttype-add', 'Admin\PaymentTypeController@paymenttype_create')->name('paymenttype_submit');
+Route::get('/paymenttype-edit/{id}', 'Admin\PaymentTypeController@paymenttype_edit')->name('paymenttype_edit');
+Route::POST('/paymenttype-edit/{id}', 'Admin\PaymentTypeController@paymenttype_edit')->name('paymenttypeedit_submit');
+Route::get('/Paymenttype/{id}/delete','Admin\PaymentTypeController@paymenttype_delete')->name('paymenttype_delete');
+
 //Bulk Order
 Route::get('/bulkorder', 'Admin\BulkOrderController@bulkorder')->name('bulkorder');
 Route::POST('/bulkorder', 'Admin\BulkOrderController@bulkorder')->name('bulkorder_submit');

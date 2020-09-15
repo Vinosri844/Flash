@@ -67,6 +67,7 @@ class SliderController extends Controller
 
                 $slider->save();
                 DB::commit();
+                flash()->success('Slider Created Successfully!');
                 return redirect()->route('sliders');
 
 
@@ -74,13 +75,12 @@ class SliderController extends Controller
                 $data['category'] = Category::orderBy('category_id', 'desc')->get();
                 $data['slider_position'] = config('constants.slider_position');
                 $data['homeslider_position'] = config('constants.home_slider_position');
-                flash()->success('Slider Created Successfully!');
                 return view('slider.slider_create', $data ?? NULL);
             }
         }catch(\Exception $exception){
            // dd($exception);
             DB::rollback();
-            return redirect()->route('products')->with('error', $exception->getMessage());
+            return redirect()->route('sliders')->with('error', $exception->getMessage());
         }
     }
 
@@ -135,7 +135,7 @@ class SliderController extends Controller
         }catch(\Exception $exception){
           //  dd($exception);
             DB::rollback();
-            return redirect()->route('products')->with('error', $exception->getMessage());
+            return redirect()->route('sliders')->with('error', $exception->getMessage());
         }
     }
 
@@ -144,10 +144,12 @@ class SliderController extends Controller
         $data = Slider::find($id);
         if($data->delete()){
             flash()->success('Slider Deleted Successfully!');
-            return redirect()->route('products');
+            return redirect()->route('sliders');
+        }else{
+            flash()->error('Please Try Again!');
+            return redirect()->route('sliders');
         }
-        flash()->error('Please Try Again!');
-        return redirect()->route('sliders');
+
 
     }
 }
