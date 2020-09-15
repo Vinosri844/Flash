@@ -198,7 +198,8 @@
                               <label  class="text-nowrap">Description</label>
                             </div> --}}
                           </div>
-                          @if (isset($recipe_steps))
+                          
+                          @if (isset($recipe_steps) && sizeof($recipe_steps) > 0)
                             @foreach ($recipe_steps as $k => $item)
                                 <div class="row justify-content-between" data-repeater-item>
                                     <div class="col-md-1 col-12 form-group d-flex align-items-center">
