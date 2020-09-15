@@ -113,12 +113,14 @@ class RecipeMasterController extends Controller
             $product->product_id = $request->product_id;
             $product->product_name = $product_name;
             $product->save();
-            foreach ($request->contact as $key => $value) {
-            $steps = new RecipeSteps;
-            $steps->recipe_id = $recipe->recipe_id;
-            $steps->step_no = $key + 1;
-            $steps->steps = $value["steps"];
-            $steps->save();
+            if($request->contact != null){
+                foreach ($request->contact as $key => $value) {
+                $steps = new RecipeSteps;
+                $steps->recipe_id = $recipe->recipe_id;
+                $steps->step_no = $key + 1;
+                $steps->steps = $value["steps"];
+                $steps->save();
+                }
             }
        
 
@@ -246,24 +248,14 @@ class RecipeMasterController extends Controller
             $product->product_id = $request->product_id;
             $product->product_name = $product_name;
             $product->save();
-            $step = RecipeSteps::where('recipe_id', $recipeMaster->recipe_id)->get();
-            if(sizeof($step) > sizeof($request->contact)){
-                RecipeSteps::where('recipe_id', $recipeMaster->recipe_id)->delete();
-            }
-            
-            foreach ($request->contact as $key => $value) {
-                $steps = RecipeSteps::where('recipe_id', $recipeMaster->recipe_id)->where('step_no', $value["step_no"])->first();
-                if($steps){
-                    $steps->recipe_id = $recipe->recipe_id;
-                    $steps->step_no = $value["step_no"];
-                    $steps->steps = $value["steps"];
-                    $steps->save();
-                }else{
-                    $steps = new RecipeSteps;
-                    $steps->recipe_id = $recipe->recipe_id;
-                    $steps->step_no = $key + 1;
-                    $steps->steps = $value["steps"];
-                    $steps->save();
+            RecipeSteps::where('recipe_id', $recipeMaster->recipe_id)->delete();
+            if($request->contact != null){
+                foreach ($request->contact as $key => $value) {
+                        $steps = new RecipeSteps;
+                        $steps->recipe_id = $recipe->recipe_id;
+                        $steps->step_no = $key + 1;
+                        $steps->steps = $value["steps"];
+                        $steps->save();
                 }
             }
        
