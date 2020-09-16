@@ -78,6 +78,7 @@ Route::get('/slider-edit/{id}', 'Admin\SliderController@slider_edit')->name('sli
 Route::POST('/slider-edit/{id}', 'Admin\SliderController@slider_edit')->name('slideredit_submit');
 Route::get('/slider/{id}/delete','Admin\SliderController@slider_delete')->name('slider_delete');
 
+
 Route::get('/paymenttypes', 'Admin\PaymentTypeController@index')->name('paymenttypes');
 Route::get('/paymenttype-add', 'Admin\PaymentTypeController@paymenttype_create')->name('paymenttype_add');
 Route::POST('/paymenttype-add', 'Admin\PaymentTypeController@paymenttype_create')->name('paymenttype_submit');
@@ -102,6 +103,12 @@ Route::get('/deliverycharges/{id}/delete','Admin\DeliveryChargeMasterController@
 Route::get('/bulkorder', 'Admin\BulkOrderController@bulkorder')->name('bulkorder');
 Route::POST('/bulkorder', 'Admin\BulkOrderController@bulkorder')->name('bulkorder_submit');
 Route::get('/bulkorderusers', 'Admin\BulkOrderController@bulkorderusers')->name('bulkorderusers');
+
+//Notifications
+Route::get('/notifications', 'Admin\NotificationController@index')->name('notifications');
+Route::get('/send-notification', 'Admin\NotificationController@send_notification')->name('send_notification');
+Route::post('/send-notification', 'Admin\NotificationController@send_notification')->name('send_notification_submit');
+Route::post('/resend-notification', 'Admin\NotificationController@resend_notification')->name('resend_notification');
 
 
 //reports

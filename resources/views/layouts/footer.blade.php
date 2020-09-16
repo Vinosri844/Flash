@@ -134,6 +134,22 @@
                   // add multiple select checkbox feature.
                   $('.productstores').find('select').multiselect();
           });
+
+          function resend_notification(id) {
+              alert(id);
+              $.ajax({
+                  type: "POST",
+                  url: '{{ route('resend_notification') }}',
+                  data: {"_token": "{{ csrf_token() }}","id":id},
+                  dataType: 'json',
+                  success: function(response) {
+                      console.log(response);
+                  },
+                  complete: function() {
+
+                  }
+              });
+          }
       </script>
 
 

@@ -23,6 +23,10 @@ return [
     'product_img_path1' => '/imge/c_895/w89534257/ThumbnailImage/',
     'product_img_path2' => '/imge/c_895/w89534257/CompressImage/',
 
+    'notification_img_path' => '/imge/c_895/w89534257/OriginalImage/',
+    'notification_img_path1' => '/imge/c_895/w89534257/ThumbnailImage/',
+    'notification_img_path2' => '/imge/c_895/w89534257/CompressImage/',
+
     //Image width and height
     'image_height' => '250',
     'image_width' => '250',

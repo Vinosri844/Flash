@@ -14,6 +14,7 @@ class PaymentTypeController extends Controller
 {
     public function index()
     {
+
         $payments = PaymentTypeMaster::where('isdelete', 0)->get();
         return view('paymenttype.paymenttypes')->with('payments', $payments);
     }
