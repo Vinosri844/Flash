@@ -7,7 +7,7 @@
     
   <div class="col-md-6">
     <div class="form-group">
-      <label for="storeName">Store Name</label>
+      <label for="storeName">Store Name<span class="text-danger"> *</span></label>
       <div class="controls">
       <input type="text" name="store_name" id="storeName" class="form-control" value="{{ isset($store->seller_name) ? $store->seller_name : '' }}"
           data-validation-required-message="This field is required" placeholder="Store Name">
@@ -18,7 +18,7 @@
     
    @if (isset($store->seller_password))
    <div class="form-group">
-    <label for="storePassword">Password</label>
+    <label for="storePassword">Password<span class="text-danger"> *</span></label>
     <div class="controls">
       <input type="password" name="store_password" id="storePassword" class="form-control"
          placeholder="Password">
@@ -26,7 +26,7 @@
   </div>
    @else
    <div class="form-group">
-    <label for="storePassword">Password</label>
+    <label for="storePassword">Password<span class="text-danger"> *</span></label>
     <div class="controls">
       <input type="password" name="store_password" id="storePassword" class="form-control"
         data-validation-required-message="This field is required" placeholder="Password">
@@ -35,7 +35,7 @@
    @endif
    @if (isset($store->seller_password))
       <div class="form-group">
-        <label for="storeConfirmPassword">Repeat password must match</label>
+        <label for="storeConfirmPassword">Repeat password must match<span class="text-danger"> *</span></label>
         <div class="controls">
           <input type="password" autocomplete="new-password" name="store_confirm_password" id="storeConfirmPassword" 
             class="form-control" 
@@ -44,7 +44,7 @@
       </div>
       @else
       <div class="form-group">
-        <label for="storeConfirmPassword">Repeat password must match</label>
+        <label for="storeConfirmPassword">Repeat password must match<span class="text-danger"> *</span></label>
         <div class="controls">
           <input type="password" autocomplete="new-password" name="store_confirm_password" id="storeConfirmPassword" data-validation-match-match="store_password"
             class="form-control" data-validation-required-message="Repeat password must match"
@@ -66,14 +66,14 @@
         </div>
       </div> --}}
       <div class="form-group">
-        <label for="storeEmail">Email</label>
+        <label for="storeEmail">Email<span class="text-danger"> *</span></label>
         <div class="controls">
           <input type="email" value="{{ isset($branch->seller_branch_emailid) ? $branch->seller_branch_emailid : '' }}" name="store_email" id="storeEmail" class="form-control"
             data-validation-required-message="Must be a valid email" autocomplete="new_password" placeholder="Email">
         </div>
       </div>
       <div class="form-group">
-        <label for="storeMobileNumber">Mobile Number</label>
+        <label for="storeMobileNumber">Mobile Number<span class="text-danger"> *</span></label>
         <div class="controls">
           <input type="text" value="{{ isset($branch->seller_branch_contact_no) ? $branch->seller_branch_contact_no : '' }}" name="store_mobile_number" id="storeMobileNumber" class="form-control"
             data-validation-containsnumber-regex="^([0-9]+)$"
@@ -161,16 +161,21 @@
             <img src="{{ asset('image/sellerpancard/OriginalImage/') }}/{{$store->seller_pan_number_image}} " width="30%" alt="" srcset="">
           </div>
           @endif
-          <fieldset>
-              <label for="storePANImage">Upload PAN Card Image </label>
-            <div class="input-group">
+          
+          <fieldset id="storePanimageElement">
+              <label for="storePANImage">Upload PAN Card Image<span class="text-danger"> *</span> </label>
+            <div class="input-group" >
               <div class="input-group-prepend">
                 <span class="input-group-text" id="storePANImage">PAN Image</span>
               </div>
               <div class="custom-file">
-              <input type="file"  class="custom-file-input" required name="store_pan_image" id="storePANImage" aria-describedby="storePANImage">
-                <label class="custom-file-label" for="storePANImage">Choose file</label>
+              <input type="file"  class="custom-file-input" onchange="imageValidate('#storePANImageUpload', '#storePanimageElement');" name="store_pan_image" id="storePANImageUpload" aria-describedby="storePANImage" required>
+              <label class="custom-file-label" for="storePANImage">Choose file</label>
               </div>
+            </div>
+            <div class="invalid-feedback">
+              <i class="bx bx-radio-circle"></i>
+              Image should be jpg, jpeg Format
             </div>
           </fieldset>
     </div>
@@ -214,16 +219,20 @@
             <img src="{{ asset('image/sellercompanylogo/OriginalImage/') }}/{{$store->seller_company_image}} " width="30%" alt="" srcset="">
           </div>
           @endif
-          <fieldset>
-              <label for="storeCompanyLogo">Upload Company LOGO</label>
+          <fieldset id="storeCompanyImage">
+              <label for="storeCompanyLogo">Upload Company LOGO<span class="text-danger"> *</span></label>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="storeCompanyLogo">Company Logo</span>
               </div>
               <div class="custom-file">
-                <input type="file" required class="custom-file-input" name="store_company_logo" id="storeCompanyLogo" aria-describedby="storeCompanyLogo">
+                <input type="file" required class="custom-file-input" name="store_company_logo" onchange="imageValidate('#storeCompanyLogoImage', '#storeCompanyImage')" id="storeCompanyLogoImage" aria-describedby="storeCompanyLogo">
                 <label class="custom-file-label" for="storeCompanyLogo">Choose file</label>
               </div>
+            </div>
+            <div class="invalid-feedback">
+              <i class="bx bx-radio-circle"></i>
+              Image should be jpg, jpeg Format
             </div>
           </fieldset>
     </div>
@@ -291,3 +300,6 @@
 
 <a href="{{ route('store.index') }}"  class="btn btn-info float-left my-2">Back</a>
 
+@push('scripts')
+    
+@endpush

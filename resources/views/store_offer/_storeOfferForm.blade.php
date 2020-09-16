@@ -8,14 +8,14 @@
     
   <div class="col-md-6">
     <div class="form-group">
-      <label for="storeOfferTitle">Title</label>
+      <label for="storeOfferTitle">Title<span class="text-danger"> *</span></label>
       <div class="controls">
-      <input type="text" name="title" id="storeOfferTitle" class="form-control" value="{{ isset($store_offer->title) ? $store_offer->title : '' }}"
+      <input type="text" name="title" id="storeOfferTitlefield" class="form-control" value="{{ isset($store_offer->title) ? $store_offer->title : '' }}"
           data-validation-required-message="This field is required" placeholder="Offer Title">
       </div>
     </div>
     <div class="form-group">
-      <label for="storeOfferSubTitle">Sub Title</label>
+      <label for="storeOfferSubTitle">Sub Title<span class="text-danger"> *</span></label>
       <div class="controls">
       <input type="text" name="subtitle" id="storeOfferSubTitle" class="form-control" value="{{ isset($store_offer->subtitle) ? $store_offer->subtitle : '' }}"
           data-validation-required-message="This field is required" placeholder="Offer Sub-Title">
@@ -24,8 +24,8 @@
 
     @if (isset($store_offer))
       <div class="form-group">
-        <label for="storeOffers">Select Stores</label>
-        <select class="select2 form-control" id="storeOffers" name="seller_id"  autocomplete="new-password" data-placeholder="Select Stores...">
+        <label for="storeOffers">Select Stores<span class="text-danger"> *</span></label>
+        <select class="select2 form-control" id="storeOffers" name="seller_id"  autocomplete="new-password" data-placeholder="Select Stores..." required>
             
             @if (isset($stores) && !empty($stores))
                 @foreach ($stores as $k => $item)
@@ -36,7 +36,7 @@
       </div>
     @else
       <div class="form-group">
-        <label for="storeOffers">Select Stores</label>
+        <label for="storeOffers">Select Stores<span class="text-danger"> *</span></label>
         <select class="select2 form-control" id="storeOffers" name="seller_ids[]" multiple="multiple"  autocomplete="new-password" data-placeholder="Select Stores...">
             
             @if (isset($stores) && !empty($stores))
@@ -56,7 +56,7 @@
 
       <div style="display: flex;">
         <fieldset class="form-group mr-1">
-          <label for="storeOfferMinDiscount">Min Discount</label>
+          <label for="storeOfferMinDiscount">Min Discount<span class="text-danger"> *</span></label>
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="storeOfferMinDiscount">Value</span>
@@ -66,7 +66,7 @@
         </div>
       </fieldset>
       <fieldset class="form-group">
-          <label for="storeOfferMaxDiscount">Max Discount</label>
+          <label for="storeOfferMaxDiscount">Max Discount<span class="text-danger"> *</span></label>
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="storeOfferMaxDiscount">Value</span>
@@ -82,7 +82,7 @@
   <div class="col-md-6">
    
       <div class="form-group">
-        <label for="storeOfferStartDate">Start Date</label>
+        <label for="storeOfferStartDate">Start Date<span class="text-danger"> *</span></label>
         <fieldset class="form-group position-relative has-icon-left">
             <input type="text" class="form-control pickadate-months-year" value="{{  isset($store_offer->start_date) ? date('d M, Y', strtotime($store_offer->start_date)) : null  }}" id="storeOfferStartDate" name="start_date" placeholder="Start Date">
             <div class="form-control-position">
@@ -91,7 +91,7 @@
           </fieldset>
     </div>
       <div class="form-group">
-        <label for="storeOfferEndDate">End Date</label>
+        <label for="storeOfferEndDate">End Date<span class="text-danger"> *</span></label>
         <fieldset class="form-group position-relative has-icon-left">
             <input type="text" class="form-control pickadate-months-year" value="{{  isset($store_offer->end_date) ? date('d M, Y', strtotime($store_offer->end_date)) : null  }}" id="storeOfferEndDate" name="end_date" placeholder="End Date">
             <div class="form-control-position">
@@ -117,16 +117,20 @@
     </div>
 
     <div class="form-group" style="margin-top: 4px;">
-        <fieldset>
-            <label for="storeOfferImage">Upload Offer Image </label>
+        <fieldset id="storeOfferImageError">
+            <label for="storeOfferImage">Upload Offer Image<span class="text-danger"> *</span> </label>
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text" id="storeOfferImage">Offer Image</span>
             </div>
             <div class="custom-file">
-            <input type="file"  class="custom-file-input" value="" name="offer_image" id="storeOfferImage" aria-describedby="storeOfferImage">
+            <input type="file"  class="custom-file-input" onchange="imageValidate('#storeOfferImageUpload', '#storeOfferImageError')" value="" name="offer_image" id="storeOfferImageUpload" aria-describedby="storeOfferImage">
               <label class="custom-file-label" for="storeOfferImage">Choose file</label>
             </div>
+          </div>
+          <div class="invalid-feedback">
+            <i class="bx bx-radio-circle"></i>
+            Image should be jpg, jpeg Format
           </div>
         </fieldset>
     </div>

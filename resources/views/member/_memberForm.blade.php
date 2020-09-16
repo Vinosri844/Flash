@@ -9,7 +9,7 @@
   <div class="col-md-6">
     <div class="form-group">
         <fieldset>
-            <label for="initialAmount">Initial Amount</label>
+            <label for="initialAmount">Initial Amount<span class="text-danger"> *</span></label>
           <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="initialAmount">Value</span>
@@ -20,7 +20,7 @@
     </div>
     <div class="form-group">
         <fieldset>
-            <label for="currentAmount">Current Membership Amount</label>
+            <label for="currentAmount">Current Membership Amount<span class="text-danger"> *</span></label>
           <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="currentAmount">Value</span>
@@ -32,7 +32,7 @@
     </div>
     <div class="form-group">
         <fieldset>
-            <label for="membershipValidity">Membership Validity</label>
+            <label for="membershipValidity">Membership Validity<span class="text-danger"> *</span></label>
           <div class="input-group">
             <input type="text" class="form-control" data-validation-required-message="This field is required" value="{{ isset($member->validity) ? $member->validity : '' }}" name="validity" id="membershipValidity" placeholder="Validity" aria-describedby="storeErrand">
             <div class="input-group-append">
@@ -46,7 +46,7 @@
   <div class="col-md-6">
     <div class="form-group">
         <fieldset>
-            <label for="orderAmount">Minimum Order Amount</label>
+            <label for="orderAmount">Minimum Order Amount<span class="text-danger"> *</span></label>
           <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="orderAmount">Value</span>
@@ -58,7 +58,7 @@
     </div>
     <div class="form-group">
         <fieldset>
-            <label for="cashbackAmount">Cashback Amount</label>
+            <label for="cashbackAmount">Cashback Amount<span class="text-danger"> *</span></label>
           <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="cashbackAmount">Value</span>
@@ -69,8 +69,8 @@
         </fieldset>
     </div>
 
-    <div class="form-group">
-        <label for="memberActive" class="mr-2">Active <br></label>
+    <div class="form-group mt-3">
+        <label for="memberActive" class="mr-2">Active  <br></label>
             <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
                 <input type="checkbox" class="custom-control-input" name="isActive" <?php if(isset($member->isActive) && $member->isActive == 0) { echo '';}else{  echo 'checked';} ?> id="memberActive">
                 <label class="custom-control-label" for="memberActive"> 

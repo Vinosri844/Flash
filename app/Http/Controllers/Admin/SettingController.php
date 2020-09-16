@@ -81,7 +81,7 @@ class SettingController extends Controller
             flash()->success('Setting Updated Successfully!');
             return redirect()->route('setting.index');
         } catch (\Throwable $th) {
-            dd($th);
+            // dd($th);
             flash()->error('Something Went wrong Please Try Again!');
             return redirect()->route('setting.index');
         }

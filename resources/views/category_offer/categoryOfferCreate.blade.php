@@ -14,7 +14,7 @@
             <form class="form-horizontal" action="{{ route('category-offer.store') }}" method="POST" enctype="multipart/form-data" novalidate autocomplete="off">
                  {{ method_field('POST') }}
                     @include('category_offer._categoryOfferForm')
-                    <button type="submit" class="btn btn-primary float-right my-2">Create</button>
+                    <button type="submit" id="submitFormDetails" class="btn btn-primary float-right my-2" disabled>Create</button>
                 </form>
             </div>
          </div>
@@ -22,4 +22,11 @@
     </div>
 </div>
 </section>
+@push('scripts')
+    <script>
+      $("#categoryOfferImageUpload").change(function(){
+      $('#submitFormDetails').removeAttr('disabled');
+     })
+    </script>
+@endpush
 @endsection
