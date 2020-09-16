@@ -9,7 +9,7 @@ use CommonLib, CommonHelper, Image, File, Carbon, DB, Validator;
 use App\SmsTemplate;
 
 
-class SmstemplateController extends Controller
+class SmsTemplateController extends Controller
 {
     public function index()
     {
