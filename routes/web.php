@@ -85,12 +85,12 @@ Route::get('/paymenttype-edit/{id}', 'Admin\PaymentTypeController@paymenttype_ed
 Route::POST('/paymenttype-edit/{id}', 'Admin\PaymentTypeController@paymenttype_edit')->name('paymenttypeedit_submit');
 Route::get('/Paymenttype/{id}/delete','Admin\PaymentTypeController@paymenttype_delete')->name('paymenttype_delete');
 
-Route::get('/smstemplates', 'Admin\SmsTemplateController@index')->name('smstemplates');
-Route::get('/smstemplate-add', 'Admin\SmsTemplateController@smstemplate_create')->name('smstemplate_add');
-Route::POST('/smstemplate-add', 'Admin\SmsTemplateController@smstemplate_create')->name('smstemplate_submit');
-Route::get('/smstemplate-edit/{id}', 'Admin\SmsTemplateController@smstemplate_edit')->name('smstemplate_edit');
-Route::POST('/smstemplate-edit/{id}', 'Admin\SmsTemplateController@smstemplate_edit')->name('smstemplateedit_submit');
-Route::get('/smstemplate/{id}/delete','Admin\SmsTemplateController@smstemplate_delete')->name('smstemplate_delete');
+Route::get('/smstemplates', 'Admin\SmstemplateController@index')->name('smstemplates');
+Route::get('/smstemplate-add', 'Admin\SmstemplateController@smstemplate_create')->name('smstemplate_add');
+Route::POST('/smstemplate-add', 'Admin\SmstemplateController@smstemplate_create')->name('smstemplate_submit');
+Route::get('/smstemplate-edit/{id}', 'Admin\SmstemplateController@smstemplate_edit')->name('smstemplate_edit');
+Route::POST('/smstemplate-edit/{id}', 'Admin\SmstemplateController@smstemplate_edit')->name('smstemplateedit_submit');
+Route::get('/smstemplate/{id}/delete','Admin\SmstemplateController@smstemplate_delete')->name('smstemplate_delete');
 
 Route::get('/deliverycharges', 'Admin\DeliveryChargeMasterController@index')->name('deliverycharges');
 Route::get('/deliverycharges-add', 'Admin\DeliveryChargeMasterController@deliverycharge_create')->name('deliverycharge_add');
