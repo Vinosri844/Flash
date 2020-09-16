@@ -129,7 +129,7 @@ class RecipeMasterController extends Controller
         }
         
         } catch (\Throwable $th) {
-            dd($th);
+            // dd($th);
             flash()->error('Something went Wrong Please Try Again!');
             return redirect()->route('recipe-master.create');
         }
@@ -265,7 +265,7 @@ class RecipeMasterController extends Controller
         }
         
         } catch (\Throwable $th) {
-            dd($th);
+            // dd($th);
             flash()->error('Something went Wrong Please Try Again!');
             return redirect()->route('recipe-master.index');
         }

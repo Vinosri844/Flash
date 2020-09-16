@@ -180,6 +180,19 @@
 
 
 <script>
+    function imageValidate(input,error){
+              $(input).change(function () {
+              var fileExtension = ['jpeg', 'jpg'];
+              if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+                $(this).addClass('is-invalid');
+                $(error+' .invalid-feedback').css('display', 'block');
+              }else{
+                $(this).removeClass('is-invalid');
+                $(error+' .invalid-feedback').css('display', 'none');
+              }
+          });
+        }
+
     function change_status(id, name, check, column, field){
       var status = 0;
         if($(check).is(':checked')){

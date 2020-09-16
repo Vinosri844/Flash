@@ -163,7 +163,7 @@ class StoreController extends Controller
             flash()->error('Please Try Again!');
             return redirect()->route('store.index');
         } catch (\Throwable $th) {
-            dd($th);
+            // dd($th);
             flash()->error('Something went Wrong! Please Try Again!');
             return redirect()->route('store.index');
         }

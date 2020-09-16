@@ -8,15 +8,15 @@
     
   <div class="col-md-6">
     <div class="form-group">
-      <label for="recipeMasterName">Recipe Name</label>
+      <label for="recipeMasterName">Recipe Name<span class="text-danger"> *</span></label>
       <div class="controls">
       <input type="text" name="recipe_name" id="recipeMasterName" class="form-control" value="{{ isset($recipe_master->recipe_name) ? $recipe_master->recipe_name : '' }}"
           data-validation-required-message="This field is required" placeholder="Recipe Name">
       </div>
     </div>
     <div class="form-group">
-        <label for="recipeMasterCat">Select category</label>
-        <select class="select2 form-control" id="category_id" onchange="cat_by_subcategory(this.value)" name="recipe_category_id"  autocomplete="new-password" data-placeholder="Select Category..." >
+        <label for="recipeMasterCat">Select category<span class="text-danger"> *</span></label>
+        <select class="select2 form-control" id="category_id" onchange="cat_by_subcategory(this.value)" name="recipe_category_id"  autocomplete="new-password" data-placeholder="Select Category..." required>
           <option value="">Select Category...</option>
             @if (isset($categories) && !empty($categories))
             <?php $value = null; if(isset($recipe_master)){$value = $recipe_master->recipe_category_id ;} ?>
@@ -27,8 +27,8 @@
         </select>
       </div>
     <div class="form-group">
-        <label for="recipeMasterSubCat">Select Sub-Category</label>
-        <select class="select2_picker form-control" id="subcat_id" name="recipe_subcategory_id"  autocomplete="new-password" data-placeholder="Select Category..." >
+        <label for="recipeMasterSubCat">Select Sub-Category<span class="text-danger"> *</span></label>
+        <select class="select2_picker form-control" id="subcat_id"  name="recipe_subcategory_id"  autocomplete="new-password" data-placeholder="Select Category..." required>
           <option value="">Select Sub-Category...</option>
           @if(isset($sub_categories))
               @foreach($sub_categories as $k => $val)
@@ -64,7 +64,7 @@
       </div>
       <div class="form-group">
         <fieldset>
-            <label for="recipeMasterImage">Upload Offer Image </label>
+            <label for="recipeMasterImage">Upload Offer Image<span class="text-danger"> *</span> </label>
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text" id="recipeMasterImage">Offer Image</span>
@@ -83,23 +83,23 @@
 
     <div class="form-group mr-1">
         <fieldset>
-            <label for="recipeServingCount">Serving Count</label>
+            <label for="recipeServingCount">Serving Count<span class="text-danger"> *</span></label>
           <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="recipeServingCount">Count</span>
               </div>
-            <input type="number" class="form-control" data-validation-required-message="This field is required"  value="{{ isset($recipe_master->serving_count) ? $recipe_master->serving_count : '' }}" name="serving_count" id="recipeServingCount" placeholder="Serving Count" aria-describedby="recipeServingCount">
+            <input type="number" class="form-control" required  value="{{ isset($recipe_master->serving_count) ? $recipe_master->serving_count : '' }}" name="serving_count" id="recipeServingCount" placeholder="Serving Count" aria-describedby="recipeServingCount">
           </div>
         </fieldset>
     </div>
     <div class="form-group">
         <fieldset>
-            <label for="recipeMasterIngre">Total Ingredients</label>
+            <label for="recipeMasterIngre">Total Ingredients<span class="text-danger"> *</span></label>
           <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="recipeMasterIngre">count</span>
               </div>
-            <input type="number" class="form-control" data-validation-required-message="This field is required"  value="{{ isset($recipe_master->tot_ingredients) ? $recipe_master->tot_ingredients : '' }}" name="tot_ingredients" id="recipeMasterIngre" placeholder="Ingredients" aria-describedby="recipeMasterIngre">
+            <input type="number" class="form-control" required  value="{{ isset($recipe_master->tot_ingredients) ? $recipe_master->tot_ingredients : '' }}" name="tot_ingredients" id="recipeMasterIngre" placeholder="Ingredients" aria-describedby="recipeMasterIngre">
           </div>
         </fieldset>
     </div>
@@ -107,10 +107,10 @@
     <div style="display: flex;">
     <div class="form-group mr-1">
         <fieldset>
-            <label for="recipePreTime">Preparing Time</label>
+            <label for="recipePreTime">Preparing Time<span class="text-danger"> *</span></label>
           <div class="input-group">
             
-            <input type="number" class="form-control" data-validation-required-message="This field is required"  value="{{ isset($recipe_master->prepare_time) ? $recipe_master->prepare_time : '' }}" name="prepare_time" id="recipePreTime" placeholder="Time" aria-describedby="recipePreTime">
+            <input type="number" class="form-control" required  value="{{ isset($recipe_master->prepare_time) ? $recipe_master->prepare_time : '' }}" name="prepare_time" id="recipePreTime" placeholder="Time" aria-describedby="recipePreTime">
             <div class="input-group-append">
                 <span class="input-group-text" id="recipePreTime">Minutes</span>
               </div>
@@ -119,10 +119,10 @@
     </div>
     <div class="form-group">
         <fieldset>
-            <label for="recipeCookTime">Cooking Time</label>
+            <label for="recipeCookTime">Cooking Time<span class="text-danger"> *</span></label>
           <div class="input-group">
             
-            <input type="number" class="form-control" data-validation-required-message="This field is required"  value="{{ isset($recipe_master->cooking_time) ? $recipe_master->cooking_time : '' }}" name="cooking_time" id="recipeCookTime" placeholder="Time" aria-describedby="recipeCookTime">
+            <input type="number" class="form-control" required  value="{{ isset($recipe_master->cooking_time) ? $recipe_master->cooking_time : '' }}" name="cooking_time" id="recipeCookTime" placeholder="Time" aria-describedby="recipeCookTime">
             <div class="input-group-append">
                 <span class="input-group-text" id="recipeCookTime">Minutes</span>
               </div>
@@ -154,8 +154,8 @@
             <h4 class="card-title mt-3">Add Recipe Ingredients</h4>
         
             <div class="form-group">
-                <label for="recipeMasterProd">Select Product Name</label>
-                <select class="select2 form-control" id="recipeMasterProd" name="product_id"  autocomplete="new-password" data-placeholder="Select Product Name..." >
+                <label for="recipeMasterProd">Select Product Name<span class="text-danger">*</span></label>
+                <select class="select2 form-control" data-validation-required-message="This field is required" id="recipeMasterProd" name="product_id"  autocomplete="new-password" data-placeholder="Select Product Name..." required>
                   <option value="">Select Product Name...</option>
                     @if (isset($products) && !empty($products))
                     <?php $value = null; if(isset($recipe_ingredient)){$value = $recipe_ingredient->product_id ;} ?>
@@ -253,10 +253,7 @@
 @push('scripts')
 
 <script>
-  $('#addNewStep').on('click', ()=>{
-    
-    $('#stepNumber').value = 3;
-  })
+  
 </script>
     
 @endpush

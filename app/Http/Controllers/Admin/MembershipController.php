@@ -71,7 +71,7 @@ class MembershipController extends Controller
             return redirect()->route('membership.index');
         }
         } catch (\Throwable $th) {
-            dd($th);
+            // dd($th);
             flash()->error('Something went Wrong Please Try Again!');
             return redirect()->route('membership.create');
         }
@@ -102,7 +102,7 @@ class MembershipController extends Controller
             // dd($member);
             return view('member.memberEdit')->with('member', $member);
         } catch (\Throwable $th) {
-            dd($th);
+            // dd($th);
             flash()->error('Membership Not Available');
             return redirect()->route('membership.index');
         }
@@ -141,7 +141,7 @@ class MembershipController extends Controller
             return redirect()->route('membership.index');
         }
         } catch (\Throwable $th) {
-            dd($th);
+            // dd($th);
             flash()->error('Something went Wrong Please Try Again!');
             return redirect()->route('membership.index');
         }

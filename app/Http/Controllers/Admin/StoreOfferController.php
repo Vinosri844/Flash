@@ -94,7 +94,7 @@ class StoreOfferController extends Controller
         flash()->success('Store Offer Created Successfully!');
         return redirect()->route('store-offer.index');
         } catch (\Throwable $th) {
-            dd($th);
+            // dd($th);
             flash()->error('Something went Wrong Please Try Again!');
             return redirect()->route('store-offer.create');
         }

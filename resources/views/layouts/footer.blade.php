@@ -8,17 +8,18 @@
       </footer>
       <!-- END: Footer-->
 
-
+      
       <!-- BEGIN: Vendor JS-->
       <script src="{{ asset('app-assets/vendors/js/vendors.min.js') }}"></script>
       <script src="{{ asset('app-assets/fonts/LivIconsEvo/js/LivIconsEvo.tools.min.js') }}"></script>
       <script src="{{ asset('app-assets/fonts/LivIconsEvo/js/LivIconsEvo.defaults.min.js') }}"></script>
       <script src="{{ asset('app-assets/fonts/LivIconsEvo/js/LivIconsEvo.min.js') }}"></script>
+
       <!-- BEGIN Vendor JS-->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
+      @stack('scripts')
       <!-- BEGIN: Page Vendor JS-->
       {{-- <script src="{{ asset('app-assets/vendors/js/charts/chartist.min.js') }}"></script> --}}
       <script src="{{ asset('app-assets/vendors/js/forms/repeater/jquery.repeater.min.js') }}"></script>
@@ -71,7 +72,7 @@
       <!-- Validation-->
 
 
-      @stack('scripts')
+     
 
       {{-- @include('layouts.validation') --}}
       {{-- <script src="{{ asset('formvalidation/js/framework/bootstrap.min.js') }}"></script> --}}
@@ -93,7 +94,7 @@
                   data: {"_token": "{{ csrf_token() }}","category_id":id},
                   dataType: 'json',
                   success: function(response) {
-                      console.log(response);
+                    //   console.log(response);
                       $("#subcat_id").html(response.html);
                   },
                   complete: function() {

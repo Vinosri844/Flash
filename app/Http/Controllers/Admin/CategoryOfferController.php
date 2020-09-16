@@ -98,7 +98,7 @@ class CategoryOfferController extends Controller
         }
         
         } catch (\Throwable $th) {
-            dd($th);
+            // dd($th);
             flash()->error('Something went Wrong Please Try Again!');
             return redirect()->route('category-offer.create');
         }
@@ -130,7 +130,9 @@ class CategoryOfferController extends Controller
             return view('category_offer.categoryOfferEdit')->with(['stores' => $stores, 'categories' => $categories, 'category_offer' => $category_offer]);
     
         } catch (\Throwable $th) {
-            dd($th);
+            // dd($th);
+            flash()->error('Something went Wrong Please Try Again!');
+            return redirect()->route('category-offer.index');
         }
     }
 
