@@ -16,9 +16,9 @@
       <script src="{{ asset('app-assets/fonts/LivIconsEvo/js/LivIconsEvo.min.js') }}"></script>
 
       <!-- BEGIN Vendor JS-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> --}}
       @stack('scripts')
       <!-- BEGIN: Page Vendor JS-->
       {{-- <script src="{{ asset('app-assets/vendors/js/charts/chartist.min.js') }}"></script> --}}
@@ -134,22 +134,6 @@
                   // add multiple select checkbox feature.
                   $('.productstores').find('select').multiselect();
           });
-
-          function resend_notification(id) {
-              alert(id);
-              $.ajax({
-                  type: "POST",
-                  url: '{{ route('resend_notification') }}',
-                  data: {"_token": "{{ csrf_token() }}","id":id},
-                  dataType: 'json',
-                  success: function(response) {
-                      console.log(response);
-                  },
-                  complete: function() {
-
-                  }
-              });
-          }
       </script>
 
 

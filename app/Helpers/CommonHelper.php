@@ -12,5 +12,8 @@ function user_logs($name = NULL, $operation = NULL, $description = NULL, $table 
     $user->reference_id = $refer_id;
     $user->ip_device_id = "000:00:00";
     $user->user_type_id = 1;
-    $user->save();
+    if($user->save()){
+        return true;
+    }
+    return false;
 }

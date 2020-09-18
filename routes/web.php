@@ -133,6 +133,8 @@ Route::namespace('Admin')->group(function(){
     Route::resource('/recipe-master', 'RecipeMasterController');
     Route::resource('/setting', 'SettingController');
     Route::resource('/footer', 'FooterController');
+    Route::resource('/recipe-category', 'RecipeCategoryController');
+    Route::resource('/recipe-sub-category', 'RecipeSubCategoryController');
 
     Route::get('/customer-order/{order}', 'CustomerController@order')->name('customer.order');
     Route::get('/customer-address/{address}', 'CustomerController@address')->name('customer.address');

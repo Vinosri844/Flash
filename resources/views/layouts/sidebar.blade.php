@@ -21,17 +21,19 @@
             <ul class="nav navbar-nav float-right">
               <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-expand"><i class="ficon bx bx-fullscreen"></i></a></li>
 
-              <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon bx bx-bell bx-tada bx-flip-horizontal"></i><span class="badge badge-pill badge-danger badge-up">5</span></a>
+              {{-- <li class="dropdown dropdown-notification nav-item"><a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon bx bx-bell bx-tada bx-flip-horizontal"></i><span class="badge badge-pill badge-danger badge-up">5</span></a>
                 <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                   <li class="dropdown-menu-header">
                     <div class="dropdown-header px-1 py-75 d-flex justify-content-between"><span class="notification-title">7 new Notification</span><span class="text-bold-400 cursor-pointer">Mark all as read</span></div>
                   </li>
                   <li class="dropdown-menu-footer"><a class="dropdown-item p-50 text-primary justify-content-center" href="javascript:void(0)">Read all notifications</a></li>
                 </ul>
-              </li>
+              </li> --}}
               <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                   <div class="user-nav d-sm-flex d-none"><span class="user-name">Admin</span><span class="user-status text-muted">Available</span></div><span><img class="round" src="{{ asset('assets/app-assets/images/portrait/small/avatar-s-11.jpg') }}" alt="avatar" height="40" width="40"></span></a>
-                <div class="dropdown-menu dropdown-menu-right pb-0"><a class="dropdown-item" href="page-user-profile.html"><i class="bx bx-user mr-50"></i> Edit Profile</a><a class="dropdown-item" href="app-todo.html"><i class="bx bx-check-square mr-50"></i> Change password</a>
+                <div class="dropdown-menu dropdown-menu-right pb-0">
+                  <a class="dropdown-item" href="page-user-profile.html"><i class="bx bx-user mr-50"></i> Edit Profile</a>
+                  {{-- <a class="dropdown-item" href="app-todo.html"><i class="bx bx-check-square mr-50"></i> Change password</a> --}}
                   <div class="dropdown-divider mb-0"></div><a class="dropdown-item" href="{{ route('login') }}"><i class="bx bx-power-off mr-50"></i> Logout</a>
                 </div>
               </li>
@@ -101,9 +103,9 @@
           </li>
         <li class=" nav-item {{ $route[0] == 'recipe-master' ? ' active' : '' }}"><a href="{{ route('recipe-master.index') }}"><i class="bx bx-news" data-icon="warning-alt"></i><span class="menu-title" data-i18n="Sweet Alert">Receipe master</span></a>
           </li>
-          <li class=" nav-item"><a href=""><i class="bx bxs-dock-top" data-icon="morph-map"></i><span class="menu-title" data-i18n="Toastr">Receipe category</span></a>
+          <li class=" nav-item {{ $route[0] == 'recipe-category' ? ' active' : '' }}"><a href="{{ route('recipe-category.index') }}"><i class="bx bxs-dock-top" data-icon="morph-map"></i><span class="menu-title" data-i18n="Toastr">Receipe category</span></a>
           </li>
-          <li class=" nav-item"><a href=""><i class="bx bx-grid-alt" data-icon="morph-map"></i><span class="menu-title" data-i18n="Toastr">Receipe subcategory</span></a>
+          <li class=" nav-item {{ $route[0] == 'recipe-sub-category' ? ' active' : '' }}"><a href="{{ route('recipe-sub-category.index') }}"><i class="bx bx-grid-alt" data-icon="morph-map"></i><span class="menu-title" data-i18n="Toastr">Receipe subcategory</span></a>
           </li>
           <li class=" navigation-header"><span>Components</span>
           </li>
