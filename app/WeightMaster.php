@@ -12,6 +12,8 @@ class WeightMaster extends Model
     protected $table = 'weight_master';
     protected $primaryKey = 'weight_id';
 
+    const CREATED_AT = null;
+    const UPDATED_AT = null;
 
     protected $fillable = [
         'weight_display','actual_weight', 'unit','isactive','isdelete',

@@ -58,7 +58,7 @@
       <div class="shadow-bottom"></div>
       <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
-          <li class=" nav-item"><a href=""><i class="bx bx-home" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
+          <li class=" nav-item"><a href="{{ route('dashboard') }}"><i class="bx bx-home" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
           </li>
           <li class=" navigation-header"><span>Category</span>
           </li>
@@ -93,7 +93,7 @@
           </li>
           <li class=" navigation-header"><span>Order</span>
           </li>
-          <li class=" nav-item"><a href=""><i class="bx bx-receipt" data-icon="warning-alt"></i><span class="menu-title" data-i18n="Sweet Alert">Order list</span></a>
+          <li class=" nav-item"><a href="{{ route('placed_orders') }}"><i class="bx bx-receipt" data-icon="warning-alt"></i><span class="menu-title" data-i18n="Sweet Alert">Order list</span></a>
           </li>
           <li class=" nav-item"><a href="{{ route('bulkorder') }}"><i class="bx bx-briefcase-alt" data-icon="morph-map"></i><span class="menu-title" data-i18n="Toastr">Bulk order</span></a>
           </li>
@@ -126,10 +126,16 @@
 
         <li class=" nav-item {{ $route[0] == 'customer' ? ' active' : '' }}"><a href=" {{ route('customer.index') }}"><i class="bx bx-user-check" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Display customer list</span></a>
           </li>
-          <li class=" nav-item"><a href=""><i class="bx bx-compass" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Weight</span></a>
+          <li class=" nav-item"><a href="{{ route('weights') }}"><i class="bx bx-compass" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Weight</span></a>
           </li>
           <li class=" nav-item"><a href="{{ route('notifications') }}"><i class="bx bx-bell" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Notification</span></a>
           </li>
+            <li class=" navigation-header"><span>Pincodes</span>
+            </li>
+            <li class=" nav-item {{ $route[0] == 'standerd-pincodes' ? ' active' : '' }}"><a href="{{ route('sdpincodes') }}"><i class="bx bx-cog" data-icon="warning-alt"></i><span class="menu-title" data-i18n="Sweet Alert">Standerd Pincode</span></a>
+            </li>
+            <li class=" nav-item {{ $route[0] == 'Extended-pincodes' ? ' active' : '' }}"><a href="{{ route('edpincodes') }}"><i class="bx bx-wrench" data-icon="morph-map"></i><span class="menu-title" data-i18n="Toastr">Extended Pincode</span></a>
+            </li>
           <li class=" navigation-header"><span>Settings</span>
           </li>
         <li class=" nav-item {{ $route[0] == 'setting' ? ' active' : '' }}"><a href="{{ route('setting.index') }}"><i class="bx bx-cog" data-icon="warning-alt"></i><span class="menu-title" data-i18n="Sweet Alert">Settings</span></a>

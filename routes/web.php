@@ -46,6 +46,9 @@ Route::get('/subcategory/{id}', 'Admin\CategoryController@subcategory_edit')->na
 Route::post('/subcategory/{id}', 'Admin\CategoryController@subcategory_edit')->name('subcategory_edit_submit');
 Route::get('/subcategory/{id}/delete','Admin\CategoryController@sc_destroy')->name('subcategory_destroy');
 
+Route::get('/dashboard', 'Admin\DashboardController@index')->name('dashboard');
+
+
 //products
 Route::get('/products', 'Admin\ProductController@index')->name('products');
 Route::get('/product-create', 'Admin\ProductController@product_create')->name('product_create');
@@ -77,6 +80,9 @@ Route::POST('/slider-add', 'Admin\SliderController@slider_create')->name('slider
 Route::get('/slider-edit/{id}', 'Admin\SliderController@slider_edit')->name('slider_edit');
 Route::POST('/slider-edit/{id}', 'Admin\SliderController@slider_edit')->name('slideredit_submit');
 Route::get('/slider/{id}/delete','Admin\SliderController@slider_delete')->name('slider_delete');
+
+
+Route::get('/placed_orders', 'Admin\OrderListController@placed_orders')->name('placed_orders');
 
 
 Route::get('/paymenttypes', 'Admin\PaymentTypeController@index')->name('paymenttypes');
@@ -119,8 +125,25 @@ Route::get('/selling_invoice', 'Admin\SubCategoryController@selling_invoice')->n
 Route::get('/shopping_cart', 'Admin\SubCategoryController@shopping_cart')->name('shopping_cart');
 Route::get('/wishlist', 'Admin\SubCategoryController@wishlist')->name('wishlist');
 
+Route::get('/weights', 'Admin\WeightMasterController@index')->name('weights');
+Route::get('/weight-add', 'Admin\WeightMasterController@weight_create')->name('weight_add');
+Route::POST('/weight-add', 'Admin\WeightMasterController@weight_create')->name('weight_submit');
+Route::get('/weight-edit/{id}', 'Admin\WeightMasterController@weight_edit')->name('weight_edit');
+Route::POST('/weight-edit/{id}', 'Admin\WeightMasterController@weight_edit')->name('weightedit_submit');
+Route::get('/weight/{id}/delete','Admin\WeightMasterController@weight_delete')->name('weight_delete');
 
-
+Route::get('/standerd-pincodes', 'Admin\PincodeMasterController@sdindex')->name('sdpincodes');
+Route::get('/SDpincode-add', 'Admin\PincodeMasterController@sdpincode_create')->name('sdpincode_add');
+Route::POST('/SDpincode-add', 'Admin\PincodeMasterController@sdpincode_create')->name('sdpincode_submit');
+Route::get('/SDpincode-edit/{id}', 'Admin\PincodeMasterController@sdpincode_edit')->name('sdpincode_edit');
+Route::POST('/SDpincode-edit/{id}', 'Admin\PincodeMasterController@sdpincode_edit')->name('sdpincodeedit_submit');
+Route::get('/SDpincode/{id}/delete','Admin\PincodeMasterController@sdpincode_delete')->name('sdpincode_delete');
+Route::get('/Extended-pincodes', 'Admin\PincodeMasterController@edindex')->name('edpincodes');
+Route::get('/EDpincode-add', 'Admin\PincodeMasterController@edpincode_create')->name('edpincode_add');
+Route::POST('/EDpincode-add', 'Admin\PincodeMasterController@edpincode_create')->name('edpincode_submit');
+Route::get('/EDpincode-edit/{id}', 'Admin\PincodeMasterController@edpincode_edit')->name('edpincode_edit');
+Route::POST('/EDpincode-edit/{id}', 'Admin\PincodeMasterController@edpincode_edit')->name('edpincodeedit_submit');
+Route::get('/EDpincode/{id}/delete','Admin\PincodeMasterController@edpincode_delete')->name('edpincode_delete');
 
 Route::namespace('Admin')->group(function(){
     Route::resource('/event-master', 'MasterController');
