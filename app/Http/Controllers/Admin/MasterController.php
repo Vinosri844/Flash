@@ -16,9 +16,13 @@ class MasterController extends Controller
      */
     public function index()
     {
-        $masters = EventMaster::where('isdelete', 0)->orderBy('event_id', 'desc')->get();
-        
-        return view('master.EventMaster')->with('masters', $masters);
+        try {
+            $masters = EventMaster::where('isdelete', 0)->orderBy('event_id', 'desc')->get();        
+            return view('master.EventMaster')->with('masters', $masters);
+        } catch (\Throwable $th) {
+            flash()->error('Something Went wrong Please try Again!');
+            return redirect()->route('event-master.index');
+        }
     }
 
     /**
@@ -56,19 +60,11 @@ class MasterController extends Controller
         $event->user_id = 1;
         $event->event_name = $request->event_name;
         if($event->save()){
-            $user = new Userlogs;
-            $user->form_name = 'Event';
-            $user->operation_type = 'Insert';
-            $user->user_id = 1;
-            $user->description = "Insert Event Name - ". $request->event_name;
-            $user->OS = 'WEB';
-            $user->table_name = 'event_master';
-            $user->reference_id = $event->event_id;
-            $user->ip_device_id = "000:00:00";
-            $user->user_type_id = 1;
-            $user->save();
-            flash()->success('Event Created Successfully!');
-            return redirect()->route('event-master.index');
+           $user = user_logs('Event', 'Insert', "Insert Event Name - ". $request->event_name, 'event_master', $event->event_id);
+            if($user){
+                flash()->success('Event Created Successfully!');
+                return redirect()->route('event-master.index');
+            }
         }
         flash()->error('Please Try Again!');
         return redirect()->route('event-master.index');
@@ -127,20 +123,11 @@ class MasterController extends Controller
         $event->event_name = $request->event_name;
         $event->isActive = $active;
         if($event->save()){
-            $user = new Userlogs;
-            $user->form_name = 'Event';
-            $user->operation_type = 'Update';
-            $user->user_id = 1;
-            $user->description = "Update Event Name - ". $request->event_name;
-            $user->OS = 'WEB';
-            $user->table_name = 'event_master';
-            $user->reference_id = $event->event_id;
-            $user->ip_device_id = "000:00:00";
-            $user->user_type_id = 1;
-            $user->save();
-            flash()->success('Event Updated Successfully!');
-            return redirect()->route('event-master.index');
-            
+            $user = user_logs('Event', 'Update', "Update Event Name - ". $request->event_name, 'event_master', $event->event_id);
+            if($user){
+                flash()->success('Event Updated Successfully!');
+                return redirect()->route('event-master.index');
+            }
         }
             flash()->error('Please Try Again!');
             return redirect()->route('event-master.index');
@@ -162,19 +149,11 @@ class MasterController extends Controller
             $event = EventMaster::findOrFail($id);
             $event->isdelete = 1;
             if($event->save()){
-                $user = new Userlogs;
-                $user->form_name = 'Event';
-                $user->operation_type = 'Trash';
-                $user->user_id = 1;
-                $user->description = "Delete Event Name - ". $event->event_name;
-                $user->OS = 'WEB';
-                $user->table_name = 'event_master';
-                $user->reference_id = $event->event_id;
-                $user->ip_device_id = "000:00:00";
-                $user->user_type_id = 1;
-                $user->save();
-                flash('Event Deleted Successfully!');
-                return redirect()->route('event-master.index');
+                $user = user_logs('Event', 'Trash', "Delete Event Name - ". $event->event_name, 'event_master', $event->event_id);
+                if($user){
+                    flash('Event Deleted Successfully!');
+                    return redirect()->route('event-master.index');
+                }
             }
             flash()->error('Please Try Again!');
             return redirect()->route('event-master.index');

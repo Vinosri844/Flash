@@ -7,6 +7,7 @@ use App\Store;
 use App\SellerBranch;
 use Illuminate\Http\Request;
 use Validator;
+use Image;
 use App\Userlogs;
 // use Illuminate\Support\Facades\Session;
 
@@ -21,7 +22,6 @@ class StoreController extends Controller
     public function index()
     {
         $stores = Store::where('isdelete', 0)->orderBy('seller_id', 'desc')->get();
-        // dd($stores);
         return view('store.store')->with('stores', $stores);
     }
 
@@ -54,7 +54,6 @@ class StoreController extends Controller
             
             if($validator->fails()){
                 // $error = implode("," ,$validator->errors()->messages());
-                
                 flash()->error('Please Fill Images as Jpg or Jpeg ( MAX size : 2.5MB )');
                 return redirect()->route('store.create');
             }
@@ -62,7 +61,7 @@ class StoreController extends Controller
             $pancard_original_path = '/image/sellerpancard/OriginalImage/'; // Pan Card Original Image
             $companylogo_compress_path = '/image/sellercompanylogo/CompressImage/'; // Company Logo Compress Image
             $companylogo_original_path = '/image/sellercompanylogo/OriginalImage/'; // Company Logo Orignal Image
-            $companylogo_thumbnail_path ='/image/sellercompanylogo/ThumbnailImage/'; // Company Logo Thumbnil Image
+            $companylogo_thumbnail_path ='image/sellercompanylogo/ThumbnailImage/'; // Company Logo Thumbnil Image
             $store_name = $request->store_name;
             $file_name = str_replace(" ", "_", strtolower($store_name));
             $file_path = null;
@@ -79,13 +78,16 @@ class StoreController extends Controller
                 }
             }
             if($request->hasFile('store_company_logo')){
-                // dd(1);
                 if($request->file('store_company_logo')->isValid())
                 {
-
+                    $image = $request->store_company_logo;
                     $extension = $request->store_company_logo->extension();
                     $company_saved_name = $file_name.time()."." .$extension;
                     $request->store_company_logo->move(public_path($companylogo_original_path), $company_saved_name);
+                    // $request->store_company_logo->move(public_path($companylogo_compress_path), $company_saved_name);
+                    // $request->store_company_logo->move(public_path($companylogo_thumbnail_path), $company_saved_name);
+                    // $path = public_path($companylogo_thumbnail_path.$company_saved_name);
+                    // Image::make($image->getRealPath())->save($path);
                     $company_file_path = $company_saved_name;
                 }
             }
@@ -164,7 +166,7 @@ class StoreController extends Controller
             flash()->error('Please Try Again!');
             return redirect()->route('store.index');
         } catch (\Throwable $th) {
-            // dd($th);
+            dd($th);
             flash()->error('Something went Wrong! Please Try Again!');
             return redirect()->route('store.index');
         }

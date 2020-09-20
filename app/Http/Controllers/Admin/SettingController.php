@@ -73,15 +73,12 @@ class SettingController extends Controller
     public function update(Request $request, Setting $setting)
     {
         try {
-            // dd($request);
-           
             $setting = Setting::findOrFail($setting->contact_us_id)->update($request->all());
             
            
             flash()->success('Setting Updated Successfully!');
             return redirect()->route('setting.index');
         } catch (\Throwable $th) {
-            // dd($th);
             flash()->error('Something Went wrong Please Try Again!');
             return redirect()->route('setting.index');
         }

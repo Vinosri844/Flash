@@ -23,8 +23,13 @@ class RecipeMasterController extends Controller
      */
     public function index()
     {
-        $recipes = RecipeMaster::where('isdelete', 0)->orderBy('created_date_time', 'desc')->get();
-        return view('recipe_master.recipeMaster')->with('recipes', $recipes);
+        try {
+            $recipes = RecipeMaster::where('isdelete', 0)->orderBy('created_date_time', 'desc')->get();
+            return view('recipe_master.recipeMaster')->with('recipes', $recipes);
+        } catch (\Throwable $th) {
+            flash()->error('Something went Wrong Please Try Again!');
+            return redirect()->route('recipe-master.create');
+        }
     }
 
     /**
@@ -34,9 +39,14 @@ class RecipeMasterController extends Controller
      */
     public function create()
     {
-        $categories = Category::where('isdelete', 0)->orderBy('category_id', 'desc')->get();
-        $products = ProductMaster::where('isdelete', 0)->orderBy('product_id', 'desc')->get();
-        return view('recipe_master.recipeMasterCreate')->with(['categories' => $categories, 'products' => $products]);
+        try {
+            $categories = Category::where('isdelete', 0)->orderBy('category_id', 'desc')->get();
+            $products = ProductMaster::where('isdelete', 0)->orderBy('product_id', 'desc')->get();
+            return view('recipe_master.recipeMasterCreate')->with(['categories' => $categories, 'products' => $products]);
+        } catch (\Throwable $th) {
+            flash()->error('Something went Wrong Please Try Again!');
+            return redirect()->route('recipe-master.create');
+        }
     }
 
     /**
@@ -79,7 +89,6 @@ class RecipeMasterController extends Controller
                 $file_path = $saved_name;
             }
         }
-        // dd($file_path);
         $active = 0;
         if($request->isactive != null){
             $active = 1;
@@ -155,14 +164,19 @@ class RecipeMasterController extends Controller
     public function edit(RecipeMaster $recipeMaster)
     {
         
-        $data["recipe_master"] = RecipeMaster::findOrFail($recipeMaster->recipe_id);
-        $data["categories"] = Category::where('isdelete', 0)->orderBy('category_id', 'desc')->get();
-        $data["sub_categories"] = SubCategory::where('isdelete', 0)->where('category_id', $recipeMaster->recipe_category_id)->get();
-        $data["products"] = ProductMaster::where('isdelete', 0)->orderBy('product_id', 'desc')->get();
-        $data["recipe_ingredient"] = RecipeIngredients::where('recipe_id', $recipeMaster->recipe_id)->first();
-        $data["recipe_image"] = RecipeImages::where('recipe_master_id', $recipeMaster->recipe_id)->first();
-        $data["recipe_steps"] = RecipeSteps::where('recipe_id', $recipeMaster->recipe_id)->get();
-        return view('recipe_master.recipeMasterEdit', $data ?? NULL);
+        try {
+            $data["recipe_master"] = RecipeMaster::findOrFail($recipeMaster->recipe_id);
+            $data["categories"] = Category::where('isdelete', 0)->orderBy('category_id', 'desc')->get();
+            $data["sub_categories"] = SubCategory::where('isdelete', 0)->where('category_id', $recipeMaster->recipe_category_id)->get();
+            $data["products"] = ProductMaster::where('isdelete', 0)->orderBy('product_id', 'desc')->get();
+            $data["recipe_ingredient"] = RecipeIngredients::where('recipe_id', $recipeMaster->recipe_id)->first();
+            $data["recipe_image"] = RecipeImages::where('recipe_master_id', $recipeMaster->recipe_id)->first();
+            $data["recipe_steps"] = RecipeSteps::where('recipe_id', $recipeMaster->recipe_id)->get();
+            return view('recipe_master.recipeMasterEdit', $data ?? NULL);
+        } catch (\Throwable $th) {
+            flash()->error('Something went Wrong Please Try Again!');
+            return redirect()->route('recipe-master.create');
+        }
     }
 
     /**

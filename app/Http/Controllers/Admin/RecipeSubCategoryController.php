@@ -17,8 +17,13 @@ class RecipeSubCategoryController extends Controller
      */
     public function index()
     {
-        $recipe_subcategory = RecipeSubCategory::where('isdelete', 0)->orderBy('recipe_subcategory_id', 'desc')->get();
-        return view('recipe_subcategory.recipeSubCategory')->with('recipe_subcategory', $recipe_subcategory);
+        try {
+            $recipe_subcategory = RecipeSubCategory::where('isdelete', 0)->orderBy('recipe_subcategory_id', 'desc')->get();
+            return view('recipe_subcategory.recipeSubCategory')->with('recipe_subcategory', $recipe_subcategory);
+        } catch (\Throwable $th) {
+            flash()->error('Something went Wrong Please Try Again!');
+            return redirect()->route('recipe-sub-category.index');
+        }
     }
 
     /**

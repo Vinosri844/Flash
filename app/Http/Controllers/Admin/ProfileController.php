@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Manager;
 use Illuminate\Http\Request;
 use Validator;
-use Hash;
+use Hash, Image;
 
 class ProfileController extends Controller
 {
@@ -17,8 +17,13 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $user = Manager::where('manager_id', 1)->first();
-        return view('profile.profile')->with('user', $user);
+        try {
+            $user = Manager::where('manager_id', 1)->first();
+            return view('profile.profile')->with('user', $user);
+        } catch (\Throwable $th) {
+            flash()->error('Something went Wrong Please Try Again!');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -92,10 +97,11 @@ class ProfileController extends Controller
             {
                 if($request->file('manager_image')->isValid())
                 {
-                    
+                    $image = $request->manager_image;
                     $extension = $request->manager_image->extension();
                     $saved_name = $file_name.time()."." .$extension;
-                    $request->manager_image->move(public_path($product_original_path), $saved_name);
+                    $path = public_path($product_original_path.$saved_name);
+                    $upload = Image::make($image->getRealPath())->save($path);
                     $file_path = $saved_name;
                 }
             }
@@ -105,16 +111,24 @@ class ProfileController extends Controller
             $user->manager_emailid = $request->manager_emailid;
             $user->manager_mobileno = $request->manager_mobileno;
             if($request->manager_password != null){
-            $user->manager_password = Hash::make($request->manager_password);
+                $user->manager_password = Hash::make($request->manager_password);
             }
             if($file_path != null){
-            $user->manager_image = $file_path;
+                $user->manager_image = $file_path;
             }
-            $user->save();
-            flash()->success('Profile Updated Successfully!');
+            if($user->save()){
+                $user = user_logs('Manager', 'Update', "Update Manager - ", 'manager', $user->manager_id);
+                if($user){
+                    flash()->success('Profile Updated Successfully!');
+                    return redirect()->route('manager.index');
+                }
+            }
+            flash()->error('Something went Wrong Please Try Again!');
             return redirect()->route('manager.index');
         } catch (\Throwable $th) {
             dd($th);
+            flash()->error('Something went Wrong Please Try Again!');
+            return redirect()->route('manager.index');
         }
     }
 
