@@ -12,6 +12,7 @@ use App\Userlogs;
 
 class StoreController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *

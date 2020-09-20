@@ -13,24 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
 
-//Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();
 
-Route::get('/theme', 'Admin\SubCategoryController@layout')->name('layout');
 
-//login
 Route::get('/', 'Auth\LoginController@login')->name('login');
-Route::get('/login', 'Auth\LoginController@login')->name('login');
-   Route::post('/login-post', 'Auth\LoginController@loginSubmit')->name('loginSubmit');
+Route::post('/login', 'Auth\LoginController@login_submit')->name('login.submit');
 
-
+Route::group(['middleware' => 'auth'], function () {
+    
 //category
 Route::get('/category', 'Admin\CategoryController@index')->name('category');
+
 Route::get('/category-create', 'Admin\CategoryController@category_create')->name('category_create');
 Route::post('/category-create', 'Admin\CategoryController@category_create')->name('category_submit');
 Route::get('/category/{id}', 'Admin\CategoryController@category_edit')->name('category_edit');
@@ -146,26 +141,27 @@ Route::POST('/EDpincode-edit/{id}', 'Admin\PincodeMasterController@edpincode_edi
 Route::get('/EDpincode/{id}/delete','Admin\PincodeMasterController@edpincode_delete')->name('edpincode_delete');
 
 Route::namespace('Admin')->group(function(){
-    Route::resource('/event-master', 'MasterController');
-    Route::resource('/delivery-slot-master', 'DeliverySlotMasterController');
-    Route::resource('/store', 'StoreController');
-    Route::resource('/customer', 'CustomerController');
-    Route::resource('/membership', 'MembershipController');
-    Route::resource('/store-offer', 'StoreOfferController');
-    Route::resource('/category-offer', 'CategoryOfferController');
-    Route::resource('/recipe-master', 'RecipeMasterController');
-    Route::resource('/setting', 'SettingController');
-    Route::resource('/footer', 'FooterController');
-    Route::resource('/recipe-category', 'RecipeCategoryController');
-    Route::resource('/recipe-sub-category', 'RecipeSubCategoryController');
+        Route::resource('/event-master', 'MasterController');
+        Route::resource('/delivery-slot-master', 'DeliverySlotMasterController');
+        Route::resource('/store', 'StoreController');
+        Route::resource('/customer', 'CustomerController');
+        Route::resource('/membership', 'MembershipController');
+        Route::resource('/store-offer', 'StoreOfferController');
+        Route::resource('/category-offer', 'CategoryOfferController');
+        Route::resource('/recipe-master', 'RecipeMasterController');
+        Route::resource('/setting', 'SettingController');
+        Route::resource('/footer', 'FooterController');
+        Route::resource('/recipe-category', 'RecipeCategoryController');
+        Route::resource('/recipe-sub-category', 'RecipeSubCategoryController');
+        Route::resource('/manager', 'ProfileController');
 
-    Route::get('/customer-order/{order}', 'CustomerController@order')->name('customer.order');
-    Route::get('/customer-address/{address}', 'CustomerController@address')->name('customer.address');
-    Route::post('/change-status', 'CommonController@change_status')->name('change.status');
-    Route::get('/selling-report', 'ReportController@selling_report')->name('selling-report.index');
-    Route::get('/selling-invoice', 'ReportController@selling_invoice')->name('selling-invoice.index');
-    Route::get('/product-price', 'ReportController@product_price')->name('product-price.index');
-    Route::get('/excel/{name}', 'ExportExcelController@excel_download')->name('excel.index');
+        Route::get('/customer-order/{order}', 'CustomerController@order')->name('customer.order');
+        Route::get('/customer-address/{address}', 'CustomerController@address')->name('customer.address');
+        Route::post('/change-status', 'CommonController@change_status')->name('change.status');
+        Route::get('/selling-report', 'ReportController@selling_report')->name('selling-report.index');
+        Route::get('/selling-invoice', 'ReportController@selling_invoice')->name('selling-invoice.index');
+        Route::get('/product-price', 'ReportController@product_price')->name('product-price.index');
+        Route::get('/excel/{name}', 'ExportExcelController@excel_download')->name('excel.index');
+    });
 
 });
-// Route::get('/wishlist', 'Admin\BaseController@wishlist')->name('wishlist');

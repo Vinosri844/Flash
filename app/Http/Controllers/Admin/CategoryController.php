@@ -11,6 +11,7 @@ use App\SubCategory;
 
 class CategoryController extends Controller
 {
+
     /**
      * Create a new controller instance.
      *
