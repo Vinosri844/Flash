@@ -65,7 +65,7 @@ class LoginController extends Controller
                         
                         Auth::login($user);
                         if(Auth::check()){
-                            return redirect()->route('store.index');
+                            return redirect()->route('category');
                         }
                         
                     }
