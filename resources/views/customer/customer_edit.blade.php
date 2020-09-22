@@ -7,7 +7,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h2 class="">View Customer</h2>
+            <h2 class="">{{ucfirst($customer->customer_name)}} Details</h2>
           </div>
           <div class="card-content">
             <div class="card-body">

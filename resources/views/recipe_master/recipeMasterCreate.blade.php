@@ -14,7 +14,7 @@
             <form class="form-horizontal" action="{{ route('recipe-master.store') }}" method="POST" enctype="multipart/form-data" novalidate autocomplete="off">
                  {{ method_field('POST') }}
                     @include('recipe_master._recipeMasterForm')
-                    <button type="submit" class="btn btn-primary float-right my-2">Create</button>
+                    <button type="submit" id="submitFormDetails" class="btn btn-primary float-right my-2" disabled>Create</button>
                 </form>
             </div>
          </div>

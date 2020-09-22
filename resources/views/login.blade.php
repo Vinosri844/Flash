@@ -90,18 +90,18 @@ License: You must have a valid license purchased only from themeforest(the above
                                            </small>
                                     </div>
                                 </div>
-                                <form class="login-form" method="POST" action="{{ route('loginSubmit') }}" name="login_form" id="login_form">
+                                <form class="login-form" method="POST" action="{{ route('login.submit') }}" name="login_form" id="login_form">
                                  {{ csrf_field() }}
                                  <div id="flash-msg">
                                     @include('flash::message')
                                  </div>
                                     <div class="form-group mb-50">
                                         <label class="text-bold-600" for="exampleInputEmail1">Email</label>
-                                        <input type="email" class="form-control" id="username" name="username"
+                                        <input type="email"  autocomplete="new_password" class="form-control" id="username" name="username"
                                             placeholder="Email address"></div>
                                     <div class="form-group">
-                                        <label class="text-bold-600" for="exampleInputPassword1">Password</label>
-                                        <input type="password" class="form-control" id="password" name="password"
+                                        <label class="text-bold-600"  for="exampleInputPassword1">Password</label>
+                                        <input type="password" autocomplete="new_password" class="form-control" id="password" name="password"
                                             placeholder="Password">
                                     </div>
                                     <div

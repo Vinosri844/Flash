@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Hash;
+use App\User;
 use Validator;
 use DB, Auth, Session;
 
@@ -46,55 +47,35 @@ class LoginController extends Controller
         return view('login');
     }
 
-    public function loginSubmit(Request $request)
+    public function login_submit(Request $request)
     { 
         try{
-
-            if($request->isMethod('post'))
-            {
-                $validator = Validator::make($request->input(), [
-                    'username' => 'required',
-                    'password' => 'required'
-                ]);
-                
-                // if form validation errors
-                if ($validator->fails()) {
-                    return redirect()->route('login')
-                                ->withErrors($validator)
-                                ->withInput();
-                }
+            $validator = Validator::make($request->all(), [
+                'username' => 'required',
+                'password' => 'required'
+            ]);
+            if($validator->fails()){
+                flash()->error('Please fill Username and Password');
+                return redirect()->back();
+            }
             
-                $username = $request->input('username');
-                $password = $request->input('password'); 
-
-                $user = DB::table('manager')->Where('manager_emailid', '=', $username)->first(); //dd($user->manager_password);
-               
-                if(!empty($user))
-                { 
-                       //dd(Hash::check($password, $user->manager_password));
-
-                        if (!Hash::check($password, $user->manager_password))
-                        { 
-                            flash()->success('User logged in Successfully!');
+            $user = User::where('manager_emailid', $request->username)->first();
+                if($user){
+                    if(Hash::check($request->password, $user->manager_password)){
+                        
+                        Auth::login($user);
+                        if(Auth::check()){
                             return redirect()->route('category');
-                            
                         }
-                        else{
-                            flash()->success('Password is incorrect!');
-                            return redirect()->route('login');
-                        }
+                        
+                    }
+                    flash()->warning("Incorrect Password");
+                    return redirect()->back();
                    
                 }
-                else{
-                    flash()->success('Account does not exists!');
-                    return redirect()->route('login');
-                }
+                flash()->warning("User doesn't Exists");
+                return redirect()->back();
             }
-            else{
-                flash()->success('Invalid Method!');
-                return redirect()->route('login');
-            }
-        }
         Catch(\Exception $e)
         { dd($e);
             DB::rollback();
@@ -104,14 +85,5 @@ class LoginController extends Controller
     }
 
 
-    public function logout(Request $request) {
-        if(Auth::check()) {
-			$user_data = User::find(Auth::user()->user_id);
-			//$user_data->user_last_login_on = 0;
-			$user_data->save();
-            Session::flush();
-            Auth::logout();
-        }
-        return redirect()->route('login');
-    }
+    
 }

@@ -7,7 +7,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h2 class="">Edit Sub-Category</h2>
+            <h2 class="">Edit {{ucfirst($recipe_subcategory->subcategory_name)}} Sub-Category</h2>
           </div>
           <div class="card-content">
             <div class="card-body">

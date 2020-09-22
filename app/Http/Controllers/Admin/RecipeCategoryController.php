@@ -16,8 +16,13 @@ class RecipeCategoryController extends Controller
      */
     public function index()
     {
-        $recipe_category = RecipeCategory::where('isdelete', 0)->orderBy('recipe_category_id', 'desc')->get();
-        return view('recipe_category.recipeCategory')->with('recipe_category', $recipe_category);
+        try {
+            $recipe_category = RecipeCategory::where('isdelete', 0)->orderBy('recipe_category_id', 'desc')->get();
+            return view('recipe_category.recipeCategory')->with('recipe_category', $recipe_category);
+        } catch (\Throwable $th) {
+            flash()->error('Something went Wrong Please Try Again!');
+            return redirect()->route('recipe-category.index');
+        }
     }
 
     /**
@@ -54,9 +59,13 @@ class RecipeCategoryController extends Controller
             $request->merge(['isactive' => $active, 'user_id' => 1]);
             $recipe_category = RecipeCategory::create($request->all());
             if($recipe_category){
-                user_logs('Recipe Category', 'Insert', "Insert Recipe Category - ". $request->category_name, 'recipe_category_master', $recipe_category->recipe_category_id);
+                $user = user_logs('Recipe Category', 'Insert', "Insert Recipe Category - ". $request->category_name, 'recipe_category_master', $recipe_category->recipe_category_id);
+                if($user){
+                    flash()->success('Recipe Category Created Successfully!');
+                    return redirect()->route('recipe-category.index');
+                }
             }
-            flash()->success('Recipe Category Created Successfully!');
+            flash()->error('Something went Wrong Please Try Again!');
             return redirect()->route('recipe-category.index');
         } catch (\Throwable $th) {
             flash()->error('Something went Wrong Please Try Again!');
@@ -110,12 +119,15 @@ class RecipeCategoryController extends Controller
             $request->merge(['isactive' => $active, 'user_id' => 1]);
             $recipe_category = RecipeCategory::findOrFail($recipeCategory->recipe_category_id)->update($request->all());
             if($recipe_category){
-                user_logs('Recipe Category', 'Update', "Update Recipe Category - ". $request->category_name, 'recipe_category_master', $recipeCategory->recipe_category_id);
+                $user = user_logs('Recipe Category', 'Update', "Update Recipe Category - ". $request->category_name, 'recipe_category_master', $recipeCategory->recipe_category_id);
+                if($user){
+                    flash()->success('Recipe Category Updated Successfully!');
+                    return redirect()->route('recipe-category.index');
+                }
             }
-            flash()->success('Recipe Category Updated Successfully!');
+            flash()->error('Something went Wrong Please Try Again!');
             return redirect()->route('recipe-category.index');
         } catch (\Throwable $th) {
-            // dd($th);
             flash()->error('Something went Wrong Please Try Again!');
             return redirect()->route('recipe-category.index');
         }
@@ -133,12 +145,15 @@ class RecipeCategoryController extends Controller
             $recipe_category = RecipeCategory::findOrFail($recipeCategory->recipe_category_id);
             $recipe_category->isdelete = 1;
             if($recipe_category->save()){
-
+                $user = user_logs('Recipe Category', 'Trash', "Delete Recipe Category - ". $recipe_category->category_name, 'recipe_category_master', $recipeCategory->recipe_category_id);
+                if($user){
+                    flash()->info('Recipe Category Deleted Successfully!');
+                    return redirect()->route('recipe-category.index');
+                }
             }
-            flash()->info('Recipe Category Deleted Successfully!');
+            flash()->error('Something went Wrong Please Try Again!');
             return redirect()->route('recipe-category.index');
         } catch (\Throwable $th) {
-            //throw $th;
             flash()->error('Something went Wrong Please Try Again!');
             return redirect()->route('recipe-category.index');
         }

@@ -58,7 +58,7 @@
                                                         </label>
                                                       </div>    
                                                 </td>
-                                                <td>{{ $item->created_date_time }}</td>
+                                                <td style="white-space: nowrap;">{{ $item->created_date_time }}</td>
                                                 <td>
                                                     <div  style="display:inline-flex">
                                                     <form action="{{ route('recipe-sub-category.edit', $item->recipe_subcategory_id) }}" method="get">

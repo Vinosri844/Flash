@@ -18,8 +18,13 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::where('isdelete', 0)->orderBy('customer_id', 'desc')->get();
-        return view('customer.customer')->with('customers', $customers);
+        try {
+            $customers = Customer::where('isdelete', 0)->orderBy('customer_id', 'desc')->get();
+            return view('customer.customer')->with('customers', $customers);
+        } catch (\Throwable $th) {
+            flash()->error("Something Went Wrong!");
+            return redirect()->back();
+        }
     }
 
     /**
@@ -52,11 +57,11 @@ class CustomerController extends Controller
     public function show(Customer $customer)
     {
         try {
-        
-        $customer = Customer::findOrFail($customer->customer_id);
-        return view('customer.customer_edit')->with('customer', $customer);
+            $customer = Customer::findOrFail($customer->customer_id);
+            return view('customer.customer_edit')->with('customer', $customer);
         } catch (\Throwable $th) {
-            dd($th);
+            flash()->error("Something Went Wrong!");
+            return redirect()->back();
         }
     }
 
@@ -110,7 +115,8 @@ class CustomerController extends Controller
         // dd($customer);
         return view('address.customerAddress')->with(['address' => $addresses, 'customer' => $customer]);
        } catch (\Throwable $th) {
-           dd($th);
+            flash()->error("Something Went Wrong!");
+            return redirect()->back();
        }
     }
 
@@ -125,7 +131,8 @@ class CustomerController extends Controller
         // dd($customer);
         return view('order.customerOrder')->with(['orders' => $orders, 'customer' => $customer]);
        } catch (\Throwable $th) {
-           dd($th);
+            flash()->error("Something Went Wrong!");
+            return redirect()->back();
        }
     }
 }

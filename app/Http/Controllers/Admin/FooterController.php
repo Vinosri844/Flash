@@ -15,8 +15,13 @@ class FooterController extends Controller
      */
     public function index()
     {
-        $footer = Footer::first();
-        return view('setting.footerSetting')->with(['footer' => $footer]);
+        try {
+            $footer = Footer::first();
+            return view('setting.footerSetting')->with(['footer' => $footer]);
+        } catch (\Throwable $th) {
+            flash()->error('Something Went wrong Please Try Again!');
+            return redirect()->route('footer.index');
+        }
     }
 
     /**
@@ -72,11 +77,14 @@ class FooterController extends Controller
     public function update(Request $request, Footer $footer)
     {
         try {
-            Footer::findOrFail($footer->id)->update($request->all());
-            flash()->success('Footer Settings Updated Successfully!');
+            $footer = Footer::findOrFail($footer->id)->update($request->all());
+            if($footer){
+                flash()->success('Footer Settings Updated Successfully!');
+                return redirect()->route('footer.index');
+            }
+            flash()->error('Something Went wrong Please Try Again!');
             return redirect()->route('footer.index');
         } catch (\Throwable $th) {
-            dd($th);
             flash()->error('Something Went wrong Please Try Again!');
             return redirect()->route('footer.index');
         }

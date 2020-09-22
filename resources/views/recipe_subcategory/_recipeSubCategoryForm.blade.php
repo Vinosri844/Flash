@@ -3,7 +3,7 @@
                 
 <div class="row">
     <div class="col-md-12">
-        <h4 class="card-title mb-0">Recipe Sub-Category Form</h4> <br>
+        {{-- <h4 class="card-title mb-0">Recipe Sub-Category Form</h4> <br> --}}
     </div>
     
   <div class="col-md-6">
