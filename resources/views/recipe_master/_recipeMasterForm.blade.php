@@ -63,16 +63,20 @@
         
       </div>
       <div class="form-group">
-        <fieldset>
+        <fieldset id="recipeMasterImageElement">
             <label for="recipeMasterImage">Upload Offer Image<span class="text-danger"> *</span> </label>
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text" id="recipeMasterImage">Offer Image</span>
             </div>
             <div class="custom-file">
-            <input type="file"  class="custom-file-input" value="" name="recipe_original_image_name" id="recipeMasterImage" aria-describedby="recipeMasterImage">
+            <input type="file"  class="custom-file-input" value="" onchange="imageValidate('#recipeMasterImageUpload', '#recipeMasterImageElement');" name="recipe_original_image_name" id="recipeMasterImageUpload" aria-describedby="recipeMasterImage">
               <label class="custom-file-label" for="recipeMasterImage">Choose file</label>
             </div>
+          </div>
+          <div class="invalid-feedback">
+            <i class="bx bx-radio-circle"></i>
+            Image should be jpg, jpeg Format
           </div>
         </fieldset>
     </div>
@@ -253,7 +257,9 @@
 @push('scripts')
 
 <script>
-  
+  $("#recipeMasterImageUpload").change(function(){
+      $('#submitFormDetails').removeAttr('disabled');
+     })
 </script>
     
 @endpush
