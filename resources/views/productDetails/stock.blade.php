@@ -96,7 +96,6 @@
                                                 </td>
                                                 <td>
                                                     <div  style="display:inline-flex">
-                                                        <button class="btn-outline-info mr-1 eventMasterEdit" data-value="{{ $stock->stock_id }},"  data-toggle="modal" data-target="#eventMasterEdit"><a href="{{ route('product_edit', $stock->stock_id) }}"><i class="bx bxs-edit-alt" data-icon="warning-alt"></i></a></button>
                                                         {{-- <button clas
 s="btn-outline-danger"><i class="bx bx-trash-alt"></i></button> --}}
                                                         <button  onclick = "return confirm('Are you sure wanted to delete this {{$stock->weight_display}} ?')" style="display: inline" class="btn-outline-danger">

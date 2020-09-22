@@ -102,6 +102,9 @@
                   }
               });
           }
+          function set_order_id(id){
+              document.getElementById("orderassignid").value = id;
+          }
           function choose_position(id){
 
               if(id == 1){

@@ -82,7 +82,13 @@ Route::POST('/slider-edit/{id}', 'Admin\SliderController@slider_edit')->name('sl
 Route::get('/slider/{id}/delete','Admin\SliderController@slider_delete')->name('slider_delete');
 
 
-Route::get('/placed_orders', 'Admin\OrderListController@placed_orders')->name('placed_orders');
+Route::get('/placed-orders', 'Admin\OrderListController@placed_orders')->name('placed_orders');
+Route::get('/assign-orders', 'Admin\OrderListController@assign_orders')->name('assign_orders');
+Route::get('/pickup-orders', 'Admin\OrderListController@progress_orders')->name('pickup_orders');
+Route::get('/delivered-orders', 'Admin\OrderListController@delivered_orders')->name('delivered_orders');
+Route::get('/cancel-orders', 'Admin\OrderListController@cancel_orders')->name('cancel_orders');
+Route::post('/assign-order', 'Admin\OrderListController@assign_order')->name('assign_order');
+Route::post('/update-status', 'Admin\OrderListController@update_status')->name('update_status');
 
 
 Route::get('/paymenttypes', 'Admin\PaymentTypeController@index')->name('paymenttypes');

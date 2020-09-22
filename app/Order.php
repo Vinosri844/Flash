@@ -27,4 +27,14 @@ class Order extends Model
     ];
 
     protected $hidden = [];
+    public function order_status() {
+        return $this->belongsTo('\App\OrderDeliveryStatus', 'order_delivery_status_id', 'order_delivery_status_id');
+    }
+    public function customer() {
+        return $this->belongsTo('\App\Customer', 'customer_id', 'customer_id');
+    }
+
+    public function delivery_orders() {
+        return $this->belongsTo('\App\LogisticsOrderManagement', 'order_id', 'order_id');
+    }
 }

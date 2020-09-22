@@ -93,7 +93,15 @@
           </li>
           <li class=" navigation-header"><span>Order</span>
           </li>
-          <li class=" nav-item"><a href="{{ route('placed_orders') }}"><i class="bx bx-receipt" data-icon="warning-alt"></i><span class="menu-title" data-i18n="Sweet Alert">Order list</span></a>
+          <li class=" nav-item"><a href="{{ route('placed_orders') }}"><i class="bx bx-receipt" data-icon="warning-alt"></i><span class="menu-title" data-i18n="Sweet Alert">Placed Orders</span></a>
+          </li>
+          <li class=" nav-item"><a href="{{ route('assign_orders') }}"><i class="bx bx-receipt" data-icon="warning-alt"></i><span class="menu-title" data-i18n="Sweet Alert">Assigned Orders</span></a>
+          </li>
+          <li class=" nav-item"><a href="{{ route('pickup_orders') }}"><i class="bx bx-receipt" data-icon="warning-alt"></i><span class="menu-title" data-i18n="Sweet Alert">Pickup Orders</span></a>
+          </li>
+          <li class=" nav-item"><a href="{{ route('delivered_orders') }}"><i class="bx bx-receipt" data-icon="warning-alt"></i><span class="menu-title" data-i18n="Sweet Alert">Delivered Orders</span></a>
+          </li>
+          <li class=" nav-item"><a href="{{ route('cancel_orders') }}"><i class="bx bx-receipt" data-icon="warning-alt"></i><span class="menu-title" data-i18n="Sweet Alert">Canceled Orders</span></a>
           </li>
           <li class=" nav-item"><a href="{{ route('bulkorder') }}"><i class="bx bx-briefcase-alt" data-icon="morph-map"></i><span class="menu-title" data-i18n="Toastr">Bulk order</span></a>
           </li>
