@@ -92,6 +92,7 @@ class StoreController extends Controller
                 }
             }
             
+            $hash_password = md5($request->store_password . '_$un@k2u@m!s');
 
             $store = new Store;
             $store->seller_name = $store_name;
@@ -106,7 +107,7 @@ class StoreController extends Controller
             $store->seller_fssai_number = $request->store_fssai_num;
             $store->seller_service_tax_number = $request->store_service_tax_num;
             $store->seller_company_image = $company_file_path;
-            $store->seller_password = $request->store_password;
+            $store->seller_password = $hash_password;
             $store->vat_1 = $request->store_val_1;
             $store->vat_2 = $request->store_val_2;
             $store->isactive = $request->store_active == null ? 0 : 1;

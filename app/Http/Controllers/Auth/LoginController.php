@@ -77,7 +77,7 @@ class LoginController extends Controller
                 return redirect()->back();
             }
         Catch(\Exception $e)
-        { dd($e);
+        {   flash()->error("Something Went Wrong!");
             DB::rollback();
             return redirect()->route('login')->with('error', $e->getMessage());
         }
