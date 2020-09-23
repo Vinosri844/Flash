@@ -22,7 +22,7 @@ Route::get('/', 'Auth\LoginController@login')->name('login');
 Route::post('/login', 'Auth\LoginController@login_submit')->name('login.submit');
 
 Route::group(['middleware' => 'auth'], function () {
-    
+
 //category
 Route::get('/category', 'Admin\CategoryController@index')->name('category');
 
@@ -77,7 +77,7 @@ Route::POST('/slider-edit/{id}', 'Admin\SliderController@slider_edit')->name('sl
 Route::get('/slider/{id}/delete','Admin\SliderController@slider_delete')->name('slider_delete');
 
 
-Route::get('/placed-orders', 'Admin\OrderListController@placed_orders')->name('placed_orders');
+Route::get('/placed_orders', 'Admin\OrderListController@placed_orders')->name('placed_orders');
 Route::get('/assign-orders', 'Admin\OrderListController@assign_orders')->name('assign_orders');
 Route::get('/pickup-orders', 'Admin\OrderListController@progress_orders')->name('pickup_orders');
 Route::get('/delivered-orders', 'Admin\OrderListController@delivered_orders')->name('delivered_orders');

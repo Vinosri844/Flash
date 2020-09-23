@@ -56,7 +56,7 @@ class PincodeMasterController extends Controller
         try{
             if($request->isMethod('post')){
                 DB::beginTransaction();
-                $count = PincodeMaster::where('pincode','=',$request->pincode)->count();
+                $count = PincodeMaster::where('pincode','=',$request->pincode)->where('pincode_id','!=',$id)->count();
                 $user = Auth::user();
                 if($count == 0){
                     $sdpincode = PincodeMaster::find($id);
@@ -139,7 +139,7 @@ class PincodeMasterController extends Controller
         try{
             if($request->isMethod('post')){
                 DB::beginTransaction();
-                $count = PincodeMaster::where('pincode','=',$request->pincode)->count();
+                $count = PincodeMaster::where('pincode','=',$request->pincode)->where('pincode_id','!=',$id)->count();
                 $user = Auth::user();
                 if($count == 0){
                     $sdpincode = PincodeMaster::find($id);
