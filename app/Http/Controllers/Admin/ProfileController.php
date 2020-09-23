@@ -111,7 +111,7 @@ class ProfileController extends Controller
             $user->manager_emailid = $request->manager_emailid;
             $user->manager_mobileno = $request->manager_mobileno;
             if($request->manager_password != null){
-                $user->manager_password = Hash::make($request->manager_password);
+                $user->manager_password = md5($request->manager_password . "_Sun@k2u@m!s");
             }
             if($file_path != null){
                 $user->manager_image = $file_path;

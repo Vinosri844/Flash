@@ -58,11 +58,10 @@ class LoginController extends Controller
                 flash()->error('Please fill Username and Password');
                 return redirect()->back();
             }
-            
+            $login_password = md5($request->password . "_Sun@k2u@m!s");
             $user = User::where('manager_emailid', $request->username)->first();
                 if($user){
-                    if(Hash::check($request->password, $user->manager_password)){
-                        
+                    if($login_password == $user->manager_password){
                         Auth::login($user);
                         if(Auth::check()){
                             return redirect()->route('category');
