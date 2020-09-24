@@ -99,7 +99,7 @@
                                                         {{-- <button clas
 s="btn-outline-danger"><i class="bx bx-trash-alt"></i></button> --}}
                                                         <button  onclick = "return confirm('Are you sure wanted to delete this {{$stock->weight_display}} ?')" style="display: inline" class="btn-outline-danger">
-                                                            <a href="{{route('product_delete',['id'=>$stock->stock_id])}}"><i style="color: red" class="bx bx-trash-alt"></i></a>
+                                                            <a href="{{route('stock_delete',['id'=>$stock->stock_id])}}"><i style="color: red" class="bx bx-trash-alt"></i></a>
                                                         </button>
 
                                                     </div>

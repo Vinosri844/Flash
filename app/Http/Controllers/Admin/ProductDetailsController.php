@@ -179,16 +179,38 @@ class ProductDetailsController extends Controller
         }
     }
 
-    public function productdetail_delete($id)
+    public function stock_delete($id)
     {
-        $data = ProductDetails::find($id);
-        $data->isdelete = 1;
-        if($data->save()){
-            flash()->success('Product Veriant Deleted Successfully!');
-            return redirect()->route('productDetails');
+        $data = Stock::find($id);
+        if($data->delete()){
+            flash()->success('Stock Veriant Deleted Successfully!');
+            $productdetail = ProductDetails::find($data->product_details_id);
+            $data['product'] = ProductMaster::find($productdetail->product_id);
+            $data['productdetail'] = $productdetail;
+            $data['seller'] = SellerMaster::find($productdetail->seller_id);
+            $data['weights'] = WeightMaster::where('isactive',1)->where('isdelete',0)->get();
+            $data['stocks'] = DB::table('stock')
+                ->join('weight_master','weight_master.weight_id','=','stock.weight_id')
+                ->where('product_details_id','=',$data->product_details_id)->get();
+            return view('productDetails.stock', $data ?? NULL);
         }
         flash()->error('Please Try Again!');
-        return redirect()->route('productDetails');
+        return redirect()->back();
+
+
+    }
+    public function productdetail_delete($id)
+    {
+            $data = ProductDetails::find($id);
+            $data->isdelete = 1;
+            if($data->save()){
+                flash()->success('Product Veriant Deleted Successfully!');
+                return redirect()->route('productDetails');
+            }
+            flash()->error('Please Try Again!');
+            return redirect()->route('productDetails');
+
+
 
     }
 }
