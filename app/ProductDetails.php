@@ -23,11 +23,11 @@ class ProductDetails extends Model
     protected $hidden = [];
 
     public function product() {
-        return $this->hasMany('\App\ProductMaster', 'product_id', 'product_id');
+        return $this->belongsTo('\App\ProductMaster', 'product_id', 'product_id');
     }
 
     public function seller() {
-        return $this->hasMany('\App\SellerMaster', 'seller_id', 'seller_id');
+        return $this->belongsTo('\App\SellerMaster', 'seller_id', 'seller_id');
     }
 
 }

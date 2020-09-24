@@ -23,6 +23,6 @@ class ProductMaster extends Model
     protected $hidden = [];
 
     public function subcategory() {
-        return $this->hasMany('\App\SubCategory', 'subcategory_id', 'subcategory_id');
+        return $this->belongsTo('\App\SubCategory', 'subcategory_id', 'subcategory_id');
     }
 }

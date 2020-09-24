@@ -185,10 +185,10 @@ class ProductDetailsController extends Controller
         $data->isdelete = 1;
         if($data->save()){
             flash()->success('Product Veriant Deleted Successfully!');
-            return redirect()->route('products');
+            return redirect()->route('productDetails');
         }
         flash()->error('Please Try Again!');
-        return redirect()->route('products');
+        return redirect()->route('productDetails');
 
     }
 }

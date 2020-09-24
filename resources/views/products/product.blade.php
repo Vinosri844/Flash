@@ -42,7 +42,7 @@
                                             <tr>
                                                 <td><input type="checkbox" id="master"></td>
                                                 <td>{{ $k + 1 }}</td>
-                                                <td>{{$item->subcategory[0]['subcategory_name']}}</td>
+                                                <td>{{$item->subcategory->subcategory_name}}</td>
                                                 <td>{{ $item->product_name }}</td>
                                                 <td>{{ $item->product_description }}</td>
                                                 <td>
