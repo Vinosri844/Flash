@@ -56,7 +56,7 @@ Route::get('/product/{id}/delete','Admin\ProductController@product_delete')->nam
 Route::get('/productDetails', 'Admin\ProductDetailsController@index')->name('productDetails');
 Route::get('/productDetails/{id}', 'Admin\ProductDetailsController@productdetail_edit')->name('productDetail_edit');
 Route::post('/productDetails/{id}', 'Admin\ProductDetailsController@productdetail_edit')->name('productDetail_edit_submit');
-Route::get('/productDetails/{id}/delete','Admin\ProductDetailsController@product_delete')->name('productDetail_delete');
+Route::get('/productDetails/{id}/delete','Admin\ProductDetailsController@productdetail_delete')->name('productDetail_delete');
 
 Route::get('/stock/{id}', 'Admin\ProductDetailsController@stock')->name('stock');
 Route::post('/stock/{id}', 'Admin\ProductDetailsController@stock')->name('stock_submit');

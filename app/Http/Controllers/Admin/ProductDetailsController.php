@@ -178,4 +178,17 @@ class ProductDetailsController extends Controller
             return view('productDetails.stock', $data ?? NULL);
         }
     }
+
+    public function productdetail_delete($id)
+    {
+        $data = ProductDetails::find($id);
+        $data->isdelete = 1;
+        if($data->save()){
+            flash()->success('Product Veriant Deleted Successfully!');
+            return redirect()->route('products');
+        }
+        flash()->error('Please Try Again!');
+        return redirect()->route('products');
+
+    }
 }
