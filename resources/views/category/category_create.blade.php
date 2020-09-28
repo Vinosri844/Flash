@@ -25,13 +25,7 @@
                       placeholder="Category Name">
                 </div>
                 </div>
-                <div class="col-6">
-                <div class="form-group mb-50">
-                  <label class="text-bold-600" for="exampleInputEmail1">Category Info(tamil)</label>
-                  <input type="text" id="t_category_name" class="form-control" name="t_category_name"
-                        placeholder="Category Info(tamil)">
-                </div>
-                </div>
+                
                 <div class="col-6">
                 <div class="form-group mb-50">
                   <label class="text-bold-600" for="exampleInputEmail1">Description</label>
@@ -39,7 +33,7 @@
                         placeholder="Description" >
                 </div>
                 </div>
-                  <div class="col-6">
+                  <div class="col-6 mt-2">
                   <div class="form-group" style="display: flex">
                     <label for="eventStatus" class="mr-2">Category Status</label>
                     <div class="custom-control custom-switch custom-switch-glow custom-control-inline">

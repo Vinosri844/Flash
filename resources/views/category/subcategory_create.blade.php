@@ -25,13 +25,7 @@
                         name="subcategory_name" >
                     </div>
                   </div>
-                  <div class="col-6">
-                  <div class="form-group mb-50">
-                  <label class="text-bold-600" for="exampleInputEmail1">SubCategory Info(tamil)</label>
-                      <input type="text" id="t_subcategory_name" class="form-control" name="t_subcategory_name"
-                        placeholder="SubCategory Info(tamil)">
-                    </div>
-                  </div>
+                  
 									<div class="col-6">
                   <div class="form-group mb-50">
                           <label class="form-label">Category</label>
@@ -60,7 +54,7 @@
                         placeholder="Image">
                     </div>
                   </div>
-                  <div class="col-6">
+                  <div class="col-6 mt-2">
                   <div class="form-group" style="display: flex">
                     <label for="eventStatus" class="mr-2">SubCategory Status</label>
                     <div class="custom-control custom-switch custom-switch-glow custom-control-inline">

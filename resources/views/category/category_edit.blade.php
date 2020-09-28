@@ -25,13 +25,7 @@
                         name="category_name" value="{{ $category->category_name }}">
                     </div>
                   </div>
-                  <div class="col-6">
-                  <div class="form-group mb-50">
-                  <label class="text-bold-600" for="exampleInputEmail1">Category Info(tamil)</label>
-                      <input type="text" id="t_category_name" class="form-control" name="t_category_name"
-                        placeholder="Category Info(tamil)" value="{{ $category->t_category_name }}">
-                    </div>
-                  </div>
+                  
                   <div class="col-6">
                   <div class="form-group mb-50">
                   <label class="text-bold-600" for="exampleInputEmail1">Description</label>
@@ -39,7 +33,7 @@
                         placeholder="Description" value="{{ $category->category_description }}">
                     </div>
                   </div>
-                  <div class="col-6">
+                  <div class="col-6 mt-2">
                   <div class="form-group" style="display: flex">
                     <label for="catStatus" class="mr-2">Category Status</label>
                     <?php $check = $category->isactive == 1 ? 'checked' : ''; ?>

@@ -25,13 +25,7 @@
                         name="subcategory_name" value="{{ $category->subcategory_name }}">
                     </div>
                   </div>
-                  <div class="col-6">
-                  <div class="form-group mb-50">
-                  <label class="text-bold-600" for="exampleInputEmail1">SubCategory Info(tamil)</label>
-                      <input type="text" id="t_subcategory_name" class="form-control" name="t_subcategory_name"
-                        placeholder="SubCategory Info(tamil)" value="{{ $category->t_subcategory_name }}">
-                    </div>
-                  </div>
+                  
                   <div class="col-6">
                   <div class="form-group mb-50">
                           <label class="form-label">Category</label>
@@ -72,7 +66,7 @@
                             </div>
                         </div>
                     </div>
-                  <div class="col-6">
+                  <div class="col-6 mt-2">
                   <div class="form-group" style="display: flex">
                     <label for="catStatus" class="mr-2">SubCategory Status</label>
                     <?php $check = $category->isactive == 1 ? 'checked' : ''; ?>

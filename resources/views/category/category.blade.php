@@ -49,7 +49,7 @@
                                                 <td>{{ $item->category_description }}</td>
                                                 <td>
                                                     <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
-                                                        <input type="checkbox" class="custom-control-input" {{$item->isactive == 1 ? 'checked' : ''}} id="customSwitchGlow{{$k}}">
+                                                    <input type="checkbox" class="custom-control-input" {{$item->isactive == 1 ? 'checked' : ''}} value="{{$item->category_id}}" onchange="change_status(this.value, 'category_master', '#customSwitchGlow{{$k}}', 'category_id', 'isactive');" id="customSwitchGlow{{$k}}">
                                                         <label class="custom-control-label" for="customSwitchGlow{{$k}}">
                                                         </label>
                                                       </div>    
