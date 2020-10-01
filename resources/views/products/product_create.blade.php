@@ -170,7 +170,7 @@
                                         </div>
                                         <div class="col-4">
                                             <div class="form-group mb-50">
-                                                <label class="text-bold-600" for="exampleInputEmail1">Other Multiple Image</label>
+                                                <label class="text-bold-600" for="exampleInputEmail1">Other Image</label>
                                                 <input type="file" id="other_image" class="form-control" name="other_image"
                                                        placeholder="Password">
                                             </div>

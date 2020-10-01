@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Imports\CategoryImport;
+use App\Imports\SubCategoryImport;
 use Illuminate\Http\Request;
 use Excel;
 
@@ -19,10 +20,17 @@ class ImportExcelController extends Controller
     public function excel_import(Request $request)
     {
         try {
-           $import = Excel::import(new CategoryImport, request()->file('category'));
-        //    dd($import);
+            $modal_name = $request->name;
+            if($modal_name == 'CategoryImport'){
+                $import = Excel::import(new CategoryImport, request()->file('category'));
+            }
+            if($modal_name == 'SubCategoryImport'){
+                $import = Excel::import(new SubCategoryImport, request()->file('sub_category'));
+            }
+            
             return redirect()->back();
         } catch (\Throwable $th) {
+            // dd($th);
             flash()->error('Something Went Wrong !');
             return redirect()->back();
         }

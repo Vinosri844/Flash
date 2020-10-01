@@ -126,7 +126,7 @@ class ProfileController extends Controller
             flash()->error('Something went Wrong Please Try Again!');
             return redirect()->route('manager.index');
         } catch (\Throwable $th) {
-            dd($th);
+            // dd($th);
             flash()->error('Something went Wrong Please Try Again!');
             return redirect()->route('manager.index');
         }

@@ -42,7 +42,8 @@
                                                 <td>{{ $weight->weight_display}}</td>
                                                 <td>
                                                     <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
-                                                        <input type="checkbox" class="custom-control-input" {{$weight->isactive == 1 ? 'checked' : ''}} id="customSwitchGlow{{$k}}">
+                                                        <input type="checkbox" class="custom-control-input" {{$weight->isactive == 1 ? 'checked' : ''}} 
+                                                        value="{{$weight->weight_id}}"  onchange="change_status(this.value, 'weight_master', '#customSwitchGlow{{$k}}', 'weight_id', 'isactive');" id="customSwitchGlow{{$k}}">
                                                         <label class="custom-control-label" for="customSwitchGlow{{$k}}">
                                                         </label>
                                                     </div>

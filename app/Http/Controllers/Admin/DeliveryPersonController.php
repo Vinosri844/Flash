@@ -183,7 +183,7 @@ class DeliveryPersonController extends Controller
         }
         Catch(\Exception $e)
         {
-            dd($e);
+            // dd($e);
             DB::rollback();
             return redirect()->route('deliverypersons')->with('error', $e->getMessage());
         }
@@ -339,7 +339,7 @@ class DeliveryPersonController extends Controller
         }
         Catch(\Exception $e)
         {
-            dd($e);
+            // dd($e);
             DB::rollback();
             return redirect()->route('deliverypersons')->with('error', $e->getMessage());
         }

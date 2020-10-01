@@ -12,7 +12,11 @@
             <div class="card-header">
                 <p class="card-text">  
                         <div class="row">
-                        <div class="col-sm-9">  <h4 class="card-title">List</h4>
+                        <div class="col-sm-9">  
+                            <button class="btn btn-success float-left" class="btn btn-primary" data-toggle="modal" data-target="#excelUploadSubCat">
+                                &nbsp;&nbsp;Excel &nbsp;&nbsp;
+                               <i class="bx bxs-download" style="vertical-align: initial; transform: rotate(180deg);"></i>
+                            </button>
                             </div> 
                             <div class="col-sm-3">
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventMasterCreate" class="btn btn-primary"><a style="color: #fff" href="{{route('subcategory_create')}}">Create subcategory</a></button>
@@ -83,6 +87,42 @@
     </div>
 </section>
 <!--/ Scroll - horizontal and vertical table -->
+<!-- Modal -->
+<div class="modal fade" id="excelUploadSubCat" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="excelUploadCatLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="excelUploadSubCatLabel">Sub Category Excel Upload</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+    <form action="{{ route('excel_import.index', 'SubCategoryImport') }}" method="post" enctype="multipart/form-data">
+      {{method_field('POST')}}
+        @csrf
+        <div class="modal-body">
+            <fieldset id="categoryOfferError">
+                <label for="catExcelUpload">Upload Excel<span class="text-danger"> *</span> </label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="catExcelUpload">Excel</span>
+                </div>
+                <div class="custom-file">
+                <input type="file"  class="custom-file-input" name="sub_category" id="categoryExcelUpload" aria-describedby="catExcelUpload">
+                  <label class="custom-file-label" for="catExcelUpload">Choose file</label>
+                </div>
+              </div>
+            </fieldset>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary mr-auto" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Upload</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
+
   
 
 @endsection

@@ -553,7 +553,7 @@ class ProductController extends Controller
         }
         Catch(\Exception $e)
         {
-            dd($e);
+            // dd($e);
             DB::rollback();
             return redirect()->route('products')->with('error', $e->getMessage());
         }

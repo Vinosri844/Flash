@@ -55,7 +55,8 @@
                                                 <td>{{ $item->logistics_driving_licence_number }}</td>
                                                 <td>
                                                     <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
-                                                        <input type="checkbox" class="custom-control-input" {{$item->isactive == 1 ? 'checked' : ''}} id="customSwitchGlow{{$k}}">
+                                                        <input type="checkbox" class="custom-control-input" {{$item->isactive == 1 ? 'checked' : ''}}
+                                                        value="{{$item->logistics_id}}"  onchange="change_status(this.value, 'logistics_master', '#customSwitchGlow{{$k}}', 'logistics_id', 'isactive');" id="customSwitchGlow{{$k}}">
                                                         <label class="custom-control-label" for="customSwitchGlow{{$k}}">
                                                         </label>
                                                     </div>

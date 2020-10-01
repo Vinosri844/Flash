@@ -46,7 +46,8 @@
                                                 <td>{{ $notification->customer['customer_device_os']}}</td>
                                                 <td>
                                                     <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
-                                                        <input type="checkbox" class="custom-control-input" {{$notification->customer['isactive'] == 1 ? 'checked' : ''}} id="customSwitchGlow{{$k}}">
+                                                        <input type="checkbox" class="custom-control-input" {{$notification->customer['isactive'] == 1 ? 'checked' : ''}} 
+                                                        value="{{$notification->notification_logs_id}}"  onchange="change_status(this.value, 'notification_logs', '#customSwitchGlow{{$k}}', 'notification_logs_id', 'isactive');" id="customSwitchGlow{{$k}}">
                                                         <label class="custom-control-label" for="customSwitchGlow{{$k}}">
                                                         </label>
                                                     </div>

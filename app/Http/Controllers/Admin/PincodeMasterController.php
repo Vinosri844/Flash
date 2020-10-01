@@ -67,10 +67,10 @@ class PincodeMasterController extends Controller
                     $sdpincode->isactive = isset($request->isactive) ? 1 : 0;
                     $sdpincode->save();
                     DB::commit();
-                    flash()->success(' Pincode Updated Successfully!');
+                    flash()->success('Pincode Updated Successfully!');
                     return redirect()->route('sdpincodes');
                 }else {
-                    flash()->warning(' Pincode Is Already Exist!');
+                    flash()->warning('Pincode Is Already Exist!');
                     return redirect()->route('sdpincodes');
                 }
             }else{
@@ -78,7 +78,7 @@ class PincodeMasterController extends Controller
                 return view('pincode.sdpincode_edit', $data ?? NULL);
             }
         }catch(\Exception $exception){
-            dd($exception);
+            // dd($exception);
             DB::rollback();
             return redirect()->route('sdpincodes')->with('error', $exception->getMessage());
         }
@@ -129,7 +129,7 @@ class PincodeMasterController extends Controller
                 return view('pincode.edpincode_create');
             }
         }catch(\Exception $exception){
-            dd($exception);
+            // dd($exception);
             DB::rollback();
             return redirect()->route('edpincodes')->with('error', $exception->getMessage());
         }
@@ -161,7 +161,7 @@ class PincodeMasterController extends Controller
                 return view('pincode.edpincode_edit', $data ?? NULL);
             }
         }catch(\Exception $exception){
-            dd($exception);
+            // dd($exception);
             DB::rollback();
             return redirect()->route('edpincodes')->with('error', $exception->getMessage());
         }
