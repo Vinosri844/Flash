@@ -138,22 +138,36 @@ class ProductDetailsController extends Controller
     public function stock(Request $request,$productdetails_id){
         if($request->isMethod('post'))
         {
+            $validator = Validator::make($request->all(),[
+                'weight' => 'required',
+                'price' => 'required',
+                'dis_type' => 'required',
+                'discount' => 'required',
+                'non_discout' => 'required'
+            ]);
+            if($validator->fails()){
+                flash()->error('Please fill the required fields !');
+                return redirect()->back();
+            }
             $current_date = date('Y-m-d H:i:s');
             DB::beginTransaction();
           $productdetail = ProductDetails::find($productdetails_id);
-            $stock = new Stock();
+          $stock = new Stock();
           $stock->weight_id = $request->weight;
-          $stock->weight = $request->stock;
+          $stock->weight = $request->weight;
           $stock->date_time = $current_date;
           $stock->product_details_id = $productdetails_id;
           $stock->save();
 
-            $discount = $productdetail->product_details_discount;
+          $discount = $productdetail->product_details_discount;
           $productweight = new ProductWeightDetails();
           $productweight->weight_id = $request->weight;
-          $productweight->seller_price = $request->seller_price;
+          $productweight->seller_price = $request->price;
           $productweight->before_discount_price = $request->price;
-          $productweight->price =round($request->price -(($request->price * $discount)/100));
+          $productweight->discount_type = $request->dis_type;
+          $productweight->discount_value = $request->non_discount;
+          $productweight->m_discount_value = $request->discount;
+          $productweight->price = round($request->price -(($request->price * $discount)/100));
           $productweight->product_details_id = $productdetails_id;
           $productweight->isdelete = 0;
           $productweight->save();
@@ -175,6 +189,7 @@ class ProductDetailsController extends Controller
             $data['stocks'] = DB::table('stock')
                 ->join('weight_master','weight_master.weight_id','=','stock.weight_id')
                 ->where('product_details_id','=',$productdetails_id)->get();
+                $data['product_weight_details'] = ProductWeightDetails::where('product_details_id', $productdetails_id)->first();
             return view('productDetails.stock', $data ?? NULL);
         }
     }

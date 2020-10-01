@@ -20,7 +20,7 @@
                 <div class="row">
                   <div class="col-6">
                   <div class="form-group mb-50">
-                  <label class="text-bold-600" for="exampleInputEmail1">Category Name</label>
+                  <label class="text-bold-600" for="exampleInputEmail1">Category Name<span class="text-danger"> *</span></label>
                       <input type="text" id="category_name" class="form-control" placeholder="Category Name"
                         name="category_name" value="{{ $category->category_name }}">
                     </div>
@@ -55,7 +55,7 @@
                     <div class="col-sm-4">
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                                <label class="form-label">Image</label>
+                                <label class="form-label">Image<span class="text-danger"> *</span></label>
                                 <input type="file" name="category_image" class="form-control">
                                 <input type="hidden" name="old_category_image" value="{{ $category->category_image }}">
                                 <div class="clearfix"></div>

@@ -61,7 +61,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" id="storeOfferMinDiscount">Value</span>
               </div>
-          <input type="number" value="{{ isset($store_offer->min_discount) ? $store_offer->min_discount : '' }}" class="form-control" name="min_discount" placeholder="Min Discount" aria-describedby="storeOfferMinDiscount">
+          <input type="number" step=".01" value="{{ isset($store_offer->min_discount) ? $store_offer->min_discount : '' }}" class="form-control" name="min_discount" placeholder="Min Discount" aria-describedby="storeOfferMinDiscount">
           
         </div>
       </fieldset>
@@ -71,7 +71,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text" id="storeOfferMaxDiscount">Value</span>
               </div>
-          <input type="number" value="{{ isset($store_offer->max_discount) ? $store_offer->max_discount : '' }}" class="form-control" placeholder="Max Discount" name="max_discount" aria-describedby="storeOfferMaxDiscount">
+          <input type="number" step=".01" value="{{ isset($store_offer->max_discount) ? $store_offer->max_discount : '' }}" class="form-control" placeholder="Max Discount" name="max_discount" aria-describedby="storeOfferMaxDiscount">
          
         </div>
       </fieldset>

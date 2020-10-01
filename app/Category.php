@@ -19,7 +19,7 @@ class Category extends Model
     const UPDATED_AT = 'update_date_time';
 
     protected $fillable = [
-        'category_name','category_description','category_image','t_category_name','isactive','isdelete',
+        'category_name','category_description','category_image', 't_category_name','isactive','isdelete',
     ];
 
     protected $hidden = [];

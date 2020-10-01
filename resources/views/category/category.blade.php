@@ -12,10 +12,16 @@
             <div class="card-header">
                 <p class="card-text">  
                         <div class="row">
-                        <div class="col-sm-9">  <h4 class="card-title">List</h4>
+                        <div class="col-sm-6">  
+                            
+                                <button class="btn btn-success float-left" class="btn btn-primary" data-toggle="modal" data-target="#excelUploadCat">
+                                 &nbsp;&nbsp;Excel &nbsp;&nbsp;
+                                <i class="bx bxs-download" style="vertical-align: initial; transform: rotate(180deg);"></i>
+                             </button>
+                           
                             </div> 
-                            <div class="col-sm-3">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventMasterCreate" class="btn btn-primary"><a style="color: #fff" href="{{route('category_create')}}">Create category</a></button>
+                            <div class="col-sm-6">
+                                <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#eventMasterCreate" class="btn btn-primary"><a style="color: #fff" href="{{route('category_create')}}">Create category</a></button>
                             </div>
                             
                         </div></p>   
@@ -33,7 +39,7 @@
                                         <th>Name</th>
                                         <th>Description</th>
                                         <th>Status</th>
-                                        <th>Date</th>
+                                        <th style="white-space: nowrap;">Created Date</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -80,5 +86,45 @@
         </div>
     </div>
 </section>
+
+
+{{-- Excel Import Model --}}
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="excelUploadCat" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="excelUploadCatLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="excelUploadCatLabel">Category Excel Upload</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+    <form action="{{ route('excel_import.index', 'CategoryImport') }}" method="post" enctype="multipart/form-data">
+      {{method_field('POST')}}
+        @csrf
+        <div class="modal-body">
+            <fieldset id="categoryOfferError">
+                <label for="catExcelUpload">Upload Excel<span class="text-danger"> *</span> </label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="catExcelUpload">Excel</span>
+                </div>
+                <div class="custom-file">
+                <input type="file"  class="custom-file-input" name="category" id="categoryExcelUpload" aria-describedby="catExcelUpload">
+                  <label class="custom-file-label" for="catExcelUpload">Choose file</label>
+                </div>
+              </div>
+            </fieldset>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary mr-auto" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Upload</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
 
 @endsection

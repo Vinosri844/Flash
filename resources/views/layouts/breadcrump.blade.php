@@ -19,6 +19,7 @@ if(isset($route[1])){
   }
 }
 }
+// $main_route = collect(request()->segments())->last()
 ?>
 
 

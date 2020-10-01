@@ -13,7 +13,14 @@
                         <form method="post" name="stock_form" id="stock_form" action="{{ route('stock_submit',$productdetail->product_details_id) }}" enctype= multipart/form-data>
                             {{ csrf_field() }}
                         <div class="row">
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
+                                <div class="form-label-group">
+                                    <input type="text" id="product_code" class="form-control" placeholder="Product Code"
+                                name="product_code" value="{{isset($product_weight_details->product_weight_code) ? $product_weight_details->product_weight_code : ''}}">
+                                    <label for="first-name-floating">Product Code</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
                                 <div class="form-label-group">
                                     <label class="form-label">Weights</label>
                                     <select name="weight" id="weight" class="form-control select2_picker" onchange="cat_by_subcategory(this.value)">
@@ -27,29 +34,43 @@
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
-                            <div class="col-sm-3">
-                                <div class="form-label-group">
-                                    <input type="text" id="seller_price" class="form-control" placeholder="Seller Price"
-                                           name="seller_price" >
-                                    <label for="first-name-floating">Price</label>
-                                </div>
-                            </div>
-                                <div class="col-sm-3">
+                            
+                                <div class="col-sm-4">
                                     <div class="form-label-group">
-                                        <input type="text" id="price" class="form-control" placeholder="Price"
+                                        <input type="number" id="price" class="form-control" placeholder="Price"
                                                name="price" >
-                                        <label for="first-name-floating">Price</label>
+                                        <label for="first-name-floating">Product Price</label>
                                     </div>
                                 </div>
-                            <div class="col-sm-3">
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
                                 <div class="form-label-group">
-                                    <input type="text" id="stock" class="form-control" placeholder="Stock"
-                                           name="stock" >
-                                    <label for="first-name-floating">Stock</label>
+                                    <label class="form-label">Discount Type</label>
+                                    <select name="dis_type" id="weight" class="form-control select2_picker">
+                                        <option value="">Select Discount Type</option>
+                                        <option value="1">Percentage</option>
+                                        <option value="2">Rupee</option>
+                        
+                                    </select>
+                                    <div class="clearfix"></div>
                                 </div>
                             </div>
-
-
+                            <div class="col-sm-4">
+                                <div class="form-label-group">
+                                    <input type="number" id="non_discount" class="form-control" placeholder="Non Membership Discount"
+                                           name="non_discount" >
+                                    <label for="first-name-floating">Non Membership Discount</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-label-group">
+                                    <input type="number" id="discount" class="form-control" placeholder="Membership Discount"
+                                           name="discount" >
+                                    <label for="first-name-floating">Membership Discount</label>
+                                </div>
+                            </div>
                         </div>
                          <div class="row">
                              <div class="col-sm-9">

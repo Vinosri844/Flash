@@ -4,7 +4,7 @@
 
 
     <!-- Scroll - horizontal and vertical table -->
-    <h5><b>Extened Pincodes</b></h5> <br />
+    <h5><b>Extended Pincodes</b></h5> <br />
     <section id="horizontal-vertical">
         <div class="row">
             <div class="col-12">
@@ -14,7 +14,7 @@
                             <div class="col-sm-9">  <h4 class="card-title">List</h4>
                             </div>
                             <div class="col-sm-3">
-                                <button type="button" class="btn btn-primary" data-toggle="modal"  class="btn btn-primary"><a style="color: #fff" href="{{route('edpincode_add')}}">Add Extened Pincode</a></button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal"  class="btn btn-primary"><a style="color: #fff" href="{{route('edpincode_add')}}">Add Extended Pincode</a></button>
                             </div>
 
                         </div>

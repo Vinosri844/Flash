@@ -155,7 +155,7 @@
             <li class=" navigation-header"><span>Pincodes</span>
             </li>
             @php $active = (Route::currentRouteName() == 'sdpincodes') ? 'active' : ''; @endphp
-            <li class=" nav-item {{ $active }}"><a href="{{ route('sdpincodes') }}"><i class="bx bx-cog" data-icon="warning-alt"></i><span class="menu-title" data-i18n="Sweet Alert">Standerd Pincode</span></a>
+            <li class=" nav-item {{ $active }}"><a href="{{ route('sdpincodes') }}"><i class="bx bx-cog" data-icon="warning-alt"></i><span class="menu-title" data-i18n="Sweet Alert">Standard Pincode</span></a>
             </li>
             @php $active = (Route::currentRouteName() == 'edpincodes') ? 'active' : ''; @endphp
             <li class=" nav-item {{ $active}}"><a href="{{ route('edpincodes') }}"><i class="bx bx-wrench" data-icon="morph-map"></i><span class="menu-title" data-i18n="Toastr">Extended Pincode</span></a>

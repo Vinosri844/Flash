@@ -41,15 +41,14 @@ class CategoryController extends Controller
             if($request->isMethod('post'))
             {
                 $validator = Validator::make($request->input(), [
-
+                    "category_name" => 'required'
                 ]);
 
                 // if form validation errors
                 if ($validator->fails()) {
                     flash()->error('Please fill the required fields');
-                    return redirect()->route('category')
-                                ->withErrors($validator)
-                                ->withInput();
+                    return redirect()->back();
+                                
                 }
 
                 $active = 0;
@@ -214,15 +213,14 @@ class CategoryController extends Controller
             if($request->isMethod('post'))
             {
                 $validator = Validator::make($request->input(), [
-
+                    "subcategory_name" => "required",
+                    "category_id" => "required"
                 ]);
 
                 // if form validation errors
                 if ($validator->fails()) {
                     flash()->error('Please fill the required fields');
-                    return redirect()->route('subcategory')
-                                ->withErrors($validator)
-                                ->withInput();
+                    return redirect()->back();
                 }
 
                 $active = 0;
@@ -280,7 +278,8 @@ class CategoryController extends Controller
         }
     
         Catch(\Exception $e)
-        { dd($e);
+        { 
+            // dd($e);
             DB::rollback();
             return redirect()->route('subcategory')->with('error', $e->getMessage());
         }

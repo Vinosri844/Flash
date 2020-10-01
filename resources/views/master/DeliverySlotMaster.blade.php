@@ -130,13 +130,15 @@
                       </div>
                 </div>
                 
-                <button type="submit" class="btn btn-primary">Create</button>
-              </form>
+               
+              
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-secondary mr-auto" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create</button>
           
         </div>
+      </form>
       </div>
     </div>
   </div>
@@ -177,13 +179,15 @@
                         </div>
                   </div>
                 
-                <button type="submit" class="btn btn-primary">Update</button>
-              </form>
+                
+             
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-secondary mr-auto" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Update</button>
           
         </div>
+      </form>
       </div>
     </div>
   </div>

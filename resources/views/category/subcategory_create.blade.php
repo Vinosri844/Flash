@@ -20,7 +20,7 @@
                 <div class="row">
                   <div class="col-6">
                   <div class="form-group mb-50">
-                  <label class="text-bold-600" for="exampleInputEmail1">SubCategory Name</label>
+                  <label class="text-bold-600" for="exampleInputEmail1">SubCategory Name<span class="text-danger"> *</span></label>
                       <input type="text" id="subcategory_name" class="form-control" placeholder="SubCategory Name"
                         name="subcategory_name" >
                     </div>
@@ -28,7 +28,7 @@
                   
 									<div class="col-6">
                   <div class="form-group mb-50">
-                          <label class="form-label">Category</label>
+                          <label class="form-label">Category<span class="text-danger"> *</span></label>
                           <select name="category_id" id="category_id" class="form-control select2_picker">
                               <option value="">Select Category</option>
                               @if(isset($cat) && !empty($cat))
@@ -49,7 +49,7 @@
                   </div>
                 <div class="col-6">
                 <div class="form-group mb-50">
-                  <label class="text-bold-600" for="exampleInputEmail1">Image</label>
+                  <label class="text-bold-600" for="exampleInputEmail1">Image<span class="text-danger"> *</span></label>
                       <input type="file" id="subcategory_image" class="form-control" name="subcategory_image"
                         placeholder="Image">
                     </div>

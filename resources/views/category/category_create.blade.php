@@ -20,7 +20,7 @@
                 <div class="row">
                 <div class="col-6">
                 <div class="form-group mb-50">
-                  <label class="text-bold-600" for="exampleInputEmail1">Category name</label>
+                  <label class="text-bold-600" for="exampleInputEmail1">Category name<span class="text-danger"> *</span></label>
                   <input type="text" class="form-control" id="category_name" name="category_name"
                       placeholder="Category Name">
                 </div>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="col-6">
                 <div class="form-group mb-50">
-                  <label class="text-bold-600" for="exampleInputEmail1">Image</label>
+                  <label class="text-bold-600" for="exampleInputEmail1">Image<span class="text-danger"> *</span></label>
                       <input type="file" id="category_image" class="form-control" name="category_image"
                         placeholder="Password">
                         </div>

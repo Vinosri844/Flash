@@ -169,6 +169,7 @@ Route::namespace('Admin')->group(function(){
         Route::get('/selling-invoice', 'ReportController@selling_invoice')->name('selling-invoice.index');
         Route::get('/product-price', 'ReportController@product_price')->name('product-price.index');
         Route::get('/excel/{name}', 'ExportExcelController@excel_download')->name('excel.index');
+        Route::post('/excel-import/{name}', 'ImportExcelController@excel_import')->name('excel_import.index');
     });
 
 });
