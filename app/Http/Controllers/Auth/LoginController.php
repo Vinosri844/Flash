@@ -64,7 +64,7 @@ class LoginController extends Controller
                     if($login_password == $user->manager_password){
                         Auth::login($user);
                         if(Auth::check()){
-                            return redirect()->route('category');
+                            return redirect()->route('dashboard');
                         }
                         
                     }
