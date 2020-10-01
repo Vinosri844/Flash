@@ -143,7 +143,7 @@ class ProductDetailsController extends Controller
                 'price' => 'required',
                 'dis_type' => 'required',
                 'discount' => 'required',
-                'non_discout' => 'required'
+                'non_discount' => 'required'
             ]);
             if($validator->fails()){
                 flash()->error('Please fill the required fields !');
