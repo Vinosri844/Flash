@@ -36,7 +36,7 @@ class PaymentTypeController extends Controller
                 return view('paymenttype.paymenttypes_create');
             }
         }catch(\Exception $exception){
-             dd($exception);
+            //  dd($exception);
             DB::rollback();
             return redirect()->route('paymenttypes')->with('error', $exception->getMessage());
         }
@@ -62,7 +62,7 @@ class PaymentTypeController extends Controller
                 return view('paymenttype.paymenttypes_edit', $data ?? NULL);
             }
         }catch(\Exception $exception){
-              dd($exception);
+            //   dd($exception);
             DB::rollback();
             return redirect()->route('paymenttypes')->with('error', $exception->getMessage());
         }

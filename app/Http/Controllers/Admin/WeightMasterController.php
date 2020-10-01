@@ -45,7 +45,7 @@ class WeightMasterController extends Controller
                 return view('weight.weight_create');
             }
         }catch(\Exception $exception){
-            dd($exception);
+            // dd($exception);
             DB::rollback();
             return redirect()->route('weights')->with('error', $exception->getMessage());
         }
@@ -80,7 +80,7 @@ class WeightMasterController extends Controller
                 return view('weight.weight_edit', $data ?? NULL);
             }
         }catch(\Exception $exception){
-            dd($exception);
+            // dd($exception);
             DB::rollback();
             return redirect()->route('weights')->with('error', $exception->getMessage());
         }
