@@ -312,7 +312,7 @@ class StoreController extends Controller
                 // $branch->seller_branch_country ='';
                 $branch->seller_branch_city = $request->store_branch_city;
                 $branch->seller_branch_contact_no = $request->store_mobile_number;
-                $branch->seller_branch_emailid = $request->store_email;
+                // $branch->seller_branch_emailid = $request->store_email;
                 $branch->seller_id = $store->seller_id;
                 $branch->seller_branch_type = $request->store_branch_type;
                 $branch->isactive = 1;
