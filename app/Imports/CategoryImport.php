@@ -18,8 +18,8 @@ class CategoryImport implements ToModel
         return new Category([
             
                 'category_name' => $row[0],
-                // 'category_description' => $row[1],
-                // 'isactive' => $row[2],
+                'category_description' => $row[1],
+                'isactive' => $row[2],
                 
            
         ]);

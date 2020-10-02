@@ -16,7 +16,10 @@ class SubCategoryImport implements ToModel
     {
         return new SubCategory([
             'category_id' => $row[0],
-            // 'subcategory_name' => $row[1]
+            'subcategory_name' => $row[1],
+            'subcategory_description' => $row[2],
+            'isactive' => $row[3]
         ]);
+        
     }
 }

@@ -7,6 +7,8 @@ use App\Imports\CategoryImport;
 use App\Imports\SubCategoryImport;
 use Illuminate\Http\Request;
 use Excel;
+// use Input;
+use App\Category;
 
 class ImportExcelController extends Controller
 {
@@ -23,14 +25,15 @@ class ImportExcelController extends Controller
             $modal_name = $request->name;
             if($modal_name == 'CategoryImport'){
                 $import = Excel::import(new CategoryImport, request()->file('category'));
+               
             }
             if($modal_name == 'SubCategoryImport'){
                 $import = Excel::import(new SubCategoryImport, request()->file('sub_category'));
             }
-            
+            flash()->success('Excel Datas Created Successfully !');
             return redirect()->back();
         } catch (\Throwable $th) {
-            // dd($th);
+            dd($th);
             flash()->error('Something Went Wrong !');
             return redirect()->back();
         }
