@@ -37,12 +37,14 @@
                                         <th>S.No</th>
                                         <th>Store name</th>
                                         <th>Image</th>
-                                        <th>Service Tax No</th>
+                                        {{-- <th>Service Tax No</th>
                                         <th>GST No</th>
                                         <th>CST No</th>
                                         <th>FSSAI No</th>
-                                        <th>PAN No</th>
+                                        <th>PAN No</th> --}}
                                         <th>Status</th>
+                                        <th style="white-space: nowrap;">&nbsp;&nbsp;Created On&nbsp;&nbsp;</th>
+
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -53,19 +55,22 @@
                                                 <td><input type="checkbox" id="master"></td>
                                                 <td>{{ $k + 1 }}</td>
                                                 <td>{{ $item->seller_name }}</td>
-                                                <td><img src="{{ asset('image/sellerpancard/OriginalImage/') }}/{{$item->seller_pan_number_image}} " width="100%" alt="" srcset=""></td>
+                                                <td><img src="{{ asset('/image/sellercompanylogo/OriginalImage/') }}/{{$item->seller_company_image}} " width="30%" alt="" srcset=""></td>
                                                 
-                                                <td>{{ $item->seller_service_tax_number }}</td>
+                                                {{-- <td>{{ $item->seller_service_tax_number }}</td>
                                                 <td>{{ $item->seller_gst_tin_number }}</td>
                                                 <td>{{ $item->seller_cst_tin_number }}</td>
                                                 <td>{{ $item->seller_fssai_number }}</td>
-                                                <td>{{ $item->seller_pan_number }}</td>
+                                                <td>{{ $item->seller_pan_number }}</td> --}}
                                                 <td>
                                                     <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
                                                         <input type="checkbox" class="custom-control-input" {{$item->isactive == 1 ? 'checked' : ''}} value="{{$item->seller_id}}"  onchange="change_status(this.value, 'seller_master', '#storeStatusChange{{$item->seller_id}}', 'seller_id', 'isactive');" id="storeStatusChange{{$item->seller_id}}">
                                                         <label class="custom-control-label" for="storeStatusChange{{$item->seller_id}}">
                                                         </label>
                                                       </div>    
+                                                </td>
+                                                <td>
+                                                    {{ $item->registration_date_time }}
                                                 </td>
                                                 <td>
                                                     <div  style="display:inline-flex">

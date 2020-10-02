@@ -48,7 +48,7 @@ class StoreController extends Controller
                 'store_name' => 'required',
                 'store_email' => 'required',
                 'store_password' => 'required',
-                'store_pan_image' => 'required|mimes:jpeg,jpg|max:2000',
+                'store_pan_image' => 'mimes:jpeg,jpg|max:2000',
                 'store_company_logo' => 'required|mimes:jpeg,jpg|max:2000',
             ]);
             
@@ -215,7 +215,6 @@ class StoreController extends Controller
         try {
             $validator = Validator::make($request->all(),[
                 'store_name' => 'required',
-                'store_email' => 'required',
                 'store_pan_image' => 'mimes:jpeg,jpg|max:2000',
                 'store_company_logo' => 'mimes:jpeg,jpg|max:2000',
                 

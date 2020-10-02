@@ -19,15 +19,17 @@
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-6">
-                                            <div class="form-label-group">
+
+                                            <div class="form-group">
+                                                <label for="first-name-floating">Product Name<span class="text-danger"> *</span></label>
                                                 <input type="text" id="product_name" class="form-control" placeholder="Product Name"
                                                        name="product_name" >
-                                                <label for="first-name-floating">Product Name</label>
+                                                
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <div class="form-label-group">
-                                                <label class="form-label">Category</label>
+                                            <div class="form-group">
+                                                <label class="form-label">Category<span class="text-danger"> *</span></label>
                                                 <select name="category_id" id="category_id" class="form-control select2_picker" onchange="cat_by_subcategory(this.value)">
                                                     <option value="">Select Category</option>
                                                     @if(isset($category) && !empty($category))
@@ -40,8 +42,8 @@
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <div class="form-label-group">
-                                                <label class="form-label">Sub-Category</label>
+                                            <div class="form-group">
+                                                <label class="form-label">Sub-Category<span class="text-danger"> *</span></label>
                                                 <select name="subcat_id" id="subcat_id" class="form-control select2_picker">
                                                     <option value="">Select Sub-Category</option>
 
@@ -51,7 +53,8 @@
                                         </div>
 
                                         <div class="col-6">
-                                                <div class="form-label-group">
+                                                <div class="form-group">
+                                                    <label for="">Select Store<span class="text-danger"> *</span></label>
                                                     <select class="mul-select" name="productstore_id[]" id="productstore_id" style="width: 100%" multiple="true">
                                                         @if(isset($seller) && !empty($seller))
                                                             @foreach($seller as $k => $val)
@@ -62,17 +65,19 @@
                                                 </div>
                                         </div>
                                         <div class="col-6">
-                                            <div class="form-label-group">
+                                            <div class="form-group">
+                                                <label for="first-name-floating">Optional Name</label>
                                                 <input type="text" id="optional_name" class="form-control" placeholder="Optional Name"
                                                        name="optional_name" >
-                                                <label for="first-name-floating">Optional Name</label>
+                                                
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <div class="form-label-group">
+                                            <div class="form-group">
+                                                <label for="contact-info-floating">Description</label>
                                                 <input type="text" id="product_short_description" class="form-control" name="product_short_description"
                                                        placeholder="Description" >
-                                                <label for="contact-info-floating">Description</label>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -109,24 +114,27 @@
                                             </div>
                                         </div>
                                         <div class="col-4">
-                                            <div class="form-label-group">
+                                            <div class="form-group">
+                                                <label for="first-name-floating">Product Title<span class="text-danger"> *</span></label>
                                                 <input type="text" id="product_title" class="form-control" placeholder="Product Title"
                                                        name="product_title" >
-                                                <label for="first-name-floating">Product Title</label>
+                                                
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <div class="form-label-group">
+                                            <div class="form-group">
+                                                <label for="first-name-floating">Ingredients</label>
                                             <textarea type="text" id="ingredients" class="form-control" placeholder="Ingredients"
                                                       name="ingredients" cols="30" rows="4"></textarea>
-                                                <label for="first-name-floating">Ingredients</label>
+                                                
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <div class="form-label-group">
+                                            <div class="form-group">
+                                                <label for="first-name-floating">Remarks</label>
                                             <textarea type="text" id="remarks" class="form-control" placeholder="Remarks"
                                                       name="remarks" cols="30" rows="4"></textarea>
-                                                <label for="first-name-floating">Remarks</label>
+                                                
                                             </div>
                                         </div>
                                     </div>

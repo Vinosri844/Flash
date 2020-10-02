@@ -27,8 +27,8 @@
     <script>
         $("form input[type='file']").change(function(){
          var image = $("input[name='store_company_logo']").val();
-         var panimage = $("input[name='store_pan_image']").val();
-         if(image != '' && panimage != ''){
+        //  var panimage = $("input[name='store_pan_image']").val();
+         if(image != ''){
           $('#submitFormDetails').removeAttr('disabled');
          }else{
           $('#submitFormDetails').attr('disabled', true);

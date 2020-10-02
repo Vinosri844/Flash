@@ -14,15 +14,16 @@
                             {{ csrf_field() }}
                         <div class="row">
                             <div class="col-sm-4">
-                                <div class="form-label-group">
+                                <div class="form-group">
+                                    <label for="first-name-floating">Product Code</label>
                                     <input type="text" id="product_code" class="form-control" placeholder="Product Code"
                                 name="product_code" value="{{$product_code}}">
-                                    <label for="first-name-floating">Product Code</label>
+                                    
                                 </div>
                             </div>
                             <div class="col-sm-4">
-                                <div class="form-label-group">
-                                    <label class="form-label">Weights</label>
+                                <div class="form-group">
+                                    <label class="form-label">Weights<span class="text-danger"> *</span></label>
                                     <select name="weight" id="weight" class="form-control select2_picker" onchange="cat_by_subcategory(this.value)">
                                         <option value="">Select Weight</option>
                                         @if(isset($weights) && !empty($weights))
@@ -36,22 +37,29 @@
                             </div>
 
                                 <div class="col-sm-4">
-                                    <div class="form-label-group">
-                                        <input type="number" id="price" class="form-control" placeholder="Price"
-                                               name="price" >
-                                        <label for="first-name-floating">Product Price</label>
+                                    <div class="form-group">
+                                        <label for="price">Product Price<span class="text-danger"> *</span></label>
+                                        <div class="controls">
+                                        <input type="number" class="form-control"
+                                          id="price" name="price" data-validation-required-message="This field is required" placeholder="Price">
+                                        </div>
+                                      </div>
+                                </div>
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="stock">Stock<span class="text-danger"> *</span></label>
+                                    <div class="controls">
+                                    <input type="number" class="form-control"
+                                      id="stock" name="stock" data-validation-required-message="This field is required" placeholder="Stock">
                                     </div>
-                                </div>
-                            <div class="col-sm-4">
-                                <div class="form-label-group">
-                                    <input type="text" id="stock" class="form-control" placeholder="Stock"
-                                           name="stock" >
-                                    <label for="first-name-floating">Stock</label>
-                                </div>
+                                  </div>
                             </div>
-                            <div class="col-sm-4">
-                                <div class="form-label-group">
-                                    <label class="form-label">Discount Type</label>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="form-label">Discount Type<span class="text-danger"> *</span></label>
                                     <select name="dis_type" id="weight" class="form-control select2_picker">
                                         <option value="">Select Discount Type</option>
                                         <option value="1">Percentage</option>
@@ -61,29 +69,32 @@
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-
-                            <div class="col-sm-4">
-                                <div class="form-label-group">
-                                    <input type="number" id="non_discount" class="form-control" placeholder="Non Membership Discount"
-                                           name="non_discount" >
-                                    <label for="first-name-floating">Non Membership Discount</label>
-                                </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="non_discount">Non Membership Discount<span class="text-danger"> *</span></label>
+                                    <div class="controls">
+                                    <input type="number" name="non_discount" id="non_discount" class="form-control"
+                                       data-validation-required-message="This field is required" placeholder="Value">
+                                    </div>
+                                  </div>
+                                
                             </div>
-                            <div class="col-sm-4">
-                                <div class="form-label-group">
-                                    <input type="number" id="discount" class="form-control" placeholder="Membership Discount"
-                                           name="discount" >
-                                    <label for="first-name-floating">Membership Discount</label>
-                                </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="discount"> Membership Discount<span class="text-danger"> *</span></label>
+                                    <div class="controls">
+                                    <input type="number" name="discount" id="discount" class="form-control"
+                                       data-validation-required-message="This field is required" placeholder="Value">
+                                    </div>
+                                  </div>
+                               
                             </div>
                         </div>
                          <div class="row">
                              <div class="col-sm-9">
                              </div>
                              <div class="col-sm-3">
-                                 <button type="submit"  class="btn btn-primary"><a style="color: #fff">Add Stock</a></button>
+                                 <button type="submit"  class="btn btn-primary float-right"><a style="color: #fff">Add Stock</a></button>
                              </div>
                          </div>
                         </form>
@@ -119,7 +130,8 @@
                                                 <td>{{ $stock->weight }}</td>
                                                 <td>
                                                     <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
-                                                        <input type="checkbox" class="custom-control-input" {{$stock->isactive == 1 ? 'checked' : ''}} id="customSwitchGlow{{$k}}">
+                                                        <input type="checkbox" class="custom-control-input" {{$stock->isactive == 1 ? 'checked' : ''}}
+                                                        value="{{$stock->stock_id}}"  onchange="change_status(this.value, 'stock', '#customSwitchGlow{{$k}}', 'stock_id', 'isactive');" id="customSwitchGlow{{$k}}">
                                                         <label class="custom-control-label" for="customSwitchGlow{{$k}}">
                                                         </label>
                                                     </div>

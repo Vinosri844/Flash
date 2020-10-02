@@ -33,7 +33,7 @@ class ImportExcelController extends Controller
             flash()->success('Excel Datas Created Successfully !');
             return redirect()->back();
         } catch (\Throwable $th) {
-            dd($th);
+            // dd($th);
             flash()->error('Something Went Wrong !');
             return redirect()->back();
         }

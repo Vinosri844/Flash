@@ -25,7 +25,10 @@ class Stock extends Model
     public function productdetails() {
         return $this->hasMany('\App\ProductDetails', 'product_details_id', 'product_details_id');
     }
-
+    public function weight()
+    {
+        return $this->belongsTo('App\WeightMaster', 'weight_id', 'weight_id');
+    }
     public function weightmaster() {
         return $this->hasMany('\App\WeightMaster', 'weight_id', 'weight_id');
     }
