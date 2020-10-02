@@ -288,7 +288,7 @@ class StoreController extends Controller
             $store->seller_food_licence_number = 'Undefined';
             $store->user_id = 1;
             $store->seller_errand = $request->store_errand;
-            $store->seller_emailid = $request->store_email;
+            // $store->seller_emailid = $request->store_email;
             $store->seller_cart_value = $request->store_min_value;
             if($store->save()){
                 // dd($store->seller_id);   
