@@ -96,7 +96,7 @@ class CategoryController extends Controller
             }
             else{
 
-                $data['category'] = Category::orderBy('category_id', 'desc')->get();
+                $data['category'] = Category::where('isdelete', 0)->orderBy('category_id', 'desc')->get();
                 return view('category.category_create', $data ?? NULL);
             }
         }
@@ -172,7 +172,7 @@ class CategoryController extends Controller
             }
             else{
 
-                $data['category'] = Category::where('category_id', $category_id)->first();
+                $data['category'] = Category::where('isdelete', 0)->where('category_id', $category_id)->first();
                 return view('category.category_edit', $data ?? NULL);
             }
         }
@@ -271,8 +271,8 @@ class CategoryController extends Controller
             }
             else{
 
-                $data['category'] = SubCategory::orderBy('subcategory_id', 'desc')->get();
-                $data['cat'] = Category::orderBy('category_id', 'desc')->get();
+                $data['category'] = SubCategory::where('isdelete', 0)->orderBy('subcategory_id', 'desc')->get();
+                $data['cat'] = Category::where('isdelete', 0)->orderBy('category_id', 'desc')->get();
                 return view('category.subcategory_create', $data ?? NULL);
             }
         }
@@ -289,7 +289,7 @@ class CategoryController extends Controller
     public function catby_subcategory(Request $request){
         $category_id = $request->get('category_id');
         // $categories=DB::select("select * from account where account_role_id = 3 and account_country_id =".$country_id);
-        $subcategories = SubCategory::where('category_id','=',$category_id)->where('isactive',1)->get();
+        $subcategories = SubCategory::where('isdelete', 0)->where('category_id','=',$category_id)->where('isactive',1)->get();
        // dump($subcategories);
         // return view('categories_list',$categories);
 
@@ -359,8 +359,8 @@ class CategoryController extends Controller
             }
             else{
 
-                $data['category'] = SubCategory::where('subcategory_id', $subcategory_id)->first();
-                $data['cat'] = Category::orderBy('category_id', 'desc')->get();
+                $data['category'] = SubCategory::where('isdelete', 0)->where('subcategory_id', $subcategory_id)->first();
+                $data['cat'] = Category::where('isdelete', 0)->orderBy('category_id', 'desc')->get();
                 return view('category.subcategory_edit', $data ?? NULL);
             }
         }
