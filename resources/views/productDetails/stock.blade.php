@@ -16,7 +16,7 @@
                             <div class="col-sm-4">
                                 <div class="form-label-group">
                                     <input type="text" id="product_code" class="form-control" placeholder="Product Code"
-                                name="product_code" value="{{isset($product_weight_details->product_weight_code) ? $product_weight_details->product_weight_code : ''}}">
+                                name="product_code" value="{{$product_code}}">
                                     <label for="first-name-floating">Product Code</label>
                                 </div>
                             </div>
@@ -34,7 +34,7 @@
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
-                            
+
                                 <div class="col-sm-4">
                                     <div class="form-label-group">
                                         <input type="number" id="price" class="form-control" placeholder="Price"
@@ -42,9 +42,13 @@
                                         <label for="first-name-floating">Product Price</label>
                                     </div>
                                 </div>
-                            
-                        </div>
-                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-label-group">
+                                    <input type="text" id="stock" class="form-control" placeholder="Stock"
+                                           name="stock" >
+                                    <label for="first-name-floating">Stock</label>
+                                </div>
+                            </div>
                             <div class="col-sm-4">
                                 <div class="form-label-group">
                                     <label class="form-label">Discount Type</label>
@@ -52,11 +56,14 @@
                                         <option value="">Select Discount Type</option>
                                         <option value="1">Percentage</option>
                                         <option value="2">Rupee</option>
-                        
+
                                     </select>
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
+
                             <div class="col-sm-4">
                                 <div class="form-label-group">
                                     <input type="number" id="non_discount" class="form-control" placeholder="Non Membership Discount"
@@ -90,6 +97,7 @@
                                     <tr>
                                         <th><input type="checkbox" id="master"></th>
                                         <th>Sr.No</th>
+                                        <th>Product Code</th>
                                         <th>Product Name</th>
                                         <th>Seller name</th>
                                         <th>Weight</th>
@@ -104,6 +112,7 @@
                                             <tr>
                                                 <td><input type="checkbox" id="master"></td>
                                                 <td>{{ $k + 1 }}</td>
+                                                <td>{{$stock->product_weight_code}}</td>
                                                 <td>{{$product->product_name}}</td>
                                                 <td>{{ $seller->seller_name }}</td>
                                                 <td>{{ $stock->weight_display }}</td>

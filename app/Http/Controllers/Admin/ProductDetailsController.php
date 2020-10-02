@@ -155,12 +155,12 @@ class ProductDetailsController extends Controller
           $product = ProductMaster::find($productdetail->product_id);
             $stock = new Stock();
           $stock->weight_id = $request->weight;
-          $stock->weight = $request->weight;
+          $stock->weight = $request->stock;
           $stock->date_time = $current_date;
           $stock->product_details_id = $productdetails_id;
           $stock->save();
           $seller = SellerMaster::find($productdetail->seller_id);
-          $count = ProductWeightDetails::join('product_details','product_details.product_details_id','=','product_weight_details.product_details_id')->where('product_details.seller_id',$seller->id)->count();
+          $count = ProductWeightDetails::join('product_details','product_details.product_details_id','=','product_weight_details.product_details_id')->where('product_details.seller_id','=',$productdetail->seller_id)->count();
           $cnt_weight = $count+1;
             $product_code = substr(strtoupper($seller->seller_name), 0, 2).substr(strtoupper($product->product_name), 0, 2).$seller->id.str_pad($cnt_weight,6,'0',STR_PAD_LEFT);
 
@@ -189,14 +189,25 @@ class ProductDetailsController extends Controller
 
         }else{
             $productdetail = ProductDetails::find($productdetails_id);
-            $data['product'] = ProductMaster::find($productdetail->product_id);
+            $product = ProductMaster::find($productdetail->product_id);
+            $seller = SellerMaster::find($productdetail->seller_id);
+            $data['product'] = $product;
             $data['productdetail'] = $productdetail;
-            $data['seller'] = SellerMaster::find($productdetail->seller_id);
+            $data['seller'] = $seller;
             $data['weights'] = WeightMaster::where('isactive',1)->where('isdelete',0)->get();
-            $data['stocks'] = DB::table('stock')
+            $stocks = DB::table('stock')
                 ->join('weight_master','weight_master.weight_id','=','stock.weight_id')
                 ->where('product_details_id','=',$productdetails_id)->get();
-                $data['product_weight_details'] = ProductWeightDetails::where('product_details_id', $productdetails_id)->first();
+            foreach ($stocks as $stock){
+                $productweightdetail = ProductWeightDetails::where('weight_id',$stock->weight_id)->where('product_details_id',$productdetails_id)->first();
+                $stock->product_weight_details_id = $productweightdetail->product_weight_details_id;
+                $stock->product_weight_code = $productweightdetail->product_weight_code;
+            }
+            $count = ProductWeightDetails::join('product_details','product_details.product_details_id','=','product_weight_details.product_details_id')->where('product_details.seller_id','=',$productdetail->seller_id)->count();
+            $cnt_weight = $count+1;
+            $product_code = substr(strtoupper($seller->seller_name), 0, 2).substr(strtoupper($product->product_name), 0, 2).$seller->id.str_pad($cnt_weight,6,'0',STR_PAD_LEFT);
+            $data['product_code'] = $product_code;
+            $data['stocks'] = $stocks;
             return view('productDetails.stock', $data ?? NULL);
         }
     }
