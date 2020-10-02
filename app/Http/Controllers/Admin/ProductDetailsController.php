@@ -152,14 +152,19 @@ class ProductDetailsController extends Controller
             $current_date = date('Y-m-d H:i:s');
             DB::beginTransaction();
           $productdetail = ProductDetails::find($productdetails_id);
-          $stock = new Stock();
+          $product = ProductMaster::find($productdetail->product_id);
+            $stock = new Stock();
           $stock->weight_id = $request->weight;
           $stock->weight = $request->weight;
           $stock->date_time = $current_date;
           $stock->product_details_id = $productdetails_id;
           $stock->save();
+          $seller = SellerMaster::find($productdetail->seller_id);
+          $count = ProductWeightDetails::join('product_details','product_details.product_details_id','=','product_weight_details.product_details_id')->where('product_details.seller_id',$seller->id)->count();
+          $cnt_weight = $count+1;
+            $product_code = substr(strtoupper($seller->seller_name), 0, 2).substr(strtoupper($product->product_name), 0, 2).$seller->id.str_pad($cnt_weight,6,'0',STR_PAD_LEFT);
 
-          $discount = $productdetail->product_details_discount;
+            $discount = $productdetail->product_details_discount;
           $productweight = new ProductWeightDetails();
           $productweight->weight_id = $request->weight;
           $productweight->seller_price = $request->price;
@@ -168,6 +173,8 @@ class ProductDetailsController extends Controller
           $productweight->discount_value = $request->non_discount;
           $productweight->m_discount_value = $request->discount;
           $productweight->price = round($request->price -(($request->price * $discount)/100));
+          $productweight->product_weight_code = $product_code;
+          $productweight->price =round($request->price -(($request->price * $discount)/100));
           $productweight->product_details_id = $productdetails_id;
           $productweight->isdelete = 0;
           $productweight->save();
