@@ -17,7 +17,7 @@
                                 <div class="form-group">
                                     <label for="first-name-floating">Product Code</label>
                                     <input type="text" id="product_code" class="form-control" placeholder="Product Code"
-                                name="product_code" value="{{$product_code}}">
+                                name="product_code" value="{{isset($product_code) ? $product_code : ''}}">
                                     
                                 </div>
                             </div>
@@ -123,7 +123,7 @@
                                             <tr>
                                                 <td><input type="checkbox" id="master"></td>
                                                 <td>{{ $k + 1 }}</td>
-                                                <td>{{$stock->product_weight_code}}</td>
+                                                <td>{{isset($stock->product_weight_code) ? $stock->product_weight_code : null}}</td>
                                                 <td>{{$product->product_name}}</td>
                                                 <td>{{ $seller->seller_name }}</td>
                                                 <td>{{ $stock->weight_display }}</td>

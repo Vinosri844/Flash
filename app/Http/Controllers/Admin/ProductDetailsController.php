@@ -214,7 +214,9 @@ class ProductDetailsController extends Controller
 
     public function stock_delete($id)
     {
-        $data = Stock::find($id);
+      
+        $data = Stock::findOrFail($id);
+       
         if($data->delete()){
             flash()->success('Stock Veriant Deleted Successfully!');
             $productdetail = ProductDetails::find($data->product_details_id);
