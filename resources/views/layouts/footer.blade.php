@@ -102,9 +102,6 @@
                   }
               });
           }
-          function set_order_id(id){
-              document.getElementById("orderassignid").value = id;
-          }
           function choose_position(id){
 
               if(id == 1){
@@ -114,6 +111,25 @@
                   $("#category_id").prop("disabled", false);
                   $("#homeslider_position").prop("disabled", true);
               }
+          }
+          function set_order_id(id){
+              document.getElementById("orderassignid").value = id;
+          }
+
+          function order_detail(id){
+              $.ajax({
+                  type: "POST",
+                  url: '{{ route('order_detail') }}',
+                  data: {"_token": "{{ csrf_token() }}","order_id":id},
+                  dataType: 'json',
+                  success: function(response) {
+                      //   console.log(response);
+                      $("#orderdetail_model").html(response.html);
+                  },
+                  complete: function() {
+
+                  }
+              });
           }
           $(document).ready(function () {
                   // from http://stackoverflow.com/questions/45888/what-is-the-most-efficient-way-to-sort-an-html-selects-options-by-value-while

@@ -33,6 +33,8 @@
                                         <th>Assign</th>
                                         <th>Amount</th>
                                         <th>status</th>
+                                        <th>Detail</th>
+
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -49,6 +51,11 @@
                                                 <td>{{ $order->delivery_person}}</td>
                                                 <td>{{ $order->final_paid_amount}}</td>
                                                 <td>{{ $order->order_status->order_delivery_status_name}}</td>
+                                                <td>
+                                                    <div  style="display:inline-flex">
+                                                        <button class="btn-outline-info mr-1 OrderDetail" data-value="{{ $order->order_id }}" onclick="order_detail({{$order->order_id}})"  data-toggle="modal" data-target="#OrderDetail"><i class="bx bxs-edit-alt" data-icon="warning-alt"></i></button>
+                                                    </div>
+                                                </td>
                                             </tr>
                                         @endforeach
 
@@ -103,6 +110,10 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="OrderDetail" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="OrderDetail" aria-hidden="true">
+        <div class="modal-dialog" id="orderdetail_model">
 
+        </div>
+    </div>
 
 @endsection

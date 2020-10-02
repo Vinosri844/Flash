@@ -14,11 +14,11 @@
                             {{ csrf_field() }}
                         <div class="row">
                             <div class="col-sm-4">
-                                <div class="form-group">
+                                <div class="form-label-group">
                                     <label for="first-name-floating">Product Code</label>
                                     <input type="text" id="product_code" class="form-control" placeholder="Product Code"
                                 name="product_code" value="{{isset($product_code) ? $product_code : ''}}">
-                                    
+
                                 </div>
                             </div>
                             <div class="col-sm-4">
@@ -45,7 +45,7 @@
                                         </div>
                                       </div>
                                 </div>
-                            
+
                         </div>
                         <div class="row">
                             <div class="col-sm-3">
@@ -77,7 +77,7 @@
                                        data-validation-required-message="This field is required" placeholder="Value">
                                     </div>
                                   </div>
-                                
+
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
@@ -87,7 +87,7 @@
                                        data-validation-required-message="This field is required" placeholder="Value">
                                     </div>
                                   </div>
-                               
+
                             </div>
                         </div>
                          <div class="row">
@@ -138,6 +138,7 @@
                                                 </td>
                                                 <td>
                                                     <div  style="display:inline-flex">
+                                                        <button class="btn-outline-info mr-1 eventMasterEdit" ><a href="{{ route('stock_update', $stock->stock_id) }}"><i class="bx bxs-edit-alt" data-icon="warning-alt"></i></a></button>
                                                         {{-- <button clas
 s="btn-outline-danger"><i class="bx bx-trash-alt"></i></button> --}}
                                                         <button  onclick = "return confirm('Are you sure wanted to delete this {{$stock->weight_display}} ?')" style="display: inline" class="btn-outline-danger">

@@ -80,17 +80,17 @@ class OrderListController extends Controller
         $orders = Order::with('order_status','delivery_orders')->where('order_delivery_status_id',6)->orderby('order_id','desc')->get();
         $data['orders'] = $orders;
         return view('order.cancel_orders',$data);
-     }
+    }
 
 
-     public function assign_order(Request $request){
+    public function assign_order(Request $request){
         try{
             if($request->isMethod('post')) {
 
                 $user = Auth::user();
                 $current_date = date('Y-m-d H:i:s');
 
-              //  dd($request->input());
+                //  dd($request->input());
                 DB::beginTransaction();
                 $order = Order::with('order_status')->find($request->order_id);
                 $order->order_delivery_status_id = 2;
@@ -139,7 +139,7 @@ class OrderListController extends Controller
                         "body" => $request->message,
                         "android_channel_id" => "flash",
                         "type"=> 'ORDER',
-                         "json_data"=>$json_datas
+                        "json_data"=>$json_datas
                     )
                 );
                 $check = \App\Library\CommonLib::send_new_fcm($fields);
@@ -228,63 +228,100 @@ class OrderListController extends Controller
                     $invoicedetail->order_delivery_status_name = $order->order_status->order_delivery_status_name;
                     $invoicedetail->save();
                 }
-                 DB::commit();
+                DB::commit();
                 Session::flash('message', 'Order Status Updated!');
                 return redirect()->route('placed_orders');
             }
         }catch (\Exception $e){
-           // dd($e);
+            // dd($e);
             DB::rollback();
             return redirect()->route('placed_orders')->with('error', $e->getMessage());
         }
-     }
+    }
+    public function order_detail(Request $request){
+        try{
+            $order_id = $request->get('order_id');
+         $order_data = Order::find($order_id);
+         $customer_address = InvoiceMasterData::where('order_id',$order_id)->first();
+        $invoice_details = InvoiceDetailsData::where('order_id',$order_id)->get();
+        $totalqty = 0;
+        $totalprz = 0;
+        $grandtotal = 0;
+        foreach ($invoice_details as $invoice_detail){
+            $invoice_detail->tamt = $invoice_detail->product_qty * $invoice_detail->product_price;
+            $invoice_detail->total = $invoice_detail->product_qty * $invoice_detail->product_price + ROUND(
+                (
+                    ($invoice_detail->product_qty * $invoice_detail->product_price) * $invoice_detail->val_1 / 100),2
+                ) + ROUND(
+                    (
+                        ($invoice_detail->product_qty * $invoice_detail->product_price) * $invoice_detail->val_2 / 100),2
+                ) ;
+            $totalqty = $totalqty+$invoice_detail->product_qty;
+            $totalprz = $totalprz+$invoice_detail->tamt;
+            $grandtotal = $grandtotal+$invoice_detail->total;
+        }
 
+          $data['invoice_details'] = $invoice_details;
+          $data['order'] = $order_data;
+          $data['totalqty'] = $totalqty;
+          $data['totalprz'] = $totalprz;
+          $data['grandtotal'] = $grandtotal;
+          $data['customer_address'] = $customer_address;
+          $data['address1'] = $customer_address->near_by_landmark == "" ? "" : $customer_address->near_by_landmark.",";
 
-     public function update_status(Request $request){
-           try{
-               if($request->isMethod('post')){
-                   $user = Auth::user();
-                   $current_date = date('Y-m-d H:i:s');
+          $view= view('order/orderinvoice')->with($data)->render();
+            return response()->json(['html'=>$view]);
+        }catch(\Exception $e){
+dd($e);
+        }
+    }
 
-                   //  dd($request->input());
-                   DB::beginTransaction();
-                   $order = Order::with('order_status')->find($request->order_id);
-                   $order->order_delivery_status_id = $request->status;
-                   $order->save();
+    public function update_status(Request $request){
+        try{
+            if($request->isMethod('post')){
+                $user = Auth::user();
+                $current_date = date('Y-m-d H:i:s');
 
-                   $orderdetails = OrderDetails::where('order_id',$order->order_id)->get();
-                   foreach ($orderdetails as $orderdetail) {
-                       $orderdetail->order_delivery_status_id = $request->status;
-                       $orderdetail->save();
-                   }
+                //  dd($request->input());
+                DB::beginTransaction();
+                $order = Order::with('order_status')->find($request->order_id);
+                $order->order_delivery_status_id = $request->status;
+                $order->save();
 
-                   $invoicemaster = InvoiceMasterData::where('order_id',$order->order_id)->first();
-                   $invoicemaster->order_delivery_status_id = $request->status;
-                   $invoicemaster->save();
-                   $invoicedetails = InvoiceDetailsData::where('invoice_master_id')->get();
+                $orderdetails = OrderDetails::where('order_id',$order->order_id)->get();
+                foreach ($orderdetails as $orderdetail) {
+                    $orderdetail->order_delivery_status_id = $request->status;
+                    $orderdetail->save();
+                }
 
-                   foreach ($invoicedetails as $invoicedetail){
-                       $invoicedetail->order_delivery_status_id = $request->status;
-                       $invoicedetail->order_delivery_status_name = $order->order_status->order_delivery_status_name;
-                       $invoicedetail->save();
-                   }
-                   DB::commit();
-                  if($request->status == 3){
-                      Session::flash('message', 'Order Status Updated!');
-                      return redirect()->route('assign_orders');
-                  }elseif ($request->status == 4){
-                      Session::flash('message', 'Order Status Updated!');
-                      return redirect()->route('pickup_orders');
-                  }else{
-                      Session::flash('message', 'Order Status Updated!');
-                      return redirect()->route('placed_orders');
-                  }
+                $invoicemaster = InvoiceMasterData::where('order_id',$order->order_id)->first();
+                $invoicemaster->order_delivery_status_id = $request->status;
+                $invoicemaster->save();
+                $invoicedetails = InvoiceDetailsData::where('invoice_master_id')->get();
 
-               }
-           }catch(\Exception $e){
-              // dd($e);
-               DB::rollback();
-               return redirect()->route('assign_orders')->with('error', $e->getMessage());
-           }
-     }
+                foreach ($invoicedetails as $invoicedetail){
+                    $invoicedetail->order_delivery_status_id = $request->status;
+                    $invoicedetail->order_delivery_status_name = $order->order_status->order_delivery_status_name;
+                    $invoicedetail->save();
+                }
+                DB::commit();
+                if($request->status == 3){
+                    Session::flash('message', 'Order Status Updated!');
+                    return redirect()->route('assign_orders');
+                }elseif ($request->status == 4){
+                    Session::flash('message', 'Order Status Updated!');
+                    return redirect()->route('pickup_orders');
+                }else{
+                    Session::flash('message', 'Order Status Updated!');
+                    return redirect()->route('placed_orders');
+                }
+
+            }
+        }catch(\Exception $e){
+            // dd($e);
+            DB::rollback();
+            return redirect()->route('assign_orders')->with('error', $e->getMessage());
+        }
+    }
 }
+

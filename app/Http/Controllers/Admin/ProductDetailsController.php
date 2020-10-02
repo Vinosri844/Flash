@@ -151,41 +151,47 @@ class ProductDetailsController extends Controller
             }
             $current_date = date('Y-m-d H:i:s');
             DB::beginTransaction();
-          $productdetail = ProductDetails::find($productdetails_id);
-          $product = ProductMaster::find($productdetail->product_id);
-            $stock = new Stock();
-          $stock->weight_id = $request->weight;
-          $stock->weight = $request->stock;
-          $stock->date_time = $current_date;
-          $stock->product_details_id = $productdetails_id;
-          $stock->save();
-          $seller = SellerMaster::find($productdetail->seller_id);
-          $count = ProductWeightDetails::join('product_details','product_details.product_details_id','=','product_weight_details.product_details_id')->where('product_details.seller_id','=',$productdetail->seller_id)->count();
-          $cnt_weight = $count+1;
-            $product_code = substr(strtoupper($seller->seller_name), 0, 2).substr(strtoupper($product->product_name), 0, 2).$seller->id.str_pad($cnt_weight,6,'0',STR_PAD_LEFT);
+            $stock_exist = Stock::where('weight_id',$request->weight)->where('product_details_id',$productdetails_id)->first();
+            if($stock_exist != null){
+                $productdetail = ProductDetails::find($productdetails_id);
+                $product = ProductMaster::find($productdetail->product_id);
+                $stock = new Stock();
+                $stock->weight_id = $request->weight;
+                $stock->weight = $request->stock;
+                $stock->date_time = $current_date;
+                $stock->product_details_id = $productdetails_id;
+                $stock->save();
+                $seller = SellerMaster::find($productdetail->seller_id);
+                $count = ProductWeightDetails::join('product_details','product_details.product_details_id','=','product_weight_details.product_details_id')->where('product_details.seller_id','=',$productdetail->seller_id)->count();
+                $cnt_weight = $count+1;
+                $product_code = substr(strtoupper($seller->seller_name), 0, 2).substr(strtoupper($product->product_name), 0, 2).$seller->id.str_pad($cnt_weight,6,'0',STR_PAD_LEFT);
 
-            $discount = $productdetail->product_details_discount;
-          $productweight = new ProductWeightDetails();
-          $productweight->weight_id = $request->weight;
-          $productweight->seller_price = $request->price;
-          $productweight->before_discount_price = $request->price;
-          $productweight->discount_type = $request->dis_type;
-          $productweight->discount_value = $request->non_discount;
-          $productweight->m_discount_value = $request->discount;
-          $productweight->price = round($request->price -(($request->price * $discount)/100));
-          $productweight->product_weight_code = $product_code;
-          $productweight->price =round($request->price -(($request->price * $discount)/100));
-          $productweight->product_details_id = $productdetails_id;
-          $productweight->isdelete = 0;
-          $productweight->save();
+                $discount = $productdetail->product_details_discount;
+                $productweight = new ProductWeightDetails();
+                $productweight->weight_id = $request->weight;
+                $productweight->seller_price = $request->price;
+                $productweight->before_discount_price = $request->price;
+                $productweight->discount_type = $request->dis_type;
+                $productweight->discount_value = $request->non_discount;
+                $productweight->m_discount_value = $request->discount;
+                $productweight->price = round($request->price -(($request->price * $discount)/100));
+                $productweight->product_weight_code = $product_code;
+                $productweight->price =round($request->price -(($request->price * $discount)/100));
+                $productweight->product_details_id = $productdetails_id;
+                $productweight->isdelete = 0;
+                $productweight->save();
 
-          $sellerproductprice = new SellerProductPrice();
-          $sellerproductprice->product_weight_details_id  = $productweight->product_weight_details_id;
-          $sellerproductprice->price =$request->price;
-          $sellerproductprice->date_time = $current_date;
-          $sellerproductprice->save();
-         DB::commit();
-            return redirect()->route('stock',$productdetails_id);
+                $sellerproductprice = new SellerProductPrice();
+                $sellerproductprice->product_weight_details_id  = $productweight->product_weight_details_id;
+                $sellerproductprice->price =$request->price;
+                $sellerproductprice->date_time = $current_date;
+                $sellerproductprice->save();
+                DB::commit();
+                return redirect()->route('stock',$productdetails_id);
+            }else{
+                flash()->error('The Weight is Already Exist!');
+                return redirect()->route('stock',$productdetails_id);
+            }
 
         }else{
             $productdetail = ProductDetails::find($productdetails_id);
@@ -212,6 +218,90 @@ class ProductDetailsController extends Controller
         }
     }
 
+    public function stock_edit(Request $request,$stock_id){
+
+        try{
+            if($request->isMethod('post'))
+            {
+                $validator = Validator::make($request->all(),[
+                    'weight' => 'required',
+                    'price' => 'required',
+                    'dis_type' => 'required',
+                    'discount' => 'required',
+                    'non_discount' => 'required'
+                ]);
+                if($validator->fails()){
+                    flash()->error('Please fill the required fields !');
+                    return redirect()->back();
+                }
+                $current_date = date('Y-m-d H:i:s');
+                $stock = Stock::find($stock_id);
+                $productdetails_id = $stock->product_details_id;
+                $stock_exist = Stock::where('weight_id',$request->weight)->where('product_details_id',$productdetails_id)->where('stock_id','!=',$stock_id)->first();
+                if($stock_exist != null) {
+                    DB::beginTransaction();
+                    $productdetail = ProductDetails::find($productdetails_id);
+                    $product = ProductMaster::find($productdetail->product_id);
+                    $stock = Stock::find($stock_id);
+                    $stock->weight_id = $request->weight;
+                    $stock->weight = $request->stock;
+                    $stock->date_time = $current_date;
+                    $stock->product_details_id = $productdetails_id;
+                    $stock->save();
+                    $productweight_id = $request->productweight_id;
+                    $seller = SellerMaster::find($productdetail->seller_id);
+                    $productweight_detail_id = $request->productweight_id;
+                    $discount = $productdetail->product_details_discount;
+                    $productweight = ProductWeightDetails::find($productweight_detail_id);
+                    $productweight->weight_id = $request->weight;
+                    $productweight->seller_price = $request->price;
+                    $productweight->before_discount_price = $request->price;
+                    $productweight->discount_type = $request->dis_type;
+                    $productweight->discount_value = $request->non_discount;
+                    $productweight->m_discount_value = $request->discount;
+                    $productweight->price = round($request->price -(($request->price * $discount)/100));
+                    $productweight->price =round($request->price -(($request->price * $discount)/100));
+                    $productweight->isdelete = 0;
+                    $productweight->save();
+
+                    $sellerproductprice = new SellerProductPrice();
+                    $sellerproductprice->product_weight_details_id  = $productweight->product_weight_details_id;
+                    $sellerproductprice->price =$request->price;
+                    $sellerproductprice->date_time = $current_date;
+                    $sellerproductprice->save();
+                    DB::commit();
+                    return redirect()->route('stock',$productdetails_id);
+                }else{
+                    flash()->error('The Weight is Already Exist!');
+                    return redirect()->route('stock',$productdetails_id);
+                }
+
+
+            }else{
+                $stock = Stock::find($stock_id);
+                $productdetails_id = $stock->product_details_id;
+                $productdetail = ProductDetails::find($productdetails_id);
+                $product = ProductMaster::find($productdetail->product_id);
+                $seller = SellerMaster::find($productdetail->seller_id);
+                $data['product'] = $product;
+                $data['productdetail'] = $productdetail;
+                $data['seller'] = $seller;
+                $data['weights'] = WeightMaster::where('isactive',1)->where('isdelete',0)->get();
+                $stock = Stock::find($stock_id);
+                $productweight_detail = ProductWeightDetails::where('weight_id',$stock->weight_id)->where('product_details_id',$stock->product_details_id)->first();
+                $data['productweightdetail'] = $productweight_detail;
+                $data['stock'] = $stock;
+                $data['product_code'] = $productweight_detail->product_weight_code;
+                //dd($data);
+                return view('productDetails.stock_edit', $data ?? NULL);
+            }
+        }catch (\Exception $e){
+            dd($e);
+            return redirect()->route('stock',$productdetails_id);
+        }
+
+    }
+
     public function stock_delete($id)
     {
       
@@ -219,14 +309,26 @@ class ProductDetailsController extends Controller
        
         if($data->delete()){
             flash()->success('Stock Veriant Deleted Successfully!');
-            $productdetail = ProductDetails::find($data->product_details_id);
-            $data['product'] = ProductMaster::find($productdetail->product_id);
+             $productdetail = ProductDetails::find($data->product_details_id);
+            $product = ProductMaster::find($productdetail->product_id);
+            $seller = SellerMaster::find($productdetail->seller_id);
+            $data['product'] = $product;
             $data['productdetail'] = $productdetail;
-            $data['seller'] = SellerMaster::find($productdetail->seller_id);
+            $data['seller'] = $seller;
             $data['weights'] = WeightMaster::where('isactive',1)->where('isdelete',0)->get();
-            $data['stocks'] = DB::table('stock')
+            $stocks = DB::table('stock')
                 ->join('weight_master','weight_master.weight_id','=','stock.weight_id')
                 ->where('product_details_id','=',$data->product_details_id)->get();
+            foreach ($stocks as $stock){
+                $productweightdetail = ProductWeightDetails::where('weight_id',$stock->weight_id)->where('product_details_id',$data->product_details_id)->first();
+                $stock->product_weight_details_id = $productweightdetail->product_weight_details_id;
+                $stock->product_weight_code = $productweightdetail->product_weight_code;
+            }
+            $count = ProductWeightDetails::join('product_details','product_details.product_details_id','=','product_weight_details.product_details_id')->where('product_details.seller_id','=',$productdetail->seller_id)->count();
+            $cnt_weight = $count+1;
+            $product_code = substr(strtoupper($seller->seller_name), 0, 2).substr(strtoupper($product->product_name), 0, 2).$seller->id.str_pad($cnt_weight,6,'0',STR_PAD_LEFT);
+            $data['product_code'] = $product_code;
+            $data['stocks'] = $stocks;
             return view('productDetails.stock', $data ?? NULL);
         }
         flash()->error('Please Try Again!');

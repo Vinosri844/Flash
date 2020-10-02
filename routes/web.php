@@ -61,6 +61,8 @@ Route::get('/stock/{id}/delete','Admin\ProductDetailsController@stock_delete')->
 
 Route::get('/stock/{id}', 'Admin\ProductDetailsController@stock')->name('stock');
 Route::post('/stock/{id}', 'Admin\ProductDetailsController@stock')->name('stock_submit');
+Route::get('/stock-update/{id}', 'Admin\ProductDetailsController@stock_edit')->name('stock_update');
+Route::post('/stock-update/{id}', 'Admin\ProductDetailsController@stock_edit')->name('stock_edit_submit');
 
 //delivery
 Route::get('/deliveryperson-add', 'Admin\DeliveryPersonController@deliveryperson_add')->name('deliveryperson_add');
@@ -78,13 +80,14 @@ Route::POST('/slider-edit/{id}', 'Admin\SliderController@slider_edit')->name('sl
 Route::get('/slider/{id}/delete','Admin\SliderController@slider_delete')->name('slider_delete');
 
 
-Route::get('/placed_orders', 'Admin\OrderListController@placed_orders')->name('placed_orders');
+Route::get('/placed-orders', 'Admin\OrderListController@placed_orders')->name('placed_orders');
 Route::get('/assign-orders', 'Admin\OrderListController@assign_orders')->name('assign_orders');
 Route::get('/pickup-orders', 'Admin\OrderListController@progress_orders')->name('pickup_orders');
 Route::get('/delivered-orders', 'Admin\OrderListController@delivered_orders')->name('delivered_orders');
 Route::get('/cancel-orders', 'Admin\OrderListController@cancel_orders')->name('cancel_orders');
 Route::post('/assign-order', 'Admin\OrderListController@assign_order')->name('assign_order');
 Route::post('/update-status', 'Admin\OrderListController@update_status')->name('update_status');
+Route::post('/order_detail', 'Admin\OrderListController@order_detail')->name('order_detail');
 
 
 Route::get('/paymenttypes', 'Admin\PaymentTypeController@index')->name('paymenttypes');
