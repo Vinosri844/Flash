@@ -60,7 +60,7 @@
                                                 <td>{{ $order->order_status->order_delivery_status_name}}</td>
                                                 <td>
                                                     <div  style="display:inline-flex">
-                                                        <button class="btn-outline-info mr-1 OrderDetail" data-value="{{ $order->order_id }}" onclick="order_detail({{$order->order_id}})"  data-toggle="modal" data-target="#OrderDetail"><i class="bx bxs-edit-alt" data-icon="warning-alt"></i></button>
+                                                        <button class="btn-outline-info mr-1 OrderDetail" data-value="{{ $order->order_id }}" onclick="order_detail({{$order->order_id}})"  data-toggle="modal" data-target="#OrderDetail"><i class="bx bx-receipt" data-icon="warning-alt"></i></button>
                                                     </div>
                                                 </td>
 
