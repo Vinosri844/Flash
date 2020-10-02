@@ -68,7 +68,7 @@
       <div class="form-group">
         <label for="storeEmail">Email<span class="text-danger"> *</span></label>
         <div class="controls">
-          <input type="email" value="{{ isset($branch->seller_emailid) ? $branch->seller_emailid : '' }}" {{isset($branch->seller_emailid) ? 'disabled' : ''}} name="store_email" id="storeEmail" class="form-control"
+          <input type="email" value="{{ isset($store->seller_emailid) ? $store->seller_emailid : '' }}" {{isset($store->seller_emailid) ? 'disabled' : ''}} name="store_email" id="storeEmail" class="form-control"
             data-validation-required-message="Must be a valid email" autocomplete="new_password" placeholder="Email">
         </div>
       </div>
