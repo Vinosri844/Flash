@@ -37,8 +37,8 @@
       <div class="form-group">
         <label for="storeConfirmPassword">Repeat password must match<span class="text-danger"> *</span></label>
         <div class="controls">
-          <input type="password" autocomplete="new-password" name="store_confirm_password" id="storeConfirmPassword" data-validation-match-match="store_password"
-            class="form-control" 
+          <input type="password" autocomplete="new-password" name="store_confirm_password" id="storeConfirmPassword" 
+            class="form-control" data-validation-match-match="store_password"
             placeholder="Repeat Password">
         </div>
       </div>
@@ -68,7 +68,7 @@
       <div class="form-group">
         <label for="storeEmail">Email<span class="text-danger"> *</span></label>
         <div class="controls">
-          <input type="email" value="{{ isset($branch->seller_branch_emailid) ? $branch->seller_branch_emailid : '' }}" {{isset($branch->seller_branch_emailid) ? 'disabled' : ''}} name="store_email" id="storeEmail" class="form-control"
+          <input type="email" value="{{ isset($branch->seller_branch_emailid) ? $branch->seller_branch_emailid : '' }}" name="store_email" id="storeEmail" class="form-control"
             data-validation-required-message="Must be a valid email" autocomplete="new_password" placeholder="Email">
         </div>
       </div>
@@ -163,21 +163,21 @@
           @endif
           
           <fieldset id="storePanimageElement">
-            <label for="storePANImage">Upload PAN Card Image<span class="text-danger"> *</span> </label>
-          <div class="input-group" >
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="storePANImage">PAN Image</span>
+              <label for="storePANImage">Upload PAN Card Image</label>
+            <div class="input-group" >
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="storePANImage">PAN Image</span>
+              </div>
+              <div class="custom-file">
+              <input type="file"  class="custom-file-input" onchange="imageValidate('#storePANImageUpload', '#storePanimageElement');" name="store_pan_image" id="storePANImageUpload" aria-describedby="storePANImage" required>
+              <label class="custom-file-label" for="storePANImage">Choose file</label>
+              </div>
             </div>
-            <div class="custom-file">
-            <input type="file"  class="custom-file-input" onchange="imageValidate('#storePANImageUpload', '#storePanimageElement');" name="store_pan_image" id="storePANImageUpload" aria-describedby="storePANImage" required>
-            <label class="custom-file-label" for="storePANImage">Choose file</label>
+            <div class="invalid-feedback">
+              <i class="bx bx-radio-circle"></i>
+              Image should be jpg, jpeg Format
             </div>
-          </div>
-          <div class="invalid-feedback">
-            <i class="bx bx-radio-circle"></i>
-            Image should be jpg, jpeg Format
-          </div>
-        </fieldset>
+          </fieldset>
     </div>
     <div class="col-md-6 mt-1">
         <div class="form-group">
