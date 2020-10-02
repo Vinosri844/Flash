@@ -63,7 +63,7 @@
                                     <select name="dis_type" id="weight" class="form-control select2_picker">
                                         <option value="">Select Discount Type</option>
                                         <option value="1">Percentage</option>
-                                        <option value="2">Rupee</option>
+                                        <option value="2">Amount</option>
 
                                     </select>
                                     <div class="clearfix"></div>
