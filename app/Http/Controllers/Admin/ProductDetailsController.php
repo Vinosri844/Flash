@@ -152,7 +152,7 @@ class ProductDetailsController extends Controller
             $current_date = date('Y-m-d H:i:s');
             DB::beginTransaction();
             $stock_exist = Stock::where('weight_id',$request->weight)->where('product_details_id',$productdetails_id)->first();
-            if($stock_exist != null){
+            if($stock_exist == null){
                 $productdetail = ProductDetails::find($productdetails_id);
                 $product = ProductMaster::find($productdetail->product_id);
                 $stock = new Stock();
@@ -238,7 +238,7 @@ class ProductDetailsController extends Controller
                 $stock = Stock::find($stock_id);
                 $productdetails_id = $stock->product_details_id;
                 $stock_exist = Stock::where('weight_id',$request->weight)->where('product_details_id',$productdetails_id)->where('stock_id','!=',$stock_id)->first();
-                if($stock_exist != null) {
+                if($stock_exist == null) {
                     DB::beginTransaction();
                     $productdetail = ProductDetails::find($productdetails_id);
                     $product = ProductMaster::find($productdetail->product_id);
@@ -260,7 +260,7 @@ class ProductDetailsController extends Controller
                     $productweight->discount_value = $request->non_discount;
                     $productweight->m_discount_value = $request->discount;
                     $productweight->price = round($request->price -(($request->price * $discount)/100));
-                    $productweight->price =round($request->price -(($request->price * $discount)/100));
+                    $productweight->price = round($request->price -(($request->price * $discount)/100));
                     $productweight->isdelete = 0;
                     $productweight->save();
 
@@ -296,17 +296,17 @@ class ProductDetailsController extends Controller
                 return view('productDetails.stock_edit', $data ?? NULL);
             }
         }catch (\Exception $e){
-            dd($e);
-            return redirect()->route('stock',$productdetails_id);
+           // dd($e);
+            return redirect()->route('stock',$productdetails_id)->with($e->getMessage());
         }
 
     }
 
     public function stock_delete($id)
     {
-      
+
         $data = Stock::findOrFail($id);
-       
+
         if($data->delete()){
             flash()->success('Stock Veriant Deleted Successfully!');
              $productdetail = ProductDetails::find($data->product_details_id);

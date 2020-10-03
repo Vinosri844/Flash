@@ -14,13 +14,14 @@
                             {{ csrf_field() }}
                         <div class="row">
                             <div class="col-sm-4">
-                                <div class="form-label-group">
-                                    <label for="first-name-floating">Product Code</label>
-                                    <input type="text" id="product_code" class="form-control" placeholder="Product Code"
-                                name="product_code" value="{{isset($product_code) ? $product_code : ''}}">
-
+                                <div class="form-group">
+                                    <label for="price">Product Code</label>
+                                    <div class="controls">
+                                        <input type="number" disabled class="form-control"
+                                               id="product_code" name="product_code"  placeholder="{{$product_code}}">
+                                    </div>
                                 </div>
-                            </div>
+                        </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label class="form-label">Weights<span class="text-danger"> *</span></label>
