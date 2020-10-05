@@ -49,7 +49,7 @@
                   </div>
                 <div class="col-6">
                 <div class="form-group mb-50">
-                  <label class="text-bold-600" for="exampleInputEmail1">Image<span class="text-danger"> *</span></label>
+                  <label class="text-bold-600" for="exampleInputEmail1">Image</label>
                       <input type="file" id="subcategory_image" class="form-control" name="subcategory_image"
                         placeholder="Image">
                     </div>

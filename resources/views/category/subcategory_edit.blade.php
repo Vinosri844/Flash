@@ -59,7 +59,7 @@
                     <div class="col-sm-4">
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                                <label class="form-label">Image<span class="text-danger"> *</span></label>
+                                <label class="form-label">Image</label>
                                 <input type="file" name="subcategory_image" class="form-control">
                                 <input type="hidden" name="old_subcategory_image" value="{{ $category->subcategory_image }}">
                                 <div class="clearfix"></div>

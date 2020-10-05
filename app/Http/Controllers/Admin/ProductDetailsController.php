@@ -308,7 +308,7 @@ class ProductDetailsController extends Controller
         $data = Stock::findOrFail($id);
 
         if($data->delete()){
-            flash()->success('Stock Veriant Deleted Successfully!');
+            flash()->success('Stock Variant Deleted Successfully!');
              $productdetail = ProductDetails::find($data->product_details_id);
             $product = ProductMaster::find($productdetail->product_id);
             $seller = SellerMaster::find($productdetail->seller_id);
@@ -341,7 +341,7 @@ class ProductDetailsController extends Controller
             $data = ProductDetails::find($id);
             $data->isdelete = 1;
             if($data->save()){
-                flash()->success('Product Veriant Deleted Successfully!');
+                flash()->success('Product Variant Deleted Successfully!');
                 return redirect()->route('productDetails');
             }
             flash()->error('Please Try Again!');
