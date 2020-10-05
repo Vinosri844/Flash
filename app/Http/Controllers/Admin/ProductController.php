@@ -307,7 +307,7 @@ class ProductController extends Controller
             }
             else{
 
-                $data['category'] = Category::orderBy('category_id', 'desc')->get();
+                $data['category'] = Category::orderBy('category_id', 'desc')->where('isdelete',0)->get();
                 $data['subcategory'] = SubCategory::orderBy('subcategory_id', 'desc')->get();
                 $data['seller'] = SellerMaster::where('isactive',1)->where('isdelete',0)->get();
 
@@ -537,7 +537,7 @@ class ProductController extends Controller
             }
             else{
                 $data['product'] = ProductMaster::where('product_id', $product_id)->first();
-                $data['category'] = Category::orderBy('category_id', 'desc')->get();
+                $data['category'] = Category::orderBy('category_id', 'desc')->where('isdelete',0)->get();
                 $data['subcat'] = SubCategory::find($data['product']['subcategory_id']);
                 $data['subcats'] = SubCategory::where('category_id',$data['subcat']['category_id'])->where('isdelete',0)->get();
                 $data['productdetails'] = ProductDetails::where('product_id',$data['product']['product_id'])->where('isdelete',0)->orderby('product_details_id','desc')->get();
