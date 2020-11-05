@@ -19,3 +19,9 @@ button:focus {
     outline: none;
     box-shadow: none;
 }
+
+.tooltip-inner {
+    max-width: 70% !important;
+    margin-left: auto;
+    /* padding: auto; */
+}

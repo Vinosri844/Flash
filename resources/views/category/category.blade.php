@@ -52,7 +52,10 @@
                                                 <?php $img = !empty($item->category_image) ? asset(config('constants.category_img_path1').$item->category_image) : "http://placehold.it/50x50"; ?>
                                                 <td><img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="50" width="50"></td>                                      
                                                 <td>{{ $item->category_name }}</td>
-                                                <td>{{ $item->category_description }}</td>
+                                                <td style=" max-width: 100px; cursor: pointer;
+                                                overflow: hidden;
+                                                text-overflow: ellipsis;
+                                                white-space: nowrap;" data-toggle="tooltip" data-placement="top" title="{{$item->category_description}}">{{ $item->category_description }}</td>
                                                 <td>
                                                     <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
                                                     <input type="checkbox" class="custom-control-input" {{$item->isactive == 1 ? 'checked' : ''}} value="{{$item->category_id}}" onchange="change_status(this.value, 'category_master', '#customSwitchGlow{{$k}}', 'category_id', 'isactive');" id="customSwitchGlow{{$k}}">

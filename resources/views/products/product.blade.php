@@ -32,7 +32,7 @@
                                         <th>Product name</th>
                                         <th>product description</th>
                                         <th>Status</th>
-                                        <th>Date</th>
+                                        <th style="white-space: nowrap;">Created Date</th>
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
@@ -44,7 +44,10 @@
                                                 <td>{{ $k + 1 }}</td>
                                                 <td>{{$item->subcategory['subcategory_name']}}</td>
                                                 <td>{{ $item->product_name }}</td>
-                                                <td>{{ $item->product_description }}</td>
+                                                <td style=" max-width: 100px; cursor: pointer;
+                                                overflow: hidden;
+                                                text-overflow: ellipsis;
+                                                white-space: nowrap;" data-toggle="tooltip" data-placement="top" title="{{$item->product_description}}">{{ $item->product_description }}</td>
                                                 <td>
                                                     <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
                                                         <input type="checkbox" class="custom-control-input" {{$item->isactive == 1 ? 'checked' : ''}}

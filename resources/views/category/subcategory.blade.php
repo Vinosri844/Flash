@@ -52,7 +52,10 @@
                                                 <td><img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="50" width="50"></td>     
                                                 <td>{{ isset($item->category['category_name']) ? $item->category['category_name'] : ''}}</td>
                                                 <td>{{ $item->subcategory_name }}</td>
-                                                <td>{{ $item->subcategory_description }}</td>
+                                                <td style=" max-width: 100px; cursor: pointer;
+                                                overflow: hidden;
+                                                text-overflow: ellipsis;
+                                                white-space: nowrap;" data-toggle="tooltip" data-placement="top" title="{{$item->subcategory_description}}">{{ $item->subcategory_description }}</td>
                                                 <td>
                                                     <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
                                                         <input type="checkbox" class="custom-control-input" {{$item->isactive == 1 ? 'checked' : ''}} value="{{$item->subcategory_id}}" onchange="change_status(this.value, 'subcategory_master', '#customSwitchGlow{{$k}}', 'subcategory_id', 'isactive');" id="customSwitchGlow{{$k}}">
