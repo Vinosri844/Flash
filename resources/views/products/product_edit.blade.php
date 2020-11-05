@@ -192,8 +192,8 @@
                                             <div class="form-group mb-50">
                                                 <?php $img = !empty($productimages->product_original_image_name) ? asset(config('product.category_img_path').$productimages->product_original_image_name) : "http://placehold.it/50x50"; ?>
                                                     <img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="50" width="50">
-                                                <label class="text-bold-600" for="exampleInputEmail1">Other Multiple Image</label>
-                                                <input type="file" id="other_image" class="form-control" name="other_image[]" multiple accept="image/*"
+                                                <label class="text-bold-600" for="exampleInputEmail1">Other Image</label>
+                                                <input type="file" id="other_image" class="form-control" name="other_image" multiple accept="image/*"
                                                        placeholder="Password">
                                             </div>
                                         </div>

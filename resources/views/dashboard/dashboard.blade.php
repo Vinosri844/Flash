@@ -24,8 +24,8 @@
                                                     <div class="badge-circle badge-circle-lg badge-circle-light-success mx-auto mb-50">
                                                         <i class="bx bx-briefcase-alt font-medium-5"></i>
                                                     </div>
-                                                    <div class="text-muted line-ellipsis">New Products</div>
-                                                    <h3 class="mb-0">1.2k</h3>
+                                                    <div class="text-muted">Total Orders Delivered</div>
+                                                    <h3 class="mb-0">{{$delivered_orders}}</h3>
                                                 </div>
                                             </div>
                                         </div>
@@ -37,7 +37,7 @@
                                                     <div class="badge-circle badge-circle-lg badge-circle-light-danger mx-auto mb-50">
                                                         <i class="bx bx-user font-medium-5"></i>
                                                     </div>
-                                                    <div class="text-muted line-ellipsis">New Users</div>
+                                                    <div class="text-muted line-ellipsis">Placed Orders</div>
                                                     <h3 class="mb-0">45.6k</h3>
                                                 </div>
                                             </div>

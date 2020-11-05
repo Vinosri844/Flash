@@ -26,4 +26,9 @@ class Store extends Model
     ];
 
     protected $hidden = [];
+
+    public function branches()
+    {
+        return $this->hasMany('App\SellerBranch', 'seller_id', 'seller_id');
+    }
 }

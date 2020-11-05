@@ -33,15 +33,17 @@ class ProductController extends Controller
             if($request->isMethod('post'))
             {
                 $validator = Validator::make($request->input(), [
-                    'product_name' => 'required'
+                    'product_name' => 'required',
+                    'product_short_description' => 'required',
+                    'productstore_id' => 'required',
+                    'subcat_id' => 'required',
+                    'category_id' => 'required'
                 ]);
 
                 // if form validation errors
                 if ($validator->fails()) {
                     flash()->error('Please fill the required fields');
-                    return redirect()->route('products')
-                        ->withErrors($validator)
-                        ->withInput();
+                    return redirect()->back();
                 }
                 $current_date = date('Y-m-d H:i:s');
 
@@ -184,7 +186,7 @@ class ProductController extends Controller
                             $rules = array('photo' => 'required|mimes:png,jpg,jpeg');
                             $validator = Validator::make(array('photo'=> $photo), $rules);
                             if($validator->passes()) {
-                                $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('product_name'))).'_'.time().'.'.$photo->getClientOriginalExtension();
+                                $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('product_name'))).'_top'.time().'.'.$photo->getClientOriginalExtension();
                                 $file_path = public_path(config('constants.product_img_path').$file_name);
                                 $file_path1 = public_path(config('constants.product_img_path1').$file_name);
                                 $file_path2 = public_path(config('constants.product_img_path2').$file_name);
@@ -205,7 +207,7 @@ class ProductController extends Controller
                             $rules = array('photo' => 'required|mimes:png,jpg,jpeg');
                             $validator = Validator::make(array('photo'=> $photo), $rules);
                             if($validator->passes()) {
-                                $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('product_name'))).'_'.time().'.'.$photo->getClientOriginalExtension();
+                                $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('product_name'))).'_bottom'.time().'.'.$photo->getClientOriginalExtension();
                                 $file_path = public_path(config('constants.product_img_path').$file_name);
                                 $file_path1 = public_path(config('constants.product_img_path1').$file_name);
                                 $file_path2 = public_path(config('constants.product_img_path2').$file_name);
@@ -226,7 +228,7 @@ class ProductController extends Controller
                             $rules = array('photo' => 'required|mimes:png,jpg,jpeg');
                             $validator = Validator::make(array('photo'=> $photo), $rules);
                             if($validator->passes()) {
-                                $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('product_name'))).'_'.time().'.'.$photo->getClientOriginalExtension();
+                                $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('product_name'))).'_right'.time().'.'.$photo->getClientOriginalExtension();
                                 $file_path = public_path(config('constants.product_img_path').$file_name);
                                 $file_path1 = public_path(config('constants.product_img_path1').$file_name);
                                 $file_path2 = public_path(config('constants.product_img_path2').$file_name);
@@ -247,7 +249,7 @@ class ProductController extends Controller
                             $rules = array('photo' => 'required|mimes:png,jpg,jpeg');
                             $validator = Validator::make(array('photo'=> $photo), $rules);
                             if($validator->passes()) {
-                                $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('product_name'))).'_'.time().'.'.$photo->getClientOriginalExtension();
+                                $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('product_name'))).'_left'.time().'.'.$photo->getClientOriginalExtension();
                                 $file_path = public_path(config('constants.product_img_path').$file_name);
                                 $file_path1 = public_path(config('constants.product_img_path1').$file_name);
                                 $file_path2 = public_path(config('constants.product_img_path2').$file_name);
@@ -268,7 +270,7 @@ class ProductController extends Controller
                             $rules = array('photo' => 'required|mimes:png,jpg,jpeg');
                             $validator = Validator::make(array('photo'=> $photo), $rules);
                             if($validator->passes()) {
-                                $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('product_name'))).'_'.time().'.'.$photo->getClientOriginalExtension();
+                                $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('product_name'))).'_other'.time().'.'.$photo->getClientOriginalExtension();
                                 $file_path = public_path(config('constants.product_img_path').$file_name);
                                 $file_path1 = public_path(config('constants.product_img_path1').$file_name);
                                 $file_path2 = public_path(config('constants.product_img_path2').$file_name);
@@ -296,7 +298,7 @@ class ProductController extends Controller
                 if($check) {
                     DB::commit();
                    // flash()->success('Product Created Successfully!');
-                    Session::flash('message', 'Product Created Successfully!');
+                    flash()->success('Product Created Successfully!');
                     return redirect()->route('products');
                 } else {
                    // flash()->error('Please Try Again!');
@@ -307,8 +309,8 @@ class ProductController extends Controller
             }
             else{
 
-                $data['category'] = Category::orderBy('category_id', 'desc')->where('isdelete',0)->get();
-                $data['subcategory'] = SubCategory::orderBy('subcategory_id', 'desc')->get();
+                $data['category'] = Category::where('isdelete', 0)->where('isactive', 1)->orderBy('category_id', 'desc')->get();
+                $data['subcategory'] = SubCategory::where('isdelete', 0)->where('isactive', 1)->orderBy('subcategory_id', 'desc')->get();
                 $data['seller'] = SellerMaster::where('isactive',1)->where('isdelete',0)->get();
 
                 return view('products.product_create', $data ?? NULL);
@@ -379,6 +381,143 @@ class ProductController extends Controller
                 $product->tproduct_name=$tproduct_name;
                 $product->tproduct_description=$tproduct_short_description;
                 $check = $product->save();
+                if($request->hasFile('product_image')) {
+                        $photo = $request->file('product_image');
+
+                        if(isset($photo) && !empty($photo) && $photo->isValid()) {
+                            $rules = array('photo' => 'required|mimes:png,jpg,jpeg');
+                            $validator = Validator::make(array('photo'=> $photo), $rules);
+                            if($validator->passes()) {
+                                $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('product_name'))).'_'.time().'.'.$photo->getClientOriginalExtension();
+                                $file_path = public_path(config('constants.product_img_path').$file_name);
+                                $file_path1 = public_path(config('constants.product_img_path1').$file_name);
+                                $file_path2 = public_path(config('constants.product_img_path2').$file_name);
+
+                                $save_photo = Image::make($photo->getRealPath())->save($file_path);
+                                $save_photo = Image::make($photo->getRealPath())->save($file_path2);
+                                // Resize Image
+                                $save_photo = Image::make($photo->getRealPath())->resize(config('constants.image_width'), config('constants.image_height'))->save($file_path1);
+
+                                $product->product_img = $file_name;
+                            }
+                        }
+                    }
+                    if($request->hasFile('top_image')) {
+                        $photo = $request->file('top_image');
+
+                        if(isset($photo) && !empty($photo) && $photo->isValid()) {
+                            $rules = array('photo' => 'required|mimes:png,jpg,jpeg');
+                            $validator = Validator::make(array('photo'=> $photo), $rules);
+                            if($validator->passes()) {
+                                $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('product_name'))).'_top'.time().'.'.$photo->getClientOriginalExtension();
+                                $file_path = public_path(config('constants.product_img_path').$file_name);
+                                $file_path1 = public_path(config('constants.product_img_path1').$file_name);
+                                $file_path2 = public_path(config('constants.product_img_path2').$file_name);
+
+                                $save_photo = Image::make($photo->getRealPath())->save($file_path);
+                                $save_photo = Image::make($photo->getRealPath())->save($file_path2);
+                                // Resize Image
+                                $save_photo = Image::make($photo->getRealPath())->resize(config('constants.image_width'), config('constants.image_height'))->save($file_path1);
+
+                                $product->top_img = $file_name;
+                            }
+                        }
+                    }
+                    if($request->hasFile('bottom_image')) {
+                        $photo = $request->file('bottom_image');
+
+                        if(isset($photo) && !empty($photo) && $photo->isValid()) {
+                            $rules = array('photo' => 'required|mimes:png,jpg,jpeg');
+                            $validator = Validator::make(array('photo'=> $photo), $rules);
+                            if($validator->passes()) {
+                                $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('product_name'))).'_bottom'.time().'.'.$photo->getClientOriginalExtension();
+                                $file_path = public_path(config('constants.product_img_path').$file_name);
+                                $file_path1 = public_path(config('constants.product_img_path1').$file_name);
+                                $file_path2 = public_path(config('constants.product_img_path2').$file_name);
+
+                                $save_photo = Image::make($photo->getRealPath())->save($file_path);
+                                $save_photo = Image::make($photo->getRealPath())->save($file_path2);
+                                // Resize Image
+                                $save_photo = Image::make($photo->getRealPath())->resize(config('constants.image_width'), config('constants.image_height'))->save($file_path1);
+
+                                $product->bottom_img = $file_name;
+                            }
+                        }
+                    }
+                    if($request->hasFile('right_image')) {
+                        $photo = $request->file('right_image');
+
+                        if(isset($photo) && !empty($photo) && $photo->isValid()) {
+                            $rules = array('photo' => 'required|mimes:png,jpg,jpeg');
+                            $validator = Validator::make(array('photo'=> $photo), $rules);
+                            if($validator->passes()) {
+                                $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('product_name'))).'_right'.time().'.'.$photo->getClientOriginalExtension();
+                                $file_path = public_path(config('constants.product_img_path').$file_name);
+                                $file_path1 = public_path(config('constants.product_img_path1').$file_name);
+                                $file_path2 = public_path(config('constants.product_img_path2').$file_name);
+
+                                $save_photo = Image::make($photo->getRealPath())->save($file_path);
+                                $save_photo = Image::make($photo->getRealPath())->save($file_path2);
+                                // Resize Image
+                                $save_photo = Image::make($photo->getRealPath())->resize(config('constants.image_width'), config('constants.image_height'))->save($file_path1);
+
+                                $product->right_img = $file_name;
+                            }
+                        }
+                    }
+                    if($request->hasFile('left_image')) {
+                        $photo = $request->file('left_image');
+
+                        if(isset($photo) && !empty($photo) && $photo->isValid()) {
+                            $rules = array('photo' => 'required|mimes:png,jpg,jpeg');
+                            $validator = Validator::make(array('photo'=> $photo), $rules);
+                            if($validator->passes()) {
+                                $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('product_name'))).'_left'.time().'.'.$photo->getClientOriginalExtension();
+                                $file_path = public_path(config('constants.product_img_path').$file_name);
+                                $file_path1 = public_path(config('constants.product_img_path1').$file_name);
+                                $file_path2 = public_path(config('constants.product_img_path2').$file_name);
+
+                                $save_photo = Image::make($photo->getRealPath())->save($file_path);
+                                $save_photo = Image::make($photo->getRealPath())->save($file_path2);
+                                // Resize Image
+                                $save_photo = Image::make($photo->getRealPath())->resize(config('constants.image_width'), config('constants.image_height'))->save($file_path1);
+
+                                $product->left_img = $file_name;
+                            }
+                        }
+                    }
+                    if($request->hasFile('other_image')) {
+                        $photo = $request->file('other_image');
+
+                        if(isset($photo) && !empty($photo) && $photo->isValid()) {
+                            $rules = array('photo' => 'required|mimes:png,jpg,jpeg');
+                            $validator = Validator::make(array('photo'=> $photo), $rules);
+                            if($validator->passes()) {
+                                $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('product_name'))).'_other'.time().'.'.$photo->getClientOriginalExtension();
+                                $file_path = public_path(config('constants.product_img_path').$file_name);
+                                $file_path1 = public_path(config('constants.product_img_path1').$file_name);
+                                $file_path2 = public_path(config('constants.product_img_path2').$file_name);
+
+                                $save_photo = Image::make($photo->getRealPath())->save($file_path);
+                                $save_photo = Image::make($photo->getRealPath())->save($file_path2);
+                                // Resize Image
+                                $save_photo = Image::make($photo->getRealPath())->resize(config('constants.image_width'), config('constants.image_height'))->save($file_path1);
+                                $product_images = ProductImages::where('product_id', $product_id)->first();
+                                if($file_name != null){
+                                    $product_images->product_original_image_name = $file_name;
+                                    $product_images->product_compress_image_name = $file_name;
+                                    $product_images->product_thumbnail_image_name = $file_name;
+                                }
+                                $product_images->product_id = $product->product_id;
+                                $product_images->delete_date_time = $current_date;
+                                $product_images->isdelete =0;
+                                $product_images->user_id = isset($user->user_id) ? $user->user_id : 1;
+                                $product_images->save();
+                            }
+                        }
+                    }
+
+                   $check = $product->save();
                 //  userlog
                 $userlog_description="Update Product Name - ".$product_name;
                 $userlog = new Userlogs();
@@ -480,7 +619,7 @@ class ProductController extends Controller
                              $product_details->t_product_details_ingredients = $t_ingredients;
                              $product_details->t_product_details_description = $tproduct_short_description;
                              $product_details->save();
-                             dump($product_details);
+                            //  dump($product_details);
                              //product details log
                              if($product_details->product_details_id ){
                                  $row_branch =  SellerBranch::with('seller')->where('seller_id',$seller_id)->first();

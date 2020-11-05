@@ -74,7 +74,7 @@
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="contact-info-floating">Description</label>
+                                                <label for="contact-info-floating">Description<span class="text-danger"> *</span></label>
                                                 <input type="text" id="product_short_description" class="form-control" name="product_short_description"
                                                        placeholder="Description" >
                                                 
@@ -115,7 +115,7 @@
                                         </div>
                                         <div class="col-4">
                                             <div class="form-group">
-                                                <label for="first-name-floating">Product Title<span class="text-danger"> *</span></label>
+                                                <label for="first-name-floating">Product Title</label>
                                                 <input type="text" id="product_title" class="form-control" placeholder="Product Title"
                                                        name="product_title" >
                                                 

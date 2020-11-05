@@ -35,20 +35,22 @@ class DeliveryPersonController extends Controller
             if($request->isMethod('post'))
             {
                 $validator = Validator::make($request->input(), [
-                    'deliveryperson_name' => 'required'
+                    'deliveryperson_name' => 'required',
+                    'dperson_mobile_number' => 'required',
+                    'dperson_email' => 'required',
+                    'dperson_password' => 'required',
+                    'licence_number' => 'required',
                 ]);
 
                 // if form validation errors
                 if ($validator->fails()) {
                     flash()->error('Please fill the required fields');
-                    return redirect()->route('deliverypersons')
-                        ->withErrors($validator)
-                        ->withInput();
+                    return redirect()->back();
                 }
                 $logistic_password = md5($request->dperson_password.'_$un@k2u@m!s');
                 $current_date = date('Y-m-d H:i:s');
 
-
+                DB::beginTransaction();
                $deliveryperson = new LogisticMaster();
                $deliveryperson->logistics_name = $request->deliveryperson_name;
                $deliveryperson->logistics_driving_licence_number = $request->licence_number;
@@ -134,7 +136,9 @@ class DeliveryPersonController extends Controller
                    $manager->manager_emailid = $request->dperson_email;
                    $manager->manager_password = $logistic_password;
                    $manager->manager_mobileno = $request->dperson_mobile_number;
-                   $manager->manager_image = $deliveryperson->logistics_user_image;
+                   if($deliveryperson->logistics_user_image != null){
+                        $manager->manager_image = $deliveryperson->logistics_user_image;
+                   }
                    $manager->user_type_id = 6;
                    $manager->user_id = 1;
                    $manager->isactive = $deliveryperson->isactive;
@@ -161,12 +165,11 @@ class DeliveryPersonController extends Controller
                  }
                 if($check) {
                     DB::commit();
-                   // flash()->success('Product Created Successfully!');
-                    Session::flash('message', 'Delivery boy Created Successfully!');
+                   flash()->success('Product Created Successfully!');
                     return redirect()->route('deliverypersons');
                 } else {
-                   // flash()->error('Please Try Again!');
-                    Session::flash('alert-class', 'Please Try Again!');
+                   flash()->error('Please Try Again!');
+                    
                     return redirect()->route('deliverypersons');
                 }
 
@@ -183,7 +186,7 @@ class DeliveryPersonController extends Controller
         }
         Catch(\Exception $e)
         {
-            // dd($e);
+            dd($e);
             DB::rollback();
             return redirect()->route('deliverypersons')->with('error', $e->getMessage());
         }

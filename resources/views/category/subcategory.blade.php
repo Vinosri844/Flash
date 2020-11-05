@@ -50,7 +50,7 @@
                                                 <td>{{ $k + 1 }}</td>
                                                 <?php $img = !empty($item->subcategory_image) ? asset(config('constants.subcategory_img_path1').$item->subcategory_image) : "http://placehold.it/50x50"; ?>
                                                 <td><img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="50" width="50"></td>     
-                                                <td>{{ $item->category['category_name'] }}</td>
+                                                <td>{{ isset($item->category['category_name']) ? $item->category['category_name'] : ''}}</td>
                                                 <td>{{ $item->subcategory_name }}</td>
                                                 <td>{{ $item->subcategory_description }}</td>
                                                 <td>

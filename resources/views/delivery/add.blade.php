@@ -14,20 +14,22 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form method="post" name="deliveryperson_form" id="deliveryperson_form" action="{{ route('deliveryperson_submit') }}" enctype= multipart/form-data>
+                            <form method="post" name="deliveryperson_form" id="deliveryperson_form" action="{{ route('deliveryperson_submit') }}" autocomplete="new_password" enctype= multipart/form-data>
                                 {{ csrf_field() }}
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-6">
-                                            <div class="form-label-group">
+                                            <div class="form-group">
+                                              <label for="first-name-floating">Delivery Person Name<span class="text-danger"> *</span></label>
                                                 <input type="text" id="deliveryperson_name" class="form-control" placeholder="Delivery Person Name"
                                                        name="deliveryperson_name" >
-                                                <label for="first-name-floating">Delivery Person Name</label>
+                                                
                                             </div>
                                         </div>
                                         <div class="col-6">
                                           <div class="form-group">
                                               <div class="controls">
+                                                <label for="">Contact no<span class="text-danger"> *</span></label>
                                                 <input type="text" value="{{ isset($branch->seller_branch_contact_no) ? $branch->seller_branch_contact_no : '' }}" name="dperson_mobile_number" id="dpersonMobileNumber" class="form-control"
                                                   data-validation-containsnumber-regex="^([0-9]+)$"
                                                   data-validation-containsnumber-message="The regex field format is invalid."
@@ -38,27 +40,30 @@
                                         <div class="col-6">
                                           <div class="form-group">
                                             <div class="controls">
-                                              <input type="email" value="{{ isset($branch->seller_branch_emailid) ? $branch->seller_branch_emailid : '' }}" name="dperson_email" id="dperson_email" class="form-control"
+                                              <label for="">Email<span class="text-danger"> *</span></label>
+                                              <input type="email" value="{{ isset($branch->seller_branch_emailid) ? $branch->seller_branch_emailid : '' }}" autocomplete="new_password" name="dperson_email" id="dperson_email" class="form-control"
                                                 data-validation-required-message="Must be a valid email" autocomplete="new_password" placeholder="Email">
                                             </div>
                                           </div>
                                         </div>
                                         <div class="col-6">
-                                            <div class="form-label-group">
-                                            <textarea type="text" id="dperson_address" class="form-control" placeholder="Delivery Person Address"
-                                                      name="dperson_address" cols="30" rows="4"></textarea>
-                                                <label for="first-name-floating">Delivery Person Address</label>
+                                          <div class="form-group">
+                                            <label for="storePassword">Password<span class="text-danger"> *</span></label>
+                                            <div class="controls">
+                                              <input type="password" name="dperson_password" autocomplete="false" readonly onfocus="this.removeAttribute('readonly');" id="dpersonPassword" class="form-control"
+                                                data-validation-required-message="This field is required" placeholder="Password">
                                             </div>
+                                          </div>
+                                            
                                         </div>
 
                                         <div class="col-6">
                                           <div class="form-group">
-                                           <label for="storePassword">Password</label>
-                                           <div class="controls">
-                                             <input type="password" name="dperson_password" id="dpersonPassword" class="form-control"
-                                               data-validation-required-message="This field is required" placeholder="Password">
-                                           </div>
-                                         </div>
+                                            <label for="">Address</label>
+                                          <textarea type="text" id="dperson_address" class="form-control" placeholder="Delivery Person Address"
+                                                    name="dperson_address" cols="30" rows="4"></textarea>
+                                              
+                                          </div>
                                         </div>
                                         <div class="col-6">
                                         <fieldset>
@@ -78,24 +83,27 @@
                                     <h4 class="card-title">Vehicle Info</h4>
                                     <div class="row">
                                         <div class="col-6">
-                                            <div class="form-label-group">
+                                            <div class="form-group">
+                                              <label for="first-name-floating">Vehicle Name</label>
                                                 <input type="text" id="vehicle_name" class="form-control" placeholder="Vehicle Name"
                                                        name="vehicle_name" >
-                                                <label for="first-name-floating">Vehicle Name</label>
+                                                
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <div class="form-label-group">
+                                            <div class="form-group">
+                                              <label for="first-name-floating">Vechile Number</label>
                                                 <input type="text" id="vehicle_number" class="form-control" placeholder="Vechile Number"
                                                        name="vehicle_number" >
-                                                <label for="first-name-floating">Vechile Number</label>
+                                                
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <div class="form-label-group">
+                                            <div class="form-group">
+                                              <label for="first-name-floating">Licence Number</label>
                                                 <input type="text" id="licence_number" class="form-control" placeholder="Licence Number"
                                                        name="licence_number" >
-                                                <label for="first-name-floating">Licence Number</label>
+                                                
                                             </div>
                                         </div>
                                         <div class="col-6">

@@ -20,7 +20,7 @@
    <div class="form-group">
     <label for="storePassword">Password<span class="text-danger"> *</span></label>
     <div class="controls">
-      <input type="password" name="store_password" id="storePassword" class="form-control"
+      <input type="password" name="store_password" autocomplete="false" readonly onfocus="this.removeAttribute('readonly');" id="storePassword" class="form-control"
          placeholder="Password">
     </div>
   </div>
@@ -29,7 +29,7 @@
     <label for="storePassword">Password<span class="text-danger"> *</span></label>
     <div class="controls">
       <input type="password" name="store_password" id="storePassword" class="form-control"
-        data-validation-required-message="This field is required" placeholder="Password">
+        data-validation-required-message="This field is required" autocomplete="false" readonly onfocus="this.removeAttribute('readonly');" placeholder="Password">
     </div>
   </div>
    @endif
@@ -37,7 +37,7 @@
       <div class="form-group">
         <label for="storeConfirmPassword">Repeat password must match<span class="text-danger"> *</span></label>
         <div class="controls">
-          <input type="password" autocomplete="new-password" name="store_confirm_password" id="storeConfirmPassword" 
+          <input type="password" autocomplete="false" readonly onfocus="this.removeAttribute('readonly');" name="store_confirm_password" id="storeConfirmPassword" 
             class="form-control" data-validation-match-match="store_password"
             placeholder="Repeat Password">
         </div>
@@ -46,7 +46,7 @@
       <div class="form-group">
         <label for="storeConfirmPassword">Repeat password must match<span class="text-danger"> *</span></label>
         <div class="controls">
-          <input type="password" autocomplete="new-password" name="store_confirm_password" id="storeConfirmPassword" data-validation-match-match="store_password"
+          <input type="password" autocomplete="false" readonly onfocus="this.removeAttribute('readonly');" name="store_confirm_password" id="storeConfirmPassword" data-validation-match-match="store_password"
             class="form-control" data-validation-required-message="Repeat password must match"
             placeholder="Repeat Password">
         </div>
@@ -69,13 +69,13 @@
         <label for="storeEmail">Email<span class="text-danger"> *</span></label>
         <div class="controls">
           <input type="email" value="{{ isset($store->seller_emailid) ? $store->seller_emailid : '' }}" {{isset($store->seller_emailid) ? 'disabled' : ''}} name="store_email" id="storeEmail" class="form-control"
-            data-validation-required-message="Must be a valid email" autocomplete="new_password" placeholder="Email">
+            data-validation-required-message="Must be a valid email" autocomplete="new-email" placeholder="Email">
         </div>
       </div>
       <div class="form-group">
         <label for="storeMobileNumber">Mobile Number<span class="text-danger"> *</span></label>
         <div class="controls">
-          <input type="text" value="{{ isset($branch->seller_branch_contact_no) ? $branch->seller_branch_contact_no : '' }}" name="store_mobile_number" id="storeMobileNumber" class="form-control"
+          <input type="text" value="{{ isset($store->t_seller_name) ? $store->t_seller_name : '' }}" name="store_mobile_number" id="storeMobileNumber" class="form-control"
             data-validation-containsnumber-regex="^([0-9]+)$"
             data-validation-containsnumber-message="The regex field format is invalid."
             placeholder="Enter Your Mobile Number" required>
@@ -238,64 +238,111 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-12">
-        <h4 class="card-title mt-4">Branch Info</h4>
-    </div>
-    <div class="col-md-6 mt-1">
-        <div class="form-group">
-            <label for="storeBranchName">Branch Name</label>
-            <div class="controls">
-              <input type="text" value="{{ isset($branch->seller_branch_name) ? $branch->seller_branch_name : '' }}"  name="store_branch_name" id="storeBranchName" class="form-control"
-                 placeholder="Branch Name">
+    
+    @if (isset($branches) && sizeof($branches) > 0)
+        @include('store._branchEdit',[
+      'branches' => $branches,
+    ])
+      
+    @else
+    <section id="form-control-repeater" class="mt-2 w-100">
+      <!-- phone repeater -->
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Add Multiple Branches</h4>
+          </div>
+          <div class="card-content">
+            <div class="card-body">
+              <div class="contact-repeater">
+                <div data-repeater-list="branches">
+                  
+                  
+                  
+                   
+                        <div class="row justify-content-between border py-1 px-1 mb-2" data-repeater-item>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="storeBranchName">Branch Name</label>
+                                <div class="controls">
+                                  <input type="text" value="{{ isset($branch->seller_branch_name) ? $branch->seller_branch_name : '' }}"  name="store_branch_name" id="storeBranchName" class="form-control"
+                                     placeholder="Branch Name">
+                                </div>
+                              </div>
+                              
+                              <div class="form-group">
+                                <label for="storePincode">Pincode</label>
+                                <div class="controls">
+                                  <input type="text"  value="{{ isset($branch->seller_branch_pincode) ? $branch->seller_branch_pincode : '' }}" name="store_pincode" id="storePincode" class="form-control"
+                                     placeholder="Pincode">
+                                </div>
+                              </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="storeBranchType">Branch Type</label>
+                            <div class="controls">
+                              <input type="text" value="{{ isset($branch->seller_branch_type) ? $branch->seller_branch_type : '' }}"  name="store_branch_type" id="storeBranchType" class="form-control"
+                                 placeholder="Branch Type">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="storeBranchCity">Branch City</label>
+                            <div class="controls">
+                              <input type="text" value="{{ isset($branch->seller_branch_city) ? $branch->seller_branch_city : '' }}"  name="store_branch_city" id="storeBranchCity" class="form-control"
+                                 placeholder="Branch City">
+                            </div>
+                          </div>
+                            {{-- <fieldset class="form-group">
+                                <label for="storeSelectBranch">Select Branch</label>
+                                <select class="form-control" name="store_select_branch" id="storeSelectBranch">
+                                  <option>IT</option>
+                                  <option>Blade Runner</option>
+                                  <option>Thor Ragnarok</option>
+                                </select>
+                              </fieldset>
+                            <fieldset class="form-group">
+                                <label for="storeSelectCity">Select City</label>
+                                <select class="form-control" name="store_select_city" id="storeSelectCity">
+                                  <option>IT</option>
+                                  <option>Blade Runner</option>
+                                  <option>Thor Ragnarok</option>
+                                </select>
+                              </fieldset> --}}
+                        </div>
+                        <div class="col-md-4">
+                            <fieldset class="form-group">
+                              <label for="storeShortAddress">Short Address</label>
+                              <textarea class="form-control" id="storeShortAddress" name="store_short_address" rows="5" placeholder="Address">{{ isset($branch->seller_branch_address) ? $branch->seller_branch_address : '' }}</textarea>
+                          </fieldset>
+                        </div>
+                        <div class="col-md-12 col-12 form-group">
+                          <button class="btn btn-danger float-right" type="button" data-repeater-delete>
+                              Delete
+                          </button>
+                          </div>
+                        
+                        </div>
+                    
+                    
+                  
+                </div>
+                <div class="row">
+                  <div class="col-12 my-3">
+                    <button class="btn btn-icon rounded-circle btn-primary" id="addNewStep" type="button" data-repeater-create>
+                      <i class="bx bx-plus" style="vertical-align: 0;"></i>
+                    </button>
+                    <span class="ml-1 font-weight-bold text-primary">ADD Branch</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          
-          <div class="form-group">
-            <label for="storePincode">Pincode</label>
-            <div class="controls">
-              <input type="text"  value="{{ isset($branch->seller_branch_pincode) ? $branch->seller_branch_pincode : '' }}" name="store_pincode" id="storePincode" class="form-control"
-                 placeholder="Pincode">
-            </div>
-          </div>
-    </div>
-    <div class="col-md-6 mt-1">
-      <div class="form-group">
-        <label for="storeBranchType">Branch Type</label>
-        <div class="controls">
-          <input type="text" value="{{ isset($branch->seller_branch_type) ? $branch->seller_branch_type : '' }}"  name="store_branch_type" id="storeBranchType" class="form-control"
-             placeholder="Branch Type">
         </div>
-      </div>
-      <div class="form-group">
-        <label for="storeBranchCity">Branch City</label>
-        <div class="controls">
-          <input type="text" value="{{ isset($branch->seller_branch_city) ? $branch->seller_branch_city : '' }}"  name="store_branch_city" id="storeBranchCity" class="form-control"
-             placeholder="Branch City">
-        </div>
-      </div>
-        {{-- <fieldset class="form-group">
-            <label for="storeSelectBranch">Select Branch</label>
-            <select class="form-control" name="store_select_branch" id="storeSelectBranch">
-              <option>IT</option>
-              <option>Blade Runner</option>
-              <option>Thor Ragnarok</option>
-            </select>
-          </fieldset>
-        <fieldset class="form-group">
-            <label for="storeSelectCity">Select City</label>
-            <select class="form-control" name="store_select_city" id="storeSelectCity">
-              <option>IT</option>
-              <option>Blade Runner</option>
-              <option>Thor Ragnarok</option>
-            </select>
-          </fieldset> --}}
-    </div>
-    <div class="col-md-12">
-        <fieldset class="form-group">
-            <label for="storeShortAddress">Short Address</label>
-            <textarea class="form-control" id="storeShortAddress" name="store_short_address" rows="6" placeholder="Address">{{ isset($branch->seller_branch_address) ? $branch->seller_branch_address : '' }}</textarea>
-        </fieldset>
-    </div>
+     
+      <!-- /phone repeater -->
+   
+</section>
+    @endif
 </div>
 
 <a href="{{ route('store.index') }}"  class="btn btn-info float-left my-2">Back</a>

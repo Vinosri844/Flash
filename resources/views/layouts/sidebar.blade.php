@@ -53,14 +53,14 @@
               <div class="">
                 {{-- <img class="logo" src="{{ asset('assets/app-assets/images/logo/logo.png') }}"/> --}}
               </div>
-              <h2 class="brand-text mb-0">NammaArea51</h2></a></li>
+              {{-- <h2 class="brand-text mb-0">NammaArea51</h2></a></li> --}}
           <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="bx bx-x d-block d-xl-none font-medium-4 primary"></i><i class="toggle-icon bx bx-disc font-medium-4 d-none d-xl-block primary" data-ticon="bx-disc"></i></a></li>
         </ul>
       </div>
       <div class="shadow-bottom"></div>
       <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
-          <li class=" nav-item"><a href="{{ route('dashboard') }}"><i class="bx bx-home" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
+        <li class=" nav-item {{ $route[0] == 'dashboard' ? 'active' : ''}}"><a href="{{ route('dashboard') }}"><i class="bx bx-home" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
           </li>
           <li class=" navigation-header"><span>Category</span>
           </li>
@@ -81,10 +81,10 @@
           <li class=" navigation-header"><span>Delivery</span>
           </li>
         <li class=" nav-item {{ $route[0] == 'delivery-slot-master' ? ' active' : '' }}"><a href="{{ route('delivery-slot-master.index') }}"><i class="bx bx-time-five" data-icon="settings"></i><span class="menu-title" data-i18n="Form Layout">Delivery slot master</span></a>
-          </li>
+          {{-- </li>
             @php $active = (Route::currentRouteName() == 'deliverycharges') ? 'active' : ''; @endphp
             <li class=" nav-item {{$active}}"><a href="{{ route('deliverycharges') }}"><i class="bx bx-credit-card-alt" data-icon="morph-preview"></i><span class="menu-title" data-i18n="Disabled Menu">Delivery charge list</span></a>
-          </li>
+          </li> --}}
             @php $active = (Route::currentRouteName() == 'deliverypersons') ? 'active' : ''; @endphp
             <li class="nav-item {{$active}}"><a href="{{ route('deliverypersons') }}"><i class="bx bx-credit-card-alt" data-icon="morph-preview"></i><span class="menu-title" data-i18n="Disabled Menu">Delivery Person's list</span></a>
           </li>
@@ -112,48 +112,83 @@
             @php $active = (Route::currentRouteName() == 'cancel_orders') ? 'active' : ''; @endphp
             <li class=" nav-item {{$active}}"><a href="{{ route('cancel_orders') }}"><i class="bx bx-receipt" data-icon="warning-alt"></i><span class="menu-title" data-i18n="Sweet Alert">Canceled Orders</span></a>
           </li>
+          <li class="nav-item">
+            <a href="#"
+            ><span class="menu-title" data-i18n="Extra Components"
+              >Bulk Orders</span
+            ></a
+          >
+          <ul class="menu-content">
             @php $active = (Route::currentRouteName() == 'bulkorder') ? 'active' : ''; @endphp
-            <li class=" nav-item {{$active}}"><a href="{{ route('bulkorder') }}"><i class="bx bx-briefcase-alt" data-icon="morph-map"></i><span class="menu-title" data-i18n="Toastr">Bulk order</span></a>
+            <li class=" {{$active}}"><a href="{{ route('bulkorder') }}"><i class="bx bx-briefcase-alt" data-icon="morph-map"></i><span class="menu-title" data-i18n="Toastr">Bulk order</span></a>
           </li>
             @php $active = (Route::currentRouteName() == 'bulkorderusers') ? 'active' : ''; @endphp
-            <li class=" nav-item {{$active}}"><a href="{{ route('bulkorderusers') }}"><i class="bx bx-briefcase-alt" data-icon="morph-map"></i><span class="menu-title" data-i18n="Toastr">Bulk order users</span></a>
+            <li class="{{$active}}"><a href="{{ route('bulkorderusers') }}"><i class="bx bx-briefcase-alt" data-icon="morph-map"></i><span class="menu-title" data-i18n="Toastr">Bulk order users</span></a>
           </li>
-          <li class=" navigation-header"><span>Receipe</span>
+          </ul>
           </li>
-        <li class=" nav-item {{ $route[0] == 'recipe-master' ? ' active' : '' }}"><a href="{{ route('recipe-master.index') }}"><i class="bx bx-news" data-icon="warning-alt"></i><span class="menu-title" data-i18n="Sweet Alert">Receipe master</span></a>
+           
+          <li class="nav-item">
+            <a href="#"
+            ><span class="menu-title" data-i18n="Extra Components"
+              >Recipes</span
+            ></a
+          >
+          <ul class="menu-content">
+            <li class="  {{ $route[0] == 'recipe-master' ? ' active' : '' }}"><a href="{{ route('recipe-master.index') }}"><i class="bx bx-news" data-icon="warning-alt"></i><span class="menu-title" data-i18n="Sweet Alert">Receipe master</span></a>
+            </li>
+            <li class="{{ $route[0] == 'recipe-category' ? ' active' : '' }}"><a href="{{ route('recipe-category.index') }}"><i class="bx bxs-dock-top" data-icon="morph-map"></i><span class="menu-title" data-i18n="Toastr">Receipe category</span></a>
+            </li>
+            <li class="{{ $route[0] == 'recipe-sub-category' ? ' active' : '' }}"><a href="{{ route('recipe-sub-category.index') }}"><i class="bx bx-grid-alt" data-icon="morph-map"></i><span class="menu-title" data-i18n="Toastr">Receipe subcategory</span></a>
+            </li>
+          </ul>
           </li>
-          <li class=" nav-item {{ $route[0] == 'recipe-category' ? ' active' : '' }}"><a href="{{ route('recipe-category.index') }}"><i class="bx bxs-dock-top" data-icon="morph-map"></i><span class="menu-title" data-i18n="Toastr">Receipe category</span></a>
-          </li>
-          <li class=" nav-item {{ $route[0] == 'recipe-sub-category' ? ' active' : '' }}"><a href="{{ route('recipe-sub-category.index') }}"><i class="bx bx-grid-alt" data-icon="morph-map"></i><span class="menu-title" data-i18n="Toastr">Receipe subcategory</span></a>
-          </li>
-          <li class=" navigation-header"><span>Components</span>
-          </li>
+        
+          <li class="nav-item">
+            <a href="#"
+            ><span class="menu-title" data-i18n="Extra Components"
+              >Components</span
+            ></a
+          >
+          <ul class="menu-content">
             @php $active = (Route::currentRouteName() == 'sliders') ? 'active' : ''; @endphp
-            <li class="nav-item {{$active}}"><a href="{{ route('sliders') }}"><i class="bx bx-revision" data-icon="morph-preview"></i><span class="menu-title" data-i18n="Disabled Menu">Slider</span></a>
+            <li class="{{$active}}"><a href="{{ route('sliders') }}"><i class="bx bx-revision" data-icon="morph-preview"></i><span class="menu-title" data-i18n="Disabled Menu">Slider</span></a>
           </li>
             @php $active = (Route::currentRouteName() == 'paymenttypes') ? 'active' : ''; @endphp
-            <li class=" nav-item {{$active}}"><a href="{{ route('paymenttypes') }}"><i class="bx bx-money" data-icon="morph-preview"></i><span class="menu-title" data-i18n="Disabled Menu">User payment type</span></a>
+            <li class="{{$active}}"><a href="{{ route('paymenttypes') }}"><i class="bx bx-money" data-icon="morph-preview"></i><span class="menu-title" data-i18n="Disabled Menu">User payment type</span></a>
           </li>
             @php $active = (Route::currentRouteName() == 'smstemplates') ? 'active' : ''; @endphp
-            <li class=" nav-item {{$active}}"><a href="{{ route('smstemplates') }}"><i class="bx bx-message" data-icon="morph-preview"></i><span class="menu-title" data-i18n="Disabled Menu">SMS template list</span></a>
+            <li class="{{$active}}"><a href="{{ route('smstemplates') }}"><i class="bx bx-message" data-icon="morph-preview"></i><span class="menu-title" data-i18n="Disabled Menu">SMS template list</span></a>
           </li>
-          <li class=" navigation-header"><span>Other masters</span>
-          </li>
-        <li class=" nav-item {{ $route[0] == 'event-master' ? ' active' : '' }}"><a href="{{ route('event-master.index') }}"><i class="bx bx-calendar-event" data-icon="user"></i><span class="menu-title" data-i18n="User Profile">Event master</span></a>
-          </li>
-        <li class=" nav-item {{ $route[0] == 'store' ? ' active' : '' }}"><a href="{{ route('store.index') }}"><i class="bx bx-store" data-icon="info-alt"></i><span class="menu-title" data-i18n="Knowledge Base">Store</span></a>
-          </li>
-          <li class=" nav-item {{ $route[0] == 'membership' ? ' active' : '' }}"><a href="{{ route('membership.index') }}"><i class="bx bx-id-card" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Membership</span></a>
+          </ul>
           </li>
 
-        <li class=" nav-item {{ $route[0] == 'customer' ? ' active' : '' }}"><a href=" {{ route('customer.index') }}"><i class="bx bx-user-check" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Display customer list</span></a>
+          <li class="nav-item">
+            <a href="#"
+            ><span class="menu-title" data-i18n="Extra Components"
+              >Other Masters</span
+            ></a
+          >
+          <ul class="menu-content">
+            <li class=" {{ $route[0] == 'event-master' ? ' active' : '' }}"><a href="{{ route('event-master.index') }}"><i class="bx bx-calendar-event" data-icon="user"></i><span class="menu-title" data-i18n="User Profile">Event master</span></a>
+            </li>
+          <li class=" {{ $route[0] == 'store' ? ' active' : '' }}"><a href="{{ route('store.index') }}"><i class="bx bx-store" data-icon="info-alt"></i><span class="menu-title" data-i18n="Knowledge Base">Store</span></a>
+            </li>
+            <li class=" {{ $route[0] == 'membership' ? ' active' : '' }}"><a href="{{ route('membership.index') }}"><i class="bx bx-id-card" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Membership</span></a>
+            </li>
+  
+          <li class="{{ $route[0] == 'customer' ? ' active' : '' }}"><a href=" {{ route('customer.index') }}"><i class="bx bx-user-check" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Display customer list</span></a>
+            </li>
+              @php $active = (Route::currentRouteName() == 'weights') ? 'active' : ''; @endphp
+              <li class=" {{$active}}"><a href="{{ route('weights') }}"><i class="bx bx-compass" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Weight</span></a>
+            </li>
+              @php $active = (Route::currentRouteName() == 'notifications') ? 'active' : ''; @endphp
+              <li class="{{$active}}"><a href="{{ route('notifications') }}"><i class="bx bx-bell" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Notification</span></a>
+            </li>
+          </ul>
           </li>
-            @php $active = (Route::currentRouteName() == 'weights') ? 'active' : ''; @endphp
-            <li class=" nav-item {{$active}}"><a href="{{ route('weights') }}"><i class="bx bx-compass" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Weight</span></a>
-          </li>
-            @php $active = (Route::currentRouteName() == 'notifications') ? 'active' : ''; @endphp
-            <li class=" nav-item {{$active}}"><a href="{{ route('notifications') }}"><i class="bx bx-bell" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Notification</span></a>
-          </li>
+
+        
             <li class=" navigation-header"><span>Pincodes</span>
             </li>
             @php $active = (Route::currentRouteName() == 'sdpincodes') ? 'active' : ''; @endphp

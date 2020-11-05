@@ -41,7 +41,8 @@ class CategoryController extends Controller
             if($request->isMethod('post'))
             {
                 $validator = Validator::make($request->input(), [
-                    "category_name" => 'required'
+                    "category_name" => 'required',
+                    "category_image" => 'required'
                 ]);
 
                 // if form validation errors
@@ -271,8 +272,8 @@ class CategoryController extends Controller
             }
             else{
 
-                $data['category'] = SubCategory::where('isdelete', 0)->orderBy('subcategory_id', 'desc')->get();
-                $data['cat'] = Category::where('isdelete', 0)->orderBy('category_id', 'desc')->get();
+                $data['category'] = SubCategory::where('isdelete', 0)->where('isactive', 1)->orderBy('subcategory_id', 'desc')->get();
+                $data['cat'] = Category::where('isdelete', 0)->where('isactive', 1)->orderBy('category_id', 'desc')->get();
                 return view('category.subcategory_create', $data ?? NULL);
             }
         }

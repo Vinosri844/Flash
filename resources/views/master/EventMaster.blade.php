@@ -181,9 +181,6 @@
       });
   </script>
 
-  
-
-      
   @endpush
 
 @endsection

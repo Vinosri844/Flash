@@ -7,7 +7,7 @@ use App\Store;
 use App\SellerBranch;
 use Illuminate\Http\Request;
 use Validator;
-use Image;
+use Image, DB;
 use App\Userlogs;
 // use Illuminate\Support\Facades\Session;
 
@@ -21,7 +21,7 @@ class StoreController extends Controller
      */
     public function index()
     {
-        $stores = Store::where('isdelete', 0)->orderBy('seller_id', 'desc')->get();
+        $stores = Store::where('isdelete', 0)->orderBy('seller_id', 'desc')->withCount('branches')->get();
         return view('store.store')->with('stores', $stores);
     }
 
@@ -44,6 +44,7 @@ class StoreController extends Controller
     public function store(Request $request)
     {
         try {
+            // dd($request);
             $validator = Validator::make($request->all(),[
                 'store_name' => 'required',
                 'store_email' => 'required',
@@ -84,16 +85,12 @@ class StoreController extends Controller
                     $extension = $request->store_company_logo->extension();
                     $company_saved_name = $file_name.time()."." .$extension;
                     $request->store_company_logo->move(public_path($companylogo_original_path), $company_saved_name);
-                    // $request->store_company_logo->move(public_path($companylogo_compress_path), $company_saved_name);
-                    // $request->store_company_logo->move(public_path($companylogo_thumbnail_path), $company_saved_name);
-                    // $path = public_path($companylogo_thumbnail_path.$company_saved_name);
-                    // Image::make($image->getRealPath())->save($path);
                     $company_file_path = $company_saved_name;
                 }
             }
             
             $hash_password = md5($request->store_password . '_$un@k2u@m!s');
-
+            DB::beginTransaction();
             $store = new Store;
             $store->seller_name = $store_name;
             $store->t_seller_name = $request->store_name_tamil;
@@ -116,7 +113,7 @@ class StoreController extends Controller
             // $store->disapprove_by = '';
             // $store->category_id = '';
             // $store->leaving_date_time = '00:00:00';
-            // $store->disapprove_date_time = '00:00:00';
+            $store->t_seller_name = $request->store_mobile_number;
             $store->seller_food_licence_number = 'Undefined';
             $store->user_id = 1;
             $store->seller_errand = $request->store_errand;
@@ -134,17 +131,20 @@ class StoreController extends Controller
                 $user->ip_device_id = "000:00:00";
                 $user->user_type_id = 1;
                 $user->save();
+                $seller_id = $store->seller_id;
+                foreach ($request->branches as $key => $value) {
+                    // dd($value);
                 $branch = new SellerBranch;
-                $branch->seller_branch_name = $request->store_branch_name;
-                $branch->seller_branch_address = $request->store_short_address;
-                $branch->seller_branch_pincode = $request->store_pincode;
+                $branch->seller_branch_name = $value['store_branch_name'];
+                $branch->seller_branch_address = $value['store_short_address'];
+                $branch->seller_branch_pincode = $value['store_pincode'];
                 // $branch->seller_branch_state = '';
                 // $branch->seller_branch_country ='';
-                $branch->seller_branch_city = $request->store_branch_city;
+                $branch->seller_branch_city = $value['store_branch_city'];
                 $branch->seller_branch_contact_no = $request->store_mobile_number;
                 $branch->seller_branch_emailid = $request->store_email;
-                $branch->seller_id = $store->seller_id;
-                $branch->seller_branch_type = $request->store_branch_type;
+                $branch->seller_id = $seller_id;
+                $branch->seller_branch_type = $value['store_branch_type'];
                 $branch->isactive = 1;
                 $branch->isdelete = 0;
                 if($branch->save()){
@@ -152,22 +152,25 @@ class StoreController extends Controller
                     $user->form_name = 'Seller Branch';
                     $user->operation_type = 'Insert';
                     $user->user_id = 1;
-                    $user->description = "Insert Seller Branch Name - ". $request->store_branch_name;
+                    $user->description = "Insert Seller Branch Name - ". $value['store_branch_name'];
                     $user->OS = 'WEB';
                     $user->table_name = 'seller_master';
                     $user->reference_id = $branch->seller_branch_id;
                     $user->ip_device_id = "000:00:00";
                     $user->user_type_id = 1;
                     $user->save();
-                    flash()->success('Store Created Successfully!');
-                    return redirect()->route('store.index');
                 }
+            }
+            DB::commit();
+                flash()->success('Store Created Successfully!');
+                return redirect()->route('store.index');
                 
             }
             flash()->error('Please Try Again!');
             return redirect()->route('store.index');
         } catch (\Throwable $th) {
-            // dd($th);
+            dd($th);
+            DB::rollback();
             flash()->error('Something went Wrong! Please Try Again!');
             return redirect()->route('store.index');
         }
@@ -195,9 +198,10 @@ class StoreController extends Controller
         try {
             
             $store = Store::findOrFail($store->seller_id);
-            $branch = SellerBranch::where('seller_id', $store->seller_id)->first();
-            return view('store.store_edit')->with(['store' => $store, 'branch' => $branch]);
+            $branches = SellerBranch::where('seller_id', $store->seller_id)->where('isdelete', 0)->get();
+            return view('store.store_edit')->with(['store' => $store, 'branches' => $branches]);
         } catch (\Throwable $th) {
+            dd($th);
             flash()->error('Something went Wrong! Please Try Again!');
             return redirect()->route('store.index');
         }
@@ -213,6 +217,7 @@ class StoreController extends Controller
     public function update(Request $request, Store $store)
     {
         try {
+            // dd($request);
             $validator = Validator::make($request->all(),[
                 'store_name' => 'required',
                 'store_pan_image' => 'mimes:jpeg,jpg|max:2000',
@@ -256,7 +261,7 @@ class StoreController extends Controller
                 }
             }
             
-
+            DB::beginTransaction();
             $store = Store::findOrFail($store->seller_id);
             $store->seller_name = $store_name;
             $store->t_seller_name = $request->store_name_tamil;
@@ -272,6 +277,7 @@ class StoreController extends Controller
             $store->seller_food_licence_number = null;
             $store->seller_fssai_number = $request->store_fssai_num;
             $store->seller_service_tax_number = $request->store_service_tax_num;
+            $store->t_seller_name = $request->store_mobile_number;
             if($request->store_password != null){
                 $store->seller_password = $request->store_password;
             }
@@ -291,7 +297,7 @@ class StoreController extends Controller
             // $store->seller_emailid = $request->store_email;
             $store->seller_cart_value = $request->store_min_value;
             if($store->save()){
-                // dd($store->seller_id);   
+                $seller_id = $store->seller_id;   
                 $user = new Userlogs;
                 $user->form_name = 'Seller';
                 $user->operation_type = 'Update';
@@ -303,18 +309,21 @@ class StoreController extends Controller
                 $user->ip_device_id = "000:00:00";
                 $user->user_type_id = 1;
                 $user->save();
-                $branch = SellerBranch::where('seller_id', $store->seller_id)->first();
+                foreach ($request->branches as $key => $value) {
+                    
                 
-                $branch->seller_branch_name = $request->store_branch_name;
-                $branch->seller_branch_address = $request->store_short_address;
-                $branch->seller_branch_pincode = $request->store_pincode;
+                $branch = SellerBranch::findOrFail($value['seller_branch_id']);
+                
+                $branch->seller_branch_name = $value['store_branch_name'];
+                $branch->seller_branch_address = $value['store_short_address'];
+                $branch->seller_branch_pincode = $value['store_pincode'];
                 // $branch->seller_branch_state = '';
                 // $branch->seller_branch_country ='';
-                $branch->seller_branch_city = $request->store_branch_city;
+                $branch->seller_branch_city = $value['store_branch_city'];
                 $branch->seller_branch_contact_no = $request->store_mobile_number;
                 // $branch->seller_branch_emailid = $request->store_email;
-                $branch->seller_id = $store->seller_id;
-                $branch->seller_branch_type = $request->store_branch_type;
+                $branch->seller_id = $seller_id;
+                $branch->seller_branch_type = $value['store_branch_type'];
                 $branch->isactive = 1;
                 $branch->isdelete = 0;
                 if($branch->save()){
@@ -322,24 +331,27 @@ class StoreController extends Controller
                     $user->form_name = 'Seller Branch';
                     $user->operation_type = 'Update';
                     $user->user_id = 1;
-                    $user->description = "Update Seller Branch Name - ". $request->store_branch_name;
+                    $user->description = "Update Seller Branch Name - ". $value['store_branch_name'];
                     $user->OS = 'WEB';
                     $user->table_name = 'seller_branch';
                     $user->reference_id = $branch->seller_branch_id;
                     $user->ip_device_id = "000:00:00";
                     $user->user_type_id = 1;
                     $user->save();
-                    flash()->success('Store Updated Successfully!');
-                    return redirect()->route('store.index');
                 }
+            }
+            DB::commit();
+            flash()->success('Store Updated Successfully!');
+            return redirect()->back();
                 
             }
             flash()->error('Please Try Again!');
             return redirect()->route('store.index');
         } catch (\Throwable $th) {
-            // dd($th);
+            dd($th);
+            DB::rollback();
             flash()->error('Something went Wrong! Please Try Again!');
-            return redirect()->route('store.index');
+            return redirect()->back();
         }
     }
 
@@ -364,6 +376,48 @@ class StoreController extends Controller
             //throw $th;
             flash()->error('Something went Wrong! Please Try Again!');
             return redirect()->route('store.index');
+        }
+    }
+
+    public function branch_add(Request $request){
+        try {
+            $validator = Validator::make($request->all(),[
+                'store_branch_name' => 'required'
+            ]);
+            if($validator->fails()){
+                flash()->error('Please Fill the required fields!');
+                return redirect()->back();
+            }
+            $branch = new SellerBranch;
+            $branch->seller_branch_name = $request->store_branch_name;
+            $branch->seller_branch_address = $request->store_short_address;
+            $branch->seller_branch_pincode = $request->store_pincode;
+            // $branch->seller_branch_state = '';
+            // $branch->seller_branch_country ='';
+            $branch->seller_branch_city = $request->store_branch_city;
+            $branch->seller_branch_contact_no = $request->store_mobile_number;
+            // $branch->seller_branch_emailid = $request->store_email;
+            $branch->seller_id = $request->seller_id;
+            $branch->seller_branch_type = $request->store_branch_type;
+            $branch->save();
+            flash()->success('Branch added successfully!');
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            dd($th);
+            flash()->error('Something went Wrong! Please Try Again!');
+            return redirect()->back();
+        }
+    }
+
+    public function branch_delete(Request $request, $id){
+        try {
+            $branch = SellerBranch::findOrFail($id)->update(['isdelete' => 1]);
+            flash("Branch deleted successfully!");
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            dd($th);
+            flash()->error('Something went Wrong! Please Try Again!');
+            return redirect()->back();
         }
     }
 }

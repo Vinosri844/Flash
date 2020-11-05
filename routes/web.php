@@ -165,6 +165,8 @@ Route::namespace('Admin')->group(function(){
         Route::resource('/recipe-sub-category', 'RecipeSubCategoryController');
         Route::resource('/manager', 'ProfileController');
 
+        Route::post('/branch-add', 'StoreController@branch_add')->name('branch-add');
+        Route::post('/branch-delete/{id}', 'StoreController@branch_delete')->name('branch-delete');
         Route::get('/customer-order/{order}', 'CustomerController@order')->name('customer.order');
         Route::get('/customer-address/{address}', 'CustomerController@address')->name('customer.address');
         Route::post('/change-status', 'CommonController@change_status')->name('change.status');
