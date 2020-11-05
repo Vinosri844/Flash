@@ -132,6 +132,7 @@ class StoreController extends Controller
                 $user->user_type_id = 1;
                 $user->save();
                 $seller_id = $store->seller_id;
+                if($request->branches[0]['store_branch_name'] != null){
                 foreach ($request->branches as $key => $value) {
                     // dd($value);
                 $branch = new SellerBranch;
@@ -161,6 +162,7 @@ class StoreController extends Controller
                     $user->save();
                 }
             }
+        }
             DB::commit();
                 flash()->success('Store Created Successfully!');
                 return redirect()->route('store.index');
@@ -309,6 +311,7 @@ class StoreController extends Controller
                 $user->ip_device_id = "000:00:00";
                 $user->user_type_id = 1;
                 $user->save();
+                if($request->branches[0]['store_branch_name'] != null){
                 foreach ($request->branches as $key => $value) {
                     
                 
@@ -340,6 +343,7 @@ class StoreController extends Controller
                     $user->save();
                 }
             }
+        }
             DB::commit();
             flash()->success('Store Updated Successfully!');
             return redirect()->back();
