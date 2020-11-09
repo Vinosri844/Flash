@@ -33,6 +33,11 @@ class StoreController extends Controller
      */
     public function create()
     {
+            $status = Setting::pluck('multistore')->first();
+            if($status == 0){
+                flash()->error('Cannot Create Multi Store');
+                return redirect()->back();
+            }
         return view('store.store_create');
     }
 
