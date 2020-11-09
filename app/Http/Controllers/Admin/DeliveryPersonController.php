@@ -39,7 +39,7 @@ class DeliveryPersonController extends Controller
                     'dperson_mobile_number' => 'required',
                     'dperson_email' => 'required',
                     'dperson_password' => 'required',
-                    'licence_number' => 'required',
+                    // 'licence_number' => 'required',
                 ]);
 
                 // if form validation errors
@@ -209,7 +209,10 @@ class DeliveryPersonController extends Controller
                         ->withErrors($validator)
                         ->withInput();
                 }
+                $logistic_password = null;
+                if($request->dperson_password != null){
                 $logistic_password = md5($request->dperson_password.'_$un@k2u@m!s');
+                }
                 $current_date = date('Y-m-d H:i:s');
 
 

@@ -19,17 +19,19 @@
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-6">
-                                            <div class="form-label-group">
+                                            <div class="form-group">
+                                                <label for="first-name-floating">Pincode<span class="text-danger"> *</span></label>
                                                 <input type="text" id="pincode" class="form-control" placeholder="pincode"
-                                                       name="pincode" >
-                                                <label for="first-name-floating">Pincode</label>
+                                                       name="pincode" required>
+                                                
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <div class="form-label-group">
+                                            <div class="form-group">
+                                                <label for="first-name-floating">Delivery Charge<span class="text-danger"> *</span></label>
                                                 <input type="text" id="delivery_charge" class="form-control" placeholder="Delivery Charge"
-                                                       name="delivery_charge" >
-                                                <label for="first-name-floating">Delivery Charge</label>
+                                                       name="delivery_charge" required>
+                                                
                                             </div>
                                         </div>
                                         <div class="col-6">

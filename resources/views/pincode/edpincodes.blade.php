@@ -44,7 +44,7 @@
                                                 <td>{{ $edpincode->delivery_charge}}</td>
                                                 <td>
                                                     <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
-                                                        <input type="checkbox" class="custom-control-input" {{$edpincode->isactive == 1 ? 'checked' : ''}} id="customSwitchGlow{{$k}}">
+                                                        <input type="checkbox" class="custom-control-input" {{$edpincode->isactive == 1 ? 'checked' : ''}} value="{{$edpincode->pincode_id}}" onchange="change_status(this.value, 'pincode_master', '#customSwitchGlow{{$k}}', 'pincode_id', 'isactive');" id="customSwitchGlow{{$k}}">
                                                         <label class="custom-control-label" for="customSwitchGlow{{$k}}">
                                                         </label>
                                                     </div>

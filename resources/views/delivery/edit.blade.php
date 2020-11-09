@@ -19,15 +19,17 @@
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-6">
-                                            <div class="form-label-group">
+                                            <div class="form-group">
+                                              <label for="first-name-floating">Delivery Person Name</label>
                                                 <input type="text" id="deliveryperson_name" class="form-control" placeholder="Delivery Person Name" value="{{$deliveryperson->logistics_name}}"
                                                        name="deliveryperson_name" >
-                                                <label for="first-name-floating">Delivery Person Name</label>
+                                                
                                             </div>
                                         </div>
                                         <div class="col-6">
                                           <div class="form-group">
                                               <div class="controls">
+                                                <label for="first-name-floating">Mobile</label>
                                                 <input type="text" name="dperson_mobile_number" value="{{$deliveryperson->logistics_user_mobile}}"id="dpersonMobileNumber" class="form-control"
                                                   data-validation-containsnumber-regex="^([0-9]+)$"
                                                   data-validation-containsnumber-message="The regex field format is invalid."
@@ -38,16 +40,18 @@
                                         <div class="col-6">
                                           <div class="form-group">
                                             <div class="controls">
+                                              <label for="first-name-floating">Email</label>
                                               <input type="email"value="{{$deliveryperson->logistics_user_email}}" name="dperson_email" id="dperson_email" class="form-control"
                                                 data-validation-required-message="Must be a valid email" autocomplete="new_password" placeholder="Email">
                                             </div>
                                           </div>
                                         </div>
                                         <div class="col-6">
-                                            <div class="form-label-group">
+                                            <div class="form-group">
+                                              <label for="first-name-floating">Delivery Person Address</label>
                                             <textarea type="text" id="dperson_address" class="form-control" placeholder="Delivery Person Address"
                                                       name="dperson_address" cols="30" rows="4">{{$deliveryperson->logistics_user_address}}</textarea>
-                                                <label for="first-name-floating">Delivery Person Address</label>
+                                                
                                             </div>
                                         </div>
 
@@ -56,7 +60,7 @@
                                            <label for="storePassword">Password</label>
                                            <div class="controls">
                                              <input type="password" name="dperson_password" id="dpersonPassword" class="form-control"
-                                               data-validation-required-message="This field is required" placeholder="Password">
+                                               placeholder="Password">
                                            </div>
                                          </div>
                                         </div>
@@ -80,24 +84,27 @@
                                     <h4 class="card-title">Vehicle Info</h4>
                                     <div class="row">
                                         <div class="col-6">
-                                            <div class="form-label-group">
+                                            <div class="form-group">
+                                              <label for="first-name-floating">Vehicle Name</label>
                                                 <input type="text" id="vehicle_name" class="form-control" placeholder="Vehicle Name"
                                                        name="vehicle_name" value="{{$deliveryperson->logistics_user_vehicle_name}}">
-                                                <label for="first-name-floating">Vehicle Name</label>
+                                                
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <div class="form-label-group">
+                                            <div class="form-group">
+                                              <label for="first-name-floating">Vechile Number</label>
                                                 <input type="text" id="vehicle_number" class="form-control" placeholder="Vechile Number"
                                                        name="vehicle_number" value="{{$deliveryperson->logistics_user_vehicle_number}}">
-                                                <label for="first-name-floating">Vechile Number</label>
+                                               
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <div class="form-label-group">
+                                            <div class="form-group">
+                                              <label for="first-name-floating">Licence Number</label>
                                                 <input type="text" id="licence_number" class="form-control" placeholder="Licence Number"
                                                        name="licence_number" value="{{$deliveryperson->logistics_driving_licence_number}}">
-                                                <label for="first-name-floating">Licence Number</label>
+                                                
                                             </div>
                                         </div>
                                         <div class="col-6">
@@ -146,7 +153,7 @@
 
                                     <div>
                                         <div class="col-12 d-flex justify-content-end">
-                                            <button type="submit" class="btn btn-primary mr-1 mb-1">Create</button>
+                                            <button type="submit" class="btn btn-primary mr-1 mb-1">Update</button>
                                             <button type="reset" class="btn btn-light-secondary mr-1 mb-1">Reset</button>
                                         </div>
                                     </div>

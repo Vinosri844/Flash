@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Store;
+use App\Setting;
 use App\SellerBranch;
 use Illuminate\Http\Request;
 use Validator;
@@ -45,6 +46,11 @@ class StoreController extends Controller
     {
         try {
             // dd($request);
+            $status = Setting::pluck('multistore')->first();
+            if($status == 0){
+                flash()->error('Cannot Create Multi Store');
+                return redirect()->back();
+            }
             $validator = Validator::make($request->all(),[
                 'store_name' => 'required',
                 'store_email' => 'required',
@@ -132,37 +138,37 @@ class StoreController extends Controller
                 $user->user_type_id = 1;
                 $user->save();
                 $seller_id = $store->seller_id;
-                if($request->branches[0]['store_branch_name'] != null){
-                foreach ($request->branches as $key => $value) {
-                    // dd($value);
-                $branch = new SellerBranch;
-                $branch->seller_branch_name = $value['store_branch_name'];
-                $branch->seller_branch_address = $value['store_short_address'];
-                $branch->seller_branch_pincode = $value['store_pincode'];
-                // $branch->seller_branch_state = '';
-                // $branch->seller_branch_country ='';
-                $branch->seller_branch_city = $value['store_branch_city'];
-                $branch->seller_branch_contact_no = $request->store_mobile_number;
-                $branch->seller_branch_emailid = $request->store_email;
-                $branch->seller_id = $seller_id;
-                $branch->seller_branch_type = $value['store_branch_type'];
-                $branch->isactive = 1;
-                $branch->isdelete = 0;
-                if($branch->save()){
-                    $user = new Userlogs;
-                    $user->form_name = 'Seller Branch';
-                    $user->operation_type = 'Insert';
-                    $user->user_id = 1;
-                    $user->description = "Insert Seller Branch Name - ". $value['store_branch_name'];
-                    $user->OS = 'WEB';
-                    $user->table_name = 'seller_master';
-                    $user->reference_id = $branch->seller_branch_id;
-                    $user->ip_device_id = "000:00:00";
-                    $user->user_type_id = 1;
-                    $user->save();
-                }
-            }
-        }
+        //         if($request->branches[0]['store_branch_name'] != null){
+        //         foreach ($request->branches as $key => $value) {
+        //             // dd($value);
+        //         $branch = new SellerBranch;
+        //         $branch->seller_branch_name = $value['store_branch_name'];
+        //         $branch->seller_branch_address = $value['store_short_address'];
+        //         $branch->seller_branch_pincode = $value['store_pincode'];
+        //         // $branch->seller_branch_state = '';
+        //         // $branch->seller_branch_country ='';
+        //         $branch->seller_branch_city = $value['store_branch_city'];
+        //         $branch->seller_branch_contact_no = $request->store_mobile_number;
+        //         $branch->seller_branch_emailid = $request->store_email;
+        //         $branch->seller_id = $seller_id;
+        //         $branch->seller_branch_type = $value['store_branch_type'];
+        //         $branch->isactive = 1;
+        //         $branch->isdelete = 0;
+        //         if($branch->save()){
+        //             $user = new Userlogs;
+        //             $user->form_name = 'Seller Branch';
+        //             $user->operation_type = 'Insert';
+        //             $user->user_id = 1;
+        //             $user->description = "Insert Seller Branch Name - ". $value['store_branch_name'];
+        //             $user->OS = 'WEB';
+        //             $user->table_name = 'seller_master';
+        //             $user->reference_id = $branch->seller_branch_id;
+        //             $user->ip_device_id = "000:00:00";
+        //             $user->user_type_id = 1;
+        //             $user->save();
+        //         }
+        //     }
+        // }
             DB::commit();
                 flash()->success('Store Created Successfully!');
                 return redirect()->route('store.index');
@@ -311,39 +317,39 @@ class StoreController extends Controller
                 $user->ip_device_id = "000:00:00";
                 $user->user_type_id = 1;
                 $user->save();
-                if($request->branches[0]['store_branch_name'] != null){
-                foreach ($request->branches as $key => $value) {
+        //         if($request->branches[0]['store_branch_name'] != null){
+        //         foreach ($request->branches as $key => $value) {
                     
                 
-                $branch = SellerBranch::findOrFail($value['seller_branch_id']);
+        //         $branch = SellerBranch::findOrFail($value['seller_branch_id']);
                 
-                $branch->seller_branch_name = $value['store_branch_name'];
-                $branch->seller_branch_address = $value['store_short_address'];
-                $branch->seller_branch_pincode = $value['store_pincode'];
-                // $branch->seller_branch_state = '';
-                // $branch->seller_branch_country ='';
-                $branch->seller_branch_city = $value['store_branch_city'];
-                $branch->seller_branch_contact_no = $request->store_mobile_number;
-                // $branch->seller_branch_emailid = $request->store_email;
-                $branch->seller_id = $seller_id;
-                $branch->seller_branch_type = $value['store_branch_type'];
-                $branch->isactive = 1;
-                $branch->isdelete = 0;
-                if($branch->save()){
-                    $user = new Userlogs;
-                    $user->form_name = 'Seller Branch';
-                    $user->operation_type = 'Update';
-                    $user->user_id = 1;
-                    $user->description = "Update Seller Branch Name - ". $value['store_branch_name'];
-                    $user->OS = 'WEB';
-                    $user->table_name = 'seller_branch';
-                    $user->reference_id = $branch->seller_branch_id;
-                    $user->ip_device_id = "000:00:00";
-                    $user->user_type_id = 1;
-                    $user->save();
-                }
-            }
-        }
+        //         $branch->seller_branch_name = $value['store_branch_name'];
+        //         $branch->seller_branch_address = $value['store_short_address'];
+        //         $branch->seller_branch_pincode = $value['store_pincode'];
+        //         // $branch->seller_branch_state = '';
+        //         // $branch->seller_branch_country ='';
+        //         $branch->seller_branch_city = $value['store_branch_city'];
+        //         $branch->seller_branch_contact_no = $request->store_mobile_number;
+        //         // $branch->seller_branch_emailid = $request->store_email;
+        //         $branch->seller_id = $seller_id;
+        //         $branch->seller_branch_type = $value['store_branch_type'];
+        //         $branch->isactive = 1;
+        //         $branch->isdelete = 0;
+        //         if($branch->save()){
+        //             $user = new Userlogs;
+        //             $user->form_name = 'Seller Branch';
+        //             $user->operation_type = 'Update';
+        //             $user->user_id = 1;
+        //             $user->description = "Update Seller Branch Name - ". $value['store_branch_name'];
+        //             $user->OS = 'WEB';
+        //             $user->table_name = 'seller_branch';
+        //             $user->reference_id = $branch->seller_branch_id;
+        //             $user->ip_device_id = "000:00:00";
+        //             $user->user_type_id = 1;
+        //             $user->save();
+        //         }
+        //     }
+        // }
             DB::commit();
             flash()->success('Store Updated Successfully!');
             return redirect()->back();

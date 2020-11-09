@@ -40,14 +40,14 @@ class CategoryController extends Controller
         try{
             if($request->isMethod('post'))
             {
-                $validator = Validator::make($request->input(), [
+                $validator = Validator::make($request->all(), [
                     "category_name" => 'required',
                     "category_image" => 'required'
                 ]);
 
                 // if form validation errors
                 if ($validator->fails()) {
-                    flash()->error('Please fill the required fields');
+                    flash()->error('Please fill the required fields!!!!');
                     return redirect()->back();
                                 
                 }

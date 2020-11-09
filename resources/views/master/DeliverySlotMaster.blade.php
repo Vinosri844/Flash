@@ -113,12 +113,12 @@
                 
                 <div class="form-group">
                   <label for="deliverySlotFrom">From Time</label>
-                  <input type="time" class="form-control" id="deliverySlotFrom" name="deliverySlotFrom" aria-describedby="deliverySlotFrom">
+                  <input type="time" class="form-control" id="deliverySlotFrom" name="deliverySlotFrom" aria-describedby="deliverySlotFrom" required>
     
                 </div>
                 <div class="form-group">
                   <label for="deliverySlotTo">To Time</label>
-                  <input type="time" class="form-control" id="deliverySlotTo" name="deliverySlotTo" aria-describedby="deliverySlotTo">
+                  <input type="time" class="form-control" id="deliverySlotTo" name="deliverySlotTo" aria-describedby="deliverySlotTo"required>
     
                 </div>
                 <div class="form-group" style="display: flex">

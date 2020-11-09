@@ -91,6 +91,14 @@
                                                       </fieldset>
                                                       </div>
                                                 </div>
+                                                <div class="col-md-6">
+                                                  <label for="" class="mr-2">Multi Store Flag</label>
+                                                  <div class="custom-control custom-switch custom-switch-glow custom-control-inline" style="vertical-align: bottom">
+                                                    <input type="checkbox" class="custom-control-input" {{$setting->multistore == 1 ? 'checked' : ''}} value="{{$setting->contact_us_id}}" onchange="change_status(this.value, 'contact_us', '#customSwitchGlow', 'contact_us_id', 'multistore');" id="customSwitchGlow">
+                                                    <label class="custom-control-label" for="customSwitchGlow">
+                                                    </label>
+                                                </div>
+                                                </div>
                                             </div>
                                             <div id="contactButtons" class="d-none">
                                                 <button type="reset" id="contactUsCancel" onclick="settingUpdate(false)" class="btn btn-secondary float-right my-2">Cancel</button>

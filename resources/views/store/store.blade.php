@@ -20,8 +20,12 @@
                              </button>
                             </a>
                             </div> 
+                            <?php $status = \App\Setting::pluck('multistore')->first(); ?>
                             <div class="col-sm-6">
-                            <a href="{{ route('store.create') }}" class="btn btn-primary float-right" class="btn btn-primary">Create Store</a>
+                                @if ($status == 1)
+                                <a href="{{ route('store.create') }}" class="btn btn-primary float-right" class="btn btn-primary">Create Store</a>
+                                @endif
+                            
                             </div>
                             
                         </div></div>   

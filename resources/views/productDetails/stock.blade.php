@@ -25,7 +25,7 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label class="form-label">Weights<span class="text-danger"> *</span></label>
-                                    <select name="weight" id="weight" class="form-control select2_picker" onchange="cat_by_subcategory(this.value)">
+                                    <select name="weight" id="weight" class="form-control select2_picker" onchange="cat_by_subcategory(this.value)" required>
                                         <option value="">Select Weight</option>
                                         @if(isset($weights) && !empty($weights))
                                             @foreach($weights as $k => $weight)
@@ -42,7 +42,7 @@
                                         <label for="price">Product Price<span class="text-danger"> *</span></label>
                                         <div class="controls">
                                         <input type="number" class="form-control"
-                                          id="price" name="price" data-validation-required-message="This field is required" placeholder="Price">
+                                          id="price" name="price" placeholder="Price"required>
                                         </div>
                                       </div>
                                 </div>
@@ -54,14 +54,14 @@
                                     <label for="stock">Stock<span class="text-danger"> *</span></label>
                                     <div class="controls">
                                     <input type="number" class="form-control"
-                                      id="stock" name="stock" data-validation-required-message="This field is required" placeholder="Stock">
+                                      id="stock" name="stock" placeholder="Stock" required>
                                     </div>
                                   </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label class="form-label">Discount Type<span class="text-danger"> *</span></label>
-                                    <select name="dis_type" id="weight" class="form-control select2_picker">
+                                    <label class="form-label">Discount Type</label>
+                                    <select name="dis_type" id="weight" class="form-control select2_picker" onchange="show_discount(this.value);">
                                         <option value="">Select Discount Type</option>
                                         <option value="1">Percentage</option>
                                         <option value="2">Amount</option>
@@ -70,22 +70,35 @@
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
+                            @push('scripts')
+                                <script>
+                                    function show_discount(id){
+                                        if(id){
+                                            $('#non_discount_show').removeClass('d-none')
+                                            $('#discount_show').removeClass('d-none')
+                                        }else{
+                                            $('#non_discount_show').addClass('d-none')
+                                            $('#discount_show').addClass('d-none')
+                                        }
+                                    }
+                                </script>
+                            @endpush
                             <div class="col-sm-3">
-                                <div class="form-group">
+                                <div class="form-group d-none" id="non_discount_show">
                                     <label for="non_discount">Non Membership Discount<span class="text-danger"> *</span></label>
                                     <div class="controls">
                                     <input type="number" name="non_discount" id="non_discount" class="form-control"
-                                       data-validation-required-message="This field is required" placeholder="Value">
+                                       placeholder="Value">
                                     </div>
                                   </div>
 
                             </div>
                             <div class="col-sm-3">
-                                <div class="form-group">
+                                <div class="form-group d-none"id="discount_show">
                                     <label for="discount"> Membership Discount<span class="text-danger"> *</span></label>
                                     <div class="controls">
                                     <input type="number" name="discount" id="discount" class="form-control"
-                                       data-validation-required-message="This field is required" placeholder="Value">
+                                      placeholder="Value">
                                     </div>
                                   </div>
 

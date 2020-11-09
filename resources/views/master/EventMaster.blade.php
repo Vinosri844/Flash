@@ -141,7 +141,7 @@
                 @csrf
                 <div class="form-group">
                   <label for="eventNameEdit">Event Name</label>
-                  <input type="text" class="form-control" id="eventNameEdit" name="event_name" aria-describedby="eventName">
+                  <input type="text" class="form-control" id="eventNameEdit" name="event_name" aria-describedby="eventName" required>
     
                 </div>
                 <div class="form-group" style="display: flex">

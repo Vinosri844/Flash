@@ -18,18 +18,19 @@
                                 {{ csrf_field() }}
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <div class="form-label-group">
+                                        <div class="form-group">
+                                            <label for="first-name-floating">Product Code</label>
                                             <input type="text" disabled id="product_code" class="form-control" placeholder="Product Code"
                                                    name="product_code" value="{{$product_code}}">
-                                            <label for="first-name-floating">Product Code</label>
+                                            
                                         </div>
                                         <input type="hidden" id="productweight_id" class="form-control"
                                                name="productweight_id" value="{{$productweightdetail->product_weight_details_id}}">
                                     </div>
                                     <div class="col-sm-4">
-                                        <div class="form-label-group">
-                                            <label class="form-label">Weights</label>
-                                            <select name="weight" id="weight" class="form-control select2_picker" onchange="cat_by_subcategory(this.value)">
+                                        <div class="form-group">
+                                            <label class="form-label">Weights<span class="text-danger"> *</span></label>
+                                            <select name="weight" id="weight" class="form-control select2_picker" onchange="cat_by_subcategory(this.value)" required>
                                                 <option value="">Select Weight</option>
                                                 @if(isset($weights) && !empty($weights))
                                                     @foreach($weights as $k => $weight)
@@ -43,23 +44,25 @@
                                     </div>
 
                                     <div class="col-sm-4">
-                                        <div class="form-label-group">
+                                        <div class="form-group">
+                                            <label for="first-name-floating">Product Price<span class="text-danger"> *</span></label>
                                             <input type="number" id="price" class="form-control" placeholder="Price"
-                                                   name="price" value="{{$productweightdetail->seller_price}}">
-                                            <label for="first-name-floating">Product Price</label>
+                                                   name="price" value="{{$productweightdetail->seller_price}}" required>
+                                            
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
-                                        <div class="form-label-group">
+                                        <div class="form-group">
+                                            <label for="first-name-floating">Stock<span class="text-danger"> *</span></label>
                                             <input type="text" id="stock" class="form-control" placeholder="Stock"
-                                                   name="stock" value="{{$stock->weight}}">
-                                            <label for="first-name-floating">Stock</label>
+                                                   name="stock" value="{{$stock->weight}}" required>
+                                            
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
-                                        <div class="form-label-group">
+                                        <div class="form-group">
                                             <label class="form-label">Discount Type</label>
-                                            <select name="dis_type" id="weight" class="form-control select2_picker">
+                                            <select name="dis_type" id="weight" class="form-control select2_picker" onchange="show_discount(this.value);">
                                                 <option value="">Select Discount Type</option>
                                                 <option value="1" {{$productweightdetail->discount_type == 1 ? 'selected' : "" }}>Percentage</option>
                                                 <option value="2" {{$productweightdetail->discount_type == 2 ? 'selected' : "" }}>Rupee</option>
@@ -69,20 +72,35 @@
                                         </div>
                                     </div>
                                 </div>
+                                @push('scripts')
+                                <script>
+                                    function show_discount(id){
+                                        if(id){
+                                            $('#non_discount_show').removeClass('d-none')
+                                            $('#discount_show').removeClass('d-none')
+                                        }else{
+                                            $('#non_discount_show').addClass('d-none')
+                                            $('#discount_show').addClass('d-none')
+                                        }
+                                    }
+                                </script>
+                            @endpush
                                 <div class="row">
 
                                     <div class="col-sm-4">
-                                        <div class="form-label-group">
+                                        <div class="form-group <?php if(!$productweightdetail->discount_value){echo 'd-none';} ?>" id="non_discount_show">
+                                            <label for="first-name-floating">Non Membership Discount</label>
                                             <input type="number" id="non_discount" class="form-control" placeholder="Non Membership Discount"
                                                    name="non_discount" value="{{$productweightdetail->discount_value}}">
-                                            <label for="first-name-floating">Non Membership Discount</label>
+                                            
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
-                                        <div class="form-label-group">
+                                        <div class="form-group  <?php if(!$productweightdetail->m_discount_value){echo 'd-none';} ?>" id="discount_show">
+                                            <label for="first-name-floating">Membership Discount</label>
                                             <input type="number" id="discount" class="form-control" placeholder="Membership Discount"
                                                    name="discount" value="{{$productweightdetail->m_discount_value}}">
-                                            <label for="first-name-floating">Membership Discount</label>
+                                            
                                         </div>
                                     </div>
                                 </div>

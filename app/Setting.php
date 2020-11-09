@@ -17,7 +17,7 @@ class Setting extends Model
 
 
     protected $fillable = [
-        'contact_name','contact_number', 'sms_contact_number','email','mintime', 'maxtime', 'delivery_charge'
+        'contact_name','contact_number', 'sms_contact_number','email','mintime', 'maxtime', 'delivery_charge', 'multistore'
     ];
 
     protected $hidden = [];

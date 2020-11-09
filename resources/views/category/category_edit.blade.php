@@ -22,7 +22,7 @@
                   <div class="form-group mb-50">
                   <label class="text-bold-600" for="exampleInputEmail1">Category Name<span class="text-danger"> *</span></label>
                       <input type="text" id="category_name" class="form-control" placeholder="Category Name"
-                        name="category_name" value="{{ $category->category_name }}">
+                      data-validation-required-message="This field is required" required  name="category_name" value="{{ $category->category_name }}">
                     </div>
                   </div>
                   
@@ -52,15 +52,23 @@
                             <img src="http://placehold.it/100x100" class="img-thumbnail" width="100" height="100" />
                         @endif
                     </div>
-                    <div class="col-sm-4">
-                        <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <label class="form-label">Image<span class="text-danger"> *</span></label>
-                                <input type="file" name="category_image" class="form-control">
-                                <input type="hidden" name="old_category_image" value="{{ $category->category_image }}">
-                                <div class="clearfix"></div>
-                            </div>
+                    <div class="col-sm-6 pl-0">
+                      <fieldset id="storePanimageElement">
+                        <label for="storePANImage">Upload Category Image<span class="text-danger"> *</span></label>
+                      <div class="input-group" >
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="storePANImage">Category Image</span>
                         </div>
+                        <div class="custom-file">
+                        <input type="file"  class="custom-file-input"  name="category_image" value="{{$category->category_image}}" id="storePANImageUpload" aria-describedby="storePANImage">
+                        <label class="custom-file-label" for="storePANImage">{{$category->category_image}}</label>
+                        </div>
+                      </div>
+                      <div class="invalid-feedback">
+                        <i class="bx bx-radio-circle"></i>
+                        Image should be jpg, jpeg Format
+                      </div>
+                    </fieldset>
                     </div>
                             
                   <div class="col-12 d-flex justify-content-end">

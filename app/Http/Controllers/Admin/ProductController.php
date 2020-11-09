@@ -667,7 +667,7 @@ class ProductController extends Controller
                 if($check) {
                     DB::commit();
                     flash()->success('Product Updated Successfully!');
-                    return redirect()->route('products', $product_id);
+                    return redirect()->back();
                 } else {
                     flash()->error('Please Try Again!');
                     return view('products.product_edit');

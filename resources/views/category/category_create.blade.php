@@ -21,8 +21,11 @@
                 <div class="col-6">
                 <div class="form-group mb-50">
                   <label class="text-bold-600" for="exampleInputEmail1">Category name<span class="text-danger"> *</span></label>
+                <div class="controls">
                   <input type="text" class="form-control" id="category_name" name="category_name"
-                      placeholder="Category Name">
+                  data-validation-required-message="This field is required" required placeholder="Category Name">
+                  
+                </div>  
                 </div>
                 </div>
                 
@@ -44,15 +47,26 @@
                       </div>
                 </div>
                 <div class="col-6">
-                <div class="form-group mb-50">
-                  <label class="text-bold-600" for="exampleInputEmail1">Image<span class="text-danger"> *</span></label>
-                      <input type="file" id="category_image" class="form-control" name="category_image"
-                        placeholder="Password">
-                        </div>
+                  <fieldset id="storePanimageElement">
+                    <label for="storePANImage">Upload Category Image<span class="text-danger"> *</span></label>
+                  <div class="input-group" >
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="storePANImage">Category Image</span>
+                    </div>
+                    <div class="custom-file">
+                    <input type="file"  class="custom-file-input"  name="category_image" id="storePANImageUpload" aria-describedby="storePANImage" required>
+                    <label class="custom-file-label" for="storePANImage">Choose file</label>
                     </div>
                   </div>
-                  <div class="col-12 d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary mr-1 mb-1">Create</button>
+                  <div class="invalid-feedback">
+                    <i class="bx bx-radio-circle"></i>
+                    Image should be jpg, jpeg Format
+                  </div>
+                </fieldset>
+                    </div>
+                  </div>
+                  <div class="col-12 d-flex justify-content-end my-2">
+                    <button type="submit" class="btn btn-primary mr-1 mb-1" id="formSubmitButton">Create</button>
                     <button type="reset" class="btn btn-light-secondary mr-1 mb-1">Reset</button>
                   </div>
                 </div>

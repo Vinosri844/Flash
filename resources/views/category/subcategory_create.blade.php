@@ -22,14 +22,14 @@
                   <div class="form-group mb-50">
                   <label class="text-bold-600" for="exampleInputEmail1">SubCategory Name<span class="text-danger"> *</span></label>
                       <input type="text" id="subcategory_name" class="form-control" placeholder="SubCategory Name"
-                        name="subcategory_name" >
+                        name="subcategory_name" data-validation-required-message="This field is required" required>
                     </div>
                   </div>
                   
 									<div class="col-6">
                   <div class="form-group mb-50">
                           <label class="form-label">Category<span class="text-danger"> *</span></label>
-                          <select name="category_id" id="category_id" class="form-control select2_picker">
+                          <select name="category_id" id="category_id" class="form-control select2_picker" required>
                               <option value="">Select Category</option>
                               @if(isset($cat) && !empty($cat))
                               @foreach($cat as $k => $val)
@@ -48,11 +48,22 @@
                     </div>
                   </div>
                 <div class="col-6">
-                <div class="form-group mb-50">
-                  <label class="text-bold-600" for="exampleInputEmail1">Image</label>
-                      <input type="file" id="subcategory_image" class="form-control" name="subcategory_image"
-                        placeholder="Image">
+                  <fieldset id="storePanimageElement">
+                    <label for="storePANImage">Upload Category Image<span class="text-danger"> *</span></label>
+                  <div class="input-group" >
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="storePANImage">Category Image</span>
                     </div>
+                    <div class="custom-file">
+                    <input type="file"  class="custom-file-input"  name="subcategory_image" id="storePANImageUpload" aria-describedby="storePANImage" required>
+                    <label class="custom-file-label" for="storePANImage">Choose File</label>
+                    </div>
+                  </div>
+                  <div class="invalid-feedback">
+                    <i class="bx bx-radio-circle"></i>
+                    Image should be jpg, jpeg Format
+                  </div>
+                </fieldset>
                   </div>
                   <div class="col-6 mt-2">
                   <div class="form-group" style="display: flex">

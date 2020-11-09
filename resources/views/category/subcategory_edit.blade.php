@@ -22,14 +22,14 @@
                   <div class="form-group mb-50">
                   <label class="text-bold-600" for="exampleInputEmail1">Sub Category Name<span class="text-danger"> *</span></label>
                       <input type="text" id="subcategory_name" class="form-control" placeholder="SubCategory Name"
-                        name="subcategory_name" value="{{ $category->subcategory_name }}">
+                        name="subcategory_name" value="{{ $category->subcategory_name }}" required>
                     </div>
                   </div>
                   
                   <div class="col-6">
                   <div class="form-group mb-50">
                           <label class="form-label">Category<span class="text-danger"> *</span></label>
-                          <select name="category_id" id="category_id" class="form-control select2_picker">
+                          <select name="category_id" id="category_id" class="form-control select2_picker" required>
                               <option value="">Select Category</option>
                               @if(isset($cat) && !empty($cat))
                               @foreach($cat as $k => $val)
@@ -56,15 +56,23 @@
                             <img src="http://placehold.it/100x100" class="img-thumbnail" width="100" height="100" />
                         @endif
                     </div>
-                    <div class="col-sm-4">
-                        <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <label class="form-label">Image</label>
-                                <input type="file" name="subcategory_image" class="form-control">
-                                <input type="hidden" name="old_subcategory_image" value="{{ $category->subcategory_image }}">
-                                <div class="clearfix"></div>
-                            </div>
+                    <div class="col-sm-6">
+                      <fieldset id="storePanimageElement">
+                        <label for="storePANImage">Upload Category Image<span class="text-danger"> *</span></label>
+                      <div class="input-group" >
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="storePANImage">Category Image</span>
                         </div>
+                        <div class="custom-file">
+                        <input type="file"  class="custom-file-input"  name="subcategory_image" value="{{$category->subcategory_image}}" id="storePANImageUpload" aria-describedby="storePANImage">
+                        <label class="custom-file-label" for="storePANImage">{{$category->subcategory_image}}</label>
+                        </div>
+                      </div>
+                      <div class="invalid-feedback">
+                        <i class="bx bx-radio-circle"></i>
+                        Image should be jpg, jpeg Format
+                      </div>
+                    </fieldset>
                     </div>
                   <div class="col-6 mt-2">
                   <div class="form-group" style="display: flex">

@@ -38,7 +38,7 @@
                                         <th>Sub category name</th>
                                         <th>Description</th>
                                         <th>Status</th>
-                                        <th>Date</th>
+                                        <th style="white-space: nowrap;">Created Date</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>

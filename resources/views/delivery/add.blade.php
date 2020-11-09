@@ -22,7 +22,7 @@
                                             <div class="form-group">
                                               <label for="first-name-floating">Delivery Person Name<span class="text-danger"> *</span></label>
                                                 <input type="text" id="deliveryperson_name" class="form-control" placeholder="Delivery Person Name"
-                                                       name="deliveryperson_name" >
+                                                       name="deliveryperson_name" required>
                                                 
                                             </div>
                                         </div>

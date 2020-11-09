@@ -23,14 +23,14 @@
                                             <div class="form-group">
                                                 <label for="first-name-floating">Product Name<span class="text-danger"> *</span></label>
                                                 <input type="text" id="product_name" class="form-control" placeholder="Product Name"
-                                                       name="product_name" >
+                                                       name="product_name" required>
                                                 
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label class="form-label">Category<span class="text-danger"> *</span></label>
-                                                <select name="category_id" id="category_id" class="form-control select2_picker" onchange="cat_by_subcategory(this.value)">
+                                                <select name="category_id" id="category_id" class="form-control select2_picker" required onchange="cat_by_subcategory(this.value)">
                                                     <option value="">Select Category</option>
                                                     @if(isset($category) && !empty($category))
                                                         @foreach($category as $k => $val)
@@ -44,7 +44,7 @@
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label class="form-label">Sub-Category<span class="text-danger"> *</span></label>
-                                                <select name="subcat_id" id="subcat_id" class="form-control select2_picker">
+                                                <select name="subcat_id" id="subcat_id" class="form-control select2_picker" required>
                                                     <option value="">Select Sub-Category</option>
 
                                                 </select>
@@ -55,7 +55,7 @@
                                         <div class="col-6">
                                                 <div class="form-group">
                                                     <label for="">Select Store<span class="text-danger"> *</span></label>
-                                                    <select class="mul-select" name="productstore_id[]" id="productstore_id" style="width: 100%" multiple="true">
+                                                    <select class="mul-select" name="productstore_id[]" id="productstore_id" style="width: 100%" multiple="true" required>
                                                         @if(isset($seller) && !empty($seller))
                                                             @foreach($seller as $k => $val)
                                                                 <option value="{{ $val->seller_id }}">{{ ucfirst($val->seller_name) }}</option>
@@ -76,7 +76,7 @@
                                             <div class="form-group">
                                                 <label for="contact-info-floating">Description<span class="text-danger"> *</span></label>
                                                 <input type="text" id="product_short_description" class="form-control" name="product_short_description"
-                                                       placeholder="Description" >
+                                                       placeholder="Description" required>
                                                 
                                             </div>
                                         </div>
@@ -142,52 +142,124 @@
                                     <h4 class="card-title">Product Images</h4>
                                     <div class="row">
                                         <div class="col-4">
-                                            <div class="form-group mb-50">
-                                                <label class="text-bold-600" for="exampleInputEmail1">Product Image</label>
-                                                <input type="file" id="product_image" class="form-control" name="product_image"
-                                                       placeholder="Password">
-                                            </div>
+                                            <fieldset id="storePanimageElement">
+                                                <label for="storePANImage6">Upload Product Image</label>
+                                              <div class="input-group" >
+                                                {{-- <div class="input-group-prepend">
+                                                  <span class="input-group-text" id="storePANImage6">Product Image</span>
+                                                </div> --}}
+                                                <div class="custom-file">
+                                                <input type="file"  class="custom-file-input"  name="product_image" id="storePANImageUpload6" aria-describedby="storePANImage6">
+                                                <label class="custom-file-label" for="storePANImage6">Choose file</label>
+                                                </div>
+                                              </div>
+                                              <div class="invalid-feedback">
+                                                <i class="bx bx-radio-circle"></i>
+                                                Image should be jpg, jpeg Format
+                                              </div>
+                                            </fieldset>
+                                           
                                         </div>
                                         <div class="col-4">
-                                            <div class="form-group mb-50">
-                                                <label class="text-bold-600" for="exampleInputEmail1">Top Image</label>
-                                                <input type="file" id="top_image" class="form-control" name="top_image"
-                                                       placeholder="Password">
-                                            </div>
+                                            <fieldset id="storePanimageElement5">
+                                                <label for="storePANImage5">Upload Top Image</label>
+                                              <div class="input-group" >
+                                                {{-- <div class="input-group-prepend">
+                                                  <span class="input-group-text" id="storePANImage5">Top Image</span>
+                                                </div> --}}
+                                                <div class="custom-file">
+                                                <input type="file"  class="custom-file-input"  name="top_image" id="storePANImageUpload5" aria-describedby="storePANImage5">
+                                                <label class="custom-file-label" for="storePANImage5">Choose file</label>
+                                                </div>
+                                              </div>
+                                              <div class="invalid-feedback">
+                                                <i class="bx bx-radio-circle"></i>
+                                                Image should be jpg, jpeg Format
+                                              </div>
+                                            </fieldset>
+                                            
                                         </div>
                                         <div class="col-4">
-                                            <div class="form-group mb-50">
-                                                <label class="text-bold-600" for="exampleInputEmail1">Bottom Image</label>
-                                                <input type="file" id="bottom_image" class="form-control" name="bottom_image"
-                                                       placeholder="Password">
-                                            </div>
+                                            <fieldset id="storePanimageElement4">
+                                                <label for="storePANImage4">Upload Bottom Image</label>
+                                              <div class="input-group" >
+                                                {{-- <div class="input-group-prepend">
+                                                  <span class="input-group-text" id="storePANImage4">Bottom Image</span>
+                                                </div> --}}
+                                                <div class="custom-file">
+                                                <input type="file"  class="custom-file-input"  name="bottom_image" id="storePANImageUpload4" aria-describedby="storePANImage4">
+                                                <label class="custom-file-label" for="storePANImage4">Choose file</label>
+                                                </div>
+                                              </div>
+                                              <div class="invalid-feedback">
+                                                <i class="bx bx-radio-circle"></i>
+                                                Image should be jpg, jpeg Format
+                                              </div>
+                                            </fieldset>
+                                            
                                         </div>
                                         <div class="col-4">
-                                            <div class="form-group mb-50">
-                                                <label class="text-bold-600" for="exampleInputEmail1">Left Image</label>
-                                                <input type="file" id="left_image" class="form-control" name="left_image"
-                                                       placeholder="Password">
-                                            </div>
+                                            <fieldset id="storePanimageElement3">
+                                                <label for="storePANImage3">Upload Left Image</label>
+                                              <div class="input-group" >
+                                                {{-- <div class="input-group-prepend">
+                                                  <span class="input-group-text" id="storePANImage3">Left Image</span>
+                                                </div> --}}
+                                                <div class="custom-file">
+                                                <input type="file"  class="custom-file-input"  name="left_image" id="storePANImageUpload3" aria-describedby="storePANImage3">
+                                                <label class="custom-file-label" for="storePANImage3">Choose file</label>
+                                                </div>
+                                              </div>
+                                              <div class="invalid-feedback">
+                                                <i class="bx bx-radio-circle"></i>
+                                                Image should be jpg, jpeg Format
+                                              </div>
+                                            </fieldset>
+                                            
                                         </div>
                                         <div class="col-4">
-                                            <div class="form-group mb-50">
-                                                <label class="text-bold-600" for="exampleInputEmail1">Right Image</label>
-                                                <input type="file" id="right_image" class="form-control" name="right_image"
-                                                       placeholder="Password">
-                                            </div>
+                                            <fieldset id="storePanimageElement2">
+                                                <label for="storePANImage2">Upload Right Image</label>
+                                              <div class="input-group" >
+                                                {{-- <div class="input-group-prepend">
+                                                  <span class="input-group-text" id="storePANImage2">Right Image</span>
+                                                </div> --}}
+                                                <div class="custom-file">
+                                                <input type="file"  class="custom-file-input"  name="right_image" id="storePANImageUpload2" aria-describedby="storePANImage2">
+                                                <label class="custom-file-label" for="storePANImage2">Choose file</label>
+                                                </div>
+                                              </div>
+                                              <div class="invalid-feedback">
+                                                <i class="bx bx-radio-circle"></i>
+                                                Image should be jpg, jpeg Format
+                                              </div>
+                                            </fieldset>
+                                            
                                         </div>
                                         <div class="col-4">
-                                            <div class="form-group mb-50">
-                                                <label class="text-bold-600" for="exampleInputEmail1">Other Image</label>
-                                                <input type="file" id="other_image" class="form-control" name="other_image"
-                                                       placeholder="Password">
-                                            </div>
+                                            <fieldset id="storePanimageElement1">
+                                                <label for="storePANImage1">Upload Other Image</label>
+                                              <div class="input-group" >
+                                                {{-- <div class="input-group-prepend">
+                                                  <span class="input-group-text" id="storePANImage1"> Image</span>
+                                                </div> --}}
+                                                <div class="custom-file">
+                                                <input type="file"  class="custom-file-input"  name="other_image" id="storePANImageUpload1" aria-describedby="storePANImage1">
+                                                <label class="custom-file-label" for="storePANImage1">Choose file</label>
+                                                </div>
+                                              </div>
+                                              <div class="invalid-feedback">
+                                                <i class="bx bx-radio-circle"></i>
+                                                Image should be jpg, jpeg Format
+                                              </div>
+                                            </fieldset>
+                                           
                                         </div>
 
                                     </div>
 
                                     <div>
-                                        <div class="col-12 d-flex justify-content-end">
+                                        <div class="col-12 d-flex justify-content-end mt-2">
                                             <button type="submit" class="btn btn-primary mr-1 mb-1">Create</button>
                                             <button type="reset" class="btn btn-light-secondary mr-1 mb-1">Reset</button>
                                         </div>

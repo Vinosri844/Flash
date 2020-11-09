@@ -141,9 +141,7 @@ class ProductDetailsController extends Controller
             $validator = Validator::make($request->all(),[
                 'weight' => 'required',
                 'price' => 'required',
-                'dis_type' => 'required',
-                'discount' => 'required',
-                'non_discount' => 'required'
+                'stock' => 'required'
             ]);
             if($validator->fails()){
                 flash()->error('Please fill the required fields !');
@@ -226,9 +224,8 @@ class ProductDetailsController extends Controller
                 $validator = Validator::make($request->all(),[
                     'weight' => 'required',
                     'price' => 'required',
-                    'dis_type' => 'required',
-                    'discount' => 'required',
-                    'non_discount' => 'required'
+                    'stock' => 'required'
+                    
                 ]);
                 if($validator->fails()){
                     flash()->error('Please fill the required fields !');
