@@ -36,7 +36,7 @@ class StoreController extends Controller
             $status = Setting::pluck('multistore')->first();
             if($status == 0){
                 flash()->error('Cannot Create Multi Store');
-                return redirect()->back();
+                return redirect()->route('store.index');
             }
         return view('store.store_create');
     }
