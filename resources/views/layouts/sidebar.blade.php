@@ -157,7 +157,9 @@
           </li> --}}
           <li class=" navigation-header"><span>Components</span>
           </li>
-            @php $active = (Route::currentRouteName() == 'sliders') ? 'active' : ''; @endphp
+          @php $active = null; if($route[0] == 'sliders' || $route[0] == 'slider_add' || $route[0] == 'slider_edit' ){
+            $active = 'active';
+          } @endphp
             <li class="{{$active}}"><a href="{{ route('sliders') }}"><i class="bx bx-revision" data-icon="morph-preview"></i><span class="menu-title" data-i18n="Disabled Menu">Slider</span></a>
           </li>
           {{-- @php $active = (Route::currentRouteName() == 'paymenttypes') ? 'active' : ''; @endphp
@@ -179,7 +181,9 @@
 
         <li class="{{ $route[0] == 'customer' ? ' active' : '' }}"><a href=" {{ route('customer.index') }}"><i class="bx bx-user-check" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Display customer list</span></a>
           </li>
-            @php $active = (Route::currentRouteName() == 'weights') ? 'active' : ''; @endphp
+          @php $active = null; if($route[0] == 'weights' || $route[0] == 'weight_add' || $route[0] == 'weight_edit' ){
+            $active = 'active';
+          } @endphp
             <li class=" {{$active}}"><a href="{{ route('weights') }}"><i class="bx bx-compass" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Weight</span></a>
           </li>
             {{-- @php $active = (Route::currentRouteName() == 'notifications') ? 'active' : ''; @endphp
@@ -194,7 +198,7 @@
             } @endphp
             <li class=" nav-item {{ $active }}"><a href="{{ route('sdpincodes') }}"><i class="bx bx-cog" data-icon="warning-alt"></i><span class="menu-title" data-i18n="Sweet Alert">Standard Pincode</span></a>
             </li>
-            @php $active = null; if($route[0] == 'edpincode_add' || $route[0] == 'edpincode' || $route[0] == 'edpincode_edit' ){
+            @php $active = null; if($route[0] == 'edpincode_add' || $route[0] == 'edpincodes' || $route[0] == 'edpincode_edit' ){
               $active = 'active';
             } @endphp
             <li class=" nav-item {{ $active}}"><a href="{{ route('edpincodes') }}"><i class="bx bx-wrench" data-icon="morph-map"></i><span class="menu-title" data-i18n="Toastr">Extended Pincode</span></a>
