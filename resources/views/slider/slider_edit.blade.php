@@ -77,14 +77,17 @@
                                                 <div class="clearfix"></div>
                                             </div>
                                         </div>
-                                        <div class="col-6">
+                                        {{-- <div class="col-6">
+                                           
                                             <div class="form-label-group">
                                                 <input type="text" id="link" class="form-control" placeholder="image Url"
                                                        name="link" value="{{$slider->link}}">
                                                 <label for="first-name-floating">Link</label>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="col-6">
+                                            <?php $img = !empty($slider->slider_image) ? asset(config('constants.product_img_path').$slider->slider_image) : "http://placehold.it/50x50"; ?>
+                                            <img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="50" width="50">
                                             <div class="form-group mb-50">
                                                 <label class="text-bold-600" for="exampleInputEmail1">Slider Image</label>
                                                 <input type="file" id="slider_image" class="form-control" name="slider_image"

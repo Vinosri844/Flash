@@ -503,6 +503,10 @@ class ProductController extends Controller
                                 // Resize Image
                                 $save_photo = Image::make($photo->getRealPath())->resize(config('constants.image_width'), config('constants.image_height'))->save($file_path1);
                                 $product_images = ProductImages::where('product_id', $product_id)->first();
+                                if(!$product_images){
+                                    $product_images = new ProductImages;
+                                }
+                                // dd($file_name);
                                 if($file_name != null){
                                     $product_images->product_original_image_name = $file_name;
                                     $product_images->product_compress_image_name = $file_name;

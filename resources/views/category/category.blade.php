@@ -15,8 +15,8 @@
                         <div class="col-sm-6">  
                             
                                 <button class="btn btn-success float-left" class="btn btn-primary" data-toggle="modal" data-target="#excelUploadCat">
-                                 &nbsp;&nbsp;Excel &nbsp;&nbsp;
-                                <i class="bx bxs-download" style="vertical-align: initial; transform: rotate(180deg);"></i>
+                                 &nbsp;&nbsp;Import &nbsp;&nbsp;
+                                <i class="bx bxs-download" style="vertical-align: initial;"></i>
                              </button>
                            
                             </div> 

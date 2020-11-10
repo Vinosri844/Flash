@@ -262,7 +262,7 @@
                                                 </div> --}}
                                                 <div class="custom-file">
                                                 <input type="file"  class="custom-file-input"  name="other_image"  id="storePANImageUpload1" aria-describedby="storePANImage1">
-                                                <label class="custom-file-label" for="storePANImage1x">{{$productimages->product_original_image_name}}</label>
+                                                <label class="custom-file-label" for="storePANImage1x">{{isset($productimages->product_original_image_name) ? $productimages->product_original_image_name : null}}</label>
                                                 </div>
                                               </div>
                                               <div class="invalid-feedback">

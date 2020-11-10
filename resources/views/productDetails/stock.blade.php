@@ -74,11 +74,15 @@
                                 <script>
                                     function show_discount(id){
                                         if(id){
-                                            $('#non_discount_show').removeClass('d-none')
-                                            $('#discount_show').removeClass('d-none')
+                                            $('#non_discount_show').removeClass('d-none');
+                                            $('#discount_show').removeClass('d-none');
+                                            $('#non_discount').attr('required', true);
+                                            $('#discount').attr('required', true);
                                         }else{
-                                            $('#non_discount_show').addClass('d-none')
-                                            $('#discount_show').addClass('d-none')
+                                            $('#non_discount_show').addClass('d-none');
+                                            $('#discount_show').addClass('d-none');
+                                            $('#non_discount').attr('required', false);
+                                            $('#discount').attr('required', false);
                                         }
                                     }
                                 </script>

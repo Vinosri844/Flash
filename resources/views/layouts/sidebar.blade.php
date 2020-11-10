@@ -66,18 +66,26 @@
           </li>
           <li class=" navigation-header"><span>Category</span>
           </li>
-          @php $active = (Route::currentRouteName() == 'category') ? 'active' : ''; @endphp
+          @php $active = null; if($route[0] == 'category' || $route[0] == 'category_create' || $route[0] == 'category_edit' ){
+            $active = 'active';
+          } @endphp
           <li class=" nav-item {{ $active }}"><a href="{{ route('category') }}"><i class="bx bx-spreadsheet" data-icon="envelope-pull"></i><span class="menu-title" data-i18n="Email">Category</span></a>
           </li>
-          @php $active = (Route::currentRouteName() == 'subcategory') ? 'active' : ''; @endphp
+          @php $active = null; if($route[0] == 'subcategory' || $route[0] == 'subcategory_create' || $route[0] == 'subcategory_edit' ){
+            $active = 'active';
+          } @endphp
           <li class=" nav-item {{ $active }}"><a href="{{ route('subcategory') }}"><i class="bx bx-sitemap" data-icon="comments"></i><span class="menu-title" data-i18n="Chat">Sub category</span></a>
           </li>
           <li class=" navigation-header"><span>Product</span>
           </li>
-            @php $active = (Route::currentRouteName() == 'products') ? 'active' : ''; @endphp
+          @php $active = null; if($route[0] == 'products' || $route[0] == 'product_create' || $route[0] == 'product_edit' ){
+            $active = 'active';
+          } @endphp
             <li class=" nav-item {{$active}}"><a href="{{ route('products') }}"><i class="bx bx-basket" data-icon="settings"></i><span class="menu-title" data-i18n="Form Layout">Product</span></a>
           </li>
-            @php $active = (Route::currentRouteName() == 'productDetails') ? 'active' : ''; @endphp
+          @php $active = null; if($route[0] == 'productDetails' || $route[0] == 'productDetail_edit' || $route[0] == 'stock' || $route[0] == 'stock_update' ){
+            $active = 'active';
+          } @endphp
             <li class=" nav-item {{$active}}"><a href="{{ route('productDetails') }}"><i class="bx bx-detail" data-icon="priority-low"></i><span class="menu-title" data-i18n="Form Wizard">Product details</span></a>
           </li>
           <li class=" navigation-header"><span>Delivery</span>
@@ -87,7 +95,9 @@
             @php $active = (Route::currentRouteName() == 'deliverycharges') ? 'active' : ''; @endphp
             <li class=" nav-item {{$active}}"><a href="{{ route('deliverycharges') }}"><i class="bx bx-credit-card-alt" data-icon="morph-preview"></i><span class="menu-title" data-i18n="Disabled Menu">Delivery charge list</span></a>
           </li> --}}
-            @php $active = (Route::currentRouteName() == 'deliverypersons') ? 'active' : ''; @endphp
+          @php $active = null; if($route[0] == 'deliveryperson_add' || $route[0] == 'deliveryperson_edit' || $route[0] == 'deliverypersons' ){
+            $active = 'active';
+          } @endphp
             <li class="nav-item {{$active}}"><a href="{{ route('deliverypersons') }}"><i class="bx bx-credit-card-alt" data-icon="morph-preview"></i><span class="menu-title" data-i18n="Disabled Menu">Delivery Person's list</span></a>
           </li>
 
@@ -179,10 +189,14 @@
         
             <li class=" navigation-header"><span>Pincodes</span>
             </li>
-            @php $active = (Route::currentRouteName() == 'sdpincodes') ? 'active' : ''; @endphp
+            @php $active = null; if($route[0] == 'sdpincode_add' || $route[0] == 'sdpincodes' || $route[0] == 'sdpincode_edit' ){
+              $active = 'active';
+            } @endphp
             <li class=" nav-item {{ $active }}"><a href="{{ route('sdpincodes') }}"><i class="bx bx-cog" data-icon="warning-alt"></i><span class="menu-title" data-i18n="Sweet Alert">Standard Pincode</span></a>
             </li>
-            @php $active = (Route::currentRouteName() == 'edpincodes') ? 'active' : ''; @endphp
+            @php $active = null; if($route[0] == 'edpincode_add' || $route[0] == 'edpincode' || $route[0] == 'edpincode_edit' ){
+              $active = 'active';
+            } @endphp
             <li class=" nav-item {{ $active}}"><a href="{{ route('edpincodes') }}"><i class="bx bx-wrench" data-icon="morph-map"></i><span class="menu-title" data-i18n="Toastr">Extended Pincode</span></a>
             </li>
           <li class=" navigation-header"><span>Settings</span>

@@ -65,7 +65,7 @@
                                          </div>
                                         </div>
                                         <div class="col-6">
-                                          <?php $img = !empty($item->logistics_user_image) ? asset(config('constants.subcategory_img_path1').$item->logistics_user_image) : "http://placehold.it/50x50"; ?>
+                                          <?php $img = !empty($deliveryperson->logistics_user_image) ? asset(config('constants.product_img_path').$deliveryperson->logistics_user_image) : "http://placehold.it/50x50"; ?>
                                           <td><img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="80" width="50"></td>
                                         <fieldset>
                                             <label for="storePANImage">Upload Profile Image </label>
@@ -107,8 +107,9 @@
                                                 
                                             </div>
                                         </div>
+                                        
                                         <div class="col-6">
-                                          <?php $img = !empty($item->logistics_driving_licence_number_image) ? asset(config('constants.subcategory_img_path1').$item->logistics_driving_licence_number_image) : "http://placehold.it/50x50"; ?>
+                                          <?php $img = !empty($deliveryperson->logistics_driving_licence_number_image) ? asset(config('constants.product_img_path').$deliveryperson->logistics_driving_licence_number_image) : "http://placehold.it/50x50"; ?>
                                           <td><img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="80" width="50"></td>
                                         <fieldset>
                                             <label for="storePANImage">Upload Licence Image </label>
