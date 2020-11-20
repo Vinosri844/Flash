@@ -9,7 +9,7 @@
         <div class="col-12">
             <div class="card">
             <div class="card-header">
-                <p class="card-text">  
+                <div class="card-text">  
                         <div class="row">
                         <div class="col-sm-4">  
                             {{-- <h4 class="card-title">List</h4> --}}
@@ -44,7 +44,37 @@
                             </div>
                             
                         </div>
-                        </p>   
+                        </div>   
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card border text-center my-1">
+                                    <div class="card-body p-1">
+                                    <p class="text-muted">Total Orders Delivered <br> <b>{{$total_orders_delivered}}</b></p>
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card border text-center my-1">
+                                    <div class="card-body p-1">
+                                    <p class="text-muted">Total Earnings <br> <b>{{$total_earnings}}</b></p>
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card border text-center my-1">
+                                    <div class="card-body p-1">
+                                    <p class="text-muted">Total Orders Unassigned <br> <b>{{$total_orders_unassigned}}</b></p>
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="card border text-center my-1">
+                                    <div class="card-body p-1">
+                                    <p class="text-muted">Total Customers <br> <b>{{$total_customers}}</b></p>
+                                    </div>
+                                  </div>
+                            </div>
+                        </div>
                 </div><hr>
                 <div class="card-content">
                     <div class="card-body card-dashboard">
@@ -57,6 +87,7 @@
                                         <th>S.No</th>
                                         <th>Seller name</th>
                                         <th>Product name</th>
+                                        <th>Order Status</th>
                                         <th>Unit</th>
                                         <th>Qty (sell)</th>
                                         <th>Amount</th>
@@ -70,6 +101,7 @@
                                                 <td>{{ $k + 1 }}</td>
                                                 <td>{{ $item->seller_name }}</td>
                                                 <td>{{ $item->product_name }}</td>
+                                                <td>{{ $item->order_delivery_status_name }}</td>
                                                 <td>{{ $item->product_weight_display }}</td>
                                                 <td>{{ $item->product_qty }}</td>
                                                 <td>{{ $item->product_qty * $item->product_price }}</td>

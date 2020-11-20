@@ -149,7 +149,17 @@
                                     <div class="row">
                                         <div class="col-4 mb-1">
                                             <?php $img = !empty($product->product_img) ? asset(config('constants.product_img_path').$product->product_img) : "http://placehold.it/50x50"; ?>
-                                            <img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="50" width="50">
+                                            <div class="d-flex justify-content-around">
+                                                <img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="50" width="50">
+                                            @if (isset($product->product_img))
+                                            <fieldset>
+                                                <div class="custom-control custom-checkbox text-center">
+                                                  <input type="checkbox" class="custom-control-input"  name="remove" id="customCheck5">
+                                                  <br><label class="custom-control-label" for="customCheck5">Remove Image</label> 
+                                                </div>
+                                              </fieldset>
+                                            @endif
+                                            </div>
                                             <fieldset id="storePanimageElement6">
                                                 <label for="storePANImage6">Upload Product Image</label>
                                               <div class="input-group" >
@@ -169,7 +179,17 @@
                                         </div>
                                         <div class="col-4 mb-1">
                                             <?php $img = !empty($product->top_img) ? asset(config('constants.product_img_path').$product->top_img) : "http://placehold.it/50x50"; ?>
-                                                    <img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="50" width="50">
+                                            <div class="d-flex justify-content-around">
+                                                <img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="50" width="50">
+                                            @if ($product->top_img)
+                                            <fieldset>
+                                                <div class="custom-control custom-checkbox text-center">
+                                                  <input type="checkbox" class="custom-control-input"  name="remove_top" id="customCheck4">
+                                                  <br><label class="custom-control-label" for="customCheck4">Remove Image</label> 
+                                                </div>
+                                              </fieldset>
+                                            @endif
+                                            </div>
                                             <fieldset id="storePanimageElement5">
                                                 <label for="storePANImage5">Upload Top Image<span class="text-danger"> *</span></label>
                                               <div class="input-group" >
@@ -190,7 +210,17 @@
                                         </div>
                                         <div class="col-4 mb-1">
                                             <?php $img = !empty($product->bottom_img) ? asset(config('constants.product_img_path').$product->bottom_img) : "http://placehold.it/50x50"; ?>
-                                                    <img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="50" width="50">
+                                            <div class="d-flex justify-content-around">
+                                                <img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="50" width="50">
+                                            @if (isset($product->bottom_img))
+                                            <fieldset>
+                                                <div class="custom-control custom-checkbox text-center">
+                                                  <input type="checkbox" class="custom-control-input"  name="remove_bottom" id="customCheck3">
+                                                  <br><label class="custom-control-label" for="customCheck3">Remove Image</label> 
+                                                </div>
+                                              </fieldset>
+                                            @endif
+                                            </div>
                                             <fieldset id="storePanimageElement4">
                                                 <label for="storePANImage4">Upload Bottom Image</label>
                                               <div class="input-group" >
@@ -211,7 +241,18 @@
                                         </div>
                                         <div class="col-4">
                                             <?php $img = !empty($product->left_img) ? asset(config('constants.product_img_path').$product->left_img) : "http://placehold.it/50x50"; ?>
-                                                    <img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="50" width="50">
+                                                    
+                                                    <div class="d-flex justify-content-around">
+                                                        <img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="50" width="50">
+                                                    @if ($product->left_img)
+                                                    <fieldset>
+                                                        <div class="custom-control custom-checkbox text-center">
+                                                          <input type="checkbox" class="custom-control-input"  name="remove_left" id="customCheck31">
+                                                          <br><label class="custom-control-label" for="customCheck31">Remove Image</label> 
+                                                        </div>
+                                                      </fieldset>
+                                                    @endif
+                                                    </div>
                                             <fieldset id="storePanimageElement3">
                                                 <label for="storePANImage3">Upload Left Image</label>
                                               <div class="input-group" >
@@ -231,8 +272,19 @@
                                             
                                         </div>
                                         <div class="col-4">
-                                            <?php $img = !empty($product->right_img) ? asset(config('constants.product_img_path').$product->right_img) : "http://placehold.it/50x50"; ?>
-                                                    <img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="50" width="50">
+                                            <?php $img = !empty(isset($product->right_img)) ? asset(config('constants.product_img_path').$product->right_img) : "http://placehold.it/50x50"; ?>
+                                                    
+                                                    <div class="d-flex justify-content-around">
+                                                        <img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="50" width="50">
+                                                    @if ($product->right_img)
+                                                    <fieldset>
+                                                        <div class="custom-control custom-checkbox text-center">
+                                                          <input type="checkbox" class="custom-control-input"  name="remove_right" id="customCheck2">
+                                                          <br><label class="custom-control-label" for="customCheck2">Remove Image</label> 
+                                                        </div>
+                                                      </fieldset>
+                                                    @endif
+                                                    </div>
                                             <fieldset id="storePanimageElement2">
                                                 <label for="storePANImage2">Upload Right Image</label>
                                               <div class="input-group" >
@@ -253,7 +305,17 @@
                                         </div>
                                         <div class="col-4">
                                             <?php $img = !empty($productimages->product_original_image_name) ? asset(config('constants.product_img_path').$productimages->product_original_image_name) : "http://placehold.it/50x50"; ?>
-                                                    <img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="50" width="50">
+                                                    <div class="d-flex justify-content-around">
+                                                        <img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="50" width="50">
+                                                    @if (isset($productimages->product_original_image_name))
+                                                    <fieldset>
+                                                        <div class="custom-control custom-checkbox text-center">
+                                                          <input type="checkbox" class="custom-control-input"  name="remove_other" id="customCheck1">
+                                                          <br><label class="custom-control-label" for="customCheck1">Remove Image</label> 
+                                                        </div>
+                                                      </fieldset>
+                                                    @endif
+                                                    </div>
                                             <fieldset id="storePanimageElement1">
                                                 <label for="storePANImage1">Upload Other Image</label>
                                               <div class="input-group" >

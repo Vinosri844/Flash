@@ -91,7 +91,7 @@ class ProfileController extends Controller
 
             $product_original_path = "imge/"; 
             $recipe_name = $request->manager_name;
-            $file_name = str_replace(" ", "_", strtolower($recipe_name));
+            $file_name = preg_replace('/[^a-zA-Z0-9]/', "_", strtolower($recipe_name));
             $file_path = null;
             if($request->hasFile('manager_image'))
             {

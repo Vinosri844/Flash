@@ -45,7 +45,7 @@ class CategoryOfferController extends Controller
     {
         try {
             $validator = Validator::make($request->all(), [
-                'title' => 'required',
+            'title' => 'required',
             'subtitle' => 'required',
             'seller_id' => 'required',
             'category_id' => 'required',
@@ -61,7 +61,7 @@ class CategoryOfferController extends Controller
         }
         $offer_original_path = "imge/o_227/so22072019/OriginalImage/"; // Company Logo Orignal Image
         $store_title = $request->title;
-        $file_name = str_replace(" ", "_", strtolower($store_title));
+        $file_name = preg_replace('/[^a-zA-Z0-9]/', "_", strtolower($store_title));
         $file_path = null;
         if($request->hasFile('offer_image')){
            
@@ -165,7 +165,7 @@ class CategoryOfferController extends Controller
         }
         $offer_original_path = "imge/o_227/so22072019/OriginalImage/"; // Company Logo Orignal Image
         $store_title = $request->title;
-        $file_name = str_replace(" ", "_", strtolower($store_title));
+        $file_name = preg_replace('/[^a-zA-Z0-9]/', "_", strtolower($store_title));
         $file_path = null;
         if($request->hasFile('offer_image')){
            
@@ -184,7 +184,7 @@ class CategoryOfferController extends Controller
         }
         $start_date = date('Y-m-d', strtotime($request->start_date));
         $end_date = date('Y-m-d', strtotime($request->end_date));
-        if($file_path != null){
+        if($file_path != null || $request->remove != null){
             $request->merge([
                 'isactive' => $active,
                 'user_id' => 1, 

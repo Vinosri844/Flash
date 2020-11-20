@@ -58,7 +58,7 @@ class StoreOfferController extends Controller
         }
         $offer_original_path = "imge/o_227/so22072019/OriginalImage/"; // Company Logo Orignal Image
         $store_title = $request->title;
-        $file_name = str_replace(" ", "_", strtolower($store_title));
+        $file_name = preg_replace('/[^a-zA-Z0-9]/', "_", strtolower($store_title));
         $file_path = null;
         if($request->hasFile('offer_image')){
            
@@ -152,7 +152,7 @@ class StoreOfferController extends Controller
         }
         $offer_original_path = "imge/o_227/so22072019/OriginalImage/"; // Company Logo Orignal Image
         $store_title = $request->title;
-        $file_name = str_replace(" ", "_", strtolower($store_title));
+        $file_name = preg_replace('/[^a-zA-Z0-9]/', "_", strtolower($store_title));
         $file_path = null;
         if($request->hasFile('offer_image')){
            
@@ -165,13 +165,14 @@ class StoreOfferController extends Controller
                 $file_path = $saved_name;
             }
         }
+        
         $active = 0;
         if($request->isactive != null){
             $active = 1;
         }
         $start_date = date('Y-m-d', strtotime($request->start_date));
         $end_date = date('Y-m-d', strtotime($request->end_date));
-        if($file_path != null){
+        if($file_path != null || $request->remove != null){
             $request->merge([
                 'isactive' => $active,
                 'user_id' => 1, 
@@ -194,7 +195,7 @@ class StoreOfferController extends Controller
         
         
         flash()->success('Store Offer Updated Successfully!');
-        return redirect()->route('store-offer.index');
+        return redirect()->back();
         } catch (\Throwable $th) {
             
             flash()->error('Something went Wrong Please Try Again!');

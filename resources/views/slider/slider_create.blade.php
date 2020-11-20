@@ -71,13 +71,13 @@
                                                 <div class="clearfix"></div>
                                             </div>
                                         </div>
-                                        <div class="col-6">
+                                        {{-- <div class="col-6">
                                             <div class="form-label-group">
                                                 <input type="text" id="link" class="form-control" placeholder="image Url"
                                                        name="link" >
                                                 <label for="first-name-floating">Link</label>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="col-6">
                                             <div class="form-group mb-50">
                                                 <label class="text-bold-600" for="exampleInputEmail1">Slider Image</label>

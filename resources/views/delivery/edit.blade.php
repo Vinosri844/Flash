@@ -66,7 +66,17 @@
                                         </div>
                                         <div class="col-6">
                                           <?php $img = !empty($deliveryperson->logistics_user_image) ? asset(config('constants.product_img_path').$deliveryperson->logistics_user_image) : "http://placehold.it/50x50"; ?>
-                                          <td><img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="80" width="50"></td>
+                                          <div class="d-flex justify-content-around">
+                                            <img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="50" width="50">
+                                        @if (isset($deliveryperson->logistics_user_image))
+                                        <fieldset>
+                                            <div class="custom-control custom-checkbox text-center">
+                                              <input type="checkbox" class="custom-control-input"  name="remove_2" id="customCheck5">
+                                              <br><label class="custom-control-label" for="customCheck5">Remove Image</label> 
+                                            </div>
+                                          </fieldset>
+                                        @endif
+                                        </div>
                                         <fieldset>
                                             <label for="storePANImage">Upload Profile Image </label>
                                           <div class="input-group">
@@ -75,7 +85,7 @@
                                             </div>
                                             <div class="custom-file">
                                             <input type="file"  class="custom-file-input" name="dpersonImage" id="dpersonImage" aria-describedby="dpersonImage">
-                                              <label class="custom-file-label" for="dpersonImage">Choose file</label>
+                                              <label class="custom-file-label" for="dpersonImage">{{isset($deliveryperson->logistics_user_image) ? $deliveryperson->logistics_user_image : null}}</label>
                                             </div>
                                           </div>
                                         </fieldset>
@@ -110,7 +120,17 @@
                                         
                                         <div class="col-6">
                                           <?php $img = !empty($deliveryperson->logistics_driving_licence_number_image) ? asset(config('constants.product_img_path').$deliveryperson->logistics_driving_licence_number_image) : "http://placehold.it/50x50"; ?>
-                                          <td><img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="80" width="50"></td>
+                                          <div class="d-flex justify-content-around">
+                                            <img src="{{ $img }}" class="img-fluid img-thumbnail" alt="#" height="50" width="50">
+                                        @if (isset($deliveryperson->logistics_driving_licence_number_image))
+                                        <fieldset>
+                                            <div class="custom-control custom-checkbox text-center">
+                                              <input type="checkbox" class="custom-control-input"  name="remove_1" id="customCheck1">
+                                              <br><label class="custom-control-label" for="customCheck1">Remove Image</label> 
+                                            </div>
+                                          </fieldset>
+                                        @endif
+                                        </div>
                                         <fieldset>
                                             <label for="storePANImage">Upload Licence Image </label>
                                           <div class="input-group">
@@ -119,7 +139,7 @@
                                             </div>
                                             <div class="custom-file">
                                             <input type="file"  class="custom-file-input" name="dlicenceImage" id="dlicenceImage" aria-describedby="dlicenceImage">
-                                              <label class="custom-file-label" for="dlicenceImage">Choose file</label>
+                                              <label class="custom-file-label" for="dlicenceImage">{{isset($deliveryperson->logistics_driving_licence_number_image) ? $deliveryperson->logistics_driving_licence_number_image : null}}</label>
                                             </div>
                                           </div>
                                         </fieldset>

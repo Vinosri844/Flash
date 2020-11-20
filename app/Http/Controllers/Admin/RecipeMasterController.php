@@ -76,7 +76,7 @@ class RecipeMasterController extends Controller
         }
         $product_original_path = "imge/p_756/r_896527/OriginalImage/"; 
         $recipe_name = $request->recipe_name;
-        $file_name = str_replace(" ", "_", strtolower($recipe_name));
+        $file_name = preg_replace('/[^a-zA-Z0-9]/', "_", strtolower($recipe_name));
         $file_path = null;
         if($request->hasFile('recipe_original_image_name'))
         {
@@ -207,7 +207,7 @@ class RecipeMasterController extends Controller
         }
         $product_original_path = "imge/p_756/r_896527/OriginalImage/"; 
         $recipe_name = $request->recipe_name;
-        $file_name = str_replace(" ", "_", strtolower($recipe_name));
+        $file_name = preg_replace('/[^a-zA-Z0-9]/', "_", strtolower($recipe_name));
         $file_path = null;
         if($request->hasFile('recipe_original_image_name'))
         {

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use CommonHelper, Image, File, Validator;
 use DB, Auth, Session;
+use Illuminate\Validation\Rule;
 use App\Category;
 use App\SubCategory;
 
@@ -41,13 +42,15 @@ class CategoryController extends Controller
             if($request->isMethod('post'))
             {
                 $validator = Validator::make($request->all(), [
-                    "category_name" => 'required',
+                    "category_name" => ['required', Rule::unique('category_master')->where(function($query){
+                        $query->where('isdelete', 0);
+                    })],
                     "category_image" => 'required'
                 ]);
 
                 // if form validation errors
                 if ($validator->fails()) {
-                    flash()->error('Please fill the required fields!!!!');
+                    flash()->error($validator->messages()->first());
                     return redirect()->back();
                                 
                 }
@@ -113,15 +116,18 @@ class CategoryController extends Controller
     public function category_edit(Request $request, $category_id)
     {
         try{
+            
             if($request->isMethod('post'))
             {
                 $validator = Validator::make($request->input(), [
-
+                    "category_name" => ['required', Rule::unique('category_master')->ignore($category_id, 'category_id')->where(function($query){
+                        $query->where('isdelete', 0);
+                    })],
                 ]);
 
                 // if form validation errors
                 if ($validator->fails()) {
-                    flash()->error('Please fill the required fields');
+                    flash()->error($validator->messages()->first());
                     return redirect()->route('category_edit', $category_id)
                                 ->withErrors($validator)
                                 ->withInput();
@@ -158,13 +164,15 @@ class CategoryController extends Controller
                             }
                         }
                     }
-                   
+                   if($request->remove != null){
+                    $account->category_image = null;
+                   }
                     $check = $account->save();
 
                     if($check) {
                         DB::commit();
                         flash()->success('Category Updated Successfully!');
-                        return redirect()->route('category', $category_id);
+                        return redirect()->back();
                     } else {
                         flash()->error('Please Try Again!');
                         return view('category.category_edit');
@@ -214,13 +222,15 @@ class CategoryController extends Controller
             if($request->isMethod('post'))
             {
                 $validator = Validator::make($request->input(), [
-                    "subcategory_name" => "required",
+                    "subcategory_name" => ["required", Rule::unique('subcategory_master')->where(function($query){
+                        $query->where('isdelete', 0);
+                    })],
                     "category_id" => "required"
                 ]);
 
                 // if form validation errors
                 if ($validator->fails()) {
-                    flash()->error('Please fill the required fields');
+                    flash()->error($validator->messages()->first());
                     return redirect()->back();
                 }
 
@@ -303,12 +313,14 @@ class CategoryController extends Controller
             if($request->isMethod('post'))
             {
                 $validator = Validator::make($request->input(), [
-
+                    "subcategory_name" => ["required", Rule::unique('subcategory_master')->ignore($subcategory_id, 'subcategory_id')->where(function($query){
+                        $query->where('isdelete', 0);
+                    })],
                 ]);
 
                 // if form validation errors
                 if ($validator->fails()) {
-                    flash()->error('Please fill the required fields');
+                    flash()->error($validator->messages()->first());
                     return redirect()->route('subcategory_edit', $subcategory_id)
                                 ->withErrors($validator)
                                 ->withInput();
@@ -345,7 +357,9 @@ class CategoryController extends Controller
                                 }
                             }
                         }
-                   
+                        if($request->remove != null){
+                            $account->subcategory_image = null;
+                        }
                     $check = $account->save();
 
                     if($check) {

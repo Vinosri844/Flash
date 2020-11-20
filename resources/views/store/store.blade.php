@@ -46,7 +46,7 @@
                                         <th>CST No</th>
                                         <th>FSSAI No</th>
                                         <th>PAN No</th> --}}
-                                        <th>Branch Count</th>
+                                        {{-- <th>Branch Count</th> --}}
                                         <th>Status</th>
                                         <th style="white-space: nowrap;">&nbsp;&nbsp;Created On&nbsp;&nbsp;</th>
 
@@ -67,7 +67,7 @@
                                                 <td>{{ $item->seller_cst_tin_number }}</td>
                                                 <td>{{ $item->seller_fssai_number }}</td>
                                                 <td>{{ $item->seller_pan_number }}</td> --}}
-                                                <td>{{ $item->branches_count }}</td>
+                                                {{-- <td>{{ $item->branches_count }}</td> --}}
                                                 <td>
                                                     <div class="custom-control custom-switch custom-switch-glow custom-control-inline">
                                                         <input type="checkbox" class="custom-control-input" {{$item->isactive == 1 ? 'checked' : ''}} value="{{$item->seller_id}}"  onchange="change_status(this.value, 'seller_master', '#storeStatusChange{{$item->seller_id}}', 'seller_id', 'isactive');" id="storeStatusChange{{$item->seller_id}}">

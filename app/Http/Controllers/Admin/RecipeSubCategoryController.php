@@ -64,7 +64,7 @@ class RecipeSubCategoryController extends Controller
 
             $product_original_path = "imge/rs_745/m37593449/OriginalImage/"; 
             $recipe_name = $request->subcategory_name;
-            $file_name = str_replace(" ", "_", strtolower($recipe_name));
+            $file_name = preg_replace('/[^a-zA-Z0-9]/', "_", strtolower($recipe_name));
             $file_path = null;
             if($request->hasFile('subcategory_image'))
             {
@@ -147,7 +147,7 @@ class RecipeSubCategoryController extends Controller
 
             $product_original_path = "imge/rs_745/m37593449/OriginalImage/"; 
             $recipe_name = $request->subcategory_name;
-            $file_name = str_replace(" ", "_", strtolower($recipe_name));
+            $file_name = preg_replace('/[^a-zA-Z0-9]/', "_", strtolower($recipe_name));
             $file_path = null;
             if($request->hasFile('subcategory_image'))
             {

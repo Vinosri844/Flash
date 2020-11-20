@@ -76,7 +76,7 @@ class DeliveryPersonController extends Controller
                        $rules = array('photo' => 'required|mimes:png,jpg,jpeg');
                        $validator = Validator::make(array('photo'=> $photo), $rules);
                        if($validator->passes()) {
-                           $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('dlicenceImage'))).'_'.time().'.'.$photo->getClientOriginalExtension();
+                           $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('deliveryperson_name'))).'_'.time().'.'.$photo->getClientOriginalExtension();
                            $file_path = public_path(config('constants.product_img_path').$file_name);
                            $file_path1 = public_path(config('constants.product_img_path1').$file_name);
                            $file_path2 = public_path(config('constants.product_img_path2').$file_name);
@@ -98,7 +98,7 @@ class DeliveryPersonController extends Controller
                        $rules = array('photo' => 'required|mimes:png,jpg,jpeg');
                        $validator = Validator::make(array('photo'=> $photo), $rules);
                        if($validator->passes()) {
-                           $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('dpersonImage'))).'_'.time().'.'.$photo->getClientOriginalExtension();
+                           $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('deliveryperson_name'))).'_'.time().'.'.$photo->getClientOriginalExtension();
                            $file_path = public_path(config('constants.product_img_path').$file_name);
                            $file_path1 = public_path(config('constants.product_img_path1').$file_name);
                            $file_path2 = public_path(config('constants.product_img_path2').$file_name);
@@ -241,7 +241,7 @@ class DeliveryPersonController extends Controller
                        $rules = array('photo' => 'required|mimes:png,jpg,jpeg');
                        $validator = Validator::make(array('photo'=> $photo), $rules);
                        if($validator->passes()) {
-                           $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('dlicenceImage'))).'_'.time().'.'.$photo->getClientOriginalExtension();
+                           $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('deliveryperson_name'))).'_'.time().'.'.$photo->getClientOriginalExtension();
                            $file_path = public_path(config('constants.product_img_path').$file_name);
                            $file_path1 = public_path(config('constants.product_img_path1').$file_name);
                            $file_path2 = public_path(config('constants.product_img_path2').$file_name);
@@ -255,6 +255,9 @@ class DeliveryPersonController extends Controller
                        }
                    }
                }
+               if($request->remove_1 != null){
+                $deliveryperson->logistics_driving_licence_number_image = null;
+                   }
 
                if($request->hasFile('dpersonImage')) {
                    $photo = $request->file('dpersonImage');
@@ -263,7 +266,7 @@ class DeliveryPersonController extends Controller
                        $rules = array('photo' => 'required|mimes:png,jpg,jpeg');
                        $validator = Validator::make(array('photo'=> $photo), $rules);
                        if($validator->passes()) {
-                           $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('dpersonImage'))).'_'.time().'.'.$photo->getClientOriginalExtension();
+                           $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('deliveryperson_name'))).'_'.time().'.'.$photo->getClientOriginalExtension();
                            $file_path = public_path(config('constants.product_img_path').$file_name);
                            $file_path1 = public_path(config('constants.product_img_path1').$file_name);
                            $file_path2 = public_path(config('constants.product_img_path2').$file_name);
@@ -277,7 +280,9 @@ class DeliveryPersonController extends Controller
                        }
                    }
                }
-
+                if($request->remove_2 != null){
+                    $deliveryperson->logistics_user_image = null;
+                   }
                  $check = $deliveryperson->save();
 
                  if($deliveryperson){
@@ -329,7 +334,7 @@ class DeliveryPersonController extends Controller
                     DB::commit();
                    // flash()->success('Product Created Successfully!');
                     Session::flash('message', 'Delivery boy Created Successfully!');
-                    return redirect()->route('deliverypersons');
+                    return redirect()->back();
                 } else {
                    // flash()->error('Please Try Again!');
                     Session::flash('alert-class', 'Please Try Again!');

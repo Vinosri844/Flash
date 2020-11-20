@@ -75,7 +75,7 @@ class StoreController extends Controller
             $companylogo_original_path = '/image/sellercompanylogo/OriginalImage/'; // Company Logo Orignal Image
             $companylogo_thumbnail_path ='image/sellercompanylogo/ThumbnailImage/'; // Company Logo Thumbnil Image
             $store_name = $request->store_name;
-            $file_name = str_replace(" ", "_", strtolower($store_name));
+            $file_name = preg_replace('/[^a-zA-Z0-9]/', "_", strtolower($store_name));
             $file_path = null;
             $company_file_path = null;
             if($request->hasFile('store_pan_image')){
@@ -248,7 +248,7 @@ class StoreController extends Controller
             $companylogo_original_path = '/image/sellercompanylogo/OriginalImage/'; // Company Logo Orignal Image
             $companylogo_thumbnail_path ='/image/sellercompanylogo/ThumbnailImage/'; // Company Logo Thumbnil Image
             $store_name = $request->store_name;
-            $file_name = str_replace(" ", "_", strtolower($store_name));
+            $file_name = preg_replace('/[^a-zA-Z0-9]/', "_", strtolower($store_name));
             $file_path = null;
             $company_file_path = null;
             if($request->hasFile('store_pan_image')){

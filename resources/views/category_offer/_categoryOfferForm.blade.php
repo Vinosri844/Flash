@@ -113,10 +113,15 @@
             </label>
           </div>
       </div>
-      @if(isset($category_offer->offer_image))
+      @if(!empty($category_offer->offer_image))
      
         <img src="{{ asset('imge/o_227/so22072019/OriginalImage/') }}/{{$category_offer->offer_image}} " width="30%" alt="" srcset="">
-      
+        <fieldset>
+          <div class="custom-control custom-checkbox ml-2 text-center">
+            <input type="checkbox" class="custom-control-input"  name="remove" id="customCheck1">
+            <br><label class="custom-control-label" for="customCheck1">Remove Image</label> 
+          </div>
+        </fieldset>
       @endif
     </div>
 
@@ -129,7 +134,7 @@
             </div>
             <div class="custom-file">
             <input type="file"  class="custom-file-input" onchange="imageValidate('#categoryOfferImageUpload', '#categoryOfferError')" name="offer_image" id="categoryOfferImageUpload" aria-describedby="storeOfferImage">
-              <label class="custom-file-label" for="storeOfferImage">Choose file</label>
+              <label class="custom-file-label" for="storeOfferImage">{{isset($category_offer->offer_image) ? $category_offer->offer_image : null}}</label>
             </div>
           </div>
           <div class="invalid-feedback">

@@ -15,6 +15,7 @@ use App\SellerMaster;
 use App\Userlogs;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\Rule;
 use CommonLib, CommonHelper, Image, File, Carbon, DB, Validator;
 class ProductController extends Controller
 {
@@ -33,7 +34,9 @@ class ProductController extends Controller
             if($request->isMethod('post'))
             {
                 $validator = Validator::make($request->input(), [
-                    'product_name' => 'required',
+                    'product_name' => ['required', Rule::unique('product_master')->where(function($query){
+                        $query->where('isdelete', 0);
+                    })],
                     'product_short_description' => 'required',
                     'productstore_id' => 'required',
                     'subcat_id' => 'required',
@@ -42,7 +45,7 @@ class ProductController extends Controller
 
                 // if form validation errors
                 if ($validator->fails()) {
-                    flash()->error('Please fill the required fields');
+                    flash()->error($validator->messages()->first());
                     return redirect()->back();
                 }
                 $current_date = date('Y-m-d H:i:s');
@@ -331,12 +334,14 @@ class ProductController extends Controller
             if($request->isMethod('post'))
             {
                 $validator = Validator::make($request->input(), [
-
+                    'product_name' => ['required', Rule::unique('product_master')->ignore($product_id, 'product_id')->where(function($query){
+                        $query->where('isdelete', 0);
+                    })],
                 ]);
 
                 // if form validation errors
                 if ($validator->fails()) {
-                    flash()->error('Please fill the required fields');
+                    flash()->error($validator->messages()->first());
                     return redirect()->route('product_edit', $product_id)
                         ->withErrors($validator)
                         ->withInput();
@@ -402,6 +407,9 @@ class ProductController extends Controller
                             }
                         }
                     }
+                    if($request->remove != null){
+                            $product->product_img = null;
+                        }
                     if($request->hasFile('top_image')) {
                         $photo = $request->file('top_image');
 
@@ -423,6 +431,9 @@ class ProductController extends Controller
                             }
                         }
                     }
+                    if($request->remove_top != null){
+                            $product->top_img = null;
+                        }
                     if($request->hasFile('bottom_image')) {
                         $photo = $request->file('bottom_image');
 
@@ -444,6 +455,9 @@ class ProductController extends Controller
                             }
                         }
                     }
+                    if($request->remove_bottom != null){
+                            $product->bottom_img = null;
+                        }
                     if($request->hasFile('right_image')) {
                         $photo = $request->file('right_image');
 
@@ -465,6 +479,9 @@ class ProductController extends Controller
                             }
                         }
                     }
+                    if($request->remove_right != null){
+                            $product->right_img = null;
+                        }
                     if($request->hasFile('left_image')) {
                         $photo = $request->file('left_image');
 
@@ -486,6 +503,9 @@ class ProductController extends Controller
                             }
                         }
                     }
+                    if($request->remove_left != null){
+                            $product->left_img = null;
+                        }
                     if($request->hasFile('other_image')) {
                         $photo = $request->file('other_image');
 
@@ -512,6 +532,7 @@ class ProductController extends Controller
                                     $product_images->product_compress_image_name = $file_name;
                                     $product_images->product_thumbnail_image_name = $file_name;
                                 }
+                                
                                 $product_images->product_id = $product->product_id;
                                 $product_images->delete_date_time = $current_date;
                                 $product_images->isdelete =0;
@@ -520,7 +541,14 @@ class ProductController extends Controller
                             }
                         }
                     }
-
+                    if($request->remove_other != null){
+                        $product_images = ProductImages::where('product_id', $product_id)->first();
+                    
+                        $product_images->product_compress_image_name = null;
+                        $product_images->product_thumbnail_image_name =null;
+                        $product_images->product_original_image_name = null;
+                        $product_images->save();
+                    }
                    $check = $product->save();
                 //  userlog
                 $userlog_description="Update Product Name - ".$product_name;
