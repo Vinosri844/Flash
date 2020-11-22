@@ -184,7 +184,7 @@ class CategoryOfferController extends Controller
         }
         $start_date = date('Y-m-d', strtotime($request->start_date));
         $end_date = date('Y-m-d', strtotime($request->end_date));
-        if($file_path != null || $request->remove != null){
+        if($file_path != null){
             $request->merge([
                 'isactive' => $active,
                 'user_id' => 1, 

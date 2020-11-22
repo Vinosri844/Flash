@@ -22,8 +22,8 @@ License: You must have a valid license purchased only from themeforest(the above
     <meta name="description" content="Frest admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Frest admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Flash login</title>
-    <link rel="apple-touch-icon" href="{{ asset('assets/app-assets/images/ico/apple-icon-120.html') }}">
+    <title>NammaArea51 AdminPanel</title>
+    <link rel="apple-touch-icon" href="{{asset('imge/logo.jpg')}}">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.pixinvent.com/demo/frest-clean-bootstrap-admin-dashboard-template/app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
 

@@ -72,7 +72,7 @@
       <!-- Validation-->
 
 
-
+      
 
       {{-- @include('layouts.validation') --}}
       {{-- <script src="{{ asset('formvalidation/js/framework/bootstrap.min.js') }}"></script> --}}
@@ -173,6 +173,7 @@
             $('input').attr('autocomplete','false');
         });
       </script>
+
 
 
     </body>

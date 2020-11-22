@@ -164,9 +164,9 @@ class CategoryController extends Controller
                             }
                         }
                     }
-                   if($request->remove != null){
-                    $account->category_image = null;
-                   }
+                //    if($request->remove != null){
+                //     $account->category_image = null;
+                //    }
                     $check = $account->save();
 
                     if($check) {
@@ -357,9 +357,9 @@ class CategoryController extends Controller
                                 }
                             }
                         }
-                        if($request->remove != null){
-                            $account->subcategory_image = null;
-                        }
+                        // if($request->remove != null){
+                        //     $account->subcategory_image = null;
+                        // }
                     $check = $account->save();
 
                     if($check) {

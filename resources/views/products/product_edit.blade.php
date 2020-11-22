@@ -191,7 +191,7 @@
                                             @endif
                                             </div>
                                             <fieldset id="storePanimageElement5">
-                                                <label for="storePANImage5">Upload Top Image<span class="text-danger"> *</span></label>
+                                                <label for="storePANImage5">Upload Top Image</label>
                                               <div class="input-group" >
                                                 {{-- <div class="input-group-prepend">
                                                   <span class="input-group-text" id="storePANImage">Category Image</span>

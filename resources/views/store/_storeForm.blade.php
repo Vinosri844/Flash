@@ -156,9 +156,15 @@
                  placeholder="GST Number">
             </div>
           </div>
-          @if(isset($store->seller_pan_number_image))
-          <div class="my-1">
+          @if(!empty($store->seller_pan_number_image))
+          <div class="my-1 d-flex">
             <img src="{{ asset('image/sellerpancard/OriginalImage/') }}/{{$store->seller_pan_number_image}} " width="30%" alt="" srcset="">
+            <fieldset>
+              <div class="custom-control custom-checkbox ml-2 text-center">
+                <input type="checkbox" class="custom-control-input"  name="remove" id="customCheck1">
+                <br><label class="custom-control-label" for="customCheck1">Remove Image</label> 
+              </div>
+            </fieldset>
           </div>
           @endif
           
@@ -214,9 +220,10 @@
             </div>
           </fieldset>
           </div>
-          @if(isset($store->seller_company_image))
-          <div class="mb-1">
+          @if(!empty($store->seller_company_image))
+          <div class="mb-1 d-flex">
             <img src="{{ asset('image/sellercompanylogo/OriginalImage/') }}/{{$store->seller_company_image}} " width="30%" alt="" srcset="">
+            
           </div>
           @endif
           <fieldset id="storeCompanyImage">

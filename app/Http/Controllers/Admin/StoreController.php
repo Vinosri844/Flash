@@ -84,7 +84,7 @@ class StoreController extends Controller
                 {
 
                     $extension = $request->store_pan_image->extension();
-                    $saved_name = $file_name.time()."." .$extension;
+                    $saved_name = $file_name.time()."pan." .$extension;
                     $request->store_pan_image->move(public_path($pancard_original_path), $saved_name);
                     $file_path = $saved_name;
                 }
@@ -94,7 +94,7 @@ class StoreController extends Controller
                 {
                     $image = $request->store_company_logo;
                     $extension = $request->store_company_logo->extension();
-                    $company_saved_name = $file_name.time()."." .$extension;
+                    $company_saved_name = $file_name.time()."com." .$extension;
                     $request->store_company_logo->move(public_path($companylogo_original_path), $company_saved_name);
                     $company_file_path = $company_saved_name;
                 }
@@ -257,7 +257,7 @@ class StoreController extends Controller
                 {
 
                     $extension = $request->store_pan_image->extension();
-                    $saved_name = $file_name.time()."." .$extension;
+                    $saved_name = $file_name.time()."pan." .$extension;
                     $request->store_pan_image->move(public_path($pancard_original_path), $saved_name);
                     $file_path = $saved_name;
                 }
@@ -268,7 +268,7 @@ class StoreController extends Controller
                 {
 
                     $extension = $request->store_company_logo->extension();
-                    $company_saved_name = $file_name.time()."." .$extension;
+                    $company_saved_name = $file_name.time()."com." .$extension;
                     $request->store_company_logo->move(public_path($companylogo_original_path), $company_saved_name);
                     $company_file_path = $company_saved_name;
                 }
@@ -281,9 +281,11 @@ class StoreController extends Controller
             $store->seller_user_name = $request->store_name;
             $store->seller_description = $request->store_description;
             $store->seller_pan_number = $request->store_pan_num;
-            if($file_path != null && $company_file_path != null){
-            $store->seller_company_image = $company_file_path;
-            $store->seller_pan_number_image = $file_path;
+            if($file_path != null || $request->remove != null){
+                $store->seller_pan_number_image = $file_path;
+            }
+            if($company_file_path != null){
+                $store->seller_company_image = $company_file_path;
             }
             $store->seller_cst_tin_number = $request->store_cst_num;
             $store->seller_gst_tin_number = $request->store_gst_num;
