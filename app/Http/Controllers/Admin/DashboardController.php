@@ -11,7 +11,7 @@ class DashboardController extends Controller
 {
 
 
-    public function index(){
+    public function index(Request $request, $year){
         $grandtotal = NULL;
         $data['delivered_orders'] = OrderDetails::where('order_delivery_status_id', 4)->count();
         $invoice_details = InvoiceDetailsData::where('order_delivery_status_id', 4)->get();
@@ -47,7 +47,7 @@ class DashboardController extends Controller
                                             ->join('order_details', 'order_details.order_details_id', '=', 'invoice_details_data.order_details_id')
                                             ->join('order_master', 'order_master.order_id', '=', 'order_details.order_id')
                                             ->where('order_details.order_delivery_status_id', 4)
-                                            ->whereYear('order_details.create_date_time', 2020)
+                                            ->whereYear('order_details.create_date_time', $year)
                                             ->whereMonth('order_details.create_date_time', $month)
                                             ->pluck('order_master.final_paid_amount')->toArray();
                         array_push($data['monthly_sales'], array_sum($data['monthly']));

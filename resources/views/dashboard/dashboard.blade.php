@@ -223,7 +223,7 @@
         tooltip: {
             y: {
                 formatter: function(e) {
-                    return "Rs. " + e + " thousands";
+                    return "Rs. " + e ;
                 }
             }
         }

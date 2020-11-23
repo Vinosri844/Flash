@@ -28,7 +28,7 @@ if(isset($route[1])){
   <h5 class="content-header-title float-left pr-1 mb-0">{{ucfirst(str_replace('-', ' ', $route[0]))}}</h5>
   <div class="breadcrumb-wrapper col-12">
     <ol class="breadcrumb p-0 mb-0">
-      <li class="breadcrumb-item"><a href="{{route('dashboard')}}"><i class="bx bx-home-alt"></i></a>
+      <li class="breadcrumb-item"><a href="{{route('dashboard', ['year' => 2020, 'month' => 1])}}"><i class="bx bx-home-alt"></i></a>
       </li>
     <li class="breadcrumb-item"><a href="{{ $home }}">{{ucfirst($route[0])}}</a>
       </li>

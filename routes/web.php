@@ -41,7 +41,7 @@ Route::get('/subcategory/{id}', 'Admin\CategoryController@subcategory_edit')->na
 Route::post('/subcategory/{id}', 'Admin\CategoryController@subcategory_edit')->name('subcategory_edit_submit');
 Route::get('/subcategory/{id}/delete','Admin\CategoryController@sc_destroy')->name('subcategory_destroy');
 
-Route::get('/dashboard', 'Admin\DashboardController@index')->name('dashboard');
+Route::get('/dashboard/{year}/{month}', 'Admin\DashboardController@index')->name('dashboard');
 
 
 //products

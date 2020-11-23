@@ -50,7 +50,7 @@
     <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
       <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
-        <li class="nav-item mr-auto"><a class="navbar-brand" href="{{route('dashboard')}}">
+        <li class="nav-item mr-auto"><a class="navbar-brand" href="{{route('dashboard', ['year' => 2020, 'month' => 1])}}">
               <div class="">
                 {{-- <img class="logo" src="{{ asset('assets/app-assets/images/logo/logo.png') }}"/> --}}
                 NammaArea51
@@ -62,7 +62,7 @@
       <div class="shadow-bottom"></div>
       <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="lines">
-        <li class=" nav-item {{ $route[0] == 'dashboard' ? 'active' : ''}}"><a href="{{ route('dashboard') }}"><i class="bx bx-home" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
+        <li class=" nav-item {{ $route[0] == 'dashboard' ? 'active' : ''}}"><a href="{{ route('dashboard', ['year' => 2020, 'month' => 1]) }}"><i class="bx bx-home" data-icon="desktop"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span></a>
           </li>
           <li class=" navigation-header"><span>Category</span>
           </li>
