@@ -91,7 +91,7 @@
                             <?php  $current_month = date("m"); $selec = request()->month;?>
                             <select class="form-control" onchange="changing_both()" id="selectMonth">
                               @for ($j = 1; $j <= 12; $j++)
-                                <option value="{{$j}}" {{$selec == $j ? 'selected' : null}}>{{date("M", $j)}}</option>
+                                <option value="{{$j}}" {{$selec == $j ? 'selected' : null}}>{{date("F", mktime(0, 0, 0, $j, 10))}}</option>
                               @endfor
                                
                             </select>
