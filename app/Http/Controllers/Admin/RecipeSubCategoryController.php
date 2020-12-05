@@ -72,7 +72,7 @@ class RecipeSubCategoryController extends Controller
                 {
                     $extension = $request->subcategory_image->extension();
                     $saved_name = $file_name.time()."." .$extension;
-                    $request->subcategory_image->move(public_path($product_original_path), $saved_name);
+                    $request->subcategory_image->move(($product_original_path), $saved_name);
                     $file_path = $saved_name;
                 }
             }
@@ -155,7 +155,7 @@ class RecipeSubCategoryController extends Controller
                 {
                     $extension = $request->subcategory_image->extension();
                     $saved_name = $file_name.time()."." .$extension;
-                    $request->subcategory_image->move(public_path($product_original_path), $saved_name);
+                    $request->subcategory_image->move(($product_original_path), $saved_name);
                     $file_path = $saved_name;
                 }
             }

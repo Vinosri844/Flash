@@ -70,7 +70,7 @@ class CategoryOfferController extends Controller
 
                 $extension = $request->offer_image->extension();
                 $saved_name = $file_name.time()."." .$extension;
-                $request->offer_image->move(public_path($offer_original_path), $saved_name);
+                $request->offer_image->move(($offer_original_path), $saved_name);
                 $file_path = $saved_name;
             }
         }
@@ -174,7 +174,7 @@ class CategoryOfferController extends Controller
 
                 $extension = $request->offer_image->extension();
                 $saved_name = $file_name.time()."." .$extension;
-                $request->offer_image->move(public_path($offer_original_path), $saved_name);
+                $request->offer_image->move(($offer_original_path), $saved_name);
                 $file_path = $saved_name;
             }
         }

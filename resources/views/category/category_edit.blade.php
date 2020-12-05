@@ -45,7 +45,7 @@
                       </div>
                     </div>
                     <div class="col-sm-2">
-                        @if(isset($category->category_image) && !empty($category->category_image) && file_exists(public_path(config('constants.category_img_path1').$category->category_image)))
+                        @if(isset($category->category_image) && !empty($category->category_image) && file_exists((config('constants.category_img_path1').$category->category_image)))
                             <img src="{{ asset(config('constants.category_img_path1').$category->category_image) }}" class="img-thumbnail" width="100" height="100" />
                             {{-- <fieldset>
                               <div class="custom-control custom-checkbox text-center">

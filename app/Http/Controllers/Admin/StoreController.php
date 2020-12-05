@@ -85,7 +85,7 @@ class StoreController extends Controller
 
                     $extension = $request->store_pan_image->extension();
                     $saved_name = $file_name.time()."pan." .$extension;
-                    $request->store_pan_image->move(public_path($pancard_original_path), $saved_name);
+                    $request->store_pan_image->move(($pancard_original_path), $saved_name);
                     $file_path = $saved_name;
                 }
             }
@@ -95,7 +95,7 @@ class StoreController extends Controller
                     $image = $request->store_company_logo;
                     $extension = $request->store_company_logo->extension();
                     $company_saved_name = $file_name.time()."com." .$extension;
-                    $request->store_company_logo->move(public_path($companylogo_original_path), $company_saved_name);
+                    $request->store_company_logo->move(($companylogo_original_path), $company_saved_name);
                     $company_file_path = $company_saved_name;
                 }
             }
@@ -258,7 +258,7 @@ class StoreController extends Controller
 
                     $extension = $request->store_pan_image->extension();
                     $saved_name = $file_name.time()."pan." .$extension;
-                    $request->store_pan_image->move(public_path($pancard_original_path), $saved_name);
+                    $request->store_pan_image->move(($pancard_original_path), $saved_name);
                     $file_path = $saved_name;
                 }
             }
@@ -269,7 +269,7 @@ class StoreController extends Controller
 
                     $extension = $request->store_company_logo->extension();
                     $company_saved_name = $file_name.time()."com." .$extension;
-                    $request->store_company_logo->move(public_path($companylogo_original_path), $company_saved_name);
+                    $request->store_company_logo->move(($companylogo_original_path), $company_saved_name);
                     $company_file_path = $company_saved_name;
                 }
             }

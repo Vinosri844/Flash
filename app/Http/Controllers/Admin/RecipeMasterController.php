@@ -85,7 +85,7 @@ class RecipeMasterController extends Controller
                 
                 $extension = $request->recipe_original_image_name->extension();
                 $saved_name = $file_name.time()."." .$extension;
-                $request->recipe_original_image_name->move(public_path($product_original_path), $saved_name);
+                $request->recipe_original_image_name->move(($product_original_path), $saved_name);
                 $file_path = $saved_name;
             }
         }
@@ -216,7 +216,7 @@ class RecipeMasterController extends Controller
                 
                 $extension = $request->recipe_original_image_name->extension();
                 $saved_name = $file_name.time()."." .$extension;
-                $request->recipe_original_image_name->move(public_path($product_original_path), $saved_name);
+                $request->recipe_original_image_name->move(($product_original_path), $saved_name);
                 $file_path = $saved_name;
             }
         }

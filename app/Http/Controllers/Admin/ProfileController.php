@@ -100,7 +100,7 @@ class ProfileController extends Controller
                     $image = $request->manager_image;
                     $extension = $request->manager_image->extension();
                     $saved_name = $file_name.time()."." .$extension;
-                    $path = public_path($product_original_path.$saved_name);
+                    $path = ($product_original_path.$saved_name);
                     $upload = Image::make($image->getRealPath())->save($path);
                     $file_path = $saved_name;
                 }

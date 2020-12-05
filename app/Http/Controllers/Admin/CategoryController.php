@@ -73,9 +73,9 @@ class CategoryController extends Controller
                             $validator = Validator::make(array('photo'=> $photo), $rules);
                             if($validator->passes()) {
                                 $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('category_name'))).'_'.time().'.'.$photo->getClientOriginalExtension();
-                                $file_path = public_path(config('constants.category_img_path').$file_name);
-                                $file_path1 = public_path(config('constants.category_img_path1').$file_name);
-                                $file_path2 = public_path(config('constants.category_img_path2').$file_name);
+                                $file_path = config('constants.category_img_path').$file_name;
+                                $file_path1 = (config('constants.category_img_path1').$file_name);
+                                $file_path2 = (config('constants.category_img_path2').$file_name);
 
                                 $save_photo = Image::make($photo->getRealPath())->save($file_path);
                                 $save_photo = Image::make($photo->getRealPath())->save($file_path2);
@@ -151,9 +151,9 @@ class CategoryController extends Controller
                             $validator = Validator::make(array('photo'=> $photo), $rules);
                             if($validator->passes()) {
                                 $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('category_name'))).'_'.time().'.'.$photo->getClientOriginalExtension();
-                                $file_path = public_path(config('constants.category_img_path').$file_name);
-                                $file_path1 = public_path(config('constants.category_img_path1').$file_name);
-                                $file_path2 = public_path(config('constants.category_img_path2').$file_name);
+                                $file_path = (config('constants.category_img_path').$file_name);
+                                $file_path1 = (config('constants.category_img_path1').$file_name);
+                                $file_path2 = (config('constants.category_img_path2').$file_name);
 
                                 $save_photo = Image::make($photo->getRealPath())->save($file_path);
                                 $save_photo = Image::make($photo->getRealPath())->save($file_path2);
@@ -252,9 +252,9 @@ class CategoryController extends Controller
                             $validator = Validator::make(array('photo'=> $photo), $rules);
                             if($validator->passes()) {
                                 $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('subcategory_name'))).'_'.time().'.'.$photo->getClientOriginalExtension();
-                                $file_path = public_path(config('constants.subcategory_img_path').$file_name);
-                                $file_path1 = public_path(config('constants.subcategory_img_path1').$file_name);
-                                $file_path2 = public_path(config('constants.subcategory_img_path2').$file_name);
+                                $file_path = (config('constants.subcategory_img_path').$file_name);
+                                $file_path1 = (config('constants.subcategory_img_path1').$file_name);
+                                $file_path2 = (config('constants.subcategory_img_path2').$file_name);
 
                                 $save_photo = Image::make($photo->getRealPath())->save($file_path);
                                 $save_photo = Image::make($photo->getRealPath())->save($file_path2);
@@ -344,9 +344,9 @@ class CategoryController extends Controller
                                 $validator = Validator::make(array('photo'=> $photo), $rules);
                                 if($validator->passes()) {
                                     $file_name = preg_replace('/[^a-zA-Z0-9]/', '_', strtolower($request->input('subcategory_name'))).'_'.time().'.'.$photo->getClientOriginalExtension();
-                                    $file_path = public_path(config('constants.subcategory_img_path').$file_name);
-                                    $file_path1 = public_path(config('constants.subcategory_img_path1').$file_name);
-                                    $file_path2 = public_path(config('constants.subcategory_img_path2').$file_name);
+                                    $file_path = (config('constants.subcategory_img_path').$file_name);
+                                    $file_path1 = (config('constants.subcategory_img_path1').$file_name);
+                                    $file_path2 = (config('constants.subcategory_img_path2').$file_name);
     
                                     $save_photo = Image::make($photo->getRealPath())->save($file_path);
                                     $save_photo = Image::make($photo->getRealPath())->save($file_path2);
