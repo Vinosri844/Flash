@@ -59,7 +59,7 @@
                     @push('scripts')
                        <script>
                             function change_year(year){
-                                window.location.href = 'http://localhost/Flash/public/dashboard/'+year+'/1#monthlyChart'
+                                window.location.href = 'https://ksixdev.in/adminpanel/public/dashboard/'+year+'/1#monthlyChart'
                             }
                        </script>
                     @endpush
@@ -103,7 +103,7 @@
                             function changing_both(){
                                 var month = $("#selectMonth").val();
                                 var year = $("#selectYear").val();
-                                window.location.href = 'http://localhost/Flash/public/dashboard/'+year+'/'+month+'#weeklyChart'
+                                window.location.href = 'https://ksixdev.in/adminpanel/public/dashboard/'+year+'/'+month+'#weeklyChart'
                             }
                        </script>
                     @endpush
