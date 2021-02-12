@@ -13,7 +13,7 @@ License: You must have a valid license purchased only from themeforest(the above
 -->
 <html class="loading" lang="en" data-textdirection="ltr">
   <!-- BEGIN: Head-->
-  
+
 <!-- Mirrored from www.pixinvent.com/demo/frest-clean-bootstrap-admin-dashboard-template/html/ltr/vertical-menu-template-semi-dark/auth-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 20 Aug 2020 23:09:28 GMT -->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -22,9 +22,9 @@ License: You must have a valid license purchased only from themeforest(the above
     <meta name="description" content="Frest admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Frest admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>NammaArea51 AdminPanel</title>
+    <title>HASSLE FREE AdminPanel</title>
     <link rel="apple-touch-icon" href="{{asset('imge/logo.jpg')}}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('imge/logo.jpg')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('image/logo/logo.png')}}">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->
@@ -52,7 +52,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/assets/css/style.css') }}">
     <!-- END: Custom CSS-->
 
-   
+
     <link rel="stylesheet" href="{{ asset('formvalidation/css/formValidation.min.css') }}">
 
     <style>
@@ -79,8 +79,8 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="col-md-6 col-12 px-0">
                     <div class="card disable-rounded-right mb-0 p-2 h-100 d-flex justify-content-center">
                         <div class="card-header pb-1">
-                            <div class="card-title">
-                                <h4 class="text-center mb-2">Welcome</h4>
+                            <div class="card-title text-center">
+                                <img src="{{asset('image/logo/logo.png')}}" alt="" width="30%" srcset="">
                             </div>
                         </div>
                         <div class="card-content">
@@ -106,7 +106,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </div>
                                     <div
                                         class="form-group d-flex flex-md-row flex-column justify-content-between align-items-center">
-                                      
+
                                     </div>
                                     <button type="submit" class="btn btn-primary glow w-100 position-relative">LOGIN
                                     </button>
@@ -115,7 +115,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </div>
                     </div>
                 </div>
-           
+
 </section>
 <!-- login page ends -->
 
@@ -146,7 +146,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN: Page JS-->
     <!-- END: Page JS-->
     <script src="{{ asset('formvalidation/js/formValidation.min.js') }}"></script>
-    <script src="{{ asset('formvalidation/js/framework/bootstrap.min.js') }}"></script> 
+    <script src="{{ asset('formvalidation/js/framework/bootstrap.min.js') }}"></script>
 
     @include('layouts.validation')
   </body>

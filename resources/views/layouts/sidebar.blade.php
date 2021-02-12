@@ -2,7 +2,7 @@
   <!-- BEGIN: Body-->
   <body class="vertical-layout vertical-menu-modern semi-dark-layout 2-columns  navbar-sticky footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="2-columns" data-layout="semi-dark-layout">
     <?php $route = explode('.', Route::currentRouteName()) ?>
-    
+
     <!-- BEGIN: Header-->
     <div class="header-navbar-shadow"></div>
     <nav class="header-navbar main-header-navbar navbar-expand-lg navbar navbar-with-menu fixed-top ">
@@ -51,11 +51,12 @@
       <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
         <li class="nav-item mr-auto"><a class="navbar-brand" href="{{route('dashboard', ['year' => 2020, 'month' => 1])}}">
-              <div class="">
-                {{-- <img class="logo" src="{{ asset('assets/app-assets/images/logo/logo.png') }}"/> --}}
-                NammaArea51
-              </div>
-              {{-- <h2 class="brand-text mb-0">NammaArea51</h2></a></li> --}}
+            <div class="brand-logo">
+                <img src="{{asset('image/logo/logo.png')}}" alt="" width="100%" srcset="">
+            </div>
+
+            </a>
+            </li>
           <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="bx bx-x d-block d-xl-none font-medium-4 primary"></i><i class="toggle-icon bx bx-disc font-medium-4 d-none d-xl-block primary" data-ticon="bx-disc"></i></a></li>
         </ul>
       </div>
@@ -139,7 +140,7 @@
           </li>
           </ul>
           </li> --}}
-           
+
           {{-- <li class="nav-item">
             <a href="#"
             ><span class="menu-title" data-i18n="Extra Components"
@@ -168,7 +169,7 @@
             @php $active = (Route::currentRouteName() == 'smstemplates') ? 'active' : ''; @endphp
             <li class="{{$active}}"><a href="{{ route('smstemplates') }}"><i class="bx bx-message" data-icon="morph-preview"></i><span class="menu-title" data-i18n="Disabled Menu">SMS template list</span></a>
           </li> --}}
-          
+
           <li class=" navigation-header"><span>Other Masters</span>
           </li>
 
@@ -190,7 +191,7 @@
             <li class="{{$active}}"><a href="{{ route('notifications') }}"><i class="bx bx-bell" data-icon="wrench"></i><span class="menu-title" data-i18n="Account Settings">Notification</span></a>
           </li> --}}
 
-        
+
             <li class=" navigation-header"><span>Pincodes</span>
             </li>
             @php $active = null; if($route[0] == 'sdpincode_add' || $route[0] == 'sdpincodes' || $route[0] == 'sdpincode_edit' ){
